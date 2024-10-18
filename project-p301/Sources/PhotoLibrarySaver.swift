@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import PhotosUI
 import UIKit
 
 class PhotoLibrarySaver: NSObject {
     func writeToPhotoLibrary(image: UIImage) {
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(completedTheSave), nil)
-    }
+        PHPhotoLibrary.shared().performChanges {
+            _ = PHAssetChangeRequest.creationRequestForAsset(from: image)
 
-    @objc func completedTheSave(_: UIImage, didFinishSavingWithError _: Error?, contextInfo _: UnsafeRawPointer) {
-        print("Save done.")
+        } completionHandler: { _, _ in
+        }
     }
 }
