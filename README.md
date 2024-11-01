@@ -1,7 +1,5 @@
-# Project P301
-
-
+# JourneyBook - Project P301
 
 ## Getting started
 
-This is the Project Repoistory for Project 301
+This is the Project Repoistory for Journey Book, Project P301
