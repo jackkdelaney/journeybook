@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01EC2FBB84E63DF0F2652207 /* JourneyBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3990FF23654A5978C7E27 /* JourneyBookApp.swift */; };
 		18FE85792868B0B0DC69895D /* PhotoLibrarySaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E9C135B0225D14119A2ED8 /* PhotoLibrarySaver.swift */; };
 		1B94CECCE34AFA0E5B0FD7BE /* PhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA9ADB460083ACCAF008FC /* PhotosView.swift */; };
 		4BC2BE356CA8DAD7E98110F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12B9F40D72D2D91A1FFF1458 /* Preview Assets.xcassets */; };
@@ -14,7 +15,6 @@
 		79374EAEC53D5116091420F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 283B1EA48214AC61112B27E9 /* Assets.xcassets */; };
 		9F2A7726E92F163B2E19052B /* TuistBundle+JourneyBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CB1C6E084C6614B139992 /* TuistBundle+JourneyBook.swift */; };
 		CCF070CF4CDFE6A7D29893BA /* ProjectP301Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B27684F808D27D8FB52FC /* ProjectP301Tests.swift */; };
-		E5FBF2FED2FB6D838C38D573 /* JourneyBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75845F16A3F563F4FAA3B806 /* JourneyBookApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,10 +56,10 @@
 		283B1EA48214AC61112B27E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58E9C135B0225D14119A2ED8 /* PhotoLibrarySaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibrarySaver.swift; sourceTree = "<group>"; };
 		6B08E2868827EAB403D6ACC3 /* JourneyBookTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "JourneyBookTests-Info.plist"; sourceTree = "<group>"; };
-		75845F16A3F563F4FAA3B806 /* JourneyBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyBookApp.swift; sourceTree = "<group>"; };
 		958043806ED70D39A48C6759 /* JourneyBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JourneyBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		997CB1C6E084C6614B139992 /* TuistBundle+JourneyBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+JourneyBook.swift"; sourceTree = "<group>"; };
 		ACEA9ADB460083ACCAF008FC /* PhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosView.swift; sourceTree = "<group>"; };
+		DBD3990FF23654A5978C7E27 /* JourneyBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyBookApp.swift; sourceTree = "<group>"; };
 		DE7B27684F808D27D8FB52FC /* ProjectP301Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectP301Tests.swift; sourceTree = "<group>"; };
 		F86F29311FBA5858445A02D3 /* TuistAssets+JourneyBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+JourneyBook.swift"; sourceTree = "<group>"; };
 		FAFA2FCC87F97F3BD636516F /* JourneyBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JourneyBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,9 +157,9 @@
 		DC7938503A5AD698DA7826E0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DBD3990FF23654A5978C7E27 /* JourneyBookApp.swift */,
 				58E9C135B0225D14119A2ED8 /* PhotoLibrarySaver.swift */,
 				ACEA9ADB460083ACCAF008FC /* PhotosView.swift */,
-				75845F16A3F563F4FAA3B806 /* JourneyBookApp.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -228,7 +228,6 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					2139D7F25BC9A92AD8137534 = {
 						TestTargetID = CC3CBB4AC39F78A1DACAE1D0;
@@ -280,9 +279,9 @@
 			files = (
 				4BD0B433085B63AC394A5D6F /* TuistAssets+JourneyBook.swift in Sources */,
 				9F2A7726E92F163B2E19052B /* TuistBundle+JourneyBook.swift in Sources */,
+				01EC2FBB84E63DF0F2652207 /* JourneyBookApp.swift in Sources */,
 				18FE85792868B0B0DC69895D /* PhotoLibrarySaver.swift in Sources */,
 				1B94CECCE34AFA0E5B0FD7BE /* PhotosView.swift in Sources */,
-				E5FBF2FED2FB6D838C38D573 /* JourneyBookApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,7 +370,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -403,7 +401,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -452,7 +453,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -514,7 +514,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
