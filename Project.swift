@@ -7,7 +7,7 @@ let project = Project(
       name: "JourneyBook",
       destinations: .iOS,
       product: .app,
-      bundleId: "co.jackdelaney.p301",
+      bundleId: "co.jackdelaney.jb",
       infoPlist: .extendingDefault(
         with: [
           "UILaunchScreen": [
@@ -25,7 +25,7 @@ let project = Project(
       name: "JourneyBookTests",
       destinations: .iOS,
       product: .unitTests,
-      bundleId: "co.jackdelaney.p301Tests",
+      bundleId: "co.jackdelaney.jbTests",
       infoPlist: .default,
       sources: ["JourneyBook/Tests/**"],
       resources: [],
