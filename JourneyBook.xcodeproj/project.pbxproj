@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -52,8 +52,10 @@
 
 /* Begin PBXFileReference section */
 		12B9F40D72D2D91A1FFF1458 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1A6A547965874E1989E95603 /* JourneyBook-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "JourneyBook-Info.plist"; sourceTree = "<group>"; };
 		283B1EA48214AC61112B27E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58E9C135B0225D14119A2ED8 /* PhotoLibrarySaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibrarySaver.swift; sourceTree = "<group>"; };
+		6B08E2868827EAB403D6ACC3 /* JourneyBookTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "JourneyBookTests-Info.plist"; sourceTree = "<group>"; };
 		958043806ED70D39A48C6759 /* JourneyBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JourneyBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		997CB1C6E084C6614B139992 /* TuistBundle+JourneyBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+JourneyBook.swift"; sourceTree = "<group>"; };
 		ACEA9ADB460083ACCAF008FC /* PhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		8CAB49C0C812521683D54980 /* Derived */ = {
 			isa = PBXGroup;
 			children = (
+				E15B109399CAEBC0C9B12C81 /* InfoPlists */,
 				15C1AE21B6FA2C281940BBDD /* Sources */,
 			);
 			path = Derived;
@@ -167,6 +170,15 @@
 				12B9F40D72D2D91A1FFF1458 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E15B109399CAEBC0C9B12C81 /* InfoPlists */ = {
+			isa = PBXGroup;
+			children = (
+				1A6A547965874E1989E95603 /* JourneyBook-Info.plist */,
+				6B08E2868827EAB403D6ACC3 /* JourneyBookTests-Info.plist */,
+			);
+			path = InfoPlists;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,7 +401,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -465,7 +480,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/JourneyBook-Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -490,7 +504,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/JourneyBook-Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -501,7 +514,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
