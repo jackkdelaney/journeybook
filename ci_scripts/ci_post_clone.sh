@@ -1,14 +1,19 @@
 #!/bin/sh
+curl https://mise.jdx.dev/install.sh | sh
+export PATH="$HOME/.local/bin/$PATH" # Installs the tools in .mise.toml in the project root
 
-# Install Tuist
-curl -Ls https://install.tuist.io | bash
+~/.local/bin/mise --version
+~/.local/bin/mise install # Installs the version from .mise.toml
 
-# Make sure Tuist is available in PATH
-export PATH="$HOME/.tuist/bin:$PATH"
+if [ "$CI" ]; then
+     echo "Skip shims due to CI"
+else
+     echo "Activating shims for local dev"
+     eval "$(mise activate bash --shims)" # activate shims to enable local use of mise
+fi
 
-# Verify Tuist installation
-tuist --version
+mise doctor # verify the output of mise is correct on CI
 
-# Clean up and generate Xcode project with Tuist
-tuist clean
-tuist generate --no-open
+cd ..
+~/.local/bin/mise x -- tuist fetch
+~/.local/bin/mise x -- tuist generate # Generate the Xcode Project using Tuist
