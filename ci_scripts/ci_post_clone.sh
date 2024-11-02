@@ -1,8 +1,8 @@
 #!/bin/sh
 
 
-echo "Something went wrong. Include helpful information here."
-exit 1
+# echo "Something went wrong. Include helpful information here."
+# exit 1
 
 
 curl https://mise.jdx.dev/install.sh | sh
