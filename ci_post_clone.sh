@@ -1,4 +1,10 @@
 #!/bin/sh
+
+
+echo "Something went wrong. Include helpful information here."
+exit 1
+
+
 curl https://mise.jdx.dev/install.sh | sh
 mise install # Installs the version from .mise.toml
 
