@@ -31,15 +31,7 @@ let project = Project(
       resources: [],
       dependencies: [.target(name: "JourneyBook")]
     ),
-  ],
-  schemes: [
-    .scheme(
-        name: "JourneyBook",
-        buildAction: .buildAction(targets: ["JourneyBook"]),
-        testAction: nil,
-        archiveAction: .archiveAction(configuration: "Debug")
-    )
-]
+  ]
 )
 
 
