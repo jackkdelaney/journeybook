@@ -17,8 +17,8 @@ struct BusLocations : Identifiable {
     var id: String
     var atcoCode: String
     var commonName : String
-    var latitude : String
-    var longitude : String
+    var latitude : CLLocationDegrees
+    var longitude : CLLocationDegrees
     var easting : String
     var northing : String
     
@@ -26,8 +26,8 @@ struct BusLocations : Identifiable {
         self.id = id
         self.atcoCode = atcoCode
         self.commonName = commonName
-        self.latitude = latitude
-        self.longitude = longitude
+        self.latitude = CLLocationDegrees(latitude) ?? 0
+        self.longitude = CLLocationDegrees(longitude) ?? 0
         self.easting = easting
         self.northing = northing
     }
@@ -61,19 +61,31 @@ extension BusLocations {
 }
 
 struct MapView: View {
-//    @State private var position = MapCameraPosition.region(
-//        MKCoordinateRegion(
-//            center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
-//            span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
-//        )
-//    )
+    @State private var region =  MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 54.5973, longitude: -5.9301),
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        )
     
     var locations = BusLocations.load(from: "november-cords")
     
     var body: some View {
-        List(locations) { location in
-            Text(location.commonName)
-        }
+        Map(coordinateRegion: $region, annotationItems: locations) { location in
+               MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
+                   VStack {
+                       Text(location.commonName)
+                           .font(.caption)
+                           .bold()
+                           .padding(5)
+                           .background(Color.white)
+                           .cornerRadius(10)
+                           .shadow(radius: 5)
+                       Image(systemName: "mappin")
+                           .foregroundColor(.red)
+                           .font(.title)
+                   }
+               }
+           }
+        Text("HELLO")
 
     }
 }
