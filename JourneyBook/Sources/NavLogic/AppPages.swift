@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum AppPages: Hashable {
+    case worldHome
     case resourceManager
     case resourceDetails(VisualResource)
     case login
@@ -17,11 +18,14 @@ extension AppPages {
     @ViewBuilder
     func build() -> some View {
         switch self {
-        case .resourceManager: ResourcesManager()
+        case .resourceManager:
+            ResourcesManager()
         case .login:
             Text("LOGIN")
         case .resourceDetails(let resource):
             ResourceView(resource: resource)
+        case .worldHome:
+            WorldHome()
         }
     }
     

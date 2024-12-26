@@ -8,9 +8,6 @@
 import SwiftUI
 import AVKit
 
-//struct PhotosPickerView: SheetView {
-
-
 struct VideosPickerView: SheetView {
     var sheetTitle: String = "Select Video"
 
