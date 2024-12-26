@@ -12,6 +12,7 @@ enum AppPages: Hashable {
     case resourceManager
     case resourceDetails(VisualResource)
     case login
+    case mapExperience
 }
 
 extension AppPages {
@@ -26,6 +27,8 @@ extension AppPages {
             ResourceView(resource: resource)
         case .worldHome:
             WorldHome()
+        case .mapExperience:
+            MapView()
         }
     }
     
