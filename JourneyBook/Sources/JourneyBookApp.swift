@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct JourneyBookApp: App {
   var body: some Scene {
     WindowGroup {
-      PhotosView()
+        CoordinatorView()
     }
+    .modelContainer(for: VisualResource.self)
   }
 }
