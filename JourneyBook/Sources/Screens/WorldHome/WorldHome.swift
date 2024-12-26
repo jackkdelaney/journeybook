@@ -12,10 +12,9 @@ struct WorldHome: View {
     
     var body: some View {
         List {
-            Text("HOWDY")
-            Text("HOWDY")
-            Text("HOWDY")
-            Text("HOWDY")
+            Button("MAP EXPERIENCE") {
+                coordinator.push(page: .mapExperience)
+            }
 
         }
         .navigationTitle("JourneyBook")
