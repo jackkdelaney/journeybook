@@ -12,10 +12,11 @@ struct CoordinatorView: View {
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
-            AppPages.resourceManager.build()
+            AppPages.worldHome.build()
                 .navigationDestination(for: AppPages.self) { page in
                     page.build()
                 }
+
         }
         .environmentObject(coordinator)
     }
