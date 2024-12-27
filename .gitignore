@@ -60,7 +60,7 @@ DerivedData/
 
 ### Projects ###
 *.xcodeproj
-*.xcworkspace
+#*.xcworkspace
 
 ### Tuist derived files ###
 graph.dot
