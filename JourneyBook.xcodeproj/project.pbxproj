@@ -1,0 +1,705 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01EC2FBB84E63DF0F2652207 /* JourneyBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3990FF23654A5978C7E27 /* JourneyBookApp.swift */; };
+		12D24B55BBE8664911F1EB37 /* PickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE5FEB787537481AAC1187 /* PickerItem.swift */; };
+		25231AC8B7868EB520BE18F8 /* ResourcesManagerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F252BEBA9A3B4F68279A5A /* ResourcesManagerSheet.swift */; };
+		2E07D4B8D48864C07560DED6 /* november-cords.csv in Resources */ = {isa = PBXBuildFile; fileRef = E281184A436555AAA594ADBC /* november-cords.csv */; };
+		34D0E5C79AB4EE2258793AC3 /* PhotosPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E455A1E42779DC17AB054E /* PhotosPickerView.swift */; };
+		381FAE2E7294E63C9B446F56 /* VideosPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4608B3C7C7A32EF88C8D7D8B /* VideosPickerViewModel.swift */; };
+		3AB8839DF72DBCD3896AC018 /* VideosPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE4B0385E0A8378B14E007A /* VideosPickerView.swift */; };
+		3B80FEB14258362682243360 /* PhotosPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE34FC4F4B99B54538E4DD /* PhotosPickerViewModel.swift */; };
+		49E11B3DD24344BE60BE013C /* CoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B288611389788CE1C989D59C /* CoordinatorView.swift */; };
+		4BC2BE356CA8DAD7E98110F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12B9F40D72D2D91A1FFF1458 /* Preview Assets.xcassets */; };
+		4BD0B433085B63AC394A5D6F /* TuistAssets+JourneyBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F29311FBA5858445A02D3 /* TuistAssets+JourneyBook.swift */; };
+		72A8A95F838E3539ACCEC4EF /* AddButtonForPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69414B425CF13B05B402D2E /* AddButtonForPickerItem.swift */; };
+		79374EAEC53D5116091420F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 283B1EA48214AC61112B27E9 /* Assets.xcassets */; };
+		9F2A7726E92F163B2E19052B /* TuistBundle+JourneyBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CB1C6E084C6614B139992 /* TuistBundle+JourneyBook.swift */; };
+		A8509C9126DAC7E6FD172959 /* VisualResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637875538CF42DB9DC68262 /* VisualResource.swift */; };
+		ABC9FBB7FD58D6B04EC6DEB9 /* ResourcesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA60BB66DECB166E4A3250 /* ResourcesManager.swift */; };
+		B0106BCD5A32BEEC5FAFCB0A /* .DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = CBD9185BD5F88E4CE336B8EE /* .DS_Store */; };
+		BBF7A466C29ABF9B08FC834C /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5AE46B1FD79659BC1BED4 /* DataExtensions.swift */; };
+		C35602DE19C7D09AC8CCC271 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD24FCF6988A37540635F22 /* SheetView.swift */; };
+		CCF070CF4CDFE6A7D29893BA /* ProjectP301Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B27684F808D27D8FB52FC /* ProjectP301Tests.swift */; };
+		CEB8FC3C27C47F2FAA3CF390 /* ResourcePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1498D6497931BC9368A1049 /* ResourcePicker.swift */; };
+		D5C390BC721DEF86B40AFAC0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D593F128448C99FFA25BA0DE /* Coordinator.swift */; };
+		D69069DE209C4A0430426512 /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3586E427398BE47024084DD8 /* CancelButton.swift */; };
+		D9C770E9596972B7EFEE8234 /* VisualResourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56811C6309EAD3A188CE6B58 /* VisualResourceType.swift */; };
+		E49BA02EF3AA5908179912FD /* PickerItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3DCC6E423C8FD1E292744 /* PickerItemExtension.swift */; };
+		E92AB621C397A117FC67C074 /* AppPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C7AC0435054C4D8D86C326 /* AppPages.swift */; };
+		F0641CB277E5A8C38EA472BC /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5812C0F171F6CFB3CCB546 /* MapView.swift */; };
+		F9DDD0D52666CA292F139522 /* WorldHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8BADC6E673835C40EA14A /* WorldHome.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0ADB0B2DBDA530AE1AF8EF90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BDFB96508152C27FF6AE4EFF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC3CBB4AC39F78A1DACAE1D0;
+			remoteInfo = JourneyBook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		580114B6C8B0A79811BD2970 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5407CBE094DB2CE6620D697 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0637875538CF42DB9DC68262 /* VisualResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualResource.swift; sourceTree = "<group>"; };
+		12B9F40D72D2D91A1FFF1458 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1A6A547965874E1989E95603 /* JourneyBook-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "JourneyBook-Info.plist"; sourceTree = "<group>"; };
+		1AE5AE46B1FD79659BC1BED4 /* DataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtensions.swift; sourceTree = "<group>"; };
+		1AEE34FC4F4B99B54538E4DD /* PhotosPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPickerViewModel.swift; sourceTree = "<group>"; };
+		283B1EA48214AC61112B27E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3586E427398BE47024084DD8 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
+		35C7AC0435054C4D8D86C326 /* AppPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPages.swift; sourceTree = "<group>"; };
+		3EC3DCC6E423C8FD1E292744 /* PickerItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerItemExtension.swift; sourceTree = "<group>"; };
+		4608B3C7C7A32EF88C8D7D8B /* VideosPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosPickerViewModel.swift; sourceTree = "<group>"; };
+		4BC8BADC6E673835C40EA14A /* WorldHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldHome.swift; sourceTree = "<group>"; };
+		56811C6309EAD3A188CE6B58 /* VisualResourceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualResourceType.swift; sourceTree = "<group>"; };
+		63E455A1E42779DC17AB054E /* PhotosPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPickerView.swift; sourceTree = "<group>"; };
+		6B08E2868827EAB403D6ACC3 /* JourneyBookTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "JourneyBookTests-Info.plist"; sourceTree = "<group>"; };
+		72AE5FEB787537481AAC1187 /* PickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerItem.swift; sourceTree = "<group>"; };
+		7DD24FCF6988A37540635F22 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
+		7DE4B0385E0A8378B14E007A /* VideosPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosPickerView.swift; sourceTree = "<group>"; };
+		958043806ED70D39A48C6759 /* JourneyBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JourneyBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		997CB1C6E084C6614B139992 /* TuistBundle+JourneyBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+JourneyBook.swift"; sourceTree = "<group>"; };
+		A69414B425CF13B05B402D2E /* AddButtonForPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonForPickerItem.swift; sourceTree = "<group>"; };
+		B288611389788CE1C989D59C /* CoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorView.swift; sourceTree = "<group>"; };
+		CBD9185BD5F88E4CE336B8EE /* .DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = .DS_Store; sourceTree = "<group>"; };
+		D593F128448C99FFA25BA0DE /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		D8F252BEBA9A3B4F68279A5A /* ResourcesManagerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesManagerSheet.swift; sourceTree = "<group>"; };
+		DBD3990FF23654A5978C7E27 /* JourneyBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyBookApp.swift; sourceTree = "<group>"; };
+		DE7B27684F808D27D8FB52FC /* ProjectP301Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectP301Tests.swift; sourceTree = "<group>"; };
+		E281184A436555AAA594ADBC /* november-cords.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "november-cords.csv"; sourceTree = "<group>"; };
+		E8DA60BB66DECB166E4A3250 /* ResourcesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesManager.swift; sourceTree = "<group>"; };
+		F1498D6497931BC9368A1049 /* ResourcePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePicker.swift; sourceTree = "<group>"; };
+		F86F29311FBA5858445A02D3 /* TuistAssets+JourneyBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+JourneyBook.swift"; sourceTree = "<group>"; };
+		FAFA2FCC87F97F3BD636516F /* JourneyBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JourneyBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD5812C0F171F6CFB3CCB546 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		54D45ECB6869179A7E164D08 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF3E8AC050CF8926198FD1A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01CBC705EE7A91BA747E0F43 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1AEE34FC4F4B99B54538E4DD /* PhotosPickerViewModel.swift */,
+				72AE5FEB787537481AAC1187 /* PickerItem.swift */,
+				3EC3DCC6E423C8FD1E292744 /* PickerItemExtension.swift */,
+				4608B3C7C7A32EF88C8D7D8B /* VideosPickerViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		15C1AE21B6FA2C281940BBDD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F86F29311FBA5858445A02D3 /* TuistAssets+JourneyBook.swift */,
+				997CB1C6E084C6614B139992 /* TuistBundle+JourneyBook.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		22310406610F5DDAB7100B98 /* JourneyBook */ = {
+			isa = PBXGroup;
+			children = (
+				A3DE76DD7645C63883D1964D /* Resources */,
+				DC7938503A5AD698DA7826E0 /* Sources */,
+				CCDA9CA1F81DBDDA4FF9DC09 /* Tests */,
+			);
+			path = JourneyBook;
+			sourceTree = "<group>";
+		};
+		365E7990CA836774093FD60D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				F7FC02A44A80C84C8812DE94 /* Maps */,
+				F5FED8DFE1189EB4D4214BA2 /* ResourceManager */,
+				F39FBBD91A0A479EDEE050E1 /* WorldHome */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		5121C80F8AAB321E42A9ACC5 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				A69414B425CF13B05B402D2E /* AddButtonForPickerItem.swift */,
+				3586E427398BE47024084DD8 /* CancelButton.swift */,
+				7DD24FCF6988A37540635F22 /* SheetView.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		7581F3A2818634E996CFFBBF = {
+			isa = PBXGroup;
+			children = (
+				9D2A9DA4500C0C6E18F824F4 /* Project */,
+				D457800E042EF33C62670B99 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		882BB8D1570979169E531E23 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				1AE5AE46B1FD79659BC1BED4 /* DataExtensions.swift */,
+				0637875538CF42DB9DC68262 /* VisualResource.swift */,
+				56811C6309EAD3A188CE6B58 /* VisualResourceType.swift */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
+		8CAB49C0C812521683D54980 /* Derived */ = {
+			isa = PBXGroup;
+			children = (
+				E15B109399CAEBC0C9B12C81 /* InfoPlists */,
+				15C1AE21B6FA2C281940BBDD /* Sources */,
+			);
+			path = Derived;
+			sourceTree = "<group>";
+		};
+		9D2A9DA4500C0C6E18F824F4 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				8CAB49C0C812521683D54980 /* Derived */,
+				22310406610F5DDAB7100B98 /* JourneyBook */,
+			);
+			name = Project;
+			sourceTree = "<group>";
+		};
+		A3DE76DD7645C63883D1964D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DE5DC80F64C843CDA308F365 /* Preview Content */,
+				CBD9185BD5F88E4CE336B8EE /* .DS_Store */,
+				283B1EA48214AC61112B27E9 /* Assets.xcassets */,
+				E281184A436555AAA594ADBC /* november-cords.csv */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CCDA9CA1F81DBDDA4FF9DC09 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DE7B27684F808D27D8FB52FC /* ProjectP301Tests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		D457800E042EF33C62670B99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				958043806ED70D39A48C6759 /* JourneyBook.app */,
+				FAFA2FCC87F97F3BD636516F /* JourneyBookTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC7938503A5AD698DA7826E0 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				882BB8D1570979169E531E23 /* DataModels */,
+				5121C80F8AAB321E42A9ACC5 /* General */,
+				01CBC705EE7A91BA747E0F43 /* Model */,
+				E4CD4673DE87909947AE7C5D /* NavLogic */,
+				365E7990CA836774093FD60D /* Screens */,
+				B288611389788CE1C989D59C /* CoordinatorView.swift */,
+				DBD3990FF23654A5978C7E27 /* JourneyBookApp.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		DE5DC80F64C843CDA308F365 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				12B9F40D72D2D91A1FFF1458 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E15B109399CAEBC0C9B12C81 /* InfoPlists */ = {
+			isa = PBXGroup;
+			children = (
+				1A6A547965874E1989E95603 /* JourneyBook-Info.plist */,
+				6B08E2868827EAB403D6ACC3 /* JourneyBookTests-Info.plist */,
+			);
+			path = InfoPlists;
+			sourceTree = "<group>";
+		};
+		E4CD4673DE87909947AE7C5D /* NavLogic */ = {
+			isa = PBXGroup;
+			children = (
+				35C7AC0435054C4D8D86C326 /* AppPages.swift */,
+				D593F128448C99FFA25BA0DE /* Coordinator.swift */,
+				D8F252BEBA9A3B4F68279A5A /* ResourcesManagerSheet.swift */,
+			);
+			path = NavLogic;
+			sourceTree = "<group>";
+		};
+		F39FBBD91A0A479EDEE050E1 /* WorldHome */ = {
+			isa = PBXGroup;
+			children = (
+				4BC8BADC6E673835C40EA14A /* WorldHome.swift */,
+			);
+			path = WorldHome;
+			sourceTree = "<group>";
+		};
+		F5FED8DFE1189EB4D4214BA2 /* ResourceManager */ = {
+			isa = PBXGroup;
+			children = (
+				63E455A1E42779DC17AB054E /* PhotosPickerView.swift */,
+				F1498D6497931BC9368A1049 /* ResourcePicker.swift */,
+				E8DA60BB66DECB166E4A3250 /* ResourcesManager.swift */,
+				7DE4B0385E0A8378B14E007A /* VideosPickerView.swift */,
+			);
+			path = ResourceManager;
+			sourceTree = "<group>";
+		};
+		F7FC02A44A80C84C8812DE94 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				FD5812C0F171F6CFB3CCB546 /* MapView.swift */,
+			);
+			path = Maps;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2139D7F25BC9A92AD8137534 /* JourneyBookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C33D5F35432B53E8DDC89E5 /* Build configuration list for PBXNativeTarget "JourneyBookTests" */;
+			buildPhases = (
+				515C9C841AB07576E20548F0 /* Sources */,
+				1A22A84C512E26AA86BCBF6B /* Resources */,
+				580114B6C8B0A79811BD2970 /* Embed Frameworks */,
+				54D45ECB6869179A7E164D08 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				085B469E8C9424B3A0B7A847 /* PBXTargetDependency */,
+			);
+			name = JourneyBookTests;
+			packageProductDependencies = (
+			);
+			productName = JourneyBookTests;
+			productReference = FAFA2FCC87F97F3BD636516F /* JourneyBookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CC3CBB4AC39F78A1DACAE1D0 /* JourneyBook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DADB007B1B39FF437EA0004 /* Build configuration list for PBXNativeTarget "JourneyBook" */;
+			buildPhases = (
+				2E9A4BA2C56DEE5ECB59DD96 /* Sources */,
+				2DF4C7B42D9080E740F7BEE6 /* Resources */,
+				C5407CBE094DB2CE6620D697 /* Embed Frameworks */,
+				FF3E8AC050CF8926198FD1A8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JourneyBook;
+			packageProductDependencies = (
+			);
+			productName = JourneyBook;
+			productReference = 958043806ED70D39A48C6759 /* JourneyBook.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BDFB96508152C27FF6AE4EFF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				TargetAttributes = {
+					2139D7F25BC9A92AD8137534 = {
+						TestTargetID = CC3CBB4AC39F78A1DACAE1D0;
+					};
+				};
+			};
+			buildConfigurationList = 8D10051B8C5875122D88FB86 /* Build configuration list for PBXProject "JourneyBook" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 7581F3A2818634E996CFFBBF;
+			productRefGroup = D457800E042EF33C62670B99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC3CBB4AC39F78A1DACAE1D0 /* JourneyBook */,
+				2139D7F25BC9A92AD8137534 /* JourneyBookTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A22A84C512E26AA86BCBF6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DF4C7B42D9080E740F7BEE6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0106BCD5A32BEEC5FAFCB0A /* .DS_Store in Resources */,
+				79374EAEC53D5116091420F4 /* Assets.xcassets in Resources */,
+				4BC2BE356CA8DAD7E98110F8 /* Preview Assets.xcassets in Resources */,
+				2E07D4B8D48864C07560DED6 /* november-cords.csv in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2E9A4BA2C56DEE5ECB59DD96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BD0B433085B63AC394A5D6F /* TuistAssets+JourneyBook.swift in Sources */,
+				9F2A7726E92F163B2E19052B /* TuistBundle+JourneyBook.swift in Sources */,
+				49E11B3DD24344BE60BE013C /* CoordinatorView.swift in Sources */,
+				BBF7A466C29ABF9B08FC834C /* DataExtensions.swift in Sources */,
+				A8509C9126DAC7E6FD172959 /* VisualResource.swift in Sources */,
+				D9C770E9596972B7EFEE8234 /* VisualResourceType.swift in Sources */,
+				72A8A95F838E3539ACCEC4EF /* AddButtonForPickerItem.swift in Sources */,
+				D69069DE209C4A0430426512 /* CancelButton.swift in Sources */,
+				C35602DE19C7D09AC8CCC271 /* SheetView.swift in Sources */,
+				01EC2FBB84E63DF0F2652207 /* JourneyBookApp.swift in Sources */,
+				3B80FEB14258362682243360 /* PhotosPickerViewModel.swift in Sources */,
+				12D24B55BBE8664911F1EB37 /* PickerItem.swift in Sources */,
+				E49BA02EF3AA5908179912FD /* PickerItemExtension.swift in Sources */,
+				381FAE2E7294E63C9B446F56 /* VideosPickerViewModel.swift in Sources */,
+				E92AB621C397A117FC67C074 /* AppPages.swift in Sources */,
+				D5C390BC721DEF86B40AFAC0 /* Coordinator.swift in Sources */,
+				25231AC8B7868EB520BE18F8 /* ResourcesManagerSheet.swift in Sources */,
+				F0641CB277E5A8C38EA472BC /* MapView.swift in Sources */,
+				34D0E5C79AB4EE2258793AC3 /* PhotosPickerView.swift in Sources */,
+				CEB8FC3C27C47F2FAA3CF390 /* ResourcePicker.swift in Sources */,
+				ABC9FBB7FD58D6B04EC6DEB9 /* ResourcesManager.swift in Sources */,
+				3AB8839DF72DBCD3896AC018 /* VideosPickerView.swift in Sources */,
+				F9DDD0D52666CA292F139522 /* WorldHome.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		515C9C841AB07576E20548F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCF070CF4CDFE6A7D29893BA /* ProjectP301Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		085B469E8C9424B3A0B7A847 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JourneyBook;
+			target = CC3CBB4AC39F78A1DACAE1D0 /* JourneyBook */;
+			targetProxy = 0ADB0B2DBDA530AE1AF8EF90 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3340C75437D853220CEBDD29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Derived/InfoPlists/JourneyBookTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.jackdelaney.jbTests;
+				PRODUCT_NAME = JourneyBookTests;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JourneyBook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JourneyBook";
+				TEST_TARGET_NAME = JourneyBook;
+			};
+			name = Release;
+		};
+		41A15FDF45E661794922E5A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4B54EC26AD56F62B1F821338 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Derived/InfoPlists/JourneyBookTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.jackdelaney.jbTests;
+				PRODUCT_NAME = JourneyBookTests;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JourneyBook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JourneyBook";
+				TEST_TARGET_NAME = JourneyBook;
+			};
+			name = Debug;
+		};
+		C1D863FDE44CCD5B9D347698 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C61A55C6BB432B759E69BB69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 75ESF57BMG;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Derived/InfoPlists/JourneyBook-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.jackdelaney.jb;
+				PRODUCT_NAME = JourneyBook;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E2699ACE9716325A712BC24C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 75ESF57BMG;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Derived/InfoPlists/JourneyBook-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.jackdelaney.jb;
+				PRODUCT_NAME = JourneyBook;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C33D5F35432B53E8DDC89E5 /* Build configuration list for PBXNativeTarget "JourneyBookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B54EC26AD56F62B1F821338 /* Debug */,
+				3340C75437D853220CEBDD29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8D10051B8C5875122D88FB86 /* Build configuration list for PBXProject "JourneyBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1D863FDE44CCD5B9D347698 /* Debug */,
+				41A15FDF45E661794922E5A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DADB007B1B39FF437EA0004 /* Build configuration list for PBXNativeTarget "JourneyBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2699ACE9716325A712BC24C /* Debug */,
+				C61A55C6BB432B759E69BB69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BDFB96508152C27FF6AE4EFF /* Project object */;
+}
