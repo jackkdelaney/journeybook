@@ -1,6 +1,5 @@
 #!/bin/sh
-curl https://mise.jdx.dev/install.sh | sh
-curl https://mise.run | sh
+curl https://mise.run | MISE_INSTALL_EXT=tar.gz sh
 
 export PATH="$HOME/.local/bin:$PATH" # Installs the tools in .mise.toml in the project root
 
