@@ -15,7 +15,7 @@ fi
 mise doctor # verify the output of mise is correct on CI
 
 cd ..
-#~/.local/bin/mise x -- tuist fetch
+~/.local/bin/mise x -- tuist fetch
 ~/.local/bin/mise x -- tuist generate # Generate the Xcode Project using Tuist
 
 exit 0
