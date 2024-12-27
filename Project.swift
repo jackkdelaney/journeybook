@@ -14,7 +14,7 @@ let project = Project(
             "UIColorName": "",
             "UIImageName": "",
           ],
-          "NSPhotoLibraryUsageDescription": "We want to save photos to your photo library",
+          "NSLocationWhenInUseUsageDescription": "The app needs access to your location to provide location-based services."
         ]
       ),
       sources: ["JourneyBook/Sources/**"],
