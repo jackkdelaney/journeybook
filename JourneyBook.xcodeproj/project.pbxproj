@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -92,12 +92,12 @@
 		997CB1C6E084C6614B139992 /* TuistBundle+JourneyBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+JourneyBook.swift"; sourceTree = "<group>"; };
 		A69414B425CF13B05B402D2E /* AddButtonForPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonForPickerItem.swift; sourceTree = "<group>"; };
 		B288611389788CE1C989D59C /* CoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorView.swift; sourceTree = "<group>"; };
-		CBD9185BD5F88E4CE336B8EE /* .DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = .DS_Store; sourceTree = "<group>"; };
+		CBD9185BD5F88E4CE336B8EE /* .DS_Store */ = {isa = PBXFileReference; path = .DS_Store; sourceTree = "<group>"; };
 		D593F128448C99FFA25BA0DE /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D8F252BEBA9A3B4F68279A5A /* ResourcesManagerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesManagerSheet.swift; sourceTree = "<group>"; };
 		DBD3990FF23654A5978C7E27 /* JourneyBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyBookApp.swift; sourceTree = "<group>"; };
 		DE7B27684F808D27D8FB52FC /* ProjectP301Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectP301Tests.swift; sourceTree = "<group>"; };
-		E281184A436555AAA594ADBC /* november-cords.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "november-cords.csv"; sourceTree = "<group>"; };
+		E281184A436555AAA594ADBC /* november-cords.csv */ = {isa = PBXFileReference; path = "november-cords.csv"; sourceTree = "<group>"; };
 		E8DA60BB66DECB166E4A3250 /* ResourcesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesManager.swift; sourceTree = "<group>"; };
 		F1498D6497931BC9368A1049 /* ResourcePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePicker.swift; sourceTree = "<group>"; };
 		F86F29311FBA5858445A02D3 /* TuistAssets+JourneyBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+JourneyBook.swift"; sourceTree = "<group>"; };
@@ -549,7 +549,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -623,7 +626,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 75ESF57BMG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/JourneyBook-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -648,7 +650,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 75ESF57BMG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/JourneyBook-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -661,7 +662,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
