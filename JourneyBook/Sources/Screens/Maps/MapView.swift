@@ -66,26 +66,16 @@ struct MapView: View {
             span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         )
     
-    var locations = BusLocations.load(from: "november-cords")
+    var locations = BusLocations.load(from: "november-cords").prefix(499)
     
     var body: some View {
-        Map(coordinateRegion: $region, annotationItems: locations) { location in
-               MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
-                   VStack {
-                       Text(location.commonName)
-                           .font(.caption)
-                           .bold()
-                           .padding(5)
-                           .background(Color.white)
-                           .cornerRadius(10)
-                           .shadow(radius: 5)
-                       Image(systemName: "mappin")
-                           .foregroundColor(.red)
-                           .font(.title)
-                   }
-               }
-           }
-        Text("HELLO")
-
-    }
+          Map(position: .constant(.region(region))) {
+              ForEach(locations) { location in
+                  Annotation(location.commonName, coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
+                      Image(systemName: "bus")
+                  }
+              }
+          }
+          
+      }
 }
