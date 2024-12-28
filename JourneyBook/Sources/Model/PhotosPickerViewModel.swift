@@ -12,15 +12,11 @@ import SwiftData
 
 @Observable
 class PhotosPickerViewModel : PickerItem {
+    
     func saveItem() {
         if let imageData = selectedItem?.pngData() {
-            let resource = VisualResource(resourceData: imageData, resourceType: .image, aidDescription: "THIS IS THE IRST ITEM")
-            modelContext.insert(resource)
-            do {
-                try modelContext.save()
-            } catch {
-                fatalError(error.localizedDescription)
-            }
+            let resource = VisualResource(resourceData: imageData, resourceType: .image, aidDescription: selectedItemText ?? "Unnamed Photo")
+            add(resource)
         } else {
             print("ISSUE!!")
         }
@@ -31,9 +27,11 @@ class PhotosPickerViewModel : PickerItem {
     let modelContext: ModelContext
     
     
-    var pickerText = "Select Photo"
+    var pickerText = "Photo"
     
     var selectedItem: UIImage?
+    var selectedItemText: String?
+
     var selectedPickerItem : PhotosPickerItem? {
         didSet {
             loadImage()

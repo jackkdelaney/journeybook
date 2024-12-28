@@ -13,8 +13,16 @@ struct ResourcePicker<Item: PickerItem>: View {
     
     @Binding var model: Item
     
+    var pickerText : String {
+        if model.selectedItem == nil {
+            "Select \(model.pickerText)"
+        } else {
+            "Change \(model.pickerText)"
+        }
+    }
+    
     var body : some View {
-        PhotosPicker(model.pickerText, selection: $model.selectedPickerItem, matching: model.filter)
+        PhotosPicker(pickerText, selection: $model.selectedPickerItem, matching: model.filter)
     }
     
     

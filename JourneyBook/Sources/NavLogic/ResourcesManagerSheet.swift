@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+protocol MediaPickerView : View {
+    associatedtype SomePickerItem : PickerItem
+    var sheetTitle : String {get}
+    var model : SomePickerItem { get}
+}
+
 enum ResourcesManagerSheet : Identifiable {
     var id: Self {
         
