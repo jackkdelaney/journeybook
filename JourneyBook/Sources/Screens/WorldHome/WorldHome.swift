@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WorldHome: View {
     @EnvironmentObject private var coordinator: Coordinator
-    
+
     var body: some View {
         List {
             Button("MAP EXPERIENCE") {
@@ -18,7 +18,6 @@ struct WorldHome: View {
             Button("VOICE BOOK EXPERIENCE") {
                 coordinator.push(page: .phraseBook)
             }
-
         }
         .navigationTitle("JourneyBook")
         .toolbar {
@@ -33,10 +32,6 @@ struct WorldHome: View {
                     Label("Options", systemImage: "case")
                 }
             }
-            
         }
-
-
     }
-    
 }

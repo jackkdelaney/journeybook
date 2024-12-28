@@ -5,17 +5,16 @@
 //  Created by Jack Delaney on 22/12/2024.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct PhotosPickerView: MediaPickerView {
     var sheetTitle: String = "Select Photo"
-    
-    @State internal var model = PhotosPickerViewModel()
-  
-    
+
+    @State var model = PhotosPickerViewModel()
+
     @ViewBuilder
-    var topView : some View {
+    var topView: some View {
         if let image = model.selectedItem {
             Image(uiImage: image)
                 .resizable()
@@ -23,9 +22,8 @@ struct PhotosPickerView: MediaPickerView {
                 .frame(maxWidth: .infinity)
                 .ignoresSafeArea(.container)
         }
-        
     }
-    
+
     var body: some View {
         MediaPickerAndAnnotationView(sheetTitle: sheetTitle, model: $model) {
             topView

@@ -9,14 +9,13 @@ import SwiftUI
 
 struct CoordinatorView: View {
     @StateObject private var coordinator = Coordinator()
-    
+
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             AppPages.worldHome.build()
                 .navigationDestination(for: AppPages.self) { page in
                     page.build()
                 }
-
         }
         .environmentObject(coordinator)
     }

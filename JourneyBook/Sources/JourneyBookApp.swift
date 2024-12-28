@@ -5,15 +5,15 @@
 //  Created by Jack Delaney on 16/10/2024.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct JourneyBookApp: App {
-  var body: some Scene {
-    WindowGroup {
-        CoordinatorView()
+    var body: some Scene {
+        WindowGroup {
+            CoordinatorView()
+        }
+        .modelContainer(for: VisualResource.self)
     }
-    .modelContainer(for: VisualResource.self)
-  }
 }

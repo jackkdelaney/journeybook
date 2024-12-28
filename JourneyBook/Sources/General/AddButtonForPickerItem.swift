@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct AddButtonForPickerItem<SomePickerItem : PickerItem> : View {
+struct AddButtonForPickerItem<SomePickerItem: PickerItem>: View {
     @Environment(\.dismiss) var dismiss
-    
-    var model : SomePickerItem
+
+    var model: SomePickerItem
 
     var body: some View {
         Button("Add") {

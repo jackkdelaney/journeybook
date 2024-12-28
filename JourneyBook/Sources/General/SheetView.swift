@@ -7,23 +7,20 @@
 
 import SwiftUI
 
-protocol SheetView : View {
+protocol SheetView: View {
     var sheetTitle: String { get }
-    
-    associatedtype Content : View
-    associatedtype ConfirmButton : View
-    
-    var content : Content { get }
-    
-    var confirmButton : ConfirmButton { get }
-    
+
+    associatedtype Content: View
+    associatedtype ConfirmButton: View
+
+    var content: Content { get }
+
+    var confirmButton: ConfirmButton { get }
 }
 
-protocol PickerSheetView : SheetView {
-    associatedtype PickerViewModel : PickerItem
-    var model : PickerViewModel {get }
-    
-
+protocol PickerSheetView: SheetView {
+    associatedtype PickerViewModel: PickerItem
+    var model: PickerViewModel { get }
 }
 
 extension PickerSheetView {
@@ -31,8 +28,6 @@ extension PickerSheetView {
         AddButtonForPickerItem(model: model)
     }
 }
-
-
 
 extension SheetView {
     var body: some View {
@@ -48,10 +43,7 @@ extension SheetView {
                         confirmButton
                     }
                 }
-            
         }
         .interactiveDismissDisabled(true)
-
     }
-    
 }

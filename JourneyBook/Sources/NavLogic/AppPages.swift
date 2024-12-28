@@ -24,7 +24,7 @@ extension AppPages {
             ResourcesManager()
         case .login:
             Text("LOGIN")
-        case .resourceDetails(let resource):
+        case let .resourceDetails(resource):
             ResourceView(resource: resource)
         case .worldHome:
             WorldHome()
@@ -34,5 +34,4 @@ extension AppPages {
             MapView()
         }
     }
-    
 }
