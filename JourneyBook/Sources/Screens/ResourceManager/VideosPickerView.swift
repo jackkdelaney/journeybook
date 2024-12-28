@@ -27,6 +27,8 @@ struct VideosPickerView: MediaPickerView {
             
             if case .loaded(let movie) = selectedItem {
                 VideoPlayer(player: AVPlayer(url: movie.url))
+            } else if case .loading = selectedItem {
+                ProgressView()
             }
             
            
