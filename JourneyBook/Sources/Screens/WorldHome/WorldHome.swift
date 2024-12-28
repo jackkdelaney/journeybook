@@ -15,6 +15,9 @@ struct WorldHome: View {
             Button("MAP EXPERIENCE") {
                 coordinator.push(page: .mapExperience)
             }
+            Button("VOICE BOOK EXPERIENCE") {
+                coordinator.push(page: .phraseBook)
+            }
 
         }
         .navigationTitle("JourneyBook")
