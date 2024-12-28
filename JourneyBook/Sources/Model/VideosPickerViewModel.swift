@@ -52,7 +52,7 @@ class VideosPickerViewModel : PickerItem {
             if let movie = item.getLoadedMovie() {
                 let videoData = try? Data(contentsOf: movie.url )
                 if let videoData {
-                    let resource = VisualResource(resourceData: videoData, resourceType: .video, aidDescription: "THIS A VIDEO")
+                    let resource = VisualResource(resourceData: videoData, resourceType: .video, aidDescription: selectedItemText ?? "Unnamed Video")
                     add(resource)
                 }
                
@@ -67,9 +67,11 @@ class VideosPickerViewModel : PickerItem {
     let modelContext: ModelContext
     
     
-    let pickerText: String = "Select Video"
+    let pickerText: String = "Video"
 
     var selectedItem: LoadState?
+    var selectedItemText: String?
+
     var selectedPickerItem : PhotosPickerItem? {
         didSet {
             loadImage()
