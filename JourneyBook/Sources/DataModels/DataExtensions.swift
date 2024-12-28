@@ -11,10 +11,9 @@ extension Data {
     func dataToVideoURL() -> URL? {
         let tempDirectory = FileManager.default.temporaryDirectory
         let outputUrl = tempDirectory.appendingPathComponent("\(UUID().uuidString).mp4")
-        
-        
+
         do {
-            try self.write(to: outputUrl)
+            try write(to: outputUrl)
             return outputUrl
         } catch {
             print("Error writing video data to URL: \(error)")
@@ -22,4 +21,3 @@ extension Data {
         }
     }
 }
-

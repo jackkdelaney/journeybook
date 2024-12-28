@@ -11,7 +11,7 @@ struct CancelButton: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        Button("Cancel",role: .cancel) {
+        Button("Cancel", role: .cancel) {
             dismiss()
         }
     }

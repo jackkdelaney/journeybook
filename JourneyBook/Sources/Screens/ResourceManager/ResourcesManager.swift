@@ -4,61 +4,56 @@
 //
 //
 
-import SwiftUI
-import SwiftData
 import AVKit
+import SwiftData
+import SwiftUI
 
-struct ResourceView : View {
-    var resource : VisualResource
-    
-    
-    var body : some View {
+struct ResourceView: View {
+    var resource: VisualResource
+
+    var body: some View {
         Form {
             if resource.resourceType == .image {
                 Section("Photo") {
-                    Image(uiImage: UIImage(data: resource.resourceData) ?? UIImage.init())
+                    Image(uiImage: UIImage(data: resource.resourceData) ?? UIImage())
                         .resizable()
                         .frame(height: 300)
                         .frame(maxWidth: .infinity)
                         .aspectRatio(contentMode: .fit)
                         .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-
-
                 }
             }
             if resource.resourceType == .video {
                 if let url = resource.resourceData.dataToVideoURL() {
                     Section("Video") {
-                        VideoPlayer(player: AVPlayer(url:url))
-                            .frame( height: 300)
+                        VideoPlayer(player: AVPlayer(url: url))
+                            .frame(height: 300)
                             .frame(maxWidth: .infinity)
                             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                     }
                 }
-                
             }
         }
         .navigationTitle(resource.aidDescription ?? "Untitled Resource")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
+
 struct ResourcesManager: View {
     @EnvironmentObject private var coordinator: Coordinator
-    
-    @State private var sheet : ResourcesManagerSheet? = nil
-    
+
+    @State private var sheet: ResourcesManagerSheet? = nil
+
     @Query var resources: [VisualResource]
     @Environment(\.modelContext) var modelContext
-    
-    
+
     @ViewBuilder
-    func contents(for resource : VisualResource) -> some View {
+    func contents(for resource: VisualResource) -> some View {
         if let description = resource.aidDescription {
             Text(description)
         }
-        
     }
-    
+
     func delete(at offsets: IndexSet) {
         for offset in offsets {
             let resource = resources[offset]
@@ -66,11 +61,9 @@ struct ResourcesManager: View {
         }
         do {
             try modelContext.save()
-        } catch {
-            
-        }
+        } catch {}
     }
-    
+
     var body: some View {
         List {
             ForEach(resources) { resource in
@@ -83,10 +76,8 @@ struct ResourcesManager: View {
                 }
             }
             .onDelete(perform: delete)
-            
-            
         }
-       
+
         .navigationTitle("Resources")
         .overlay {
             if resources.isEmpty {
@@ -110,7 +101,7 @@ struct ResourcesManager: View {
                     }
                     Button {
                         sheet = .addVideo
-                        
+
                     } label: {
                         Label("Add Video", systemImage: "videoprojector")
                     }
@@ -118,14 +109,10 @@ struct ResourcesManager: View {
                     Label("Add", systemImage: "plus")
                 }
             }
-            
         }
     }
-    
 }
 
 #Preview {
     ResourcesManager()
 }
-
-

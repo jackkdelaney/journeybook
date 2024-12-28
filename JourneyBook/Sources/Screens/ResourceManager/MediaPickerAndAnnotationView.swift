@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct OptionalTextView :  View {
+struct OptionalTextView: View {
     @Binding var text: String?
-    
-    @State var nonOptionalText : String
-    
-    let title : String
-    
+
+    @State var nonOptionalText: String
+
+    let title: String
+
     init(text: Binding<String?>, title: String) {
-        self._text = text
-        self.nonOptionalText = text.wrappedValue ?? ""
+        _text = text
+        nonOptionalText = text.wrappedValue ?? ""
         self.title = title
     }
-    
+
     var body: some View {
         HStack {
             Text(title)
@@ -34,27 +34,23 @@ struct OptionalTextView :  View {
                 text = nonOptionalText
             }
         }
-        
     }
 }
 
-struct MediaPickerAndAnnotationView<Content: View, SomePickerItem: PickerItem> : PickerSheetView {
-    
+struct MediaPickerAndAnnotationView<Content: View, SomePickerItem: PickerItem>: PickerSheetView {
     var sheetTitle: String
-    
+
     let theContent: Content
-    
-    init(sheetTitle: String,model : Binding<SomePickerItem>, @ViewBuilder theContent: () -> Content) {
+
+    init(sheetTitle: String, model: Binding<SomePickerItem>, @ViewBuilder theContent: () -> Content) {
         self.theContent = theContent()
-        self._model = model
+        _model = model
         self.sheetTitle = sheetTitle
     }
-    
-    @Binding internal var model : SomePickerItem
-    
-    
-    
-    var content : some View {
+
+    @Binding var model: SomePickerItem
+
+    var content: some View {
         Form {
             Section("Title") {
                 OptionalTextView(text: $model.selectedItemText, title: "Title")
@@ -62,7 +58,7 @@ struct MediaPickerAndAnnotationView<Content: View, SomePickerItem: PickerItem> :
             Section("Resource Details") {
                 ResourcePicker(model: $model)
                 if model.selectedItem != nil {
-                    Button("Clear",role: .destructive) {
+                    Button("Clear", role: .destructive) {
                         model.clearItem()
                     }
                 }
@@ -73,6 +69,4 @@ struct MediaPickerAndAnnotationView<Content: View, SomePickerItem: PickerItem> :
                 .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
         }
     }
-    
-    
 }

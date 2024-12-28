@@ -7,28 +7,26 @@
 
 import Observation
 import PhotosUI
-import SwiftUI
 import SwiftData
+import SwiftUI
 
-
-protocol PickerItem : Observable {
+protocol PickerItem: Observable {
     associatedtype Item
-    
+
     var selectedItem: Item? { get set }
-    var selectedPickerItem : PhotosPickerItem? { get set }
-    var selectedItemText : String? { get set }
-    
-    var filter : PHPickerFilter {get}
-    
+    var selectedPickerItem: PhotosPickerItem? { get set }
+    var selectedItemText: String? { get set }
+
+    var filter: PHPickerFilter { get }
+
     func clearItem()
-    
-    var pickerText : String { get }
-    
+
+    var pickerText: String { get }
+
     var _$observationRegistrar: ObservationRegistrar { get }
-    
-    var modelContainer: ModelContainer { get  }
-    var modelContext: ModelContext { get  }
-    
+
+    var modelContainer: ModelContainer { get }
+    var modelContext: ModelContext { get }
+
     func saveItem()
-    
 }

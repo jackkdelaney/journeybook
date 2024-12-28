@@ -16,7 +16,7 @@ extension PickerItem {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     func add(_ resource: VisualResource) {
         modelContext.insert(resource)
         do {
@@ -25,5 +25,4 @@ extension PickerItem {
             fatalError(error.localizedDescription)
         }
     }
-    
 }

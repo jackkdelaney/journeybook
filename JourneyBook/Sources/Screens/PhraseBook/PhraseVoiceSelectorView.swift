@@ -5,35 +5,29 @@
 //  Created by Jack Delaney on 28/12/2024.
 //
 
-import SwiftUI
 import AVFAudio
+import SwiftUI
 
-struct PhraseVoiceSelectorView : SheetView {
-    @Binding var voice : AVSpeechSynthesisVoice?
+struct PhraseVoiceSelectorView: SheetView {
+    @Binding var voice: AVSpeechSynthesisVoice?
 
     @Environment(\.dismiss) var dismiss
 
-    
     let speaker = Speaker()
 
-    
     var sheetTitle: String {
         "Select Voice"
     }
-    
-    let otherVoices = AVSpeechSynthesisVoice.speechVoices().filter({
+
+    let otherVoices = AVSpeechSynthesisVoice.speechVoices().filter {
         $0.quality != .enhanced && $0.quality != .premium && $0.voiceTraits != .isPersonalVoice && $0.voiceTraits != .isNoveltyVoice && $0.language == AVSpeechSynthesisVoice.currentLanguageCode()
-        
-    })
-    
-    
-    
-    let premiumAndEnhancedVoices = AVSpeechSynthesisVoice.speechVoices().filter({$0.quality == .enhanced || $0.quality == .premium})
-    let personalVoices = AVSpeechSynthesisVoice.speechVoices().filter({$0.voiceTraits == .isPersonalVoice})
-    
-    let novetlyVoice = AVSpeechSynthesisVoice.speechVoices().filter({$0.voiceTraits == .isNoveltyVoice})
-    
-    
+    }
+
+    let premiumAndEnhancedVoices = AVSpeechSynthesisVoice.speechVoices().filter { $0.quality == .enhanced || $0.quality == .premium }
+    let personalVoices = AVSpeechSynthesisVoice.speechVoices().filter { $0.voiceTraits == .isPersonalVoice }
+
+    let novetlyVoice = AVSpeechSynthesisVoice.speechVoices().filter { $0.voiceTraits == .isNoveltyVoice }
+
     var content: some View {
         List {
             if !personalVoices.isEmpty {
@@ -49,32 +43,28 @@ struct PhraseVoiceSelectorView : SheetView {
             if !novetlyVoice.isEmpty {
                 Section("Novelty Voices") {
                     voiceOptions(voices: novetlyVoice)
-
                 }
             }
             if !otherVoices.isEmpty {
                 Section("Other Voices") {
                     voiceOptions(voices: otherVoices)
-
                 }
             }
-            
-            
         }
         .buttonStyle(PlainButtonStyle())
     }
-    
-    var confirmButton : some View {
+
+    var confirmButton: some View {
         Button("Confirm") {
             dismiss()
         }
     }
-    
-    private func voiceOptions(voices : [AVSpeechSynthesisVoice]) -> some View {
+
+    private func voiceOptions(voices: [AVSpeechSynthesisVoice]) -> some View {
         ForEach(voices, id: \.self) { currentVoice in
             HStack {
                 Button {
-                    speaker.speak("Hello, I am \(currentVoice.name). Click the Chevron to select me.",voice: currentVoice)
+                    speaker.speak("Hello, I am \(currentVoice.name). Click the Chevron to select me.", voice: currentVoice)
                 } label: {
                     Label("Play Sample", systemImage: "play.circle")
                         .labelStyle(.iconOnly)
@@ -94,12 +84,7 @@ struct PhraseVoiceSelectorView : SheetView {
                         .frame(maxHeight: .infinity)
                         .contentShape(Rectangle())
                 }
-              
-
-                
-            }
-                
-                
             }
         }
+    }
 }
