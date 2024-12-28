@@ -38,7 +38,7 @@ struct OptionalTextView :  View {
     }
 }
 
-struct MediaPickerAndAnnotationView<Content: View, SomePickerItem: PickerItem> : SheetView {
+struct MediaPickerAndAnnotationView<Content: View, SomePickerItem: PickerItem> : PickerSheetView {
     
     var sheetTitle: String
     

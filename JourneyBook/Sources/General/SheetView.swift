@@ -11,12 +11,28 @@ protocol SheetView : View {
     var sheetTitle: String { get }
     
     associatedtype Content : View
-    associatedtype PickerViewModel : PickerItem
+    associatedtype ConfirmButton : View
     
     var content : Content { get }
     
-    var model : PickerViewModel {get }
+    var confirmButton : ConfirmButton { get }
+    
 }
+
+protocol PickerSheetView : SheetView {
+    associatedtype PickerViewModel : PickerItem
+    var model : PickerViewModel {get }
+    
+
+}
+
+extension PickerSheetView {
+    var confirmButton: some View {
+        AddButtonForPickerItem(model: model)
+    }
+}
+
+
 
 extension SheetView {
     var body: some View {
@@ -29,7 +45,7 @@ extension SheetView {
                         CancelButton()
                     }
                     ToolbarItem(placement: .primaryAction) {
-                        AddButtonForPickerItem(model: model)
+                        confirmButton
                     }
                 }
             
