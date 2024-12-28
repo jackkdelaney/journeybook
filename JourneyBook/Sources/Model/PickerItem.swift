@@ -10,11 +10,13 @@ import PhotosUI
 import SwiftUI
 import SwiftData
 
+
 protocol PickerItem : Observable {
     associatedtype Item
     
     var selectedItem: Item? { get set }
     var selectedPickerItem : PhotosPickerItem? { get set }
+    var selectedItemText : String? { get set }
     
     var filter : PHPickerFilter {get}
     
