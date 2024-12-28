@@ -8,17 +8,11 @@
 import SwiftUI
 import SwiftData
 
-
-struct PhotosPickerView: SheetView {
+struct PhotosPickerView: MediaPickerView {
     var sheetTitle: String = "Select Photo"
     
     @State internal var model = PhotosPickerViewModel()
   
-    
-    @Query var resources: [VisualResource]
-    @Environment(\.modelContext) var context
-
-
     
     @ViewBuilder
     var topView : some View {
@@ -32,13 +26,9 @@ struct PhotosPickerView: SheetView {
         
     }
     
-    var content: some View {
-        ScrollView {
+    var body: some View {
+        MediaPickerAndAnnotationView(sheetTitle: sheetTitle, model: $model) {
             topView
-
-            ResourcePicker(model: $model)
-
-
         }
     }
 }

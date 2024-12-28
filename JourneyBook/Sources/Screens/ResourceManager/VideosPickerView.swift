@@ -8,31 +8,31 @@
 import SwiftUI
 import AVKit
 
-struct VideosPickerView: SheetView {
-    var sheetTitle: String = "Select Video"
 
+struct VideosPickerView: MediaPickerView {
+    
     @State internal var model = VideosPickerViewModel()
     
-    var content: some View {
-        ScrollView {
-            ResourcePicker(model: $model)
-            if let selectedItem = model.selectedItem {
-                switch(selectedItem) {
-                case.unknown:
-                    Text("Unkown Format")
-                case .loading:
-                    ProgressView()
-                case .loaded(let movie):
-                    VideoPlayer(player: AVPlayer(url: movie.url))
-                        .scaledToFit()
-                        .frame(width: 300, height: 300)
-                case .failed:
-                    Text("Import failed")
-                }
-            } else {
-                Text("No Item")
-            }
+    var body : some View {
+        MediaPickerAndAnnotationView(sheetTitle: sheetTitle, model: $model) {
+            content
         }
+    }
+    
+    var sheetTitle: String = "Select Video"
+    
+    @ViewBuilder
+    var content: some View {
+        if let selectedItem = model.selectedItem {
+            
+            if case .loaded(let movie) = selectedItem {
+                VideoPlayer(player: AVPlayer(url: movie.url))
+            }
+            
+           
+         
+        }
+        
         
     }
 }
