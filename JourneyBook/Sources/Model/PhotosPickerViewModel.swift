@@ -16,8 +16,6 @@ class PhotosPickerViewModel: PickerItem {
         if let imageData = selectedItem?.pngData() {
             let resource = VisualResource(resourceData: imageData, resourceType: .image, aidDescription: selectedItemText ?? "Unnamed Photo")
             add(resource)
-        } else {
-            print("ISSUE!!")
         }
     }
 
