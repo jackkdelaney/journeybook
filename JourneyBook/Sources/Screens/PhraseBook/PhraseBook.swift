@@ -15,6 +15,8 @@ struct PhraseBook: View {
 
     @State var voice: AVSpeechSynthesisVoice? = nil
 
+    @AppStorage("storedVoice") var storedVoice: String = ""
+
     var status = AVSpeechSynthesizer.personalVoiceAuthorizationStatus
 
     @State private var profileText = "Enter your bio"
@@ -28,7 +30,6 @@ struct PhraseBook: View {
                 Section {
                     Button("REQUEST PERMISSION") {
                         AVSpeechSynthesizer.requestPersonalVoiceAuthorization { status in
-                            print(status.rawValue)
                         }
                     }
                 }
@@ -48,12 +49,11 @@ struct PhraseBook: View {
                 TextEditor(text: $profileText)
                     .foregroundStyle(.secondary)
                     .padding(.horizontal)
-                    .navigationTitle("About you")
+                    .navigationTitle("Phrase Book")
             }
             Section {
                 Button("SPEAK!!") {
-                    print(voice?.name ?? "NO NAME")
-                    speaker.speak("Hello, world!", voice: voice)
+                    try? speaker.speak("Hello, world!", voice: voice)
                 }
             }
         }
@@ -72,6 +72,18 @@ struct PhraseBook: View {
         .sheet(item: $sheet) { item in
             item.buildView(voice: $voice)
         }
+        .onAppear {
+            if storedVoice != "" {
+                voice = AVSpeechSynthesisVoice(identifier: storedVoice)
+            }
+        }
+        .onChange(of: voice) {
+            if let voice {
+                if voice.identifier != storedVoice {
+                    storedVoice = voice.identifier
+                }
+            }
+        }
     }
 
     @ViewBuilder
@@ -84,23 +96,6 @@ struct PhraseBook: View {
         }
         if status == .denied || status == .notDetermined {
             Text("You have not provided acess to personal voice, todo so follow this guide.")
-        }
-    }
-}
-
-enum PhraseBookSheet: Identifiable {
-    var id: Self {
-        return self
-    }
-
-    case voiceSelector
-}
-
-extension PhraseBookSheet {
-    @ViewBuilder
-    func buildView(voice: Binding<AVSpeechSynthesisVoice?>) -> some View {
-        switch self {
-        case .voiceSelector: PhraseVoiceSelectorView(voice: voice)
         }
     }
 }

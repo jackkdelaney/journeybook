@@ -52,6 +52,9 @@ struct PhraseVoiceSelectorView: SheetView {
             }
         }
         .buttonStyle(PlainButtonStyle())
+        .alert("Important message", isPresented: $showingAlert) {
+            Button("OK", role: .cancel) {}
+        }
     }
 
     var confirmButton: some View {
@@ -60,11 +63,17 @@ struct PhraseVoiceSelectorView: SheetView {
         }
     }
 
+    @State private var showingAlert = false
+
     private func voiceOptions(voices: [AVSpeechSynthesisVoice]) -> some View {
         ForEach(voices, id: \.self) { currentVoice in
             HStack {
                 Button {
-                    speaker.speak("Hello, I am \(currentVoice.name). Click the Chevron to select me.", voice: currentVoice)
+                    do {
+                        try speaker.speak("Hello, I am \(currentVoice.name). Click the Chevron to select me.", voice: currentVoice)
+                    } catch {
+                        showingAlert = true
+                    }
                 } label: {
                     Label("Play Sample", systemImage: "play.circle")
                         .labelStyle(.iconOnly)
@@ -74,7 +83,6 @@ struct PhraseVoiceSelectorView: SheetView {
                         .font(.headline)
                 }
                 Button {
-                    print("SELECt")
                     voice = currentVoice
                 } label: {
                     Label("Select Item", systemImage: "chevron.forward")
