@@ -6,9 +6,23 @@
 //
 
 import AVFAudio
+import SwiftData
 import SwiftUI
 
 struct PhraseBook: View {
+    @Query var phrases: [Phrase]
+    @Environment(\.modelContext) var modelContext
+
+    func delete(at offsets: IndexSet) {
+        for offset in offsets {
+            let phrase = phrases[offset]
+            modelContext.delete(phrase)
+        }
+        do {
+            try modelContext.save()
+        } catch {}
+    }
+
     let speaker = Speaker()
 
     @State private var sheet: PhraseBookSheet? = nil
@@ -21,69 +35,86 @@ struct PhraseBook: View {
 
     @State private var profileText = "Enter your bio"
 
-    var body: some View {
-        Form {
-            Section {
+    var phrasesList: some View {
+        List {
+            Section("DEBUG") {
                 voiceStatus
             }
             if status == .notDetermined {
-                Section {
-                    Button("REQUEST PERMISSION") {
-                        AVSpeechSynthesizer.requestPersonalVoiceAuthorization { status in
+                Section("Request For Permission") {
+                    Section {
+                        Button("REQUEST PERMISSION") {
+                            AVSpeechSynthesizer.requestPersonalVoiceAuthorization { _ in
+                            }
                         }
+                    }
+                    
+                }
+            }
+            Section {
+                ForEach(phrases) { phrase in
+                    HStack {
+                        Text(phrase.text)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Button("Edit") {}
+                        Button("Play") {
+                            try? speaker.speak(phrase.text, voice: voice)
+                        }
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                }
+                .onDelete(perform: delete)
+                
+                Button("Add New Phrase"){
+                    let phrase = Phrase(text: "Hello")
+                    modelContext.insert(phrase)
+                    try? modelContext.save()
+                    sheet = .phrase(phrase)
+                }
+
+//            Section("Text") {
+//                TextEditor(text: $profileText)
+//                    .foregroundStyle(.secondary)
+//                    .padding(.horizontal)
+//                    .navigationTitle("Phrase Book")
+//            }
+
+            } header: {
+                Text("Phrases")
+            } footer: {
+                Text("Your're Phrases for this app are listed above")
+            }
+        }
+    }
+
+    var body: some View {
+        phrasesList
+            .navigationTitle("Phrase Book")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        sheet = .voiceSelector
+                    } label: {
+                        Label("Change Voice", systemImage: "music.microphone.circle")
                     }
                 }
             }
-            Section("Text") {
-                HStack {
-                    Text("""
-                    This
-                    IS MULTI LINE
-
-                    """)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    Button("Edit") {}
+            .sheet(item: $sheet) { item in
+                item.buildView(voice: $voice)
+            }
+            .onAppear {
+                if storedVoice != "" {
+                    voice = AVSpeechSynthesisVoice(identifier: storedVoice)
                 }
             }
-            Section("Text") {
-                TextEditor(text: $profileText)
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal)
-                    .navigationTitle("Phrase Book")
-            }
-            Section {
-                Button("SPEAK!!") {
-                    try? speaker.speak("Hello, world!", voice: voice)
+            .onChange(of: voice) {
+                if let voice {
+                    if voice.identifier != storedVoice {
+                        storedVoice = voice.identifier
+                    }
                 }
             }
-        }
-        .navigationTitle("Phrase Book")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                Button {
-                    sheet = .voiceSelector
-
-                } label: {
-                    Label("Change Voice", systemImage: "music.microphone.circle")
-                }
-            }
-        }
-        .sheet(item: $sheet) { item in
-            item.buildView(voice: $voice)
-        }
-        .onAppear {
-            if storedVoice != "" {
-                voice = AVSpeechSynthesisVoice(identifier: storedVoice)
-            }
-        }
-        .onChange(of: voice) {
-            if let voice {
-                if voice.identifier != storedVoice {
-                    storedVoice = voice.identifier
-                }
-            }
-        }
     }
 
     @ViewBuilder

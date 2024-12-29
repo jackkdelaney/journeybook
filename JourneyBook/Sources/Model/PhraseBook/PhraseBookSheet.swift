@@ -8,12 +8,13 @@
 import SwiftUI
 import AVFAudio
 
-enum PhraseBookSheet: Identifiable {
+enum PhraseBookSheet: Identifiable, Hashable {
     var id: Self {
         return self
     }
 
     case voiceSelector
+    case phrase(Phrase)
 }
 
 extension PhraseBookSheet {
@@ -21,6 +22,9 @@ extension PhraseBookSheet {
     func buildView(voice: Binding<AVSpeechSynthesisVoice?>) -> some View {
         switch self {
         case .voiceSelector: PhraseVoiceSelectorView(voice: voice)
+        case let .phrase(phrase):
+            PhraseEditSheet(phrase: phrase)
         }
     }
 }
+
