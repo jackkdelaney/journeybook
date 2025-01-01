@@ -15,16 +15,16 @@ class JourneyStep {
     var stepName: String
     var stepDescription: String?
     
+    var journey: Journey?
+
     
-    
-    var visualResource : VisualResource?
-    
-    init(id: UUID = UUID(), dateCreated: Date = Date.now, stepName: String, stepDescription: String? = nil, visualResource: VisualResource? = nil) {
+    init(id: UUID = UUID(), dateCreated: Date = Date.now, stepName: String, stepDescription: String? = nil,journey : Journey) {
+        //VisualResource? = nil
         self.id = id
         self.dateCreated = dateCreated
         self.stepName = stepName
         self.stepDescription = stepDescription
-        self.visualResource = visualResource
+        self.journey = journey
     }
     
 }

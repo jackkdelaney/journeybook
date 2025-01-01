@@ -21,7 +21,7 @@ struct ResourceView: View {
                         .frame(height: 300)
                         .frame(maxWidth: .infinity)
                         .aspectRatio(contentMode: .fit)
-                        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .removeListRowPaddingInsets()
                 }
             }
             if resource.resourceType == .video {
@@ -30,7 +30,7 @@ struct ResourceView: View {
                         VideoPlayer(player: AVPlayer(url: url))
                             .frame(height: 300)
                             .frame(maxWidth: .infinity)
-                            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                            .removeListRowPaddingInsets()
                     }
                 }
             }

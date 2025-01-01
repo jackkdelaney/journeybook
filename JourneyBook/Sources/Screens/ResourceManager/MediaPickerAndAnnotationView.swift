@@ -66,7 +66,7 @@ struct MediaPickerAndAnnotationView<Content: View, SomePickerItem: PickerItem>: 
             theContent
                 .frame(maxWidth: .infinity)
                 .aspectRatio(contentMode: .fit)
-                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                .removeListRowPaddingInsets()
         }
     }
 }
