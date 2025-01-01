@@ -14,7 +14,7 @@ enum AppPages: Hashable {
     case login
     case mapExperience
     case phraseBook
-   // case addNewJourney
+    case journeyDetails(Journey)
 }
 
 extension AppPages {
@@ -33,8 +33,8 @@ extension AppPages {
             PhraseBook()
         case .mapExperience:
             MapView()
-//        case .addNewJourney:
-//            
+        case let .journeyDetails(journey):
+            JourneyDetailView(journey: journey)
         }
     }
 }
