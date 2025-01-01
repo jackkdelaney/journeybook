@@ -42,6 +42,7 @@ struct ResourcesManager: View {
                     } label: {
                         contents(for: resource)
                     }
+                    .chevronButtonStyle()
                 }
             }
             .onDelete(perform: delete)
