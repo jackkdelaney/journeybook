@@ -15,7 +15,7 @@ struct VisualResourceTest {
         #expect(resource.resourceData == sampleData)
         #expect(resource.resourceType == .image)
         #expect(resource.aidDescription == "Test Description")
-        #expect(resource.steps.isEmpty) 
+        // #expect(resource.steps.isEmpty)  MARK: RENABLE ONCE STEPS BROUGH BACK!
     }
   
 }
