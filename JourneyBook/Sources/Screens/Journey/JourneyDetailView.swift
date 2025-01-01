@@ -14,7 +14,17 @@ struct JourneyDetailView: View {
     
     @Environment(\.modelContext) var modelContext
 
-    @Query var journeySteps: [JourneyStep]
+    
+    var sortedJourneySteps: [JourneyStep] {
+        journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
+    }
+    
+    private func order() {
+        let sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
+        for (index, item) in sortedLocalList.enumerated() {
+            item.orderIndex = index
+        }
+    }
 
     var body: some View {
         Form {
@@ -28,18 +38,23 @@ struct JourneyDetailView: View {
 
                     let step = JourneyStep(stepName: "Hello!! \(randomInt)",journey: journey)
                     modelContext.insert(step)
+                    order()
                     try? modelContext.save()
                 }
             
 
-            
-            Text("\(journeySteps.count)")
             Section("Step 1") {
                 if !journey.steps.isEmpty {
-                    ForEach(journey.steps) { step in
-                        Text("\(step.stepName)")
+                    ForEach(sortedJourneySteps) { step in // .sorted(by: .orderIndex)
+                        VStack {
+                            Text("\(step.stepName)")
+                                .font(.headline)
+                            Text("\(step.orderIndex)")
+                        }
                     }
                     .onDelete(perform: delete)
+                    .onMove(perform: move)
+
 
                 } else {
                     Text("EMPTY")
@@ -49,6 +64,20 @@ struct JourneyDetailView: View {
         }
         .navigationTitle(journey.journeyName)
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    func move(fromOffsets from: IndexSet, toOffset to: Int) {
+        
+        var sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
+        sortedLocalList.move(fromOffsets: from, toOffset: to)
+        for (index, item) in sortedLocalList.enumerated() {
+            item.orderIndex = index
+        }
+        
+        
+        do {
+            try modelContext.save()
+        } catch {}
     }
     
     func delete(at offsets: IndexSet) {
@@ -62,36 +91,3 @@ struct JourneyDetailView: View {
     }
     
 }
-
-
-
-/*
- @Query var journeys: [Journey]
- @Environment(\.modelContext) var modelContext
- @EnvironmentObject private var coordinator: Coordinator
-
-
- @ViewBuilder
- var body: some View {
-     if !journeys.isEmpty {
-         Section("Journey's") {
-             ForEach(journeys) { journey in
-                 Button {
-                     coordinator.push(page: .journeyDetails(journey))
-                 } label: {
-                     VStack(alignment: .leading) {
-                         Text("Journey: \(journey.journeyName)")
-                             .font(.headline)
-                         if let description = journey.journeyDescription {
-                             Text(description)
-                         }
-                     }
-                 }
-                 .chevronButtonStyle()
-             }
-             .onDelete(perform: delete)
-         }
-     }
-
- }
- */

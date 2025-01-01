@@ -17,6 +17,7 @@ class JourneyStep {
     
     var journey: Journey?
 
+    var orderIndex: Int
     
     init(id: UUID = UUID(), dateCreated: Date = Date.now, stepName: String, stepDescription: String? = nil,journey : Journey) {
         //VisualResource? = nil
@@ -24,6 +25,7 @@ class JourneyStep {
         self.dateCreated = dateCreated
         self.stepName = stepName
         self.stepDescription = stepDescription
+        self.orderIndex = journey.steps.count + 1
         self.journey = journey
     }
     
