@@ -15,9 +15,8 @@ struct WorldHome: View {
     var body: some View {
         List {
             AddNewJoruneyButtom(sheet: $sheet)
-            Section {
-                JourneyItemsView()
-            }
+            JourneyItemsView()
+            
         }
         .navigationTitle("JourneyBook")
         .sheet(item: $sheet) { item in
