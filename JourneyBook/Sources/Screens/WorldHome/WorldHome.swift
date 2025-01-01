@@ -10,16 +10,19 @@ import SwiftUI
 struct WorldHome: View {
     @EnvironmentObject private var coordinator: Coordinator
 
+    @State private var sheet: JourneySheet? = nil
+
     var body: some View {
         List {
-            Button("MAP EXPERIENCE") {
-                coordinator.push(page: .mapExperience)
-            }
-            Button("VOICE BOOK EXPERIENCE") {
-                coordinator.push(page: .phraseBook)
+            AddNewJoruneyButtom(sheet: $sheet)
+            Section {
+                JourneyItemsView()
             }
         }
         .navigationTitle("JourneyBook")
+        .sheet(item: $sheet) { item in
+            item.buildView()
+        }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Menu {
@@ -27,6 +30,18 @@ struct WorldHome: View {
                         coordinator.push(page: .resourceManager)
                     } label: {
                         Label("Resource Manager", systemImage: "house.lodge")
+                    }
+                    Button {
+                        coordinator.push(page: .mapExperience)
+                    } label: {
+                        Label(
+                            "Transport Demo",
+                            systemImage: "train.side.front.car")
+                    }
+                    Button {
+                        coordinator.push(page: .phraseBook)
+                    } label: {
+                        Label("Phrase Book", systemImage: "book.pages")
                     }
                 } label: {
                     Label("Options", systemImage: "case")
