@@ -20,7 +20,7 @@ class JourneyViewModel {
     init(journeyName : String = "", journeyDescription : String? = nil) {
         self.journeyName = journeyName
         self.journeyDescription = journeyDescription
-        modelContainer = try! ModelContainer(for: VisualResource.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+        modelContainer = try! ModelContainer(for: Journey.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         modelContext = modelContainer.mainContext
     }
     
@@ -30,9 +30,7 @@ class JourneyViewModel {
         }
         
         let journey = Journey(journeyName: journeyName, journeyDescription: journeyDescription)
-        print("TO ADD")
         add(journey)
-        print("ADDED")
     }
     
     func clearItem() {
@@ -70,13 +68,9 @@ extension JourneyViewModel {
     }
 
     func add(_ journey: Journey) {
-        print("TO INSERT")
         modelContext.insert(journey)
-        print("AFTER INSERT")
         do {
-            print("TRY")
             try modelContext.save()
-            print("DONE")
 
         } catch {
             fatalError(error.localizedDescription)

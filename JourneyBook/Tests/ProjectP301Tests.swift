@@ -1,8 +1,8 @@
-import Foundation
-import XCTest
+import Testing
 
-final class ProjectP301Tests: XCTestCase {
-  func test_twoPlusTwo_isFour() {
-    XCTAssertEqual(2 + 2, 4)
-  }
+@testable import JourneyBook
+
+@Test func sanityCheck() {
+    let calc = 2 + 2
+    #expect(calc == 4)
 }
