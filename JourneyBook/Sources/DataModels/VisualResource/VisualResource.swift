@@ -19,7 +19,7 @@ class VisualResource {
     var resourceData: Data
     
     
-    @Relationship(deleteRule: .nullify, inverse: \JourneyStep.visualResource) var steps: [JourneyStep]
+//    @Relationship(deleteRule: .nullify, inverse: \JourneyStep.visualResource) var steps: [JourneyStep]
 
     
 
@@ -29,6 +29,6 @@ class VisualResource {
         self.resourceData = resourceData
         self.resourceType = resourceType
         self.aidDescription = aidDescription
-        self.steps = steps
+      //  self.steps = steps
     }
 }
