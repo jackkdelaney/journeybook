@@ -13,16 +13,23 @@ class Phrase : Identifiable {
     private(set) var id: UUID
     private(set) var dateCreated: Date
     private(set) var dateModified: Date
-    var text: String {
-        didSet {
-            dateModified = Date.now()
-        }
-    }
+    
+    
+    private var _text: String
+    
+    @Transient var text: String {
+          get { return _text }
+          set {
+              _text = newValue
+              dateModified = Date.now
+          }
+      }
+    
     
     init(text: String, id: UUID = UUID(), dateCreated: Date = Date.now, dateModified: Date = Date.now) {
         self.id = id
         self.dateCreated = dateCreated
-        self.text = text
+        self._text = text
         self.dateModified = dateModified
     }
     

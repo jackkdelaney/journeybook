@@ -13,7 +13,7 @@ class VisualResource {
     var id: UUID
     var aidDescription: String?
     var timestamp: Date
-    var resourceType: VisualResourceType
+    private(set) var resourceType: VisualResourceType
 
     @Attribute(.externalStorage)
     var resourceData: Data

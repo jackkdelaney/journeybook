@@ -17,7 +17,7 @@ class JourneyStep {
     
     var visualResource : VisualResource?
     
-    init(id: UUID, dateCreated: Date, stepName: String, stepDescription: String? = nil, visualResource: VisualResource? = nil) {
+    init(id: UUID = UUID(), dateCreated: Date = Date.now, stepName: String, stepDescription: String? = nil, visualResource: VisualResource? = nil) {
         self.id = id
         self.dateCreated = dateCreated
         self.stepName = stepName
