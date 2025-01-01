@@ -48,6 +48,7 @@ struct ResourcesManager: View {
         }
 
         .navigationTitle("Resources")
+        .navigationBarTitleDisplayMode(.inline)
         .overlay {
             if resources.isEmpty {
                 ContentUnavailableView {

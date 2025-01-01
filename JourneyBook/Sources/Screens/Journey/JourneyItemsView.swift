@@ -26,6 +26,10 @@ extension View {
     func chevronButtonStyle() -> some View {
         self.buttonStyle(ChevronButtonStyle())
     }
+    
+    func removeListRowPaddingInsets() -> some View {
+        self.listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+    }
 }
 
 struct JourneyItemsView: View {
@@ -61,6 +65,9 @@ struct JourneyItemsView: View {
     func delete(at offsets: IndexSet) {
         for offset in offsets {
             let journey = journeys[offset]
+            for step in journey.steps {
+                modelContext.delete(step)
+            }
             modelContext.delete(journey)
         }
         do {
