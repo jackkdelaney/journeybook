@@ -1,0 +1,85 @@
+//
+//  JourneyViewModel.swift
+//  JourneyBook
+//
+//  Created by Jack Delaney on 01/01/2025.
+//
+
+import SwiftData
+import Observation
+
+@Observable
+class JourneyViewModel {
+    let modelContainer: ModelContainer
+    let modelContext: ModelContext
+    
+    var journeyName : String
+    var journeyDescription : String?
+    
+    @MainActor
+    init(journeyName : String = "", journeyDescription : String? = nil) {
+        self.journeyName = journeyName
+        self.journeyDescription = journeyDescription
+        modelContainer = try! ModelContainer(for: VisualResource.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+        modelContext = modelContainer.mainContext
+    }
+    
+    func saveItem() throws {
+        if journeyName == "" {
+            throw JourneyViewModelError.noJourneyText
+        }
+        
+        let journey = Journey(journeyName: journeyName, journeyDescription: journeyDescription)
+        print("TO ADD")
+        add(journey)
+        print("ADDED")
+    }
+    
+    func clearItem() {
+        journeyName = ""
+        journeyDescription = nil
+    }
+    
+}
+
+enum JourneyViewModelError: Error, Identifiable {
+    var id : String {
+        "\(self.hashValue)"
+    }
+    
+    case noJourneyText
+    
+}
+
+extension JourneyViewModelError {
+    var errorMessage : String {
+        switch(self) {
+        case .noJourneyText:
+            "Please enter a journey name."
+        }
+    }
+}
+
+extension JourneyViewModel {
+    func fetchResources() -> [Journey] {
+        do {
+            return try modelContext.fetch(FetchDescriptor<Journey>())
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+
+    func add(_ journey: Journey) {
+        print("TO INSERT")
+        modelContext.insert(journey)
+        print("AFTER INSERT")
+        do {
+            print("TRY")
+            try modelContext.save()
+            print("DONE")
+
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+}
