@@ -36,9 +36,7 @@ struct AddNewJourneySheet: SheetView {
     var confirmButton: some View {
         Button("Add") {
             do {
-                print("TO SAVE")
                 try model.saveItem()
-                print("SAVED")
                 dismiss()
             }
             catch JourneyViewModelError.noJourneyText {

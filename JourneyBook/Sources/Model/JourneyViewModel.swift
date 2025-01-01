@@ -20,7 +20,7 @@ class JourneyViewModel {
     init(journeyName : String = "", journeyDescription : String? = nil) {
         self.journeyName = journeyName
         self.journeyDescription = journeyDescription
-        modelContainer = try! ModelContainer(for: Journey.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+        modelContainer = try! ModelContainer(for: VisualResource.self,Phrase.self,Journey.self,JourneyStep.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         modelContext = modelContainer.mainContext
     }
     
