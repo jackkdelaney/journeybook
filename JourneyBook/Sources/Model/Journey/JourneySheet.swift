@@ -7,21 +7,19 @@
 
 import SwiftUI
 
-enum WorldSheet: Identifiable, Hashable {
+enum JourneySheet: Identifiable, Hashable {
     var id: Self {
         return self
     }
 
     case addNewJourney
-    case tempMapSelector
 }
 
-extension WorldSheet {
+extension JourneySheet {
     @ViewBuilder
     func buildView() -> some View {
         switch self {
         case .addNewJourney: AddNewJourneySheet()
-        case .tempMapSelector: LocationFindView()
         }
     }
 }

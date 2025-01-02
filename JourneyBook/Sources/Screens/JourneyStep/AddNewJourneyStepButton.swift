@@ -1,35 +1,51 @@
 //
-//  AddNewJoruneyButtom.swift
+//  AddNewJourneyStepButton.swift
 //  JourneyBook
 //
-//  Created by Jack Delaney on 31/12/2024.
+//  Created by Jack Delaney on 02/01/2025.
 //
 
 import SwiftUI
 
-struct AddNewJoruneyButtom: View {
+struct AddNewJourneyStepButton: View {
     @EnvironmentObject private var coordinator: Coordinator
 
-    @Binding var sheet: JourneySheet? 
+    @Bindable var journey : Journey
+    
+    @Binding var sheet: JourneyStepSheet?
+
+    
+    /*
+     Button("Add New Phrase [Directly]"){
+         let randomInt = Int.random(in: 1..<5)
+
+         let step = JourneyStep(stepName: "Hello!! \(randomInt)",journey: journey)
+         modelContext.insert(step)
+         order()
+         try? modelContext.save()
+     }
+     */
 
     var body: some View {
         Button {
-            sheet = .addNewJourney
+        //    sheet = .addNewJourney
+            
+            sheet = .addNewStep(journey)
         } label: {
 
             ZStack {
-                Color.blue
-                    .background(.ultraThickMaterial)
+                Color.purple
+                    .opacity(0.7)
+                    .background(.thickMaterial)
 
                 HStack {
-                    Image(systemName: "plus.circle.dashed")
+                    Image(systemName: "plus.square.dashed")
                         .foregroundStyle(.thinMaterial)
+                        .tint(.pink)
                         .font(.largeTitle)
                     VStack {
-                        Text("Create new Journey")
+                        Text("Add New Step")
                             .font(.title2)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                        Text("Click me to add a new Journey ")
                             .frame(maxWidth: .infinity, alignment: .trailing)
 
 
@@ -46,5 +62,4 @@ struct AddNewJoruneyButtom: View {
         .buttonStyle(PlainButtonStyle())
     }
 }
-
 

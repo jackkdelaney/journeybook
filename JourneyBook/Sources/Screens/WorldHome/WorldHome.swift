@@ -11,17 +11,13 @@ import SwiftUI
 struct WorldHome: View {
     @EnvironmentObject private var coordinator: Coordinator
 
-    @State private var sheet: WorldSheet? = nil
+    @State private var sheet: JourneySheet? = nil
 
     var body: some View {
         List {
             AddNewJoruneyButtom(sheet: $sheet)
             JourneyItemsView()
-            Section("Testing Block") {
-                Button("Open") {
-                    sheet = .tempMapSelector
-                }
-            }
+           
             
         }
         .navigationTitle("JourneyBook")
