@@ -8,22 +8,17 @@
 import SwiftUI
 
 struct JourneyDetailView: View {
-
-    
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject private var coordinator: Coordinator
 
     @Bindable var journey: Journey
-    
-    
+
     @State private var sheet: JourneyStepSheet? = nil
-
-
 
     var body: some View {
         Form {
             Section {
-                AddNewJourneyStepButton(journey : journey, sheet: $sheet)
+                AddNewJourneyStepButton(journey: journey, sheet: $sheet)
             }
             if let description = journey.journeyDescription {
                 Text(description)
@@ -36,7 +31,7 @@ struct JourneyDetailView: View {
                     ForEach(sortedJourneySteps) { step in
                         Button {
                             coordinator.push(page: .journeyStepDetails(step))
-                        }label: {
+                        } label: {
                             HStack {
                                 Text("#\(step.orderIndex)")
                                     .fontWeight(.heavy)
@@ -54,7 +49,6 @@ struct JourneyDetailView: View {
                     .onDelete(perform: delete)
                     .onMove(perform: move)
 
-
                 } else {
                     Text("EMPTY")
                 }
@@ -71,32 +65,30 @@ struct JourneyDetailView: View {
             }
         }
     }
-    
+
     var sortedJourneySteps: [JourneyStep] {
         journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
     }
-    
+
     private func order() {
         let sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
         for (index, item) in sortedLocalList.enumerated() {
             item.orderIndex = index
         }
     }
-    
+
     func move(fromOffsets from: IndexSet, toOffset to: Int) {
-        
         var sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
         sortedLocalList.move(fromOffsets: from, toOffset: to)
         for (index, item) in sortedLocalList.enumerated() {
             item.orderIndex = index
         }
-        
-        
+
         do {
             try modelContext.save()
         } catch {}
     }
-    
+
     func delete(at offsets: IndexSet) {
         let sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
 
@@ -108,5 +100,4 @@ struct JourneyDetailView: View {
             try modelContext.save()
         } catch {}
     }
-    
 }

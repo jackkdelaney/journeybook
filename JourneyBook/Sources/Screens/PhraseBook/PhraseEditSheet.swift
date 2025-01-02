@@ -10,7 +10,6 @@ struct PhraseEditSheet: SheetView {
     @Environment(\.dismiss) var dismiss
 
     var confirmButton: some View {
-        
         Button("Confirm") {
             dismiss()
         }
@@ -25,12 +24,10 @@ struct PhraseEditSheet: SheetView {
     var content: some View {
         Form {
             TextEditor(text: phraseText)
-
         }
     }
-    
-    
-    var phraseText : Binding<String> {
+
+    var phraseText: Binding<String> {
         Binding(
             get: { self.phrase.text },
             set: { self.phrase.text = $0 }

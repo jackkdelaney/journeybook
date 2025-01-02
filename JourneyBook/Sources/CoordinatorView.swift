@@ -12,14 +12,12 @@ struct CoordinatorView: View {
 
     @Namespace var namespace
 
-    
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             AppPages.worldHome.build()
                 .navigationDestination(for: AppPages.self) { page in
                     page.build()
-                     //   .navigationTransition(.zoom(sourceID: page.hashValue, in: namespace))
-
+                    //   .navigationTransition(.zoom(sourceID: page.hashValue, in: namespace))
                 }
         }
         .environmentObject(coordinator)

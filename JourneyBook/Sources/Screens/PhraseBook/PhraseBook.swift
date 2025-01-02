@@ -48,7 +48,6 @@ struct PhraseBook: View {
                             }
                         }
                     }
-                    
                 }
             }
             Section {
@@ -64,8 +63,8 @@ struct PhraseBook: View {
                     .buttonStyle(PlainButtonStyle())
                 }
                 .onDelete(perform: delete)
-                
-                Button("Add New Phrase"){
+
+                Button("Add New Phrase") {
                     let phrase = Phrase(text: "Hello")
                     modelContext.insert(phrase)
                     try? modelContext.save()

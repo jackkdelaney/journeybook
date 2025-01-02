@@ -5,75 +5,69 @@
 //  Created by Jack Delaney on 02/01/2025.
 //
 
-import SwiftUI
 import MapKit
+import SwiftUI
 
-struct LocationFindView : SheetView {
+struct LocationFindView: SheetView {
     var sheetTitle: String {
         "Location Sheet"
     }
-    
-    //https://hackernoon.com/address-autocompletion-using-swiftui-and-mapkit
-        
-    @StateObject var viewModel: ContentViewModel = ContentViewModel()
-    @FocusState private var isFocusedTextField: Bool
-    
-    @State var selectedLocation : CLLocationCoordinate2D?
-    
-    @Environment(\.dismiss) var dismiss
 
+    // https://hackernoon.com/address-autocompletion-using-swiftui-and-mapkit
+
+    @StateObject var viewModel: ContentViewModel = .init()
+    @FocusState private var isFocusedTextField: Bool
+
+    @State var selectedLocation: CLLocationCoordinate2D?
+
+    @Environment(\.dismiss) var dismiss
 
     var confirmButton: some View {
         Button("Confirm") {
             dismiss()
         }
     }
-    
+
     var content: some View {
-                VStack(alignment: .leading, spacing: 0) {
-
-                    TextField("Type address", text: $viewModel.searchableText)
-                        .padding()
-                        .autocorrectionDisabled()
-                        .focused($isFocusedTextField)
-                        .font(.title2)
-                        .onReceive(
-                            viewModel.$searchableText.debounce(
-                                for: .seconds(1),
-                                scheduler: DispatchQueue.main
-                            )
-                        ) {
-                            viewModel.searchAddress($0)
-                        }
-                        //.background(Color.init(uiColor: .systemBackground))
-                        .overlay {
-                            ClearButton(text: $viewModel.searchableText)
-                                .padding(.trailing)
-                                .padding(.top, 8)
-                        }
-                        .onAppear {
-                            isFocusedTextField = true
-                        }
-
-                    List(self.viewModel.results) { address in
-                        AddressRow(selectedLocation: $selectedLocation, address: address)
-                           // .listRowBackground(.blue)
-                    }
-                    //.listStyle(.plain)
-                    //.scrollContentBackground(.hidden)
+        VStack(alignment: .leading, spacing: 0) {
+            TextField("Type address", text: $viewModel.searchableText)
+                .padding()
+                .autocorrectionDisabled()
+                .focused($isFocusedTextField)
+                .font(.title2)
+                .onReceive(
+                    viewModel.$searchableText.debounce(
+                        for: .seconds(1),
+                        scheduler: DispatchQueue.main
+                    )
+                ) {
+                    viewModel.searchAddress($0)
                 }
-               // .background(.blue)
-                .edgesIgnoringSafeArea(.bottom)
-            }
-        
-        
-    }
+                // .background(Color.init(uiColor: .systemBackground))
+                .overlay {
+                    ClearButton(text: $viewModel.searchableText)
+                        .padding(.trailing)
+                        .padding(.top, 8)
+                }
+                .onAppear {
+                    isFocusedTextField = true
+                }
 
+            List(self.viewModel.results) { address in
+                AddressRow(selectedLocation: $selectedLocation, address: address)
+                // .listRowBackground(.blue)
+            }
+            // .listStyle(.plain)
+            // .scrollContentBackground(.hidden)
+        }
+        // .background(.blue)
+        .edgesIgnoringSafeArea(.bottom)
+    }
+}
 
 struct ClearButton: View {
-    
     @Binding var text: String
-    
+
     var body: some View {
         if text.isEmpty == false {
             HStack {
@@ -93,11 +87,10 @@ struct ClearButton: View {
 }
 
 struct AddressRow: View {
-    
-    @Binding var selectedLocation : CLLocationCoordinate2D?
-    
+    @Binding var selectedLocation: CLLocationCoordinate2D?
+
     let address: AddressResult
-    
+
     var body: some View {
         NavigationLink {
             ClassicMapView(address: address, selectedLocation: $selectedLocation)
@@ -113,25 +106,23 @@ struct AddressRow: View {
 }
 
 struct ClassicMapView: View {
-    
-    @StateObject private var viewModel : MapViewModel
-    
+    @StateObject private var viewModel: MapViewModel
+
     @Environment(\.dismiss) var dismiss
 
-    @Binding var selectedLocation : CLLocationCoordinate2D?
+    @Binding var selectedLocation: CLLocationCoordinate2D?
 
-    
     private let address: AddressResult
-    
-    private let title : String
-    
-    init(address: AddressResult, selectedLocation : Binding<CLLocationCoordinate2D?>) {
+
+    private let title: String
+
+    init(address: AddressResult, selectedLocation: Binding<CLLocationCoordinate2D?>) {
         self.address = address
-        self._viewModel = StateObject(wrappedValue: MapViewModel())
-        self._selectedLocation = selectedLocation
-        self.title = address.title
+        _viewModel = StateObject(wrappedValue: MapViewModel())
+        _selectedLocation = selectedLocation
+        title = address.title
     }
-    
+
     private var cameraBinding: Binding<MapCameraPosition> {
         Binding(
             get: {
@@ -144,7 +135,7 @@ struct ClassicMapView: View {
             }
         )
     }
-    
+
     var body: some View {
         Map(position: cameraBinding) {
             ForEach(viewModel.annotationItems, id: \.id) { item in
@@ -161,7 +152,7 @@ struct ClassicMapView: View {
         }
         .edgesIgnoringSafeArea(.bottom)
     }
-    
+
     var confirmButton: some View {
         Button("Confirm") {
             dismiss()
@@ -169,5 +160,4 @@ struct ClassicMapView: View {
         }
         .disabled(selectedLocation == nil)
     }
-    
 }

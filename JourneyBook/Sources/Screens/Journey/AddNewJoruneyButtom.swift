@@ -10,13 +10,12 @@ import SwiftUI
 struct AddNewJoruneyButtom: View {
     @EnvironmentObject private var coordinator: Coordinator
 
-    @Binding var sheet: JourneySheet? 
+    @Binding var sheet: JourneySheet?
 
     var body: some View {
         Button {
             sheet = .addNewJourney
         } label: {
-
             ZStack {
                 Color.blue
                     .background(.ultraThickMaterial)
@@ -31,14 +30,11 @@ struct AddNewJoruneyButtom: View {
                             .frame(maxWidth: .infinity, alignment: .trailing)
                         Text("Click me to add a new Journey ")
                             .frame(maxWidth: .infinity, alignment: .trailing)
-
-
                     }
                     .foregroundStyle(.ultraThickMaterial)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 .padding()
-
             }
         }
         .contentShape(Rectangle())
@@ -46,5 +42,3 @@ struct AddNewJoruneyButtom: View {
         .buttonStyle(PlainButtonStyle())
     }
 }
-
-

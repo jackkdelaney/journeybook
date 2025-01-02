@@ -8,17 +8,13 @@
 import SwiftUI
 
 struct JourneyStepDetailView: View {
-    
     @Bindable var step: JourneyStep
-    
-    
+
     var body: some View {
         Form {
             Text("Hello, World!")
         }
         .navigationTitle("\(step.stepName)")
-            .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
-
-

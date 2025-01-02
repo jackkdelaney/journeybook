@@ -11,13 +11,13 @@ struct AddNewJourneySheet: SheetView {
     var sheetTitle: String {
         "Add New Journey"
     }
+
     @Environment(\.dismiss) var dismiss
 
     @State var model = JourneyViewModel()
 
     @State private var errorMessage: JourneyViewModelError?
 
-    
     var content: some View {
         Form {
             Section("Journey Name") {
@@ -25,7 +25,6 @@ struct AddNewJourneySheet: SheetView {
             }
             Section("Journey Description") {
                 TextEditor(text: journeyDescription)
-
             }
         }
         .alert(item: $errorMessage) { error in
@@ -38,11 +37,9 @@ struct AddNewJourneySheet: SheetView {
             do {
                 try model.saveItem()
                 dismiss()
-            }
-            catch JourneyViewModelError.noJourneyText {
+            } catch JourneyViewModelError.noJourneyText {
                 errorMessage = .noJourneyText
-            }
-            catch {
+            } catch {
                 print(error)
             }
         }
@@ -60,5 +57,4 @@ struct AddNewJourneySheet: SheetView {
             }
         )
     }
-
 }

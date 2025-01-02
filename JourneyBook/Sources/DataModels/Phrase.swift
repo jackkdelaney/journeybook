@@ -9,28 +9,25 @@ import Foundation
 import SwiftData
 
 @Model
-class Phrase : Identifiable {
+class Phrase: Identifiable {
     private(set) var id: UUID
     private(set) var dateCreated: Date
     private(set) var dateModified: Date
-    
-    
+
     private var _text: String
-    
+
     @Transient var text: String {
-          get { return _text }
-          set {
-              _text = newValue
-              dateModified = Date.now
-          }
-      }
-    
-    
+        get { return _text }
+        set {
+            _text = newValue
+            dateModified = Date.now
+        }
+    }
+
     init(text: String, id: UUID = UUID(), dateCreated: Date = Date.now, dateModified: Date = Date.now) {
         self.id = id
         self.dateCreated = dateCreated
-        self._text = text
+        _text = text
         self.dateModified = dateModified
     }
-    
 }
