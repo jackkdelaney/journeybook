@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct JourneyDetailView: View {
 
@@ -81,8 +80,10 @@ struct JourneyDetailView: View {
     }
     
     func delete(at offsets: IndexSet) {
+        let sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
+
         for offset in offsets {
-            let journeyStep = journey.steps[offset]
+            let journeyStep = sortedLocalList[offset]
             modelContext.delete(journeyStep)
         }
         do {

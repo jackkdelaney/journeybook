@@ -10,7 +10,7 @@ import SwiftUI
 struct AddNewJoruneyButtom: View {
     @EnvironmentObject private var coordinator: Coordinator
 
-    @Binding var sheet: JourneySheet? 
+    @Binding var sheet: WorldSheet? 
 
     var body: some View {
         Button {
