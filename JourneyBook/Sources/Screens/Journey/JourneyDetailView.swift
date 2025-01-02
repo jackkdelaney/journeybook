@@ -14,24 +14,22 @@ struct JourneyDetailView: View {
     @EnvironmentObject private var coordinator: Coordinator
 
     @Bindable var journey: Journey
+    
+    
+    @State private var sheet: JourneyStepSheet? = nil
+
 
 
     var body: some View {
         Form {
+            Section {
+                AddNewJourneyStepButton(journey : journey, sheet: $sheet)
+            }
             if let description = journey.journeyDescription {
                 Text(description)
             } else {
                 Text("No Description")
             }
-                Button("Add New Phrase [Directly]"){
-                    let randomInt = Int.random(in: 1..<5)
-
-                    let step = JourneyStep(stepName: "Hello!! \(randomInt)",journey: journey)
-                    modelContext.insert(step)
-                    order()
-                    try? modelContext.save()
-                }
-            
 
             Section("Step (Temp Section)") {
                 if !journey.steps.isEmpty {
@@ -50,12 +48,6 @@ struct JourneyDetailView: View {
                                     }
                                 }
                             }
-//                            VStack {
-//                                
-//                                Text("\(step.stepName)")
-//                                    .font(.headline)
-//                                Text("\(step.orderIndex)")
-//                            }
                         }
                         .chevronButtonStyle()
                     }
@@ -67,10 +59,17 @@ struct JourneyDetailView: View {
                     Text("EMPTY")
                 }
             }
-           // .removeListRowPaddingInsets()
         }
         .navigationTitle(journey.journeyName)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(item: $sheet) { item in
+            item.buildView()
+        }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                EditButton()
+            }
+        }
     }
     
     var sortedJourneySteps: [JourneyStep] {
