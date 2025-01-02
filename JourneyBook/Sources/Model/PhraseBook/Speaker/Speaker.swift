@@ -11,7 +11,7 @@ import Foundation
 // https://bendodson.com/weblog/2024/04/03/using-your-personal-voice-in-an-ios-app/
 class Speaker: NSObject {
     @Published var isSpeaking: Bool = false
-    
+
     lazy var synthesizer: AVSpeechSynthesizer = {
         let synthesizer = AVSpeechSynthesizer()
         synthesizer.delegate = self
@@ -36,8 +36,8 @@ class Speaker: NSObject {
 }
 
 enum SpeakerError: Error {
-  case noText
-  case otherVoiceCurrentlySpeaking
+    case noText
+    case otherVoiceCurrentlySpeaking
 }
 
 extension Speaker: AVSpeechSynthesizerDelegate {

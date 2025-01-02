@@ -9,8 +9,7 @@ import Foundation
 import MapKit
 
 class ContentViewModel: NSObject, ObservableObject {
-    
-    @Published private(set) var results: Array<AddressResult> = []
+    @Published private(set) var results: [AddressResult] = []
     @Published var searchableText = ""
 
     private lazy var localSearchCompleter: MKLocalSearchCompleter = {
@@ -18,7 +17,7 @@ class ContentViewModel: NSObject, ObservableObject {
         completer.delegate = self
         return completer
     }()
-    
+
     func searchAddress(_ searchableText: String) {
         guard searchableText.isEmpty == false else { return }
         localSearchCompleter.queryFragment = searchableText
@@ -33,8 +32,8 @@ extension ContentViewModel: MKLocalSearchCompleterDelegate {
             }
         }
     }
-    
-    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+
+    func completer(_: MKLocalSearchCompleter, didFailWithError error: Error) {
         print(error)
     }
 }

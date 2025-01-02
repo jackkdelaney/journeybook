@@ -77,7 +77,7 @@ class VideosPickerViewModel: PickerItem {
         self.selectedItem = selectedItem
         self.selectedPickerItem = selectedPickerItem
 
-        modelContainer = try! ModelContainer(for: VisualResource.self,Phrase.self,Journey.self,JourneyStep.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+        modelContainer = try! ModelContainer(for: VisualResource.self, Phrase.self, Journey.self, JourneyStep.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         modelContext = modelContainer.mainContext
     }
 

@@ -7,7 +7,6 @@
 
 import CoreLocation
 
-
 struct AnnotationItem: Identifiable {
     let id = UUID()
     let latitude: Double

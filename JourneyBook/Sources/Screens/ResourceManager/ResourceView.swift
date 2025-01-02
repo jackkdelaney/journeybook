@@ -5,9 +5,9 @@
 //  Created by Jack Delaney on 29/12/2024.
 //
 
-import SwiftUI
 import AVFoundation
 import AVKit
+import SwiftUI
 
 struct ResourceView: View {
     var resource: VisualResource

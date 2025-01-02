@@ -14,27 +14,22 @@ class JourneyStep {
     private(set) var dateCreated: Date
     var stepName: String
     var stepDescription: String?
-    
+
     var journey: Journey?
     var orderIndex: Int
 
-    
-    
-    init(id: UUID = UUID(), dateCreated: Date = Date.now, stepName: String, stepDescription: String? = nil,journey : Journey,location : JourneyStepLocation? = nil) {
-        //VisualResource? = nil
+    init(id: UUID = UUID(), dateCreated: Date = Date.now, stepName: String, stepDescription: String? = nil, journey: Journey, location: JourneyStepLocation? = nil) {
+        // VisualResource? = nil
         self.id = id
         self.dateCreated = dateCreated
         self.stepName = stepName
         self.stepDescription = stepDescription
-        self.orderIndex = journey.steps.count + 1
+        orderIndex = journey.steps.count + 1
         self.journey = journey
         self.location = location
     }
-    
-    //MARK: LOCATION STEP TYPE
-    var location : JourneyStepLocation?
-    
-    
-    
-    
+
+    // MARK: LOCATION STEP TYPE
+
+    var location: JourneyStepLocation?
 }

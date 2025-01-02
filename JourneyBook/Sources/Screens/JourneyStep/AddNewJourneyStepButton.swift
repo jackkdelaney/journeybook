@@ -10,11 +10,10 @@ import SwiftUI
 struct AddNewJourneyStepButton: View {
     @EnvironmentObject private var coordinator: Coordinator
 
-    @Bindable var journey : Journey
-    
+    @Bindable var journey: Journey
+
     @Binding var sheet: JourneyStepSheet?
 
-    
     /*
      Button("Add New Phrase [Directly]"){
          let randomInt = Int.random(in: 1..<5)
@@ -28,11 +27,10 @@ struct AddNewJourneyStepButton: View {
 
     var body: some View {
         Button {
-        //    sheet = .addNewJourney
-            
+            //    sheet = .addNewJourney
+
             sheet = .addNewStep(journey)
         } label: {
-
             ZStack {
                 Color.purple
                     .opacity(0.7)
@@ -47,14 +45,11 @@ struct AddNewJourneyStepButton: View {
                         Text("Add New Step")
                             .font(.title2)
                             .frame(maxWidth: .infinity, alignment: .trailing)
-
-
                     }
                     .foregroundStyle(.ultraThickMaterial)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 .padding()
-
             }
         }
         .contentShape(Rectangle())
@@ -62,4 +57,3 @@ struct AddNewJourneyStepButton: View {
         .buttonStyle(PlainButtonStyle())
     }
 }
-

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct WorldHome: View {
     @EnvironmentObject private var coordinator: Coordinator
 
@@ -17,8 +16,6 @@ struct WorldHome: View {
         List {
             AddNewJoruneyButtom(sheet: $sheet)
             JourneyItemsView()
-           
-            
         }
         .navigationTitle("JourneyBook")
         .sheet(item: $sheet) { item in
@@ -37,7 +34,8 @@ struct WorldHome: View {
                     } label: {
                         Label(
                             "Transport Demo",
-                            systemImage: "train.side.front.car")
+                            systemImage: "train.side.front.car"
+                        )
                     }
                     Button {
                         coordinator.push(page: .phraseBook)

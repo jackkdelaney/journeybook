@@ -18,17 +18,16 @@ struct ChevronButtonStyle: ButtonStyle {
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .contentShape(Rectangle())
-
     }
 }
 
 extension View {
     func chevronButtonStyle() -> some View {
-        self.buttonStyle(ChevronButtonStyle())
+        buttonStyle(ChevronButtonStyle())
     }
-    
+
     func removeListRowPaddingInsets() -> some View {
-        self.listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+        listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
 }
 
@@ -36,7 +35,6 @@ struct JourneyItemsView: View {
     @Query var journeys: [Journey]
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject private var coordinator: Coordinator
-
 
     @ViewBuilder
     var body: some View {
@@ -59,7 +57,6 @@ struct JourneyItemsView: View {
                 .onDelete(perform: delete)
             }
         }
-
     }
 
     func delete(at offsets: IndexSet) {
