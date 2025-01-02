@@ -14,7 +14,12 @@ let project = Project(
             "UIColorName": "",
             "UIImageName": "",
           ],
-          "NSLocationWhenInUseUsageDescription": "The app needs access to your location to provide location-based services."
+          "NSLocationWhenInUseUsageDescription": "The app needs access to your location to provide location-based services.",
+          "LSApplicationQueriesSchemes": [
+            "Item 0" : "maps",
+            "Item 1" : "waze",
+            "Item 2" : "comgooglemaps",
+          ]
         ]
       ),
       sources: ["JourneyBook/Sources/**"],

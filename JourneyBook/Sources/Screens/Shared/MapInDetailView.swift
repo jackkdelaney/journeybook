@@ -6,13 +6,50 @@
 //
 
 import SwiftUI
+import MapKit
 
-struct MapInDetailView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+struct MapInDetailView : View {
+    
+    
+    @State private var postion : MapCameraPosition
+    
+    private let location: JourneyStepLocation
+    private let locked : Bool
+    
+    init(location : JourneyStepLocation,locked : Bool = true) {
+        self.locked = locked
+        self._postion = State(initialValue: MapCameraPosition.region(MKCoordinateRegion(
+            center: location.location,
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01 )
+        )))        
+        self.location = location
+        
     }
+
+
+
+    
+    var body : some View {
+        ZStack {
+            Map(position: $postion,interactionModes: interactionModes) {
+                Marker("Location", coordinate: location.location)
+                
+            }
+            .mapStyle(.standard(elevation: .realistic))
+        }
+
+        
+    }
+    
+    var interactionModes : MapInteractionModes {
+        if locked {
+            return []
+        } else {
+            return .all
+        }
+    }
+    
 }
 
-#Preview {
-    MapInDetailView()
-}
+//MARK THIS VIEW CAN BE GENERZLISED AND USED BETWEEN
