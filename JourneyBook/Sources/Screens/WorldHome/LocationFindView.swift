@@ -100,7 +100,7 @@ struct AddressRow: View {
     
     var body: some View {
         NavigationLink {
-            ClassicMapView(address: address)
+            ClassicMapView(address: address, selectedLocation: $selectedLocation)
         } label: {
             VStack(alignment: .leading) {
                 Text(address.title)
