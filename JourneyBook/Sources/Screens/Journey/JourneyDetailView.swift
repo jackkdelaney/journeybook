@@ -9,21 +9,12 @@ import SwiftUI
 
 struct JourneyDetailView: View {
 
-    var journey: Journey
     
     @Environment(\.modelContext) var modelContext
+    @EnvironmentObject private var coordinator: Coordinator
 
-    
-    var sortedJourneySteps: [JourneyStep] {
-        journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
-    }
-    
-    private func order() {
-        let sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
-        for (index, item) in sortedLocalList.enumerated() {
-            item.orderIndex = index
-        }
-    }
+    @Bindable var journey: Journey
+
 
     var body: some View {
         Form {
@@ -42,14 +33,31 @@ struct JourneyDetailView: View {
                 }
             
 
-            Section("Step 1") {
+            Section("Step (Temp Section)") {
                 if !journey.steps.isEmpty {
-                    ForEach(sortedJourneySteps) { step in // .sorted(by: .orderIndex)
-                        VStack {
-                            Text("\(step.stepName)")
-                                .font(.headline)
-                            Text("\(step.orderIndex)")
+                    ForEach(sortedJourneySteps) { step in
+                        Button {
+                            coordinator.push(page: .journeyStepDetails(step))
+                        }label: {
+                            HStack {
+                                Text("#\(step.orderIndex)")
+                                    .fontWeight(.heavy)
+                                VStack {
+                                    Text("\(step.stepName)")
+                                    if let stepDescription = step.stepDescription {
+                                        Text("\(stepDescription)")
+                                            .font(.caption)
+                                    }
+                                }
+                            }
+//                            VStack {
+//                                
+//                                Text("\(step.stepName)")
+//                                    .font(.headline)
+//                                Text("\(step.orderIndex)")
+//                            }
                         }
+                        .chevronButtonStyle()
                     }
                     .onDelete(perform: delete)
                     .onMove(perform: move)
@@ -59,10 +67,21 @@ struct JourneyDetailView: View {
                     Text("EMPTY")
                 }
             }
-            .removeListRowPaddingInsets()
+           // .removeListRowPaddingInsets()
         }
         .navigationTitle(journey.journeyName)
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    var sortedJourneySteps: [JourneyStep] {
+        journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
+    }
+    
+    private func order() {
+        let sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
+        for (index, item) in sortedLocalList.enumerated() {
+            item.orderIndex = index
+        }
     }
     
     func move(fromOffsets from: IndexSet, toOffset to: Int) {
