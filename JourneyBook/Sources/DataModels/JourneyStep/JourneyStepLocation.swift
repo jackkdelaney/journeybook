@@ -10,17 +10,16 @@ import Foundation
 
 struct JourneyStepLocation: Identifiable, Codable, Hashable {
     var id: UUID
-    var latitude : Double
-    var longitude : Double
-    
+    var latitude: Double
+    var longitude: Double
+
     init(id: UUID = UUID(), location: CLLocationCoordinate2D) {
         self.id = id
-        self.latitude = location.latitude
-        self.longitude = location.longitude
+        latitude = location.latitude
+        longitude = location.longitude
     }
-    
-    var location : CLLocationCoordinate2D {
+
+    var location: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
-    
 }

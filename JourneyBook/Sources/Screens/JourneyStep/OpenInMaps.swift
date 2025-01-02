@@ -8,23 +8,19 @@
 import SwiftUI
 
 struct OpenInMapsButton: View {
-
     var location: JourneyStepLocation
-    
+
     @ViewBuilder
-    var body : some View {
+    var body: some View {
         Section {
             button(for: .car)
         }
         Section {
             button(for: .walk)
         }
-            
-
-
     }
-    
-    private func button(for type : JourneyType) -> some View {
+
+    private func button(for type: JourneyType) -> some View {
         Button {
             UIApplication.shared
                 .open(appleUrl(for: type)!, options: [:], completionHandler: nil)
@@ -57,30 +53,28 @@ struct OpenInMapsButton: View {
         .contentShape(Rectangle())
         .buttonStyle(PlainButtonStyle())
         .removeListRowPaddingInsets()
-
     }
-    
-    private var canOpenAppleMaps : Bool {
+
+    private var canOpenAppleMaps: Bool {
         UIApplication.shared.canOpenURL(appleUrl(for: .car)!)
     }
-    private func appleUrl(for type : JourneyType) -> URL? {
+
+    private func appleUrl(for type: JourneyType) -> URL? {
         URL(string: "maps://?saddr=&daddr=\(location.latitude),\(location.longitude)&dirflg=\(type.getCode())")
-        
     }
 }
 
-
-fileprivate enum JourneyType : String {
+private enum JourneyType: String {
     case car = "d"
     case walk = "w"
     case transit = "r"
 }
 
 extension JourneyType {
-    
     func getCode() -> String {
-        return self.rawValue
+        return rawValue
     }
+
     func getSymbolName() -> String {
         switch self {
         case .car:
@@ -91,6 +85,7 @@ extension JourneyType {
             return "bus.fill"
         }
     }
+
     func getColor() -> Color {
         switch self {
         case .car:

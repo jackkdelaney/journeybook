@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 02/01/2025.
 //
 
-import SwiftUI
 import MapKit
+import SwiftUI
 
 struct AddressRow: View {
     @Binding var selectedLocation: CLLocationCoordinate2D?
@@ -27,7 +27,7 @@ struct AddressRow: View {
     }
 }
 
-fileprivate struct ClassicMapView: View {
+private struct ClassicMapView: View {
     @StateObject private var viewModel: MapViewModel
 
     @Environment(\.dismiss) var dismiss
@@ -80,6 +80,6 @@ fileprivate struct ClassicMapView: View {
             dismiss()
             dismiss()
         }
-        //.disabled(selectedLocation == nil)
+        // .disabled(selectedLocation == nil)
     }
 }

@@ -24,9 +24,3 @@ extension JourneyStepSheet {
         }
     }
 }
-
-
-/*
- case .tempMapSelector:
-     LocationFindView()
- */

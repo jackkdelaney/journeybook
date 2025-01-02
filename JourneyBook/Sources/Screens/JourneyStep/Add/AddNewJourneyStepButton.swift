@@ -14,7 +14,6 @@ struct AddNewJourneyStepButton: View {
 
     @Binding var sheet: JourneyStepSheet?
 
-    
     var body: some View {
         Button {
             sheet = .addNewStep(journey)
