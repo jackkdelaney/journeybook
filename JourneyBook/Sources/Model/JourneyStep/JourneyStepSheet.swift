@@ -23,7 +23,7 @@ extension JourneyStepSheet {
         case .tempMapSelector:
             LocationFindView()
         case let .addNewStep(journey):
-            Text(journey.journeyName)
+            AddNewJourneyStepView(journey: journey)
         }
     }
 }
