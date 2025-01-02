@@ -14,20 +14,34 @@ struct JourneyStepDetailView: View {
 
     var body: some View {
         Form {
-            Section() {
-                Button {
-                                                    UIApplication.shared.open(appleUrl!, options: [:], completionHandler: nil)
-                                                } label: {
-                                                    Label("Open in Apple Maps",systemImage: "map")
-                                                }
-                                          
+            if let location = step.location {
+            OpenInMapsButton(location: location)
             }
+            Text("OTHER")
           
         }
         .safeAreaInset(edge: .top) {
-                         locationSection
-                     
-                 }
+                locationSection
+                        
+        }
+        .safeAreaInset(edge: .bottom) {
+            if let stepDescription = step.stepDescription {
+                    Text(stepDescription)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .padding(.bottom)
+                        .background(
+                                           Rectangle()
+                                               .fill(.blue)
+                                               .overlay(.thinMaterial)
+                                       )
+                        .ignoresSafeArea(edges: .bottom)
+                
+                .ignoresSafeArea(edges: .bottom)
+
+            }
+        }
         .navigationTitle("\(step.stepName)")
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -49,14 +63,4 @@ struct JourneyStepDetailView: View {
         }
     }
     
-    private var canOpenAppleMaps : Bool {
-        UIApplication.shared.canOpenURL(appleUrl!)
-    }
-    private var appleUrl : URL? {
-        if let location = step.location {
-            URL(string: "maps://?saddr=&daddr=\(location.latitude),\(location.longitude)")
-        } else {
-            nil
-        }
-    }
 }

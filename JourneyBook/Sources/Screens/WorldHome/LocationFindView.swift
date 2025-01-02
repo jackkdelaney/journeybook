@@ -18,7 +18,7 @@ struct LocationFindView: SheetView {
     @StateObject var viewModel: ContentViewModel = .init()
     @FocusState private var isFocusedTextField: Bool
 
-    @State var selectedLocation: CLLocationCoordinate2D?
+    @Binding var selectedLocation: CLLocationCoordinate2D?
 
     @Environment(\.dismiss) var dismiss
 
@@ -62,102 +62,5 @@ struct LocationFindView: SheetView {
         }
         // .background(.blue)
         .edgesIgnoringSafeArea(.bottom)
-    }
-}
-
-struct ClearButton: View {
-    @Binding var text: String
-
-    var body: some View {
-        if text.isEmpty == false {
-            HStack {
-                Spacer()
-                Button {
-                    text = ""
-                } label: {
-                    Image(systemName: "multiply.circle.fill")
-                        .foregroundColor(Color(red: 0.7, green: 0.7, blue: 0.7))
-                }
-                .foregroundColor(.secondary)
-            }
-        } else {
-            EmptyView()
-        }
-    }
-}
-
-struct AddressRow: View {
-    @Binding var selectedLocation: CLLocationCoordinate2D?
-
-    let address: AddressResult
-
-    var body: some View {
-        NavigationLink {
-            ClassicMapView(address: address, selectedLocation: $selectedLocation)
-        } label: {
-            VStack(alignment: .leading) {
-                Text(address.title)
-                Text(address.subtitle)
-                    .font(.caption)
-            }
-        }
-        .padding(.bottom, 2)
-    }
-}
-
-struct ClassicMapView: View {
-    @StateObject private var viewModel: MapViewModel
-
-    @Environment(\.dismiss) var dismiss
-
-    @Binding var selectedLocation: CLLocationCoordinate2D?
-
-    private let address: AddressResult
-
-    private let title: String
-
-    init(address: AddressResult, selectedLocation: Binding<CLLocationCoordinate2D?>) {
-        self.address = address
-        _viewModel = StateObject(wrappedValue: MapViewModel())
-        _selectedLocation = selectedLocation
-        title = address.title
-    }
-
-    private var cameraBinding: Binding<MapCameraPosition> {
-        Binding(
-            get: {
-                .region(viewModel.region)
-            },
-            set: { newValue in
-                if let region = newValue.region {
-                    viewModel.region = region
-                }
-            }
-        )
-    }
-
-    var body: some View {
-        Map(position: cameraBinding) {
-            ForEach(viewModel.annotationItems, id: \.id) { item in
-                Marker(title, coordinate: item.coordinate)
-            }
-        }
-        .onAppear {
-            viewModel.getPlace(from: address)
-        }
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                confirmButton
-            }
-        }
-        .edgesIgnoringSafeArea(.bottom)
-    }
-
-    var confirmButton: some View {
-        Button("Confirm") {
-            dismiss()
-            dismiss()
-        }
-        .disabled(selectedLocation == nil)
     }
 }

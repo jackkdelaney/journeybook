@@ -38,7 +38,7 @@ struct AddNewJoruneyButtom: View {
             }
         }
         .contentShape(Rectangle())
-        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+        .removeListRowPaddingInsets()
         .buttonStyle(PlainButtonStyle())
     }
 }
