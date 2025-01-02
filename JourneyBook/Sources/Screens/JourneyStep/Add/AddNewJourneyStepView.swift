@@ -57,13 +57,7 @@ struct AddNewJourneyStepView: SheetView {
         }
     }
     
-    private func order() {
-        let sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
-        for (index, item) in sortedLocalList.enumerated() {
-            item.orderIndex = index
-        }
-    }
-    
+  
  
     
     var confirmButton: some View {
@@ -77,6 +71,14 @@ struct AddNewJourneyStepView: SheetView {
     var sheetTitle: String {
         "Add New Step"
     }
+    
+    private func order() {
+        let sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
+        for (index, item) in sortedLocalList.enumerated() {
+            item.orderIndex = index
+        }
+    }
+    
     
     private func add() {
         let desc = localDescription.isEmpty ? nil : localDescription
