@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct AddNewJourneyStepView: SheetView {
     
@@ -19,7 +20,8 @@ struct AddNewJourneyStepView: SheetView {
         Button("Add New Phrase [Directly]"){
             let randomInt = Int.random(in: 1..<5)
 
-            let step = JourneyStep(stepName: "Hello!! \(randomInt)",journey: journey)
+            let location = JourneyStepLocation(location: CLLocationCoordinate2D(latitude: 54.597245, longitude: -5.930437))
+            let step = JourneyStep(stepName: "Hello with Location!! \(randomInt)",journey: journey,location: location)
             modelContext.insert(step)
             order()
             try? modelContext.save()
