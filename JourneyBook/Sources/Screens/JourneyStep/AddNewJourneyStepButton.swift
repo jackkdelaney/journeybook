@@ -14,21 +14,10 @@ struct AddNewJourneyStepButton: View {
 
     @Binding var sheet: JourneyStepSheet?
 
-    /*
-     Button("Add New Phrase [Directly]"){
-         let randomInt = Int.random(in: 1..<5)
-
-         let step = JourneyStep(stepName: "Hello!! \(randomInt)",journey: journey)
-         modelContext.insert(step)
-         order()
-         try? modelContext.save()
-     }
-     */
+    
 
     var body: some View {
         Button {
-            //    sheet = .addNewJourney
-
             sheet = .addNewStep(journey)
         } label: {
             ZStack {
