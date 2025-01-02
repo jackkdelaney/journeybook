@@ -16,12 +16,19 @@ struct LocationFindView : SheetView {
     //https://hackernoon.com/address-autocompletion-using-swiftui-and-mapkit
         
     @StateObject var viewModel: ContentViewModel = ContentViewModel()
-        @FocusState private var isFocusedTextField: Bool
-        
+    @FocusState private var isFocusedTextField: Bool
+    
+    @State var selectedLocation : CLLocationCoordinate2D?
+    
+    @Environment(\.dismiss) var dismiss
+
 
     var confirmButton: some View {
-        Text("Confirm Button")
+        Button("Confirm") {
+            dismiss()
+        }
     }
+    
     var content: some View {
                 VStack(alignment: .leading, spacing: 0) {
 
@@ -49,7 +56,7 @@ struct LocationFindView : SheetView {
                         }
 
                     List(self.viewModel.results) { address in
-                        AddressRow(address: address)
+                        AddressRow(selectedLocation: $selectedLocation, address: address)
                            // .listRowBackground(.blue)
                     }
                     //.listStyle(.plain)
@@ -87,6 +94,8 @@ struct ClearButton: View {
 
 struct AddressRow: View {
     
+    @Binding var selectedLocation : CLLocationCoordinate2D?
+    
     let address: AddressResult
     
     var body: some View {
@@ -107,13 +116,19 @@ struct ClassicMapView: View {
     
     @StateObject private var viewModel : MapViewModel
     
+    @Environment(\.dismiss) var dismiss
+
+    @Binding var selectedLocation : CLLocationCoordinate2D?
+
+    
     private let address: AddressResult
     
     private let title : String
     
-    init(address: AddressResult) {
+    init(address: AddressResult, selectedLocation : Binding<CLLocationCoordinate2D?>) {
         self.address = address
         self._viewModel = StateObject(wrappedValue: MapViewModel())
+        self._selectedLocation = selectedLocation
         self.title = address.title
     }
     
@@ -138,8 +153,21 @@ struct ClassicMapView: View {
         }
         .onAppear {
             viewModel.getPlace(from: address)
-
+        }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                confirmButton
+            }
         }
         .edgesIgnoringSafeArea(.bottom)
     }
+    
+    var confirmButton: some View {
+        Button("Confirm") {
+            dismiss()
+            dismiss()
+        }
+        .disabled(selectedLocation == nil)
+    }
+    
 }
