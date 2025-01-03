@@ -14,8 +14,6 @@ struct AddNewJourneyStepButton: View {
 
     @Binding var sheet: JourneyStepSheet?
 
-    
-
     var body: some View {
         Button {
             sheet = .addNewStep(journey)
@@ -42,7 +40,7 @@ struct AddNewJourneyStepButton: View {
             }
         }
         .contentShape(Rectangle())
-        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+        .removeListRowPaddingInsets()
         .buttonStyle(PlainButtonStyle())
     }
 }

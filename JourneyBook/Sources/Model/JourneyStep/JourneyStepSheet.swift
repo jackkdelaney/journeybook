@@ -12,7 +12,6 @@ enum JourneyStepSheet: Identifiable, Hashable {
         return self
     }
 
-    case tempMapSelector
     case addNewStep(Journey)
 }
 
@@ -20,8 +19,6 @@ extension JourneyStepSheet {
     @ViewBuilder
     func buildView() -> some View {
         switch self {
-        case .tempMapSelector:
-            LocationFindView()
         case let .addNewStep(journey):
             AddNewJourneyStepView(journey: journey)
         }
