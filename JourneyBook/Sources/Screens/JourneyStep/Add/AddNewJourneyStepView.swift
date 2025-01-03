@@ -20,6 +20,8 @@ struct AddNewJourneyStepView: SheetView {
     @State private var sheet: AddJourneyStepSheet?
 
     @State private var cordinates: CLLocationCoordinate2D?
+    
+    @State private var resource : VisualResource?
 
     var locationSection: some View {
         Section("Location") {
@@ -46,11 +48,26 @@ struct AddNewJourneyStepView: SheetView {
                 TextEditor(text: $localDescription)
             }
             locationSection
+            resourceSection
         }
         .sheet(item: $sheet) { item in
             item.buildView()
         }
     }
+    
+    @ViewBuilder
+    var resourceSection : some View {
+        if let visualResource = resource {
+            ResourceSection(resource: visualResource)
+        } else {
+            Button("Select Resource") {
+                let resourceWrapped = AddJourneyLocationVisualResourceGetter(resource: $resource)
+                sheet = .getVisualResourceFromList(resourceWrapped)
+            }
+        }
+    }
+    
+ 
 
     var confirmButton: some View {
         Button("Save") {
@@ -84,7 +101,8 @@ struct AddNewJourneyStepView: SheetView {
             stepName: localName,
             stepDescription: desc,
             journey: journey,
-            location: location
+            location: location,
+            visualResource: resource
         )
         modelContext.insert(step)
         order()
