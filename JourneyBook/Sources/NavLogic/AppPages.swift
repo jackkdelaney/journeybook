@@ -11,11 +11,11 @@ enum AppPages: Hashable {
     case worldHome
     case resourceManager
     case resourceDetails(VisualResource)
-    case login
     case mapExperience
     case phraseBook
     case journeyDetails(Journey)
     case journeyStepDetails(JourneyStep)
+    case mapDetails(JourneyStepLocation)
 }
 
 extension AppPages {
@@ -24,8 +24,6 @@ extension AppPages {
         switch self {
         case .resourceManager:
             ResourcesManager()
-        case .login:
-            Text("LOGIN")
         case let .resourceDetails(resource):
             ResourceView(resource: resource)
         case .worldHome:
@@ -38,6 +36,8 @@ extension AppPages {
             JourneyDetailView(journey: journey)
         case let .journeyStepDetails(journeyStep):
             JourneyStepDetailView(step: journeyStep)
+        case let .mapDetails(location):
+            MapDetailView(location: location)
         }
     }
 }
