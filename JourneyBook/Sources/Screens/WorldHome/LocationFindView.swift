@@ -45,7 +45,7 @@ struct LocationFindView: SheetView {
                 }
                 // .background(Color.init(uiColor: .systemBackground))
                 .overlay {
-                    ClearButton(text: $viewModel.searchableText)
+                    ClearTextLineButton(text: $viewModel.searchableText)
                         .padding(.trailing)
                         .padding(.top, 8)
                 }
