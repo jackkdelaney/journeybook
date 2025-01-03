@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ClearButton: View {
+struct ClearTextLineButton: View {
     @Binding var text: String
 
     @ViewBuilder
