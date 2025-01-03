@@ -17,7 +17,14 @@ struct JourneyStepDetailView: View {
             if let location = step.location {
                 OpenInMapsButton(location: location)
             }
-            Text("OTHER")
+            if let resource = step.visualResource {
+                ResourceSection(resource: resource)
+                if let aid = resource.aidDescription {
+                    Section("Resource Aid Description") {
+                        Text(aid)
+                    }
+                }
+            }
         }
         .safeAreaInset(edge: .top) {
             locationSection

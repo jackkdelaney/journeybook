@@ -17,15 +17,16 @@ class VisualResource {
 
     @Attribute(.externalStorage)
     var resourceData: Data
+    
+    @Relationship(deleteRule: .nullify, inverse: \JourneyStep.visualResource) var steps: [JourneyStep]
 
-//    @Relationship(deleteRule: .nullify, inverse: \JourneyStep.visualResource) var steps: [JourneyStep]
 
-    init(resourceData: Data, resourceType: VisualResourceType, aidDescription: String? = nil, steps _: [JourneyStep] = []) {
+    init(resourceData: Data, resourceType: VisualResourceType, aidDescription: String? = nil, steps: [JourneyStep] = []) {
         id = UUID()
         timestamp = Date()
         self.resourceData = resourceData
         self.resourceType = resourceType
         self.aidDescription = aidDescription
-        //  self.steps = steps
+        self.steps = steps
     }
 }
