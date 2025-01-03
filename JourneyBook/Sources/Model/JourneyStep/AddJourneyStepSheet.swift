@@ -27,12 +27,34 @@ struct AddJourneyLocationStepGetter: Identifiable, Hashable, Equatable {
     }
 }
 
+struct AddJourneyLocationVisualResourceGetter: Identifiable, Hashable, Equatable {
+    var id: UUID
+
+    var resource: Binding<VisualResource?>
+
+    init(id: UUID = UUID(), resource: Binding<VisualResource?>) {
+        self.id = id
+        self.resource = resource
+    }
+
+    static func == (lhs: AddJourneyLocationVisualResourceGetter, rhs: AddJourneyLocationVisualResourceGetter) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+
 enum AddJourneyStepSheet: Identifiable, Hashable {
     var id: Self {
         return self
     }
 
     case getLocationFromAddress(AddJourneyLocationStepGetter)
+    case getVisualResourceFromList(AddJourneyLocationVisualResourceGetter)
+    
 }
 
 extension AddJourneyStepSheet {
@@ -41,6 +63,8 @@ extension AddJourneyStepSheet {
         switch self {
         case let .getLocationFromAddress(locationGetter):
             LocationFindView(selectedLocation: locationGetter.location)
+        case let .getVisualResourceFromList(resourceGetter):
+            ResourceSelectionView(selection: resourceGetter.resource)
         }
     }
 }
