@@ -24,6 +24,8 @@ struct JourneyStepDetailView: View {
                         Text(aid)
                     }
                 }
+            } else {
+                Text("No Visual Resource")
             }
         }
         .safeAreaInset(edge: .top) {

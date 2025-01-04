@@ -7,6 +7,25 @@
 
 import SwiftUI
 
+struct MiniOpenInMapButton : View {
+    let lat : Double
+    
+    var body : some View {
+        HStack {
+            Button {
+                
+            } label: {
+                Label("Car", systemImage: "car.circle")
+            }
+            Button {
+                
+            } label: {
+                Label("Ride", systemImage: "figure.walk.circle")
+            }
+        }
+    }
+}
+
 struct OpenInMapsButton: View {
     var location: JourneyStepLocation
 
