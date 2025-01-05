@@ -19,7 +19,7 @@ struct WebViewer: View {
     @State private var currentURL: String? = nil
     @State private var canGoBack = false
     @State private var isNonBustimePage = false
-    @State private var webView: WKWebView? = nil
+    @State private var webView =  WKWebView()
     
     var body: some View {
         VStack {
@@ -40,14 +40,46 @@ struct WebViewer: View {
                 WebView(url: URL(string: "https://bustimes.org/regions/NI")!, onConfirm: { selectedURL in
                     selectedService = selectedURL
                     showingWebView = false
-                }, canGoBack: $canGoBack, isNonBustimePage: $isNonBustimePage, currentURL: $currentURL)
+                }, canGoBack: $canGoBack, isNonBustimePage: $isNonBustimePage, currentURL: $currentURL, webView: $webView)
+                .toolbar {
+                    ToolbarItemGroup(placement: .bottomBar) {
+                        HStack {
+                            if canGoBack && isNonBustimePage {
+                                Button {
+                                    webView.goBack()
+                                } label: {
+                                    Label("Backward",systemImage: "arrowshape.backward.circle")
+                                        .labelStyle(.iconOnly)
+                                }
+                            } else {
+                                EmptyView()
+                            }
+                            
+                            Spacer()
+                            Button {
+                                webView.reload()
+                            } label: {
+                                Label("Refresh",systemImage: "arrow.clockwise")
+                                    .labelStyle(.iconOnly)
+                            }
+                            .frame(maxWidth: .infinity,alignment: .center)
+                            Spacer()
+                            if canGoBack && isNonBustimePage {
+                                
+                                Button{
+                                    webView.goForward()
+                                } label: {
+                                    
+                                    Label("Forward",systemImage: "arrowshape.forward.circle")
+                                        .labelStyle(.iconOnly)
+                                }
+                            }
+
+                        }
+                    }
+                }
                 .navigationBarItems(
                     leading: HStack {
-                        if canGoBack && isNonBustimePage {
-                            Button("Back") {
-                                webView?.goBack()
-                            }
-                        }
                         Button("Cancel") {
                             showingWebView = false
                         }
