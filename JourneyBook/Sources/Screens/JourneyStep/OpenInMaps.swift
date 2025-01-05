@@ -7,6 +7,52 @@
 
 import SwiftUI
 
+struct MiniOpenInMapButton : View {
+    let lat : Double
+    let long : Double
+    
+    var body : some View {
+        HStack {
+            Spacer()
+            Button {
+                openMap(for: .car)
+            } label: {
+                Label("Car", systemImage: "car.circle")
+            }
+            .buttonStyle(PlainButtonStyle())
+            .removeListRowPaddingInsets()
+            .foregroundStyle(.blue)
+            Button {
+                openMap(for: .walk)
+
+            } label: {
+                Label("Walk", systemImage: "figure.walk.circle")
+            }
+            .buttonStyle(PlainButtonStyle())
+            .removeListRowPaddingInsets()
+            .foregroundStyle(.blue)
+        }
+        .frame(maxWidth:.infinity,alignment: .trailing)
+    }
+    
+    private func openMap(for type: JourneyType){
+            UIApplication.shared
+                .open(appleUrl(for: type)!, options: [:], completionHandler: nil)
+    
+    
+        
+    }
+
+    private var canOpenAppleMaps: Bool {
+        UIApplication.shared.canOpenURL(appleUrl(for: .car)!)
+    }
+
+    private func appleUrl(for type: JourneyType) -> URL? {
+        URL(string: "maps://?saddr=&daddr=\(lat),\(long)&dirflg=\(type.getCode())")
+    }
+    
+}
+
 struct OpenInMapsButton: View {
     var location: JourneyStepLocation
 
