@@ -58,12 +58,24 @@ struct JourneyItemsView: View {
                         VStack(alignment: .leading) {
                             Text("Journey: \(journey.journeyName)")
                                 .font(.headline)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text(journey.dateCreated.formatted())
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+
+                            
                             if let description = journey.journeyDescription {
                                 Text(description)
+                                    .font(.caption)
+                                    .lineLimit(2)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+
                             }
                         }
                     }
-                    .chevronButtonStyle()
+                    .chevronButtonStyle(compact: true)
                 }
                 .onDelete(perform: delete)
             }

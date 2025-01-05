@@ -17,7 +17,6 @@ struct WorldHome: View {
             AddNewJoruneyButtom(sheet: $sheet)
             JourneyItemsView()
             RSSContentView()
-                .removeListRowPaddingInsets()
 
         }
         .navigationTitle("JourneyBook")

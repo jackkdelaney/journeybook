@@ -44,7 +44,6 @@ struct RSSContentViewContent: View {
 
     var body: some View {
                 if !feedManager.isLoading {
-                    List {
                         ForEach(feedManager.feedItems) { item in
                             Button {
                                 coordinator.push(page: .rssFeedItem(item))
@@ -55,11 +54,11 @@ struct RSSContentViewContent: View {
                                         .font(.headline)
                                     Text(item.pubDate?.formatted() ?? "No Date")
                                         .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .lineLimit(1)
+                                        .foregroundColor(.secondary)
                                     if let description = item.description {
                                         if let markdown = convertCDATAHTMLToMarkdown(html: description) {
                                             Text(markdown)
+                                                .font(.caption)
                                                 .lineLimit(2)
                                         }
                                     }
@@ -70,10 +69,7 @@ struct RSSContentViewContent: View {
                             }
                             .chevronButtonStyle(compact: true)
                             }
-                        .listStyle(PlainListStyle())
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 300)
+                
                     
                 } else if let error = feedManager.error {
                     Text("Error: \(error.localizedDescription)")
