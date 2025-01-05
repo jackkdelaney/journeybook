@@ -1,88 +1,11 @@
+//
+//  RSSContentView.swift
+//  JourneyBook
+//
+//  Created by Jack Delaney on 05/01/2025.
+//
+
 import SwiftUI
-import FeedKit
-
-struct RSSFeedItem: Identifiable {
-    let id = UUID()
-    let title: String?
-    let link: String?
-    let description: String?
-    let pubDate: Date?
-}
-
-extension RSSFeedItem: Equatable,Hashable {
-    static func ==(lhs: RSSFeedItem, rhs: RSSFeedItem) -> Bool {
-        return lhs.id == rhs.id
-    }
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        if let title {
-            hasher.combine(title)
-        }
-    }
-}
-
-@Observable
-class RSSFeedManager {
-    var feedItems: [RSSFeedItem] = []
-    var isLoading: Bool = false
-    var error: Error?
-
-    var hasItems : Bool {
-        !feedItems.isEmpty
-    }
-    
-    func fetchFeed(from urlString: String) async {
-        guard let url = URL(string: urlString) else {
-            self.error = NSError(domain: "Invalid URL", code: 0)
-            return
-        }
-
-        self.isLoading = true
-        self.error = nil
-
-        let parser = FeedParser(URL: url)
-        let result = parser.parse()
-
-        switch result {
-        case .success(let feed):
-            switch feed {
-            case .rss(let rssFeed):
-                self.feedItems = rssFeed.items?.compactMap { item in
-                    RSSFeedItem(
-                        title: item.title,
-                        link: item.link,
-                        description: item.description,
-                        pubDate: item.pubDate
-                    )
-                } ?? []
-            case .atom(let atomFeed):
-                self.feedItems = atomFeed.entries?.compactMap { entry in
-                    RSSFeedItem(
-                        title: entry.title,
-                        link: entry.links?.first?.attributes?.href,
-                        description: entry.summary?.value,
-                        pubDate: entry.published
-                    )
-                } ?? []
-            case .json(let jsonFeed):
-                self.feedItems = jsonFeed.items?.compactMap { item in
-                    RSSFeedItem(
-                        title: item.title,
-                        link: item.url,
-                        description: item.contentHtml ?? item.contentText,
-                        pubDate: item.datePublished
-                    )
-                } ?? []
-            }
-
-        case .failure(let error):
-            print("Feed parsing error: \(error)")
-            self.error = error
-            self.feedItems = []
-        }
-        self.isLoading = false
-    }
-}
 
 struct RSSContentView : View {
     @State var feedManager = RSSFeedManager()
@@ -123,6 +46,10 @@ struct RSSContentViewContent: View {
                 if !feedManager.isLoading {
                     List {
                         ForEach(feedManager.feedItems) { item in
+                            Button {
+                                coordinator.push(page: .rssFeedItem(item))
+                            } label: {
+                                
                                 VStack(alignment: .leading) {
                                     Text(item.title ?? "No Title")
                                         .font(.headline)
@@ -131,14 +58,16 @@ struct RSSContentViewContent: View {
                                         .foregroundColor(.gray)
                                         .lineLimit(1)
                                     if let description = item.description {
-                                       if let markdown = convertCDATAHTMLToMarkdown(html: description) {
+                                        if let markdown = convertCDATAHTMLToMarkdown(html: description) {
                                             Text(markdown)
                                         }
                                     }
-                                 
-                                
-
+                                    
+                                    
+                                    
                                 }
+                            }
+                            .chevronButtonStyle()
                             }
                         .listStyle(PlainListStyle())
                     }
@@ -197,30 +126,3 @@ struct RSSContentViewContent: View {
     
 }
 
-
-struct RSSFeedDetailView : View {
-    
-    let item : RSSFeedItem
-    
-    var body: some View {
-        Form {
-            if let date = item.pubDate {
-                LabeledContent("Date", value: date.formatted() )
-
-            }
-            if let description = item.description {
-                LabeledContent("Description", value: description)
-
-            }
-            if let link = item.link {
-                Link(destination: URL(string: link)!) {
-                    LabeledContent("Link", value: link)
-                }
-                
-            }
-            
-
-        }
-        .navigationTitle(item.title ?? "Unknown Title")
-    }
-}
