@@ -84,8 +84,6 @@ class RSSFeedManager {
     }
 }
 
-import Down
-
 struct RSSContentView : View {
     @State var feedManager = RSSFeedManager()
     
