@@ -16,7 +16,6 @@ extension Data {
             try write(to: outputUrl)
             return outputUrl
         } catch {
-            print("Error writing video data to URL: \(error)")
             return nil
         }
     }
