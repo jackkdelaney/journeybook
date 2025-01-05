@@ -33,7 +33,15 @@ struct WorldHome: View {
                         coordinator.push(page: .mapExperience)
                     } label: {
                         Label(
-                            "Transport Demo",
+                            "Map Experience",
+                            systemImage: "map.circle.fill"
+                        )
+                    }
+                    Button {
+                        coordinator.push(page: .gliderPOC)
+                    } label: {
+                        Label(
+                            "Glider Proof of Concept",
                             systemImage: "train.side.front.car"
                         )
                     }
