@@ -1,20 +1,19 @@
 //
-//  ResourcesManager.swift
+//  TransportRouteListView.swift
 //  JourneyBook
 //
+//  Created by Jack Delaney on 05/01/2025.
 //
 
-import AVKit
-import SwiftData
 import SwiftUI
+import SwiftData
 
-
-struct ResourcesManager: View {
+struct TransportRouteListView: View {
     @EnvironmentObject private var coordinator: Coordinator
 
-    @State private var sheet: ResourcesManagerSheet? = nil
+    @State private var sheet: TransportRouteSheet? = nil
 
-    @Query var resources: [VisualResource]
+    @Query var routes: [TransportRoute]
     @Environment(\.modelContext) var modelContext
 
     @ViewBuilder
@@ -26,7 +25,7 @@ struct ResourcesManager: View {
 
     func delete(at offsets: IndexSet) {
         for offset in offsets {
-            let resource = resources[offset]
+            let resource = routes[offset]
             modelContext.delete(resource)
         }
         do {
@@ -36,12 +35,12 @@ struct ResourcesManager: View {
 
     var body: some View {
         List {
-            ForEach(resources) { resource in
+            ForEach(routes) { route in
                 HStack {
                     Button {
-                        coordinator.push(page: .resourceDetails(resource))
+                        
                     } label: {
-                        contents(for: resource)
+                        Text(route.routeName)
                     }
                     .chevronButtonStyle()
                 }
@@ -49,14 +48,14 @@ struct ResourcesManager: View {
             .onDelete(perform: delete)
         }
 
-        .navigationTitle("Resources")
+        .navigationTitle("Transport Routes")
         .navigationBarTitleDisplayMode(.inline)
         .overlay {
-            if resources.isEmpty {
+            if routes.isEmpty {
                 ContentUnavailableView {
-                    Label("No Resources", systemImage: "archivebox.fill")
+                    Label("No Routes", systemImage: "archivebox.fill")
                 } description: {
-                    Text("Resources that you add will appear here.")
+                    Text("Routes that you add will appear here.")
                 }
             }
         }
@@ -65,20 +64,10 @@ struct ResourcesManager: View {
         }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Menu {
-                    Button {
-                        sheet = .addPhoto
-                    } label: {
-                        Label("Add Photo", systemImage: "photo.artframe")
-                    }
-                    Button {
-                        sheet = .addVideo
-
-                    } label: {
-                        Label("Add Video", systemImage: "film")
-                    }
+                Button {
+                    sheet = .addRoute
                 } label: {
-                    Label("Add", systemImage: "plus")
+                    Label("Add Route", systemImage: "plus")
                 }
             }
         }

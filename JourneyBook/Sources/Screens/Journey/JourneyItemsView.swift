@@ -9,21 +9,32 @@ import SwiftData
 import SwiftUI
 
 struct ChevronButtonStyle: ButtonStyle {
+    let compact : Bool
+    
     func makeBody(configuration: Configuration) -> some View {
         HStack {
-            configuration.label
-            Spacer()
-            Image(systemName: "chevron.forward")
-                .foregroundStyle(.secondary)
-                .frame(maxWidth: .infinity, alignment: .trailing)
+            if compact {
+                configuration.label
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Spacer()
+                Image(systemName: "chevron.forward")
+                    .foregroundStyle(.secondary)
+            } else {
+                configuration.label
+                Spacer()
+                
+                Image(systemName: "chevron.forward")
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+            }
         }
         .contentShape(Rectangle())
     }
 }
 
 extension View {
-    func chevronButtonStyle() -> some View {
-        buttonStyle(ChevronButtonStyle())
+    func chevronButtonStyle(compact : Bool = false) -> some View {
+        buttonStyle(ChevronButtonStyle(compact : compact))
     }
 
     func removeListRowPaddingInsets() -> some View {
@@ -47,12 +58,24 @@ struct JourneyItemsView: View {
                         VStack(alignment: .leading) {
                             Text("Journey: \(journey.journeyName)")
                                 .font(.headline)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text(journey.dateCreated.formatted())
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+
+                            
                             if let description = journey.journeyDescription {
                                 Text(description)
+                                    .font(.caption)
+                                    .lineLimit(2)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+
                             }
                         }
                     }
-                    .chevronButtonStyle()
+                    .chevronButtonStyle(compact: true)
                 }
                 .onDelete(perform: delete)
             }

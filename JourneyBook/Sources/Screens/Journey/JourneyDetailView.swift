@@ -50,7 +50,7 @@ struct JourneyDetailView: View {
                     .onMove(perform: move)
 
                 } else {
-                    Text("EMPTY")
+                    Text("You currently don't have any steps for this journey.")
                 }
             }
         }
