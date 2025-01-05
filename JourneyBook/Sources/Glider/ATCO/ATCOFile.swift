@@ -33,11 +33,6 @@ extension ATCOFile {
             let matchingStops = route.stops.filter { $0.niceLocationString == atcoCode && $0.published_arrival_time != nil && $0.published_departure_time != nil}
              timetable.append(contentsOf: matchingStops)
          }
-         
-        for item in timetable {
-            print(item.niceLocationString)
-            print(item.nicePublished_arrival_time)
-        }
          return timetable
      }
     

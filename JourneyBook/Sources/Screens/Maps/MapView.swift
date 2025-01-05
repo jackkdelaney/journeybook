@@ -307,7 +307,6 @@ struct MapView : View {
 //
 //    override init() {
 //        super.init()
-//        print("HOWDY")
 //        locationManager.delegate = self
 //        // Request the user to authorize accesing the location when in use
 //        locationManager.requestWhenInUseAuthorization()

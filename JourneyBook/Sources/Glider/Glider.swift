@@ -30,7 +30,6 @@ class Glider {
                 // Update items on the main thread
                 await MainActor.run {
                     self.atcoFile = atcoFile
-                    print("LOADED")
                 }
             } else {
                 throw URLError(.fileDoesNotExist)
