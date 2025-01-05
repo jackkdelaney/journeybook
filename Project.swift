@@ -26,7 +26,6 @@ let project = Project(
       resources: ["JourneyBook/Resources/**"],
       dependencies: [
         .external(name: "FeedKit"),
-        .external(name: "Down")
       ]
     ),
     .target(
