@@ -32,6 +32,14 @@ struct WorldHome: View {
                         Label("Resource Manager", systemImage: "list.and.film")
                     }
                     Button {
+                        coordinator.push(page: .transportRoutes)
+                    } label: {
+                        Label(
+                            "Transport Routes",
+                            systemImage: "bus.doubledecker"
+                        )
+                    }
+                    Button {
                         coordinator.push(page: .mapExperience)
                     } label: {
                         Label(
