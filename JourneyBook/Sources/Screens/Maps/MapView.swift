@@ -87,8 +87,11 @@ struct TimeTableSheetView : View {
     private let stops_G2 : [ATCOStop]
     
     private let commonName :String
+    
+    private let lat :Double
+    private let long : Double
 
-    init(atcoFile: ATCOFile, atcoString: String,commonName: String) {
+    init(atcoFile: ATCOFile, atcoString: String,commonName: String, lat : Double, long : Double) {
         self.atcoFile = atcoFile
         self.commonName = commonName
         self.stops_G1 = atcoFile.getTimetable(for: atcoString, on: "G1").sorted {
@@ -97,6 +100,8 @@ struct TimeTableSheetView : View {
         self.stops_G2 = atcoFile.getTimetable(for: atcoString, on: "G2").sorted {
             $0.nicePublished_arrival_time < $1.nicePublished_arrival_time
         }
+        self.lat = lat
+        self.long = long
 
     }
     
@@ -112,6 +117,8 @@ struct TimeTableSheetView : View {
                                 Text("Arrives at: \(stop.published_departure_time ?? "--")")
                                     .font(.caption)
                                     .frame(maxWidth: .infinity, alignment: .leading)
+                                Spacer()
+                                MiniOpenInMapButton(lat: lat, long: long)
                             }
                         }
                     }
@@ -165,7 +172,7 @@ enum GliderTimeTableSheet: Identifiable, Hashable {
         return self
     }
 
-    case showTimeTable(ATCOFile,String,String)
+    case showTimeTable(ATCOFile,String,String,Double,Double)
     
 }
 
@@ -173,8 +180,8 @@ extension GliderTimeTableSheet {
     @ViewBuilder
     func buildView() -> some View {
         switch self {
-        case let .showTimeTable(atcoFile,atcoString,commonName):
-            TimeTableSheetView(atcoFile: atcoFile, atcoString: atcoString,commonName:commonName)
+        case let .showTimeTable(atcoFile,atcoString,commonName,lat,long):
+            TimeTableSheetView(atcoFile: atcoFile, atcoString: atcoString,commonName:commonName,lat: lat,long: long)
         }
     }
 }
@@ -185,7 +192,6 @@ struct MapView : View {
     @State private var searchText = ""
     
     let locations = BusLocations.load(from: "november-cords")
-    
     
     @State var glider = Glider()
 
@@ -201,7 +207,7 @@ struct MapView : View {
                 ForEach(searchResults, id: \.id) { name in
                     Button {
                         if let atco = glider.atcoFile {
-                            sheet = .showTimeTable(atco, name.atcoCode,name.commonName)
+                            sheet = .showTimeTable(atco, name.atcoCode,name.commonName,name.latitude,name.longitude)
                         }
                     } label: {
                         GliderHaltButton(location: name)
