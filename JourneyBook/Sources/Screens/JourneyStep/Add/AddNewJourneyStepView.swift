@@ -22,6 +22,8 @@ struct AddNewJourneyStepView: SheetView {
     @State private var cordinates: CLLocationCoordinate2D?
     
     @State private var resource : VisualResource?
+    
+    @State private var publicTransit : TransportRoute?
 
     var locationSection: some View {
         Section("Location") {
@@ -49,6 +51,7 @@ struct AddNewJourneyStepView: SheetView {
             }
             locationSection
             resourceSection
+            publicTransitSection
         }
         .sheet(item: $sheet) { item in
             item.buildView()
@@ -60,13 +63,27 @@ struct AddNewJourneyStepView: SheetView {
         if let visualResource = resource {
             ResourceSection(resource: visualResource)
         } else {
-            Button("Select Resource") {
-                let resourceWrapped = AddJourneyLocationVisualResourceGetter(resource: $resource)
-                sheet = .getVisualResourceFromList(resourceWrapped)
+            Section("Resource") {
+                Button("Select Resource") {
+                    let resourceWrapped = AddJourneyLocationVisualResourceGetter(resource: $resource)
+                    sheet = .getVisualResourceFromList(resourceWrapped)
+                }
             }
         }
     }
     
+    @ViewBuilder
+    var publicTransitSection : some View {
+        if let publicTransitResource = publicTransit {
+            Text("\(publicTransitResource.url)") // MAKE PROPER THING HERE INSTEAD
+        } else {
+            Section("Public Transit") {
+                Button("Add Public Transport Route") {
+                    
+                }
+            }
+        }
+    }
  
 
     var confirmButton: some View {

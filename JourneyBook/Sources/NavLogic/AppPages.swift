@@ -13,6 +13,7 @@ enum AppPages: Hashable {
     case resourceDetails(VisualResource)
     case gliderPOC
     case mapExperience
+    case transportRoutes
     case phraseBook
     case journeyDetails(Journey)
     case journeyStepDetails(JourneyStep)
@@ -36,6 +37,8 @@ extension AppPages {
             MapView()
         case .gliderPOC:
             GliderPOCListView()
+        case .transportRoutes:
+            TransportRouteListView()
         case let .journeyDetails(journey):
             JourneyDetailView(journey: journey)
         case let .journeyStepDetails(journeyStep):
