@@ -19,6 +19,7 @@ echo "ABOUT TO GO FORWARD"
 cd ..
 ~/.local/bin/mise x -- tuist fetch
 echo "DID A FETCH"
+~/.local/bin/mise x -- tuist install # Generate the Xcode Project using Tuist
 ~/.local/bin/mise x -- tuist generate # Generate the Xcode Project using Tuist
 echo "DID A GENERATE"
 
