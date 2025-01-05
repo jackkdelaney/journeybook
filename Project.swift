@@ -24,7 +24,9 @@ let project = Project(
       ),
       sources: ["JourneyBook/Sources/**"],
       resources: ["JourneyBook/Resources/**"],
-      dependencies: []
+      dependencies: [
+        .external(name: "FeedKit")
+      ]
     ),
     .target(
       name: "JourneyBookTests",
