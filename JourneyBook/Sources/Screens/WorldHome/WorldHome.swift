@@ -16,6 +16,8 @@ struct WorldHome: View {
         List {
             AddNewJoruneyButtom(sheet: $sheet)
             JourneyItemsView()
+            RSSContentView()
+
         }
         .navigationTitle("JourneyBook")
         .sheet(item: $sheet) { item in
@@ -27,7 +29,15 @@ struct WorldHome: View {
                     Button {
                         coordinator.push(page: .resourceManager)
                     } label: {
-                        Label("Resource Manager", systemImage: "house.lodge")
+                        Label("Resource Manager", systemImage: "list.and.film")
+                    }
+                    Button {
+                        coordinator.push(page: .transportRoutes)
+                    } label: {
+                        Label(
+                            "Transport Routes",
+                            systemImage: "bus.doubledecker"
+                        )
                     }
                     Button {
                         coordinator.push(page: .mapExperience)
