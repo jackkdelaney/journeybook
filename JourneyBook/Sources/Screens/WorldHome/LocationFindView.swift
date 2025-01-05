@@ -15,7 +15,7 @@ struct LocationFindView: SheetView {
 
     // https://hackernoon.com/address-autocompletion-using-swiftui-and-mapkit
 
-    @StateObject var viewModel: ContentViewModel = .init()
+    @StateObject var viewModel: LocationFindContentViewModel = .init()
     @FocusState private var isFocusedTextField: Bool
 
     @Binding var selectedLocation: CLLocationCoordinate2D?

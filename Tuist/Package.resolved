@@ -1,6 +1,15 @@
 {
-  "originHash" : "22a295297b83f06bc89b7fee27bd906ef5602e90f8983303e2f00bcf77983437",
+  "originHash" : "bd03d7f526dcd467595a6a80d7a70038f798cf3b4e51b792516f3ef49bde4f73",
   "pins" : [
+    {
+      "identity" : "down",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnxnguyen/Down",
+      "state" : {
+        "revision" : "f34b166be1f1db4aa8f573067e901d72f2a6be57",
+        "version" : "0.11.0"
+      }
+    },
     {
       "identity" : "feedkit",
       "kind" : "remoteSourceControl",
