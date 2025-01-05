@@ -75,7 +75,7 @@ struct ResourcesManager: View {
                         sheet = .addVideo
 
                     } label: {
-                        Label("Add Video", systemImage: "videoprojector")
+                        Label("Add Video", systemImage: "film")
                     }
                 } label: {
                     Label("Add", systemImage: "plus")
