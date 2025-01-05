@@ -29,7 +29,7 @@ struct WorldHome: View {
                     Button {
                         coordinator.push(page: .resourceManager)
                     } label: {
-                        Label("Resource Manager", systemImage: "house.lodge")
+                        Label("Resource Manager", systemImage: "list.and.film")
                     }
                     Button {
                         coordinator.push(page: .mapExperience)
