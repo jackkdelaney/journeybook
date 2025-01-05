@@ -60,6 +60,7 @@ struct RSSContentViewContent: View {
                                     if let description = item.description {
                                         if let markdown = convertCDATAHTMLToMarkdown(html: description) {
                                             Text(markdown)
+                                                .lineLimit(2)
                                         }
                                     }
                                     
@@ -67,7 +68,7 @@ struct RSSContentViewContent: View {
                                     
                                 }
                             }
-                            .chevronButtonStyle()
+                            .chevronButtonStyle(compact: true)
                             }
                         .listStyle(PlainListStyle())
                     }
