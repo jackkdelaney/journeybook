@@ -9,12 +9,28 @@ struct RSSFeedItem: Identifiable {
     let pubDate: Date?
 }
 
+extension RSSFeedItem: Equatable,Hashable {
+    static func ==(lhs: RSSFeedItem, rhs: RSSFeedItem) -> Bool {
+        return lhs.id == rhs.id
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        if let title {
+            hasher.combine(title)
+        }
+    }
+}
+
 @Observable
 class RSSFeedManager {
     var feedItems: [RSSFeedItem] = []
     var isLoading: Bool = false
     var error: Error?
 
+    var hasItems : Bool {
+        !feedItems.isEmpty
+    }
+    
     func fetchFeed(from urlString: String) async {
         guard let url = URL(string: urlString) else {
             self.error = NSError(domain: "Invalid URL", code: 0)
@@ -68,32 +84,45 @@ class RSSFeedManager {
     }
 }
 
-struct RSSContentView: View {
+import Down
+
+struct RSSContentView : View {
     @State var feedManager = RSSFeedManager()
-    @State private var feedURL: String = "https://rss.trafficwatchni.com/trafficwatchni_roadworks_rss.xml"
+    
+  let  feedURL: String = "https://rss.trafficwatchni.com/trafficwatchni_roadworks_rss.xml"
+
+
+    var body : some View {
+        Group {
+            if !feedManager.isLoading {
+                Section("Northern Ireland Roadworks") {
+                    RSSContentViewContent(feedManager: $feedManager)
+
+                }
+                
+            } else {
+                EmptyView()
+            }
+        }
+      
+        .onAppear {
+            if !feedManager.hasItems {
+                Task {
+                    await feedManager.fetchFeed(from: feedURL)
+                }
+            }
+        }
+    }
+}
+
+struct RSSContentViewContent: View {
+    @Binding var feedManager : RSSFeedManager
+    
+    @EnvironmentObject private var coordinator: Coordinator
+
 
     var body: some View {
-        NavigationView {
-            VStack {
-                TextField("Enter RSS Feed URL", text: $feedURL)
-                    .padding()
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-
-                Button("Fetch Feed") {
-                    Task {
-                        await feedManager.fetchFeed(from: feedURL)
-                    }
-                }
-                .padding()
-                .disabled(feedManager.isLoading)
-
-                if feedManager.isLoading {
-                    ProgressView()
-                } else if let error = feedManager.error {
-                    Text("Error: \(error.localizedDescription)")
-                        .foregroundColor(.red)
-                } else {
+                if !feedManager.isLoading {
                     List {
                         ForEach(feedManager.feedItems) { item in
                                 VStack(alignment: .leading) {
@@ -104,37 +133,96 @@ struct RSSContentView: View {
                                         .foregroundColor(.gray)
                                         .lineLimit(1)
                                     if let description = item.description {
-                                       // HTMLTextView(html: description)
-                                        Text(description)
+                                       if let markdown = convertCDATAHTMLToMarkdown(html: description) {
+                                            Text(markdown)
+                                        }
                                     }
-                                    HTMLStringView(htmlContent: "<h1>This is HTML String</h1>")
+                                 
+                                
 
                                 }
                             }
-                        
+                        .listStyle(PlainListStyle())
                     }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 300)
+                    
+                } else if let error = feedManager.error {
+                    Text("Error: \(error.localizedDescription)")
+                        .foregroundColor(.red)
                 }
-            }
-            .navigationTitle("RSS Reader")
-        }
+            
+        
     }
     
+    func convertCDATAHTMLToMarkdown(html: String) -> AttributedString? {
+        var processedHTML = html
+        
+        processedHTML = processedHTML.replacingOccurrences(of: "<![CDATA[", with: "")
+        processedHTML = processedHTML.replacingOccurrences(of: "]]>", with: "")
+        
+        let replacements: [String: String] = [
+            "<p>": "\n\n",
+            "</p>": "\n",
+            "<br />": "\n",
+            "<strong>": "**",
+            "</strong>": "**",
+            "<em>": "*",
+            "</em>": "*",
+            "&nbsp;": " ",
+            "&#xfeff;": "",  // Remove zero-width space
+            "<span style=\"color:black\">": "",
+            "</span>": "",
+            "<strong style=\"color:black\">": "**",
+            "<em style=\"color:black\">": "*",
+            "style=\"color:black\"": ""
+        ]
+        
+        for (key, value) in replacements {
+            processedHTML = processedHTML.replacingOccurrences(of: key, with: value)
+        }
+        
+        processedHTML = processedHTML.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+        
+        processedHTML = processedHTML.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        do {
+            return try AttributedString(markdown: processedHTML)
+        } catch {
+            
+                return nil
+            }
+        }
+    
+
    
     
 }
 
 
-import WebKit
-import SwiftUI
+struct RSSFeedDetailView : View {
+    
+    let item : RSSFeedItem
+    
+    var body: some View {
+        Form {
+            if let date = item.pubDate {
+                LabeledContent("Date", value: date.formatted() )
 
-struct HTMLStringView: UIViewRepresentable {
-    let htmlContent: String
+            }
+            if let description = item.description {
+                LabeledContent("Description", value: description)
 
-    func makeUIView(context: Context) -> WKWebView {
-        return WKWebView()
-    }
+            }
+            if let link = item.link {
+                Link(destination: URL(string: link)!) {
+                    LabeledContent("Link", value: link)
+                }
+                
+            }
+            
 
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.loadHTMLString(htmlContent, baseURL: nil)
+        }
+        .navigationTitle(item.title ?? "Unknown Title")
     }
 }

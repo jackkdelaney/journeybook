@@ -1,5 +1,5 @@
 //
-//  ContentViewModel.swift
+//  LocationFindContentViewModel.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 02/01/2025.
@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-class ContentViewModel: NSObject, ObservableObject {
+class LocationFindContentViewModel: NSObject, ObservableObject {
     @Published private(set) var results: [AddressResult] = []
     @Published var searchableText = ""
 
@@ -24,7 +24,7 @@ class ContentViewModel: NSObject, ObservableObject {
     }
 }
 
-extension ContentViewModel: MKLocalSearchCompleterDelegate {
+extension LocationFindContentViewModel: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         Task { @MainActor in
             results = completer.results.map {
