@@ -15,6 +15,7 @@ let project = Project(
       bundleId: "co.jackdelaney.jb",
       infoPlist: .extendingDefault(
         with: [
+            "ITSAppUsesNonExemptEncryption" : "false",
           "UILaunchScreen": [
             "UIColorName": "",
             "UIImageName": "",
