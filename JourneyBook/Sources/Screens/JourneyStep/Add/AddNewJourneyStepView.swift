@@ -78,7 +78,10 @@ struct AddNewJourneyStepView: SheetView {
             Text("\(publicTransitResource.url)") // MAKE PROPER THING HERE INSTEAD
         } else {
             Section("Public Transit") {
-                Button("Add Public Transport Route") {}
+                Button("Add Public Transport Route") {
+                    let transportWrapped = AddJourneyTransportGetter(transport:$publicTransit)
+                    sheet = .getTransportRouteFromList(transportWrapped)
+                }
             }
         }
     }
@@ -116,7 +119,8 @@ struct AddNewJourneyStepView: SheetView {
             stepDescription: desc,
             journey: journey,
             location: location,
-            visualResource: resource
+            visualResource: resource,
+            route: publicTransit
         )
         modelContext.insert(step)
         order()
