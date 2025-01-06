@@ -11,7 +11,6 @@ import SwiftUI
 // VERY GOOD GUIDE
 // https://www.hackingwithswift.com/books/ios-swiftui/integrating-mapkit-with-swiftui
 
-
 struct MapView: View {
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 54.5973, longitude: -5.9301),

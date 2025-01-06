@@ -17,7 +17,6 @@ struct WorldHome: View {
             AddNewJoruneyButtom(sheet: $sheet)
             JourneyItemsView()
             RSSContentView()
-
         }
         .navigationTitle("JourneyBook")
         .sheet(item: $sheet) { item in

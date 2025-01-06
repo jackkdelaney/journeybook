@@ -5,17 +5,16 @@
 //  Created by Jack Delaney on 03/01/2025.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
-struct ResourceSelectionView : SheetView {
+struct ResourceSelectionView: SheetView {
     @Environment(\.dismiss) var dismiss
 
     @Binding var selection: VisualResource?
-    
+
     @Query var resources: [VisualResource]
 
-    
     var content: some View {
         List {
             ForEach(resources) { resource in
@@ -30,19 +29,15 @@ struct ResourceSelectionView : SheetView {
             }
         }
     }
-    
- 
-    
+
     var confirmButton: some View {
-        Button("Save"){
+        Button("Save") {
             dismiss()
         }
         .disabled(selection == nil)
     }
-    
+
     var sheetTitle: String {
         "Select a Resource"
     }
-    
 }
-

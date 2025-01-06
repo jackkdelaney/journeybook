@@ -11,7 +11,7 @@ import AVFoundation
 import AVKit
 import SwiftUI
 
-struct ResourceSection : View {
+struct ResourceSection: View {
     var resource: VisualResource
 
     @ViewBuilder
@@ -38,4 +38,3 @@ struct ResourceSection : View {
         }
     }
 }
-

@@ -20,10 +20,10 @@ struct AddNewJourneyStepView: SheetView {
     @State private var sheet: AddJourneyStepSheet?
 
     @State private var cordinates: CLLocationCoordinate2D?
-    
-    @State private var resource : VisualResource?
-    
-    @State private var publicTransit : TransportRoute?
+
+    @State private var resource: VisualResource?
+
+    @State private var publicTransit: TransportRoute?
 
     var locationSection: some View {
         Section("Location") {
@@ -57,9 +57,9 @@ struct AddNewJourneyStepView: SheetView {
             item.buildView()
         }
     }
-    
+
     @ViewBuilder
-    var resourceSection : some View {
+    var resourceSection: some View {
         if let visualResource = resource {
             ResourceSection(resource: visualResource)
         } else {
@@ -71,20 +71,20 @@ struct AddNewJourneyStepView: SheetView {
             }
         }
     }
-    
+
     @ViewBuilder
-    var publicTransitSection : some View {
+    var publicTransitSection: some View {
         if let publicTransitResource = publicTransit {
             Text("\(publicTransitResource.url)") // MAKE PROPER THING HERE INSTEAD
         } else {
             Section("Public Transit") {
                 Button("Add Public Transport Route") {
-                    
+                    let transportWrapped = AddJourneyTransportGetter(transport:$publicTransit)
+                    sheet = .getTransportRouteFromList(transportWrapped)
                 }
             }
         }
     }
- 
 
     var confirmButton: some View {
         Button("Save") {
@@ -119,7 +119,8 @@ struct AddNewJourneyStepView: SheetView {
             stepDescription: desc,
             journey: journey,
             location: location,
-            visualResource: resource
+            visualResource: resource,
+            route: publicTransit
         )
         modelContext.insert(step)
         order()

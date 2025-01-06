@@ -7,32 +7,31 @@
 
 import SwiftUI
 
-struct TimeTableSheetView : View {
+struct TimeTableSheetView: View {
     var atcoFile: ATCOFile
-    
-    private let stops_G1 : [ATCOStop]
-    private let stops_G2 : [ATCOStop]
-    
-    private let commonName :String
-    
-    private let lat :Double
-    private let long : Double
 
-    init(atcoFile: ATCOFile, atcoString: String,commonName: String, lat : Double, long : Double) {
+    private let stops_G1: [ATCOStop]
+    private let stops_G2: [ATCOStop]
+
+    private let commonName: String
+
+    private let lat: Double
+    private let long: Double
+
+    init(atcoFile: ATCOFile, atcoString: String, commonName: String, lat: Double, long: Double) {
         self.atcoFile = atcoFile
         self.commonName = commonName
-        self.stops_G1 = atcoFile.getTimetable(for: atcoString, on: "G1").sorted {
+        stops_G1 = atcoFile.getTimetable(for: atcoString, on: "G1").sorted {
             $0.nicePublished_arrival_time < $1.nicePublished_arrival_time
         }
-        self.stops_G2 = atcoFile.getTimetable(for: atcoString, on: "G2").sorted {
+        stops_G2 = atcoFile.getTimetable(for: atcoString, on: "G2").sorted {
             $0.nicePublished_arrival_time < $1.nicePublished_arrival_time
         }
         self.lat = lat
         self.long = long
-
     }
-    
-    var body : some View {
+
+    var body: some View {
         NavigationStack {
             List {
                 if !stops_G1.isEmpty {
@@ -59,23 +58,19 @@ struct TimeTableSheetView : View {
                                 Text("Arrives at: \(stop.published_departure_time ?? "--")")
                                     .font(.caption)
                                     .frame(maxWidth: .infinity, alignment: .leading)
-
                             }
                         }
                     }
                 }
-                
             }
-            
+
             .navigationTitle("Time Table for \(commonName)")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        CancelButton()
-                    }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    CancelButton()
                 }
+            }
         }
     }
 }
-
-
