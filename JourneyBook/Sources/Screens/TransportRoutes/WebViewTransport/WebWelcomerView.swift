@@ -1,5 +1,5 @@
 //
-//  WebViewer.swift
+//  WebWelcomerView.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 05/01/2025.
@@ -8,10 +8,7 @@
 import SwiftUI
 import WebKit
 
-import SwiftUI
-import WebKit
-
-struct WebViewer: View {
+struct WebWelcomerView: View {
     @Binding var selectedService: URL?
     @State private var showingWebView = false
     @State private var currentURL: URL? = nil
@@ -35,7 +32,7 @@ struct WebViewer: View {
         }
         .sheet(isPresented: $showingWebView) {
             NavigationView {
-                WebView(url: URL(string: "https://bustimes.org/regions/NI")!, onConfirm: { selectedURL in
+                LimitedWebView(url: URL(string: "https://bustimes.org/regions/NI")!, onConfirm: { selectedURL in
                     selectedService = selectedURL
                     showingWebView = false
                 }, canGoBack: $canGoBack, isNonBustimePage: $isNonBustimePage, currentURL: $currentURL, webView: $webView)

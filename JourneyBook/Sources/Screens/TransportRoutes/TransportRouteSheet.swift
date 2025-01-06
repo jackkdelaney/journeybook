@@ -32,7 +32,7 @@ extension TransportRouteSheet {
         switch self {
         case .addRoute: AddTransportRouteView()
         case let .getRouteUrl(binding):
-            WebViewer(selectedService: binding.binding)
+            WebWelcomerView(selectedService: binding.binding)
         }
     }
 }
