@@ -11,16 +11,14 @@ import WebKit
 import SwiftUI
 import WebKit
 
-
-
 struct WebViewer: View {
     @State private var selectedService: String? = nil
     @State private var showingWebView = false
     @State private var currentURL: String? = nil
     @State private var canGoBack = false
     @State private var isNonBustimePage = false
-    @State private var webView =  WKWebView()
-    
+    @State private var webView = WKWebView()
+
     var body: some View {
         VStack {
             if let service = selectedService {
@@ -41,56 +39,53 @@ struct WebViewer: View {
                     selectedService = selectedURL
                     showingWebView = false
                 }, canGoBack: $canGoBack, isNonBustimePage: $isNonBustimePage, currentURL: $currentURL, webView: $webView)
-                .toolbar {
-                    ToolbarItemGroup(placement: .bottomBar) {
-                        HStack {
-                            if canGoBack && isNonBustimePage {
-                                Button {
-                                    webView.goBack()
-                                } label: {
-                                    Label("Backward",systemImage: "arrowshape.backward.circle")
-                                        .labelStyle(.iconOnly)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .bottomBar) {
+                            HStack {
+                                if canGoBack && isNonBustimePage {
+                                    Button {
+                                        webView.goBack()
+                                    } label: {
+                                        Label("Backward", systemImage: "arrowshape.backward.circle")
+                                            .labelStyle(.iconOnly)
+                                    }
+                                } else {
+                                    EmptyView()
                                 }
-                            } else {
-                                EmptyView()
-                            }
-                            
-                            Spacer()
-                            Button {
-                                webView.reload()
-                            } label: {
-                                Label("Refresh",systemImage: "arrow.clockwise")
-                                    .labelStyle(.iconOnly)
-                            }
-                            .frame(maxWidth: .infinity,alignment: .center)
-                            Spacer()
-                            if canGoBack && isNonBustimePage {
-                                
-                                Button{
-                                    webView.goForward()
-                                } label: {
-                                    
-                                    Label("Forward",systemImage: "arrowshape.forward.circle")
-                                        .labelStyle(.iconOnly)
-                                }
-                            }
 
+                                Spacer()
+                                Button {
+                                    webView.reload()
+                                } label: {
+                                    Label("Refresh", systemImage: "arrow.clockwise")
+                                        .labelStyle(.iconOnly)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                Spacer()
+                                if canGoBack && isNonBustimePage {
+                                    Button {
+                                        webView.goForward()
+                                    } label: {
+                                        Label("Forward", systemImage: "arrowshape.forward.circle")
+                                            .labelStyle(.iconOnly)
+                                    }
+                                }
+                            }
                         }
                     }
-                }
-                .navigationBarItems(
-                    leading: HStack {
-                        Button("Cancel") {
-                            showingWebView = false
-                        }
-                    },
-                    trailing: Button("Confirm") {
-                        if let url = currentURL {
-                            selectedService = url
-                            showingWebView = false
-                        }
-                    }.disabled(currentURL == nil)
-                )
+                    .navigationBarItems(
+                        leading: HStack {
+                            Button("Cancel") {
+                                showingWebView = false
+                            }
+                        },
+                        trailing: Button("Confirm") {
+                            if let url = currentURL {
+                                selectedService = url
+                                showingWebView = false
+                            }
+                        }.disabled(currentURL == nil)
+                    )
             }
         }
     }

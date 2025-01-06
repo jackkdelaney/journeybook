@@ -12,16 +12,15 @@ enum GliderTimeTableSheet: Identifiable, Hashable {
         return self
     }
 
-    case showTimeTable(ATCOFile,String,String,Double,Double)
-    
+    case showTimeTable(ATCOFile, String, String, Double, Double)
 }
 
 extension GliderTimeTableSheet {
     @ViewBuilder
     func buildView() -> some View {
         switch self {
-        case let .showTimeTable(atcoFile,atcoString,commonName,lat,long):
-            TimeTableSheetView(atcoFile: atcoFile, atcoString: atcoString,commonName:commonName,lat: lat,long: long)
+        case let .showTimeTable(atcoFile, atcoString, commonName, lat, long):
+            TimeTableSheetView(atcoFile: atcoFile, atcoString: atcoString, commonName: commonName, lat: lat, long: long)
         }
     }
 }

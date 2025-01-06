@@ -19,9 +19,7 @@ struct AddTransportRouteView: SheetView {
                 if let url = model.url {
                     Text("\(url)")
                 } else {
-                    Button("Select Transport Route Online") {
-                        
-                    }
+                    Button("Select Transport Route Online") {}
                 }
             }
         }

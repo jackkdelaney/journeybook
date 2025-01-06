@@ -9,8 +9,8 @@ import SwiftData
 import SwiftUI
 
 struct ChevronButtonStyle: ButtonStyle {
-    let compact : Bool
-    
+    let compact: Bool
+
     func makeBody(configuration: Configuration) -> some View {
         HStack {
             if compact {
@@ -22,7 +22,7 @@ struct ChevronButtonStyle: ButtonStyle {
             } else {
                 configuration.label
                 Spacer()
-                
+
                 Image(systemName: "chevron.forward")
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -33,8 +33,8 @@ struct ChevronButtonStyle: ButtonStyle {
 }
 
 extension View {
-    func chevronButtonStyle(compact : Bool = false) -> some View {
-        buttonStyle(ChevronButtonStyle(compact : compact))
+    func chevronButtonStyle(compact: Bool = false) -> some View {
+        buttonStyle(ChevronButtonStyle(compact: compact))
     }
 
     func removeListRowPaddingInsets() -> some View {
@@ -65,13 +65,11 @@ struct JourneyItemsView: View {
                                 .lineLimit(1)
                                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                            
                             if let description = journey.journeyDescription {
                                 Text(description)
                                     .font(.caption)
                                     .lineLimit(2)
                                     .frame(maxWidth: .infinity, alignment: .leading)
-
                             }
                         }
                     }

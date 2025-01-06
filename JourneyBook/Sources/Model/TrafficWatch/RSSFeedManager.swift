@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 05/01/2025.
 //
 
-import Foundation
 import FeedKit
+import Foundation
 
 @Observable
 class RSSFeedManager {
@@ -14,27 +14,27 @@ class RSSFeedManager {
     var isLoading: Bool = false
     var error: Error?
 
-    var hasItems : Bool {
+    var hasItems: Bool {
         !feedItems.isEmpty
     }
-    
+
     func fetchFeed(from urlString: String) async {
         guard let url = URL(string: urlString) else {
-            self.error = NSError(domain: "Invalid URL", code: 0)
+            error = NSError(domain: "Invalid URL", code: 0)
             return
         }
 
-        self.isLoading = true
-        self.error = nil
+        isLoading = true
+        error = nil
 
         let parser = FeedParser(URL: url)
         let result = parser.parse()
 
         switch result {
-        case .success(let feed):
+        case let .success(feed):
             switch feed {
-            case .rss(let rssFeed):
-                self.feedItems = rssFeed.items?.compactMap { item in
+            case let .rss(rssFeed):
+                feedItems = rssFeed.items?.compactMap { item in
                     RSSFeedItem(
                         title: item.title,
                         link: item.link,
@@ -42,8 +42,8 @@ class RSSFeedManager {
                         pubDate: item.pubDate
                     )
                 } ?? []
-            case .atom(let atomFeed):
-                self.feedItems = atomFeed.entries?.compactMap { entry in
+            case let .atom(atomFeed):
+                feedItems = atomFeed.entries?.compactMap { entry in
                     RSSFeedItem(
                         title: entry.title,
                         link: entry.links?.first?.attributes?.href,
@@ -51,8 +51,8 @@ class RSSFeedManager {
                         pubDate: entry.published
                     )
                 } ?? []
-            case .json(let jsonFeed):
-                self.feedItems = jsonFeed.items?.compactMap { item in
+            case let .json(jsonFeed):
+                feedItems = jsonFeed.items?.compactMap { item in
                     RSSFeedItem(
                         title: item.title,
                         link: item.url,
@@ -62,11 +62,11 @@ class RSSFeedManager {
                 } ?? []
             }
 
-        case .failure(let error):
+        case let .failure(error):
             print("Feed parsing error: \(error)")
             self.error = error
-            self.feedItems = []
+            feedItems = []
         }
-        self.isLoading = false
+        isLoading = false
     }
 }

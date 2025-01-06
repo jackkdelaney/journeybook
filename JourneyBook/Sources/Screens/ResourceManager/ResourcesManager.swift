@@ -8,7 +8,6 @@ import AVKit
 import SwiftData
 import SwiftUI
 
-
 struct ResourcesManager: View {
     @EnvironmentObject private var coordinator: Coordinator
 

@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 05/01/2025.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct TransportRouteListView: View {
     @EnvironmentObject private var coordinator: Coordinator
@@ -37,9 +37,7 @@ struct TransportRouteListView: View {
         List {
             ForEach(routes) { route in
                 HStack {
-                    Button {
-                        
-                    } label: {
+                    Button {} label: {
                         Text(route.routeName)
                     }
                     .chevronButtonStyle()

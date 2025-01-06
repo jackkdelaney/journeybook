@@ -46,7 +46,7 @@ extension AppPages {
         case let .mapDetails(location):
             MapDetailView(location: location)
         case let .rssFeedItem(item):
-            RSSFeedDetailView(item : item)
+            RSSFeedDetailView(item: item)
         }
     }
 }
