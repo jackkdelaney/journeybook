@@ -46,6 +46,25 @@ struct AddJourneyLocationVisualResourceGetter: Identifiable, Hashable, Equatable
     }
 }
 
+struct AddJourneyPhraseSelectionGetter : Identifiable, Hashable, Equatable {
+    var id : UUID
+    var phrases : Binding<[Phrase]>
+    
+    init(id: UUID = UUID(), phrases: Binding<[Phrase]>) {
+        self.id = id
+        self.phrases = phrases
+    }
+    
+    
+    static func == (lhs: AddJourneyPhraseSelectionGetter, rhs: AddJourneyPhraseSelectionGetter) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
 struct AddJourneyTransportGetter : Identifiable, Hashable, Equatable {
     var id : UUID
     
@@ -76,6 +95,7 @@ enum AddJourneyStepSheet: Identifiable, Hashable {
     case getLocationFromAddress(AddJourneyLocationStepGetter)
     case getVisualResourceFromList(AddJourneyLocationVisualResourceGetter)
     case getTransportRouteFromList(AddJourneyTransportGetter)
+    case selectPhrases(AddJourneyPhraseSelectionGetter)
 }
 
 extension AddJourneyStepSheet {
@@ -88,6 +108,10 @@ extension AddJourneyStepSheet {
             ResourceSelectionView(selection: resourceGetter.resource)
         case let .getTransportRouteFromList(transportGetter):
             TransportRouteSelectorView(selectedRoute: transportGetter.transport)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.automatic)
+        case let .selectPhrases(wrapper):
+            PhrasesSelectorView(phrases: wrapper.phrases)
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.automatic)
         }

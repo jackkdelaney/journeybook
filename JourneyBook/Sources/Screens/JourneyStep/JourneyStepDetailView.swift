@@ -12,6 +12,7 @@ struct JourneyStepDetailView: View {
 
     @Bindable var step: JourneyStep
 
+
     var body: some View {
         Form {
             if let location = step.location {
@@ -28,6 +29,7 @@ struct JourneyStepDetailView: View {
                 Text("No Visual Resource")
             }
             transitSection
+            phrasesSection
         }
         .safeAreaInset(edge: .top) {
             locationSection
@@ -78,6 +80,17 @@ struct JourneyStepDetailView: View {
             }
         } else {
             Text("No location added")
+        }
+    }
+    
+    @ViewBuilder
+    var phrasesSection : some View {
+        if !step.phrases.isEmpty {
+            Section("Phrases") {
+                ForEach(step.phrases) { phrase in
+                    Text("Phrase: \(phrase.text)")
+                }
+            }
         }
     }
 }

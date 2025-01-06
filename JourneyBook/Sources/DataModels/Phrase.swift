@@ -23,11 +23,15 @@ class Phrase: Identifiable {
             dateModified = Date.now
         }
     }
+    
+    @Relationship(inverse: \JourneyStep.phrases) var steps: [JourneyStep]
 
-    init(text: String, id: UUID = UUID(), dateCreated: Date = Date.now, dateModified: Date = Date.now) {
+
+    init(text: String, id: UUID = UUID(), dateCreated: Date = Date.now, dateModified: Date = Date.now, steps: [JourneyStep] = []) {
         self.id = id
         self.dateCreated = dateCreated
         _text = text
         self.dateModified = dateModified
+        self.steps = steps
     }
 }
