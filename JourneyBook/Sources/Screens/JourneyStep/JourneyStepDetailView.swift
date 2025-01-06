@@ -27,6 +27,10 @@ struct JourneyStepDetailView: View {
             } else {
                 Text("No Visual Resource")
             }
+            if let transport = step.route {
+                Link(transport.routeName, destination: transport.url)
+
+            }
         }
         .safeAreaInset(edge: .top) {
             locationSection
