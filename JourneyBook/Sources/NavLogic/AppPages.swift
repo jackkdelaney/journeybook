@@ -35,7 +35,7 @@ extension AppPages {
         case .phraseBook:
             PhraseBook()
         case .mapExperience:
-            MapView()
+            LiveBusMap()
         case .gliderPOC:
             GliderPOCListView()
         case .transportRoutes:
