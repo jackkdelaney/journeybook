@@ -6,11 +6,18 @@
 //
 
 import SwiftUI
+import AVFAudio
 
 struct JourneyStepDetailView: View {
     @EnvironmentObject private var coordinator: Coordinator
 
     @Bindable var step: JourneyStep
+    @AppStorage("storedVoice") var storedVoice: String = ""
+    
+    @State var voice: AVSpeechSynthesisVoice? = nil
+    
+    let speaker = Speaker()
+
 
     var body: some View {
         Form {
@@ -28,6 +35,7 @@ struct JourneyStepDetailView: View {
                 Text("No Visual Resource")
             }
             transitSection
+            phrasesSection
         }
         .safeAreaInset(edge: .top) {
             locationSection
@@ -80,4 +88,29 @@ struct JourneyStepDetailView: View {
             Text("No location added")
         }
     }
+    
+    @ViewBuilder
+    var phrasesSection : some View {
+        if !step.phrases.isEmpty {
+            Section("Phrases") {
+                ForEach(step.phrases) { phrase in
+                    Button {
+                        try? speaker.speak(phrase.text, voice: voice)
+                    } label: {
+                        Label(phrase.text,systemImage: "play.circle")
+                    }
+                }
+            }
+            .onAppear {
+                if storedVoice != "" {
+                    voice = AVSpeechSynthesisVoice(identifier: storedVoice)
+                }
+            }
+        }
+    }
+    
+
+    
+    
+      
 }
