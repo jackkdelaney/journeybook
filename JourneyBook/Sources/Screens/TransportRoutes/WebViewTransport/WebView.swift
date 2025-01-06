@@ -10,10 +10,10 @@ import SwiftUI
 
 struct WebView: UIViewRepresentable {
     let url: URL
-    let onConfirm: (String) -> Void
+    let onConfirm: (URL) -> Void
     @Binding var canGoBack: Bool
     @Binding var isNonBustimePage: Bool
-    @Binding var currentURL: String?
+    @Binding var currentURL: URL?
 
     @Binding var webView: WKWebView
 
@@ -36,10 +36,10 @@ struct WebView: UIViewRepresentable {
         var parent: WebView
         @Binding var canGoBack: Bool
         @Binding var isNonBustimePage: Bool
-        @Binding var currentURL: String?
-        var onConfirm: (String) -> Void
+        @Binding var currentURL: URL?
+        var onConfirm: (URL) -> Void
 
-        init(_ parent: WebView, canGoBack: Binding<Bool>, isNonBustimePage: Binding<Bool>, currentURL: Binding<String?>, onConfirm: @escaping (String) -> Void) {
+        init(_ parent: WebView, canGoBack: Binding<Bool>, isNonBustimePage: Binding<Bool>, currentURL: Binding<URL?>, onConfirm: @escaping (URL) -> Void) {
             self.parent = parent
             _canGoBack = canGoBack
             _isNonBustimePage = isNonBustimePage
@@ -52,7 +52,7 @@ struct WebView: UIViewRepresentable {
             if let url = webView.url?.absoluteString {
                 isNonBustimePage = !url.contains("bustimes.org")
                 if url.contains("bustimes.org/services/") {
-                    currentURL = url
+                    currentURL = webView.url!
                 } else {
                     currentURL = nil
                 }
