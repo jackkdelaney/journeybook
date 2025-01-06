@@ -42,7 +42,7 @@ struct WorldHome: View {
                         coordinator.push(page: .mapExperience)
                     } label: {
                         Label(
-                            "Map Experience",
+                            "Live Bus Locations",
                             systemImage: "map.circle.fill"
                         )
                     }
