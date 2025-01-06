@@ -13,16 +13,6 @@ struct PhraseBook: View {
     @Query var phrases: [Phrase]
     @Environment(\.modelContext) var modelContext
 
-    func delete(at offsets: IndexSet) {
-        for offset in offsets {
-            let phrase = phrases[offset]
-            modelContext.delete(phrase)
-        }
-        do {
-            try modelContext.save()
-        } catch {}
-    }
-
     let speaker = Speaker()
 
     @State private var sheet: PhraseBookSheet? = nil
@@ -35,57 +25,6 @@ struct PhraseBook: View {
 
     @State private var profileText = "Enter your bio"
 
-    var phrasesList: some View {
-        List {
-            Section("DEBUG") {
-                voiceStatus
-            }
-            if status == .notDetermined {
-                Section("Request For Permission") {
-                    Section {
-                        Button("REQUEST PERMISSION") {
-                            AVSpeechSynthesizer.requestPersonalVoiceAuthorization { _ in
-                            }
-                        }
-                    }
-                }
-            }
-            Section {
-                ForEach(phrases) { phrase in
-                    HStack {
-                        Text(phrase.text)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Button("Edit") {}
-                        Button("Play") {
-                            try? speaker.speak(phrase.text, voice: voice)
-                        }
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                }
-                .onDelete(perform: delete)
-
-                Button("Add New Phrase") {
-                    let phrase = Phrase(text: "Hello")
-                    modelContext.insert(phrase)
-                    try? modelContext.save()
-                    sheet = .phrase(phrase)
-                }
-
-//            Section("Text") {
-//                TextEditor(text: $profileText)
-//                    .foregroundStyle(.secondary)
-//                    .padding(.horizontal)
-//                    .navigationTitle("Phrase Book")
-//            }
-
-            } header: {
-                Text("Phrases")
-            } footer: {
-                Text("Your're Phrases for this app are listed above")
-            }
-        }
-    }
-
     var body: some View {
         phrasesList
             .navigationTitle("Phrase Book")
@@ -95,7 +34,9 @@ struct PhraseBook: View {
                     Button {
                         sheet = .voiceSelector
                     } label: {
-                        Label("Change Voice", systemImage: "music.microphone.circle")
+                        Label(
+                            "Change Voice",
+                            systemImage: "music.microphone.circle")
                     }
                 }
             }
@@ -125,7 +66,71 @@ struct PhraseBook: View {
             Text("Unsupported")
         }
         if status == .denied || status == .notDetermined {
-            Text("You have not provided acess to personal voice, todo so follow this guide.")
+            Text(
+                "You have not provided acess to personal voice, todo so follow this guide."
+            )
         }
     }
+
+    func delete(at offsets: IndexSet) {
+        for offset in offsets {
+            let phrase = phrases[offset]
+            modelContext.delete(phrase)
+        }
+        do {
+            try modelContext.save()
+        } catch {}
+    }
+
+    var phrasesList: some View {
+        List {
+            Section("DEBUG") {
+                voiceStatus
+            }
+            if status == .notDetermined {
+                Section("Request For Permission") {
+                    Section {
+                        Button("REQUEST PERMISSION") {
+                            AVSpeechSynthesizer
+                                .requestPersonalVoiceAuthorization { _ in
+                                }
+                        }
+                    }
+                }
+            }
+            Section {
+                ForEach(phrases) { phrase in
+                    Button {
+                        try? speaker.speak(phrase.text, voice: voice)
+                    } label: {
+                        HStack {
+                            Text(phrase.text)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Spacer()
+
+                            Label("Play this", systemImage: "play.square")
+                                .foregroundStyle(.blue)
+                                .labelStyle(.iconOnly)
+                        }
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                }
+                .onDelete(perform: delete)
+
+                Button("Add New Phrase") {
+                    let phrase = Phrase(text: "Hello")
+                    modelContext.insert(phrase)
+                    try? modelContext.save()
+                    sheet = .phrase(phrase)
+                }
+
+            } header: {
+                Text("Phrases")
+            } footer: {
+                Text("Your're Phrases for this app are listed above")
+            }
+        }
+    }
+
 }

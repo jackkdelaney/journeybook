@@ -24,6 +24,26 @@ struct AddNewJourneyStepView: SheetView {
     @State private var resource: VisualResource?
 
     @State private var publicTransit: TransportRoute?
+    
+    @State private var phrases = [Phrase]()
+
+    var content: some View {
+        Form {
+            Section("Step Name") {
+                TextField("Step Name", text: $localName)
+            }
+            Section("Description") {
+                TextEditor(text: $localDescription)
+            }
+            locationSection
+            resourceSection
+            publicTransitSection
+            phraseSection
+        }
+        .sheet(item: $sheet) { item in
+            item.buildView()
+        }
+    }
 
     var locationSection: some View {
         Section("Location") {
@@ -40,24 +60,7 @@ struct AddNewJourneyStepView: SheetView {
             }
         }
     }
-
-    var content: some View {
-        Form {
-            Section("Step Name") {
-                TextField("Step Name", text: $localName)
-            }
-            Section("Description") {
-                TextEditor(text: $localDescription)
-            }
-            locationSection
-            resourceSection
-            publicTransitSection
-        }
-        .sheet(item: $sheet) { item in
-            item.buildView()
-        }
-    }
-
+    
     @ViewBuilder
     var resourceSection: some View {
         if let visualResource = resource {
@@ -91,6 +94,24 @@ struct AddNewJourneyStepView: SheetView {
             }
         }
     }
+    
+    @ViewBuilder
+    var phraseSection : some View {
+        Section(phraseText) {
+            Button("Select Phrase's") {
+                let phrasesWrapped = AddJourneyPhraseSelectionGetter(phrases: $phrases)
+                sheet = .selectPhrases(phrasesWrapped)
+            }
+        }
+    }
+    
+    var phraseText : String {
+            return String(AttributedString(
+                localized: "You have ^[\(phrases.count) \("Phrase")](inflect: true) in this step."
+            ).characters)
+        }
+    
+  
 
     var confirmButton: some View {
         Button("Save") {
@@ -128,6 +149,9 @@ struct AddNewJourneyStepView: SheetView {
             visualResource: resource,
             route: publicTransit
         )
+        for phrase in phrases {
+            step.phrases.append(phrase)
+        }
         modelContext.insert(step)
         order()
         try? modelContext.save()
