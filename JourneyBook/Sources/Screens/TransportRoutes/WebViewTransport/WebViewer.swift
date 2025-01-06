@@ -12,9 +12,9 @@ import SwiftUI
 import WebKit
 
 struct WebViewer: View {
-    @State private var selectedService: String? = nil
+    @Binding var selectedService: URL?
     @State private var showingWebView = false
-    @State private var currentURL: String? = nil
+    @State private var currentURL: URL? = nil
     @State private var canGoBack = false
     @State private var isNonBustimePage = false
     @State private var webView = WKWebView()
