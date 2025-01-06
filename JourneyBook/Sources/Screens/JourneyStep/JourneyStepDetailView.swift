@@ -27,10 +27,7 @@ struct JourneyStepDetailView: View {
             } else {
                 Text("No Visual Resource")
             }
-            if let transport = step.route {
-                Link(transport.routeName, destination: transport.url)
-
-            }
+            transitSection
         }
         .safeAreaInset(edge: .top) {
             locationSection
@@ -55,6 +52,19 @@ struct JourneyStepDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 
+    @ViewBuilder
+    private var transitSection : some View {
+        if let transport = step.route {
+            Section("Route Timetable") {
+                Button {
+                    coordinator.push(page: .webpage(transport.url))
+                }label: {
+                    Label("View Timetable for \(transport.routeName)", systemImage: "bus.doubledecker.fill")
+                }
+            }
+        }
+
+    }
     @ViewBuilder
     private var locationSection: some View {
         if let location = step.location {
