@@ -46,7 +46,6 @@ struct AddJourneyLocationVisualResourceGetter: Identifiable, Hashable, Equatable
     }
 }
 
-
 enum AddJourneyStepSheet: Identifiable, Hashable {
     var id: Self {
         return self
@@ -54,7 +53,6 @@ enum AddJourneyStepSheet: Identifiable, Hashable {
 
     case getLocationFromAddress(AddJourneyLocationStepGetter)
     case getVisualResourceFromList(AddJourneyLocationVisualResourceGetter)
-    
 }
 
 extension AddJourneyStepSheet {

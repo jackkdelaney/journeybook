@@ -7,22 +7,19 @@
 
 import SwiftUI
 
-struct RSSFeedDetailView : View {
-    
-    let item : RSSFeedItem
-    
+struct RSSFeedDetailView: View {
+    let item: RSSFeedItem
+
     var body: some View {
         Form {
             if let date = item.pubDate {
-                LabeledContent("Date", value: date.formatted() )
-
+                LabeledContent("Date", value: date.formatted())
             }
-            
+
             if let link = item.link {
                 Link(destination: URL(string: link)!) {
                     LabeledContent("Link", value: link)
                 }
-                
             }
             if let description = item.description {
                 if let cleanDescription = convertCDATAHTMLToMarkdown(html: description) {
@@ -31,21 +28,18 @@ struct RSSFeedDetailView : View {
                             .multilineTextAlignment(.leading)
                     }
                 }
-
             }
-            
-
         }
         .navigationTitle(item.title ?? "Unknown Title")
         .navigationBarTitleDisplayMode(.inline)
     }
-    
+
     func convertCDATAHTMLToMarkdown(html: String) -> AttributedString? {
         var processedHTML = html
-        
+
         processedHTML = processedHTML.replacingOccurrences(of: "<![CDATA[", with: "")
         processedHTML = processedHTML.replacingOccurrences(of: "]]>", with: "")
-        
+
         let replacements: [String: String] = [
             "<p>": "\n\n",
             "</p>": "\n",
@@ -55,31 +49,26 @@ struct RSSFeedDetailView : View {
             "<em>": "*",
             "</em>": "*",
             "&nbsp;": " ",
-            "&#xfeff;": "",  // Remove zero-width space
+            "&#xfeff;": "", // Remove zero-width space
             "<span style=\"color:black\">": "",
             "</span>": "",
             "<strong style=\"color:black\">": "**",
             "<em style=\"color:black\">": "*",
-            "style=\"color:black\"": ""
+            "style=\"color:black\"": "",
         ]
-        
+
         for (key, value) in replacements {
             processedHTML = processedHTML.replacingOccurrences(of: key, with: value)
         }
-        
+
         processedHTML = processedHTML.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
-        
+
         processedHTML = processedHTML.trimmingCharacters(in: .whitespacesAndNewlines)
-        
+
         do {
             return try AttributedString(markdown: processedHTML)
         } catch {
-            
-                return nil
-            }
+            return nil
         }
-    
+    }
 }
-
-
-

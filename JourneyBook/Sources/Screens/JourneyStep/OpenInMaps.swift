@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct MiniOpenInMapButton : View {
-    let lat : Double
-    let long : Double
-    
-    var body : some View {
+struct MiniOpenInMapButton: View {
+    let lat: Double
+    let long: Double
+
+    var body: some View {
         HStack {
             Spacer()
             Button {
@@ -32,15 +32,12 @@ struct MiniOpenInMapButton : View {
             .removeListRowPaddingInsets()
             .foregroundStyle(.blue)
         }
-        .frame(maxWidth:.infinity,alignment: .trailing)
+        .frame(maxWidth: .infinity, alignment: .trailing)
     }
-    
-    private func openMap(for type: JourneyType){
-            UIApplication.shared
-                .open(appleUrl(for: type)!, options: [:], completionHandler: nil)
-    
-    
-        
+
+    private func openMap(for type: JourneyType) {
+        UIApplication.shared
+            .open(appleUrl(for: type)!, options: [:], completionHandler: nil)
     }
 
     private var canOpenAppleMaps: Bool {
@@ -50,7 +47,6 @@ struct MiniOpenInMapButton : View {
     private func appleUrl(for type: JourneyType) -> URL? {
         URL(string: "maps://?saddr=&daddr=\(lat),\(long)&dirflg=\(type.getCode())")
     }
-    
 }
 
 struct OpenInMapsButton: View {
