@@ -15,7 +15,7 @@ struct RSSContentView: View {
     var body: some View {
         Group {
             if !feedManager.isLoading {
-                Section("Northern Ireland Roadworks") {
+                ListDisclosiureGroup("Northern Ireland Roadworks") {
                     RSSContentViewContent(feedManager: $feedManager)
                 }
 
