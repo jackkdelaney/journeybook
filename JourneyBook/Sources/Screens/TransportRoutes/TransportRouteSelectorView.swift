@@ -33,6 +33,7 @@ struct TransportRouteSelectorView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
+                .navigationTitle("Select a Route")
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  WebView.swift
+//  LimitedWebView.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 05/01/2025.
@@ -8,7 +8,7 @@
 import SwiftUI
 @preconcurrency import WebKit
 
-struct WebView: UIViewRepresentable {
+struct LimitedWebView: UIViewRepresentable {
     let url: URL
     let onConfirm: (URL) -> Void
     @Binding var canGoBack: Bool
@@ -33,13 +33,13 @@ struct WebView: UIViewRepresentable {
     func updateUIView(_: WKWebView, context _: Context) {}
 
     class WebCoordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
-        var parent: WebView
+        var parent: LimitedWebView
         @Binding var canGoBack: Bool
         @Binding var isNonBustimePage: Bool
         @Binding var currentURL: URL?
         var onConfirm: (URL) -> Void
 
-        init(_ parent: WebView, canGoBack: Binding<Bool>, isNonBustimePage: Binding<Bool>, currentURL: Binding<URL?>, onConfirm: @escaping (URL) -> Void) {
+        init(_ parent: LimitedWebView, canGoBack: Binding<Bool>, isNonBustimePage: Binding<Bool>, currentURL: Binding<URL?>, onConfirm: @escaping (URL) -> Void) {
             self.parent = parent
             _canGoBack = canGoBack
             _isNonBustimePage = isNonBustimePage

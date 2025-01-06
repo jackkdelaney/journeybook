@@ -37,7 +37,9 @@ struct TransportRouteListView: View {
         List {
             ForEach(routes) { route in
                 HStack {
-                    Button {} label: {
+                    Button {
+                        coordinator.push(page: .webpage(route.url))
+                    } label: {
                         Text(route.routeName)
                     }
                     .chevronButtonStyle()
