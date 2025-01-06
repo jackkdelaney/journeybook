@@ -88,6 +88,8 @@ extension AddJourneyStepSheet {
             ResourceSelectionView(selection: resourceGetter.resource)
         case let .getTransportRouteFromList(transportGetter):
             TransportRouteSelectorView(selectedRoute: transportGetter.transport)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.automatic)
         }
     }
 }

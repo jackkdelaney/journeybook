@@ -75,7 +75,13 @@ struct AddNewJourneyStepView: SheetView {
     @ViewBuilder
     var publicTransitSection: some View {
         if let publicTransitResource = publicTransit {
-            Text("\(publicTransitResource.url)") // MAKE PROPER THING HERE INSTEAD
+            Section("Public Transit") {
+                Text("\(publicTransitResource.url)")
+                Button("Edit") {
+                    let transportWrapped = AddJourneyTransportGetter(transport:$publicTransit)
+                    sheet = .getTransportRouteFromList(transportWrapped)
+                }
+            }
         } else {
             Section("Public Transit") {
                 Button("Add Public Transport Route") {
