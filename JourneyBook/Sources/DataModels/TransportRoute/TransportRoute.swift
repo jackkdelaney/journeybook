@@ -22,7 +22,7 @@ class TransportRoute {
 
     
     
-    init(id: UUID, routeName: String, url: URL,steps: [JourneyStep] = []) {
+    init(id: UUID = UUID(), routeName: String, url: URL,steps: [JourneyStep] = []) {
         self.id = id
         self.routeName = routeName
         self.url = url
