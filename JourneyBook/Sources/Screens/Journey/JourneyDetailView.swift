@@ -20,14 +20,16 @@ struct JourneyDetailView: View {
             Section {
                 AddNewJourneyStepButton(journey: journey, sheet: $sheet)
             }
-            if let description = journey.journeyDescription {
-                Text(description)
-            } else {
-                Text("No Description")
+            Section("Description") {
+                if let description = journey.journeyDescription {
+                    Text(description)
+                } else {
+                    Text("No Description")
+                }
             }
 
-            Section("Step (Temp Section)") {
-                if !journey.steps.isEmpty {
+            if !journey.steps.isEmpty {
+                Section("Step's") {
                     ForEach(sortedJourneySteps) { step in
                         Button {
                             coordinator.push(page: .journeyStepDetails(step))
@@ -48,9 +50,15 @@ struct JourneyDetailView: View {
                     }
                     .onDelete(perform: delete)
                     .onMove(perform: move)
-
-                } else {
-                    Text("You currently don't have any steps for this journey.")
+                }
+            } else {
+                Section {
+                    ContentUnavailableView(
+                        "No Steps",
+                        systemImage: "circle.slash",
+                        description: Text("You currently don't have any steps for this journey.")
+                    )
+                    .removeListRowPaddingInsets()
                 }
             }
         }

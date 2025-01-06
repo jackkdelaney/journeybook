@@ -46,6 +46,27 @@ struct AddJourneyLocationVisualResourceGetter: Identifiable, Hashable, Equatable
     }
 }
 
+struct AddJourneyTransportGetter : Identifiable, Hashable, Equatable {
+    var id : UUID
+    
+    var transport : Binding<TransportRoute?>
+    
+    
+    init(id: UUID = UUID(), transport: Binding<TransportRoute?>) {
+        self.id = id
+        self.transport = transport
+    }
+    
+    
+    static func == (lhs: AddJourneyTransportGetter, rhs: AddJourneyTransportGetter) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+}
 
 enum AddJourneyStepSheet: Identifiable, Hashable {
     var id: Self {
@@ -54,7 +75,7 @@ enum AddJourneyStepSheet: Identifiable, Hashable {
 
     case getLocationFromAddress(AddJourneyLocationStepGetter)
     case getVisualResourceFromList(AddJourneyLocationVisualResourceGetter)
-    
+    case getTransportRouteFromList(AddJourneyTransportGetter)
 }
 
 extension AddJourneyStepSheet {
@@ -65,6 +86,8 @@ extension AddJourneyStepSheet {
             LocationFindView(selectedLocation: locationGetter.location)
         case let .getVisualResourceFromList(resourceGetter):
             ResourceSelectionView(selection: resourceGetter.resource)
+        case let .getTransportRouteFromList(transportGetter):
+            TransportRouteSelectorView(selectedRoute: transportGetter.transport)
         }
     }
 }

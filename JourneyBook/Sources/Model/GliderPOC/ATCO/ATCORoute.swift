@@ -20,5 +20,4 @@ struct ATCORoute: Codable {
     let route_direction: String
     let bank_holidays: String
     let stops: [ATCOStop]
-    
 }

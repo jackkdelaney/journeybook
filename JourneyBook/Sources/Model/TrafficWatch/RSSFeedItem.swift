@@ -15,10 +15,11 @@ struct RSSFeedItem: Identifiable {
     let pubDate: Date?
 }
 
-extension RSSFeedItem: Equatable,Hashable {
-    static func ==(lhs: RSSFeedItem, rhs: RSSFeedItem) -> Bool {
+extension RSSFeedItem: Equatable, Hashable {
+    static func == (lhs: RSSFeedItem, rhs: RSSFeedItem) -> Bool {
         return lhs.id == rhs.id
     }
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         if let title {
@@ -26,4 +27,3 @@ extension RSSFeedItem: Equatable,Hashable {
         }
     }
 }
-

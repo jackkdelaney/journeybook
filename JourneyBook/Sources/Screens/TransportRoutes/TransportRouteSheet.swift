@@ -7,12 +7,23 @@
 
 import SwiftUI
 
+struct TransportRouteSheetURL: Identifiable {
+    var id = UUID()
+    var binding: Binding<URL?>
+}
+
 enum TransportRouteSheet: Identifiable {
-    var id: Self {
-        return self
+    var id: String {
+        switch self {
+        case .addRoute:
+            "addRoute"
+        case let .getRouteUrl(binding):
+            binding.id.uuidString
+        }
     }
 
     case addRoute
+    case getRouteUrl(TransportRouteSheetURL)
 }
 
 extension TransportRouteSheet {
@@ -20,6 +31,8 @@ extension TransportRouteSheet {
     func buildView() -> some View {
         switch self {
         case .addRoute: AddTransportRouteView()
+        case let .getRouteUrl(binding):
+            WebViewer(selectedService: binding.binding)
         }
     }
 }
