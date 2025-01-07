@@ -18,7 +18,6 @@ struct TransportRouteSelectorView: View {
                 HStack {
                     Button {
                         selectedRoute = route
-
                     } label: {
                         HStack {
                             Text(route.routeName)
