@@ -70,4 +70,4 @@ Derived/
 ### Tuist managed dependencies ###
 Tuist/.build.env
 
-Tuist/.build/
+Tuist/.build/*
