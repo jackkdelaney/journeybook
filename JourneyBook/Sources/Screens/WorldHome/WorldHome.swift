@@ -24,7 +24,12 @@ struct WorldHome: View {
             item.buildView()
         }
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button {
+                    coordinator.push(page: .credits)
+                } label: {
+                    Label("Credits", systemImage: "info.circle")
+                }
                 Menu {
                     Button {
                         coordinator.push(page: .resourceManager)
