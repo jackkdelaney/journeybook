@@ -46,7 +46,6 @@ struct LiveBusMap: View {
                 }
             }
             if let location = locationViewModel.userLocation {
-                Text("\(busLocation.count)")
                 Text("Latitude: \(location.latitude)")
                 Text("Longitude: \(location.longitude)")
             } else {

@@ -15,18 +15,16 @@ import Foundation
 
             var request = URLRequest(url: url)
             let apiKey = ProcessInfo.processInfo.environment["API_KEY_IRELAND"]
-            print(apiKey)
             request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
 
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let data = data {
                     do {
                         let decodedData = try JSONDecoder().decode(BusEireannVehicleData.self, from: data)
-                        print(decodedData.entity.count)
-                        //DispatchQueue.main.async {
+                        DispatchQueue.main.async {
                             self.vehicles = decodedData.entity
-                        //}
-                        print(self.vehicles.count)
+                            self.objectWillChange.send()
+                        }
                     } catch {
                         print("Error decoding JSON: \(error)")
                     }
