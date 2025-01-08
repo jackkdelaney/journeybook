@@ -21,7 +21,7 @@ struct CreditView: View {
             } header: {
                 Text("Developer Contact Details")
             } footer: {
-                Text("This app currently only supports the English Language.")
+                Text("Please contact by email, or through the TestFlight reporting feature.")
             }
             Section("Dependencies") {
                 LabeledContent {
