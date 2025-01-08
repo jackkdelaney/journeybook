@@ -16,6 +16,7 @@ struct WorldHome: View {
         List {
             AddNewJoruneyButtom(sheet: $sheet)
             JourneyItemsView()
+            AdvertButton(title: "Live Bus Locations", tagLine: "See bus locations live.", appPage: .mapExperience, symbol: "map.circle.fill")
             RSSContentView()
         }
         .navigationTitle("JourneyBook")
