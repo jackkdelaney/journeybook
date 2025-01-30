@@ -1,50 +1,69 @@
 import ProjectDescription
 
 let project = Project(
-  name: "JourneyBook",
-  settings: .settings(
-    base: [
-        "DEVELOPMENT_TEAM": "75ESF57BMG"
-    ]
-),
-  targets: [
-    .target(
-      name: "JourneyBook",
-      destinations: .iOS,
-      product: .app,
-      bundleId: "co.jackdelaney.jb",
-      infoPlist: .extendingDefault(
-        with: [
-            "ITSAppUsesNonExemptEncryption" : "false",
-          "UILaunchScreen": [
-            "UIColorName": "",
-            "UIImageName": "",
-          ],
-          "NSLocationWhenInUseUsageDescription": "The app needs access to your location to provide location-based services.",
-          "LSApplicationQueriesSchemes": [
-            "Item 0" : "maps",
-            "Item 1" : "waze",
-            "Item 2" : "comgooglemaps",
-          ]
+    name: "JourneyBook",
+    settings: .settings(
+        base: [
+            "DEVELOPMENT_TEAM": "75ESF57BMG",
         ]
-      ),
-      sources: ["JourneyBook/Sources/**"],
-      resources: ["JourneyBook/Resources/**"],
-      dependencies: [
-        .external(name: "FeedKit"),
-      ]
     ),
-    .target(
-      name: "JourneyBookTests",
-      destinations: .iOS,
-      product: .unitTests,
-      bundleId: "co.jackdelaney.jbTests",
-      infoPlist: .default,
-      sources: ["JourneyBook/Tests/**"],
-      resources: [],
-      dependencies: [.target(name: "JourneyBook")]
-    ),
-  ]
+    targets: [
+        .target(
+            name: "JourneyBook",
+            destinations: .iOS,
+            product: .app,
+            bundleId: "co.jackdelaney.jb",
+            infoPlist: .extendingDefault(
+                with: [
+                    "LSApplicationCategoryType": "public.app-category.productivity",
+                    "ITSAppUsesNonExemptEncryption": "false",
+                    "UILaunchScreen": [
+                        "UIColorName": "",
+                        "UIImageName": "",
+                    ],
+                    "NSLocationWhenInUseUsageDescription": "The app needs access to your location to provide location-based services.",
+                    "LSApplicationQueriesSchemes": [
+                        "Item 0": "maps",
+                        "Item 1": "waze",
+                        "Item 2": "comgooglemaps",
+                    ],
+                ]
+            ),
+            sources: ["JourneyBook/Sources/**"],
+            resources: ["JourneyBook/Resources/**"],
+            dependencies: [
+                .external(name: "FeedKit"),
+                .target(name:"JourneyBookWidgetExtension")
+            ]
+        ),
+        .target(
+            name: "JourneyBookWidgetExtension",
+            destinations: .iOS,
+            product: .appExtension,
+            bundleId: "co.jackdelaney.jb.JourneyBookWidgetExtension",
+            infoPlist: .extendingDefault(with: [
+                "CFBundleDisplayName": "$(PRODUCT_NAME)",
+                "NSExtension": [
+                    "NSExtensionPointIdentifier": "com.apple.widgetkit-extension",
+                ],
+            ]),
+
+            sources: ["JourneyBook/JourneyBookWidgetExtension/**"],
+            resources: ["JourneyBook/JourneyBookWidgetExtensionResources/**"],
+            dependencies: [
+                .external(name: "FeedKit"),
+            ]
+
+        ),
+        .target(
+            name: "JourneyBookTests",
+            destinations: .iOS,
+            product: .unitTests,
+            bundleId: "co.jackdelaney.jbTests",
+            infoPlist: .extendingDefault(with: ["NSExtensionPointIdentifier": "com.apple.widgetkit-extension"]),
+            sources: ["JourneyBook/Tests/**"],
+            resources: [],
+            dependencies: [.target(name: "JourneyBook")]
+        ),
+    ]
 )
-
-
