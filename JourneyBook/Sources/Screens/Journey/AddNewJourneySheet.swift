@@ -13,6 +13,16 @@ struct EditExistingJourney: SheetView {
 
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
+    
+    @State private var journeyName : String
+    @State private var journeyDescription : String?
+    
+    
+    init(journey: Journey) {
+        self.journey = journey
+        self.journeyName = journey.journeyName
+        self.journeyDescription = journey.journeyDescription
+    }
 
     var sheetTitle: String {
         "Edit Journey"
@@ -21,10 +31,10 @@ struct EditExistingJourney: SheetView {
     var content: some View {
         Form {
             Section("Journey Name") {
-                TextField("Journey Name", text: $journey.journeyName)
+                TextField("Journey Name", text: $journeyName)
             }
             Section("Journey Description") {
-                TextEditor(text: journeyDescription)
+                TextEditor(text: journeyDescriptionUnWrapped)
             }
         }
         .alert(item: $errorMessage) { error in
@@ -35,6 +45,11 @@ struct EditExistingJourney: SheetView {
     var confirmButton: some View {
         Button("Add") {
             do {
+                if journeyName.isEmpty {
+                    throw JourneyViewModelError.noJourneyText
+                }
+                journey.journeyName = journeyName
+                journey.journeyDescription = journeyDescription
                 try modelContext.save()
                 dismiss()
             } catch JourneyViewModelError.noJourneyText {
@@ -45,14 +60,14 @@ struct EditExistingJourney: SheetView {
         }
     }
 
-    private var journeyDescription: Binding<String> {
+    private var journeyDescriptionUnWrapped: Binding<String> {
         Binding(
-            get: { journey.journeyDescription ?? "" },
+            get: { journeyDescription ?? "" },
             set: {
                 if $0 == "" {
-                    journey.journeyDescription = nil
+                    journeyDescription = nil
                 } else {
-                    journey.journeyDescription = $0
+                    journeyDescription = $0
                 }
             }
         )

@@ -59,18 +59,19 @@ struct JourneyItemsView: View {
                         coordinator.push(page: .journeyDetails(journey))
                     } label: {
                         VStack(alignment: .leading) {
-                            Text("Journey: \(journey.journeyName)")
+                            Text("\(journey.journeyName)")
                                 .font(.headline)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             Text(journey.dateCreated.formatted())
                                 .font(.subheadline)
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(.secondary)
                                 .lineLimit(1)
                                 .frame(maxWidth: .infinity, alignment: .leading)
 
                             if let description = journey.journeyDescription {
                                 Text(description)
                                     .font(.caption)
+                                    .foregroundStyle(.secondary)
                                     .lineLimit(2)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
