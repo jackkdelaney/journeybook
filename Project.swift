@@ -33,7 +33,8 @@ let project = Project(
             resources: ["JourneyBook/Resources/**"],
             dependencies: [
                 .external(name: "FeedKit"),
-                .target(name:"JourneyBookWidgetExtension")
+                .target(name:"JourneyBookWidgetExtension"),
+                .external(name: "PostHog")
             ]
         ),
         .target(

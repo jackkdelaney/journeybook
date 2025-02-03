@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PostHog
 
 struct CoordinatorView: View {
     @StateObject private var coordinator = Coordinator()
@@ -25,6 +26,7 @@ struct CoordinatorView: View {
                 }
         }
         .environmentObject(coordinator)
+        
     }
 
     private func loadEnvironmentVariables() {
