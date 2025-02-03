@@ -25,3 +25,5 @@ class Coordinator: ObservableObject {
         path.removeLast(path.count)
     }
 }
+
+

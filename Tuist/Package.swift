@@ -8,7 +8,8 @@ import PackageDescription
         // Customize the product types for specific package product
         // Default is .staticFramework
         // productTypes: ["Alamofire": .framework,]
-        productTypes: ["FeedKit": .framework]
+        productTypes: ["FeedKit": .framework,"PostHog": .framework]
+
     )
 #endif
 
@@ -16,6 +17,7 @@ let package = Package(
     name: "JourneyBook",
     dependencies: [
         .package(url: "https://github.com/nmdias/FeedKit", from: "9.1.2"),
+        .package(url: "https://github.com/PostHog/posthog-ios.git", from: "3.0.0")
 
         // Add your own dependencies here:
         // .package(url: "https://github.com/Alamofire/Alamofire", from: "5.0.0"),
