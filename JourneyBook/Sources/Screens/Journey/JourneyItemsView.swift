@@ -44,8 +44,11 @@ extension View {
 
 struct JourneyItemsView: View {
     @Query var journeys: [Journey]
+
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject private var coordinator: Coordinator
+
+    @Binding var sheet: JourneySheet?
 
     @ViewBuilder
     var body: some View {
@@ -74,6 +77,13 @@ struct JourneyItemsView: View {
                         }
                     }
                     .chevronButtonStyle(compact: true)
+                    .contextMenu {
+                        Button {
+                            sheet = .editJourney(journey)
+                        } label: {
+                            Label("Edit", systemImage: "pencil")
+                        }
+                    }
                 }
                 .onDelete(perform: delete)
             }
