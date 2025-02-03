@@ -68,7 +68,12 @@ struct JourneyDetailView: View {
             item.buildView()
         }
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button {
+                    sheet = .editJourney(journey)
+                } label: {
+                    Label("Change Title or Description",systemImage: "info.square")
+                }
                 EditButton()
             }
         }
