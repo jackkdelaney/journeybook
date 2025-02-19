@@ -13,6 +13,7 @@ enum JourneySheet: Identifiable, Hashable {
     }
 
     case addNewJourney
+    case editJourney(Journey)
 }
 
 extension JourneySheet {
@@ -20,6 +21,8 @@ extension JourneySheet {
     func buildView() -> some View {
         switch self {
         case .addNewJourney: AddNewJourneySheet()
+        case let .editJourney(journey):
+            EditExistingJourney(journey: journey)
         }
     }
 }
