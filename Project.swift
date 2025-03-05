@@ -21,6 +21,7 @@ let project = Project(
                         "UIColorName": "",
                         "UIImageName": "",
                     ],
+                    "UISupportsFullScreenInAssistiveAccess" : "true",
                     "NSLocationWhenInUseUsageDescription": "The app needs access to your location to provide location-based services.",
                     "LSApplicationQueriesSchemes": [
                         "Item 0": "maps",
