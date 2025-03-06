@@ -30,11 +30,11 @@ struct AddJourneyLocationStepGetter: Identifiable, Hashable, Equatable {
 struct AddJourneyLocationVisualResourceGetter: Identifiable, Hashable, Equatable {
     var id: UUID
 
-    var resource: Binding<VisualResource?>
+    var resources: Binding<[VisualResource]>
 
-    init(id: UUID = UUID(), resource: Binding<VisualResource?>) {
+    init(id: UUID = UUID(), resources: Binding<[VisualResource]>) {
         self.id = id
-        self.resource = resource
+        self.resources = resources
     }
 
     static func == (lhs: AddJourneyLocationVisualResourceGetter, rhs: AddJourneyLocationVisualResourceGetter) -> Bool {
@@ -105,7 +105,7 @@ extension AddJourneyStepSheet {
         case let .getLocationFromAddress(locationGetter):
             LocationFindView(selectedLocation: locationGetter.location)
         case let .getVisualResourceFromList(resourceGetter):
-            ResourceSelectionView(selection: resourceGetter.resource)
+            ResourceSelectionView(selectedResources: resourceGetter.resources)
         case let .getTransportRouteFromList(transportGetter):
             TransportRouteSelectorView(selectedRoute: transportGetter.transport)
                 .presentationDetents([.medium, .large])
