@@ -5,6 +5,7 @@
 //  Created by Jack Delaney on 02/01/2025.
 //
 
+import CoreLocation
 import SwiftUI
 
 struct AddNewJourneyStepButton: View {
@@ -43,4 +44,5 @@ struct AddNewJourneyStepButton: View {
         .removeListRowPaddingInsets()
         .buttonStyle(PlainButtonStyle())
     }
+    
 }

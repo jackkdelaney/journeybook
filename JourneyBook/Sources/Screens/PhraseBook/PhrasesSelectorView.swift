@@ -5,23 +5,22 @@
 //  Created by Jack Delaney on 06/01/2025.
 //
 
-import SwiftUI
-import SwiftData
 import AVFAudio
+import SwiftData
+import SwiftUI
 
-struct PhrasesSelectorView : View {
-    @Binding var phrases : [Phrase]
-    
+struct PhrasesSelectorView: View {
+    @Binding var phrases: [Phrase]
+
     @Query var storedPhrases: [Phrase]
-    
+
     let speaker = Speaker()
 
     @AppStorage("storedVoice") var storedVoice: String = ""
-    
+
     @State var voice: AVSpeechSynthesisVoice? = nil
 
-
-    var body : some View {
+    var body: some View {
         List {
             ForEach(storedPhrases) { phrase in
                 HStack {
@@ -38,7 +37,7 @@ struct PhrasesSelectorView : View {
                         } else {
                             phrases.append(phrase)
                         }
-                        
+
                     } label: {
                         HStack {
                             Text(phrase.text)
@@ -58,6 +57,14 @@ struct PhrasesSelectorView : View {
         .onAppear {
             if storedVoice != "" {
                 voice = AVSpeechSynthesisVoice(identifier: storedVoice)
+            }
+        }
+        .overlay {
+            if storedPhrases.isEmpty {
+                ContentUnavailableView(
+                    "No Phrases",
+                    systemImage: "waveform.slash"
+                )
             }
         }
     }

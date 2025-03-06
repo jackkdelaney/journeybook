@@ -46,16 +46,15 @@ struct AddJourneyLocationVisualResourceGetter: Identifiable, Hashable, Equatable
     }
 }
 
-struct AddJourneyPhraseSelectionGetter : Identifiable, Hashable, Equatable {
-    var id : UUID
-    var phrases : Binding<[Phrase]>
-    
+struct AddJourneyPhraseSelectionGetter: Identifiable, Hashable, Equatable {
+    var id: UUID
+    var phrases: Binding<[Phrase]>
+
     init(id: UUID = UUID(), phrases: Binding<[Phrase]>) {
         self.id = id
         self.phrases = phrases
     }
-    
-    
+
     static func == (lhs: AddJourneyPhraseSelectionGetter, rhs: AddJourneyPhraseSelectionGetter) -> Bool {
         lhs.id == rhs.id
     }
@@ -65,18 +64,16 @@ struct AddJourneyPhraseSelectionGetter : Identifiable, Hashable, Equatable {
     }
 }
 
-struct AddJourneyTransportGetter : Identifiable, Hashable, Equatable {
-    var id : UUID
-    
-    var transport : Binding<TransportRoute?>
-    
-    
+struct AddJourneyTransportGetter: Identifiable, Hashable, Equatable {
+    var id: UUID
+
+    var transport: Binding<TransportRoute?>
+
     init(id: UUID = UUID(), transport: Binding<TransportRoute?>) {
         self.id = id
         self.transport = transport
     }
-    
-    
+
     static func == (lhs: AddJourneyTransportGetter, rhs: AddJourneyTransportGetter) -> Bool {
         lhs.id == rhs.id
     }
@@ -84,7 +81,6 @@ struct AddJourneyTransportGetter : Identifiable, Hashable, Equatable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
-
 }
 
 enum AddJourneyStepSheet: Identifiable, Hashable {
