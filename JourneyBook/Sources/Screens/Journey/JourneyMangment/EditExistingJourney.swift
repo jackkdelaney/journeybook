@@ -65,7 +65,8 @@ struct EditExistingJourney: SheetView {
     private var journeyDescriptionUnWrapped: Binding<String> {
         Binding(
             get: {
-                journeyDescription ?? "" },
+                journeyDescription ?? ""
+            },
             set: {
                 if $0.isEmpty || $0 == "" {
                     journeyDescription = nil
