@@ -16,6 +16,8 @@ struct JourneyStepDetailView: View {
 
     @State var voice: AVSpeechSynthesisVoice? = nil
 
+    @State private var sheet: JourneySheet? = nil
+
     let speaker = Speaker()
 
     var body: some View {
@@ -48,6 +50,18 @@ struct JourneyStepDetailView: View {
         }
         .navigationTitle("\(step.stepName)")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button {
+                    sheet = .editJourneyStep(step)
+                } label: {
+                    Text("Edit")
+                }
+            }
+        }
+        .sheet(item: $sheet) { item in
+            item.buildView()
+        }
     }
 
     @ViewBuilder

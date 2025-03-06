@@ -8,7 +8,7 @@
 import SwiftData
 import SwiftUI
 
-struct EditExistingJourney: SheetView {
+struct EditExistingJourneySheet: SheetView {
     @Bindable var journey: Journey
     @State private var errorMessage: JourneyViewModelError?
 
