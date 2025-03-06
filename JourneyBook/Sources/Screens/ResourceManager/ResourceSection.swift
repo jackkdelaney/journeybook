@@ -17,7 +17,7 @@ struct ResourceSection: View {
     @ViewBuilder
     var body: some View {
         if resource.resourceType == .image {
-            Section("Photo") {
+            ListDisclosureGroup("Photo",openAtStart: true) {
                 Image(uiImage: UIImage(data: resource.resourceData) ?? UIImage())
                     .resizable()
                     .frame(height: 300)

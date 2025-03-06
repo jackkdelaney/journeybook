@@ -1,5 +1,5 @@
 //
-//  ListDisclosiureGroup.swift
+//  ListDisclosureGroup.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 06/01/2025.
@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct ListDisclosiureGroup<InsideView: View>: View {
+struct ListDisclosureGroup<InsideView: View>: View {
     var title: String
     var contentView: () -> InsideView
-    @State var isExpanded: Bool = false
+    @State var isExpanded: Bool
     @State private var rotating = false
 
-    init(_ title: String, @ViewBuilder _ content: @escaping () -> InsideView)
-    {
+    init(_ title: String, openAtStart startingPoint: Bool = false, @ViewBuilder _ content: @escaping () -> InsideView) {
         self.title = title
-        self.contentView = content
+        self._isExpanded = State(initialValue: startingPoint)
+        contentView = content
     }
 
     var body: some View {
@@ -35,14 +35,11 @@ struct ListDisclosiureGroup<InsideView: View>: View {
                     Image(
                         systemName: isExpanded
                             ? "chevron.down" : "chevron.right")
-
                 }
                 .padding(.bottom, 12)
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-
         }
     }
 }
-

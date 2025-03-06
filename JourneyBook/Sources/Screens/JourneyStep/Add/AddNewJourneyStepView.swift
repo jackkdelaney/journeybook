@@ -21,10 +21,10 @@ struct AddNewJourneyStepView: SheetView {
 
     @State private var cordinates: CLLocationCoordinate2D?
 
-    @State private var resource: VisualResource?
+    @State private var resources = [VisualResource]()
 
     @State private var publicTransit: TransportRoute?
-    
+
     @State private var phrases = [Phrase]()
 
     var content: some View {
@@ -60,17 +60,17 @@ struct AddNewJourneyStepView: SheetView {
             }
         }
     }
-    
+
     @ViewBuilder
     var resourceSection: some View {
-        if let visualResource = resource {
+        ForEach(resources) { visualResource in
             ResourceSection(resource: visualResource)
-        } else {
-            Section("Resource") {
-                Button("Select Resource") {
-                    let resourceWrapped = AddJourneyLocationVisualResourceGetter(resource: $resource)
-                    sheet = .getVisualResourceFromList(resourceWrapped)
-                }
+        }
+
+        Section("Resource") {
+            Button("Select Resource") {
+                let resourceWrapped = AddJourneyLocationVisualResourceGetter(resources: $resources)
+                sheet = .getVisualResourceFromList(resourceWrapped)
             }
         }
     }
@@ -81,22 +81,22 @@ struct AddNewJourneyStepView: SheetView {
             Section("Public Transit") {
                 Text("\(publicTransitResource.url)")
                 Button("Edit") {
-                    let transportWrapped = AddJourneyTransportGetter(transport:$publicTransit)
+                    let transportWrapped = AddJourneyTransportGetter(transport: $publicTransit)
                     sheet = .getTransportRouteFromList(transportWrapped)
                 }
             }
         } else {
             Section("Public Transit") {
                 Button("Add Public Transport Route") {
-                    let transportWrapped = AddJourneyTransportGetter(transport:$publicTransit)
+                    let transportWrapped = AddJourneyTransportGetter(transport: $publicTransit)
                     sheet = .getTransportRouteFromList(transportWrapped)
                 }
             }
         }
     }
-    
+
     @ViewBuilder
-    var phraseSection : some View {
+    var phraseSection: some View {
         Section(phraseText) {
             Button("Select Phrase's") {
                 let phrasesWrapped = AddJourneyPhraseSelectionGetter(phrases: $phrases)
@@ -104,14 +104,12 @@ struct AddNewJourneyStepView: SheetView {
             }
         }
     }
-    
-    var phraseText : String {
-            return String(AttributedString(
-                localized: "You have ^[\(phrases.count) \("Phrase")](inflect: true) in this step."
-            ).characters)
-        }
-    
-  
+
+    var phraseText: String {
+        return String(AttributedString(
+            localized: "You have ^[\(phrases.count) \("Phrase")](inflect: true) in this step."
+        ).characters)
+    }
 
     var confirmButton: some View {
         Button("Save") {
@@ -146,9 +144,14 @@ struct AddNewJourneyStepView: SheetView {
             stepDescription: desc,
             journey: journey,
             location: location,
-            visualResource: resource,
+            visualResources: resources,
             route: publicTransit
         )
+
+        for resource in resources {
+            resource.steps.append(step)
+        }
+
         for phrase in phrases {
             step.phrases.append(phrase)
         }
