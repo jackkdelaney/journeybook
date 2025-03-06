@@ -8,8 +8,21 @@
 import Foundation
 import SwiftUI
 
+
+/*
+ AddNewJourneyStepView
+ */
+
+
 struct EditExistingJourneyStepSheet: SheetView {
     @Bindable var journeyStep: JourneyStep
+    
+    
+    init(journeyStep: JourneyStep) {
+        self.journeyStep = journeyStep
+        
+        
+    }
 
     var sheetTitle: String {
         "Edit Step"
