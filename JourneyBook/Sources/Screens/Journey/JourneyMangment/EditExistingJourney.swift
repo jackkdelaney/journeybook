@@ -21,7 +21,9 @@ struct EditExistingJourney: SheetView {
     init(journey: Journey) {
         self.journey = journey
         journeyName = journey.journeyName
-        journeyDescription = journey.journeyDescription
+
+        _journeyName = State(initialValue: journey.journeyName)
+        _journeyDescription = State(initialValue: journey.journeyDescription)
     }
 
     var sheetTitle: String {
@@ -62,9 +64,10 @@ struct EditExistingJourney: SheetView {
 
     private var journeyDescriptionUnWrapped: Binding<String> {
         Binding(
-            get: { journeyDescription ?? "" },
+            get: {
+                journeyDescription ?? "" },
             set: {
-                if $0 == "" {
+                if $0.isEmpty || $0 == "" {
                     journeyDescription = nil
                 } else {
                     journeyDescription = $0
