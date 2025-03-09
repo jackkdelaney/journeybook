@@ -18,7 +18,7 @@ class JourneyStep {
     var journey: Journey?
     var orderIndex: Int
 
-    init(id: UUID = UUID(), dateCreated: Date = Date.now, stepName: String, stepDescription: String? = nil, journey: Journey, location: JourneyStepLocation? = nil, visualResource: VisualResource? = nil, route: TransportRoute? = nil,phrases: [Phrase] = []) {
+    init(id: UUID = UUID(), dateCreated: Date = Date.now, stepName: String, stepDescription: String? = nil, journey: Journey, location: JourneyStepLocation? = nil, visualResources: [VisualResource] = [], route: TransportRoute? = nil,phrases: [Phrase] = []) {
         self.id = id
         self.dateCreated = dateCreated
         self.stepName = stepName
@@ -26,7 +26,7 @@ class JourneyStep {
         orderIndex = journey.steps.count + 1
         self.journey = journey
         self.location = location
-        self.visualResource = visualResource
+        self.visualResources = visualResources
         self.route = route
         self.phrases = phrases
     }
@@ -37,7 +37,7 @@ class JourneyStep {
 
     // MARK: VISUAL RESOURCE
 
-    var visualResource: VisualResource?
+    var visualResources: [VisualResource]
 
     var route: TransportRoute?
     

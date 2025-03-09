@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ResourceView: View {
-    var resource: VisualResource
+    @Bindable var resource: VisualResource
 
     var body: some View {
         Form {

@@ -17,101 +17,24 @@ struct AddNewJourneyStepView: SheetView {
     @State private var localName: String = ""
     @State private var localDescription: String = ""
 
-    @State private var sheet: AddJourneyStepSheet?
-
     @State private var cordinates: CLLocationCoordinate2D?
 
-    @State private var resource: VisualResource?
+    @State private var resources = [VisualResource]()
 
     @State private var publicTransit: TransportRoute?
-    
+
     @State private var phrases = [Phrase]()
 
     var content: some View {
-        Form {
-            Section("Step Name") {
-                TextField("Step Name", text: $localName)
-            }
-            Section("Description") {
-                TextEditor(text: $localDescription)
-            }
-            locationSection
-            resourceSection
-            publicTransitSection
-            phraseSection
-        }
-        .sheet(item: $sheet) { item in
-            item.buildView()
-        }
+        JourneyStepInputForm(
+            localName: $localName,
+            localDescription: $localDescription,
+            cordinates: $cordinates,
+            resources: $resources,
+            publicTransit: $publicTransit,
+            phrases: phrases
+        )
     }
-
-    var locationSection: some View {
-        Section("Location") {
-            if let cordinates {
-                MapInDetailView(location: JourneyStepLocation(location: cordinates))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 100)
-                    .removeListRowPaddingInsets()
-            } else {
-                Button("Find Location") {
-                    let locationWrapped = AddJourneyLocationStepGetter(location: $cordinates)
-                    sheet = .getLocationFromAddress(locationWrapped)
-                }
-            }
-        }
-    }
-    
-    @ViewBuilder
-    var resourceSection: some View {
-        if let visualResource = resource {
-            ResourceSection(resource: visualResource)
-        } else {
-            Section("Resource") {
-                Button("Select Resource") {
-                    let resourceWrapped = AddJourneyLocationVisualResourceGetter(resource: $resource)
-                    sheet = .getVisualResourceFromList(resourceWrapped)
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    var publicTransitSection: some View {
-        if let publicTransitResource = publicTransit {
-            Section("Public Transit") {
-                Text("\(publicTransitResource.url)")
-                Button("Edit") {
-                    let transportWrapped = AddJourneyTransportGetter(transport:$publicTransit)
-                    sheet = .getTransportRouteFromList(transportWrapped)
-                }
-            }
-        } else {
-            Section("Public Transit") {
-                Button("Add Public Transport Route") {
-                    let transportWrapped = AddJourneyTransportGetter(transport:$publicTransit)
-                    sheet = .getTransportRouteFromList(transportWrapped)
-                }
-            }
-        }
-    }
-    
-    @ViewBuilder
-    var phraseSection : some View {
-        Section(phraseText) {
-            Button("Select Phrase's") {
-                let phrasesWrapped = AddJourneyPhraseSelectionGetter(phrases: $phrases)
-                sheet = .selectPhrases(phrasesWrapped)
-            }
-        }
-    }
-    
-    var phraseText : String {
-            return String(AttributedString(
-                localized: "You have ^[\(phrases.count) \("Phrase")](inflect: true) in this step."
-            ).characters)
-        }
-    
-  
 
     var confirmButton: some View {
         Button("Save") {
@@ -146,9 +69,14 @@ struct AddNewJourneyStepView: SheetView {
             stepDescription: desc,
             journey: journey,
             location: location,
-            visualResource: resource,
+            visualResources: resources,
             route: publicTransit
         )
+
+        for resource in resources {
+            resource.steps.append(step)
+        }
+
         for phrase in phrases {
             step.phrases.append(phrase)
         }

@@ -14,6 +14,7 @@ enum JourneySheet: Identifiable, Hashable {
 
     case addNewJourney
     case editJourney(Journey)
+    case editJourneyStep(JourneyStep)
 }
 
 extension JourneySheet {
@@ -22,7 +23,9 @@ extension JourneySheet {
         switch self {
         case .addNewJourney: AddNewJourneySheet()
         case let .editJourney(journey):
-            EditExistingJourney(journey: journey)
+            EditExistingJourneySheet(journey: journey)
+        case let .editJourneyStep(journeyStep):
+            EditExistingJourneyStepSheet(journeyStep: journeyStep)
         }
     }
 }
