@@ -86,11 +86,14 @@ struct JourneyStepInputForm: View {
 
     private var locationSection: some View {
         Section("Location") {
-            if let cordinates {
-                MapInDetailView(location: JourneyStepLocation(location: cordinates))
+            if let cordinatesWrapped = cordinates {
+                MapInDetailView(location: JourneyStepLocation(location: cordinatesWrapped))
                     .frame(maxWidth: .infinity)
                     .frame(height: 100)
                     .removeListRowPaddingInsets()
+                Button("Clear Location") {
+                    cordinates = nil
+                }
             } else {
                 Button("Find Location") {
                     let locationWrapped = AddJourneyLocationStepGetter(location: $cordinates)
