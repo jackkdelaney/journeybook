@@ -35,15 +35,15 @@ struct EditExistingJourneyStepSheet: SheetView {
         localDescription = journeyStep.stepDescription ?? ""
 
         cordinates = journeyStep.location?.location ?? nil
-
         resources = []
+        phrases = []
+
         for resource in journeyStep.visualResources {
             resources.append(resource)
         }
 
         publicTransit = journeyStep.route
 
-        phrases = []
         for phrase in journeyStep.phrases {
             phrases.append(phrase)
         }
@@ -66,10 +66,6 @@ struct EditExistingJourneyStepSheet: SheetView {
 
     var confirmButton: some View {
         Button("Update") {
-            
-            //journeyStep
-            
-            
             let desc = localDescription.isEmpty ? nil : localDescription
             let location: JourneyStepLocation?
             if let cordinates {
@@ -77,42 +73,61 @@ struct EditExistingJourneyStepSheet: SheetView {
             } else {
                 location = nil
             }
-            
-            for resource in journeyStep.visualResources {
-              //  resource.steps.append(step)
-            }
 
-            for phrase in journeyStep.phrases {
-              //  step.phrases.append(phrase)
-            }
-            
-            
+            journeyStep.stepName = localName
+            journeyStep.stepDescription = desc
+            journeyStep.location = location
+            journeyStep.route = publicTransit
 
-//            let step = JourneyStep(
-//                stepName: localName,
-//                stepDescription: desc,
-//                journey: journey,
-//                location: location,
-//                visualResources: resources,
-//                route: publicTransit
-//            )
+            addNewPhrasesAndSteps()
+            removeUnwantedResourcesAndPhrases()
 
-                // if objects.contains(where: { $0.name == "bob" }) {
+            try? modelContext.save()
+            dismiss()
+        }
+    }
 
-            for resource in resources {
-                if journeyStep.steps.filter { item in
-                    item.id == resource.id
-                }.isEmpty {
-                    journeyStep.steps.append(resource)
+    private func removeUnwantedResourcesAndPhrases() {
+        for resource in journeyStep.visualResources {
+            if resources.filter({ item in
+                resource.id == item.id
+            }).isEmpty {
+                resource.steps.removeAll { $0.id == journeyStep.id }
+                journeyStep.visualResources.removeAll {
+                    $0.id == resource.id
                 }
             }
+        }
 
-            for phrase in phrases {
+        for phrase in journeyStep.phrases {
+            if phrases.filter({ item in
+                phrase.id == item.id
+            }).isEmpty {
+                phrase.steps.removeAll { $0.id == journeyStep.id }
+                journeyStep.phrases.removeAll {
+                    $0.id == phrase.id
+                }
+            }
+        }
+    }
+
+    private func addNewPhrasesAndSteps() {
+        for resource in resources {
+            if journeyStep.visualResources.filter({ item in
+                item.id == resource.id
+            }).isEmpty {
+                resource.steps.append(journeyStep)
+                journeyStep.visualResources.append(resource)
+            }
+        }
+
+        for phrase in phrases {
+            if journeyStep.phrases.filter({ item in
+                item.id == phrase.id
+            }).isEmpty {
+                phrase.steps.append(journeyStep)
                 journeyStep.phrases.append(phrase)
             }
-            
-            
-            try? modelContext.save()
         }
     }
 }
