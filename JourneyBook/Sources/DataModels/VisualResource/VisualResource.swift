@@ -18,7 +18,7 @@ class VisualResource {
     @Attribute(.externalStorage)
     var resourceData: Data
     
-    @Relationship(deleteRule: .nullify, inverse: \JourneyStep.visualResource) var steps: [JourneyStep]
+    @Relationship(inverse: \JourneyStep.visualResources) var steps: [JourneyStep]
 
 
     init(resourceData: Data, resourceType: VisualResourceType, aidDescription: String? = nil, steps: [JourneyStep] = []) {

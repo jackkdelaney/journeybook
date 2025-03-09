@@ -23,7 +23,7 @@ extension JourneyStepSheet {
         case let .addNewStep(journey):
             AddNewJourneyStepView(journey: journey)
         case let .editJourney(journey):
-            EditExistingJourney(journey: journey)
+            EditExistingJourneySheet(journey: journey)
         }
     }
 }

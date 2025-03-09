@@ -72,7 +72,7 @@ struct JourneyDetailView: View {
                 Button {
                     sheet = .editJourney(journey)
                 } label: {
-                    Label("Change Title or Description",systemImage: "info.square")
+                    Label("Change Title or Description",systemImage: "slider.horizontal.2.square")
                 }
                 EditButton()
             }

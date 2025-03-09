@@ -12,6 +12,7 @@ struct TransportRouteSelectorView: View {
     @Query var routes: [TransportRoute]
 
     @Binding var selectedRoute: TransportRoute?
+
     var body: some View {
         List {
             ForEach(routes) { route in
@@ -32,7 +33,14 @@ struct TransportRouteSelectorView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
-                .navigationTitle("Select a Route")
+            }
+        }
+        .overlay {
+            if routes.isEmpty {
+                ContentUnavailableView(
+                    "No Routes",
+                    systemImage: "engine.combustion.badge.exclamationmark"
+                )
             }
         }
     }
