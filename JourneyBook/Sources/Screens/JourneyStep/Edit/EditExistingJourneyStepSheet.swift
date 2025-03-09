@@ -35,18 +35,21 @@ struct EditExistingJourneyStepSheet: SheetView {
         localDescription = journeyStep.stepDescription ?? ""
 
         cordinates = journeyStep.location?.location ?? nil
-        resources = []
-        phrases = []
+        resources = journeyStep.visualResources.map { $0 }
+        phrases = journeyStep.phrases.map { $0 }
 
-        for resource in journeyStep.visualResources {
-            resources.append(resource)
-        }
+//        print("BEFORE \(journeyStep.visualResources.count)")
+////        for resource in journeyStep.visualResources {
+////            print("ADDING A RESOURCE!!")
+////            print(resources.count)
+////            $resources.wrappedValue.append(resource)
+////            print(resources.count)
+////        }
+////        print("AFTER")
 
         publicTransit = journeyStep.route
 
-        for phrase in journeyStep.phrases {
-            phrases.append(phrase)
-        }
+       
     }
 
     var sheetTitle: String {
