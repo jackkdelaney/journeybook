@@ -23,7 +23,6 @@ struct PhraseBook: View {
         }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
-                EditButton()
                 Button {
                     sheet = .voices
 
@@ -32,6 +31,7 @@ struct PhraseBook: View {
                         "Change Voice", systemImage: "person.line.dotted.person"
                     )
                 }
+                EditButton()
             }
         }
     }
