@@ -9,7 +9,6 @@ import CoreLocation
 import SwiftUI
 
 struct AddNewJourneyStepButton: View {
-    @EnvironmentObject private var coordinator: Coordinator
 
     @Bindable var journey: Journey
 

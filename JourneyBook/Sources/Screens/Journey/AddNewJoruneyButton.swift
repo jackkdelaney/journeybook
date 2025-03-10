@@ -1,5 +1,5 @@
 //
-//  AddNewJoruneyButtom.swift
+//  AddNewJoruneyButton.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 31/12/2024.
@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct AddNewJoruneyButtom: View {
-    @EnvironmentObject private var coordinator: Coordinator
+struct AddNewJoruneyButton: View {
 
     @Binding var sheet: JourneySheet?
 
