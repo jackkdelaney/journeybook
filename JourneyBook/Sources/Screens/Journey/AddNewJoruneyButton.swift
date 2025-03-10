@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AddNewJoruneyButton: View {
-
     @Binding var sheet: JourneySheet?
 
     var body: some View {

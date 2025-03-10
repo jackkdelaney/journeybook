@@ -23,7 +23,6 @@ struct PhraseDetailView: View {
             stepperView
             Spacer()
             playButton
-
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(model.colour)
@@ -36,7 +35,6 @@ struct PhraseDetailView: View {
                     "Change Background Colour", selection: $model.colour
                 )
                 .labelsHidden()
-
             }
         }
     }
@@ -52,22 +50,21 @@ struct PhraseDetailView: View {
                 Text("Play")
                     .font(.headline)
             }
-            .padding([.top,.bottom])
-            .padding([.top,.bottom])
+            .padding([.top, .bottom])
+            .padding([.top, .bottom])
             .frame(maxWidth: .infinity)
-            .frame(minWidth: 70,idealWidth: 250)
+            .frame(minWidth: 70, idealWidth: 250)
             .background(.ultraThinMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 5))
             .shadow(radius: 3)
             .padding([.leading, .trailing], 20)
         }
         .buttonStyle(.plain)
-
     }
 
     private var stepperView: some View {
         VStack(alignment: .center) {
-            Stepper("Font Size", value: $model.fontSizeAsInt, in: 0...10)
+            Stepper("Font Size", value: $model.fontSizeAsInt, in: 0 ... 10)
                 .labelsHidden()
                 .padding(.top)
             HStack(alignment: .center) {
@@ -94,8 +91,8 @@ struct PhraseDetailView: View {
     private var scroolingViewBox: some View {
         ScrollView {
             Text(model.text)
-            .font(model.fontSize.fontStyle)
-            .fontWeight(.regular)
+                .font(model.fontSize.fontStyle)
+                .fontWeight(.regular)
         }
         .contentMargins(1, for: .scrollContent)
         .frame(maxWidth: .infinity)
@@ -105,5 +102,4 @@ struct PhraseDetailView: View {
         .shadow(radius: 3)
         .padding([.leading, .trailing], 20)
     }
-
 }

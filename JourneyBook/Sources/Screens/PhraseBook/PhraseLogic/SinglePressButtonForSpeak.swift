@@ -9,7 +9,6 @@ import AVFAudio
 import SwiftUI
 
 struct SinglePressButtonForSpeak<Content: View>: View {
-
     @AppStorage("storedVoice") var storedVoice: String = ""
 
     @State var voice: AVSpeechSynthesisVoice? = nil
@@ -25,21 +24,21 @@ struct SinglePressButtonForSpeak<Content: View>: View {
         text: Binding<String>, showImage: Bool = true,
         @ViewBuilder content: () -> Content
     ) {
-        self._text = text
+        _text = text
         self.showImage = showImage
         self.content = content()
     }
-    
+
     init(
         text: String, showImage: Bool = true,
         @ViewBuilder content: () -> Content
     ) {
         let binding = Binding<String>(
-                    get: { text },
-                    set: {_ in }
-                )
-        
-        self._text = binding
+            get: { text },
+            set: { _ in }
+        )
+
+        _text = binding
         self.showImage = showImage
         self.content = content()
     }
@@ -63,7 +62,6 @@ struct SinglePressButtonForSpeak<Content: View>: View {
             if storedVoice != "" {
                 voice = AVSpeechSynthesisVoice(identifier: storedVoice)
             }
-
         }
     }
 }

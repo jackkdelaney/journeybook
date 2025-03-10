@@ -15,8 +15,8 @@ class CurrentPhraseViewModel {
     let modelContext: ModelContext
 
     var text: String
-    
-    var fontSize : FontSizes {
+
+    var fontSize: FontSizes {
         didSet {
             updateFontSize()
         }
@@ -27,8 +27,8 @@ class CurrentPhraseViewModel {
             updateColor()
         }
     }
-    
-    var fontSizeAsInt : Int {
+
+    var fontSizeAsInt: Int {
         didSet {
             fontSize = FontSizes(rawValue: fontSizeAsInt) ?? fontSize
             updateFontSize()
@@ -40,14 +40,15 @@ class CurrentPhraseViewModel {
     @MainActor
     init(phrase: Phrase) {
         self.phrase = phrase
-        self.text = phrase.text
-        self.colour = phrase.colour
-        self.fontSize = phrase.fontSize
-        self.fontSizeAsInt = phrase.fontSize.rawValue
+        text = phrase.text
+        colour = phrase.colour
+        fontSize = phrase.fontSize
+        fontSizeAsInt = phrase.fontSize.rawValue
 
         modelContainer = try! ModelContainer(
             for: VisualResource.self, Phrase.self, Journey.self, JourneyStep.self, TransportRoute.self,
-            configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+            configurations: ModelConfiguration(isStoredInMemoryOnly: false)
+        )
         modelContext = modelContainer.mainContext
     }
 
@@ -76,7 +77,7 @@ class CurrentPhraseViewModel {
             }
         }
     }
-    
+
     private func updateFontSize() {
         if phrase.fontSize != fontSize {
             phrase.fontSize = fontSize

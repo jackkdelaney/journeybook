@@ -44,12 +44,10 @@ class Phrase: Identifiable {
                 _colour = newValueCheckedAndHex
                 dateModified = Date.now
             }
-
         }
     }
 
     @Relationship(inverse: \JourneyStep.phrases) var steps: [JourneyStep]
-    
 
     init(
         text: String,
@@ -65,7 +63,7 @@ class Phrase: Identifiable {
         _text = text
         self.dateModified = dateModified
         self.steps = steps
-        self._colour = colour.toHex() ?? "#269cc2"
-        self._fontSize = fontSize
+        _colour = colour.toHex() ?? "#269cc2"
+        _fontSize = fontSize
     }
 }

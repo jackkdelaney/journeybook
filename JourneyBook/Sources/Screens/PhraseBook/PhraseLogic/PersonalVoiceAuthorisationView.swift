@@ -9,7 +9,6 @@ import AVFAudio
 import SwiftUI
 
 struct PersonalVoiceAuthorisationView: View {
-
     @State var status = AVSpeechSynthesizer.personalVoiceAuthorizationStatus
 
     @ViewBuilder
@@ -33,7 +32,6 @@ struct PersonalVoiceAuthorisationView: View {
                         self.status =
                             AVSpeechSynthesizer.personalVoiceAuthorizationStatus
                     }
-
             }
         } else if status == .authorized {
             Text(

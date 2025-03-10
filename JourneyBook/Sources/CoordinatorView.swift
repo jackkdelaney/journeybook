@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 24/12/2024.
 //
 
-import SwiftUI
 import PostHog
+import SwiftUI
 
 struct CoordinatorView: View {
     @StateObject private var coordinator = Coordinator()
@@ -26,7 +26,6 @@ struct CoordinatorView: View {
                 }
         }
         .environmentObject(coordinator)
-        
     }
 
     private func loadEnvironmentVariables() {
@@ -38,6 +37,6 @@ struct CoordinatorView: View {
                     setenv(String(keyValue[0]), String(keyValue[1]), 1)
                 }
             }
-        } 
+        }
     }
 }

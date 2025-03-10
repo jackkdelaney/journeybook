@@ -81,7 +81,6 @@ struct AddNewJourneyStepView: SheetView {
             phrase.steps.append(step)
         }
 
-        
         modelContext.insert(step)
         order()
         try? modelContext.save()

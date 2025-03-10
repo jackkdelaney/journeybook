@@ -41,7 +41,6 @@ struct PhraseListView: View {
                                         maxWidth: .infinity, alignment: .leading
                                     )
                             }
-
                         }
                     }
                     .chevronButtonStyle(compact: true)
@@ -54,21 +53,18 @@ struct PhraseListView: View {
                         Button {
                             sheet = .editPhrase(phrase)
                         } label: {
-                            Label("Edit Phrase",systemImage: "pencil")
+                            Label("Edit Phrase", systemImage: "pencil")
                         }
-
                     }
-
                 }
                 .onDelete(perform: delete)
-
             }
         }
     }
 
     private func deletePhrase(phrase: Phrase) {
         for phraseStep in phrase.steps {
-            phraseStep.phrases.removeAll { $0.id == phrase.id}
+            phraseStep.phrases.removeAll { $0.id == phrase.id }
         }
         modelContext.delete(phrase)
 
@@ -81,7 +77,7 @@ struct PhraseListView: View {
         for offset in offsets {
             let phrase = phrases[offset]
             for phraseStep in phrase.steps {
-                phraseStep.phrases.removeAll { $0.id == phrase.id}
+                phraseStep.phrases.removeAll { $0.id == phrase.id }
             }
             modelContext.delete(phrase)
         }
@@ -89,5 +85,4 @@ struct PhraseListView: View {
             try modelContext.save()
         } catch {}
     }
-
 }

@@ -72,7 +72,7 @@ struct JourneyDetailView: View {
                 Button {
                     sheet = .editJourney(journey)
                 } label: {
-                    Label("Change Title or Description",systemImage: "slider.horizontal.2.square")
+                    Label("Change Title or Description", systemImage: "slider.horizontal.2.square")
                 }
                 EditButton()
             }
@@ -82,7 +82,6 @@ struct JourneyDetailView: View {
     var sortedJourneySteps: [JourneyStep] {
         journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
     }
-
 
     func move(fromOffsets from: IndexSet, toOffset to: Int) {
         var sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
