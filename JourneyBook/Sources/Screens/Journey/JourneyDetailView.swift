@@ -83,12 +83,6 @@ struct JourneyDetailView: View {
         journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
     }
 
-    private func order() {
-        let sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
-        for (index, item) in sortedLocalList.enumerated() {
-            item.orderIndex = index
-        }
-    }
 
     func move(fromOffsets from: IndexSet, toOffset to: Int) {
         var sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })

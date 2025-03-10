@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PhraseDetailView: View {
-    @EnvironmentObject private var coordinator: Coordinator
     @Environment(\.modelContext) private var modelContext
 
     @State var model: CurrentPhraseViewModel
