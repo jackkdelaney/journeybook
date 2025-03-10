@@ -2,11 +2,6 @@ import ProjectDescription
 
 let project = Project(
     name: "JourneyBook",
-    settings: .settings(
-        base: [
-            "DEVELOPMENT_TEAM": "75ESF57BMG",
-        ]
-    ),
     targets: [
         .target(
             name: "JourneyBook",
