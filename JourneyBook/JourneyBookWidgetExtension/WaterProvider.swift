@@ -33,14 +33,11 @@ struct Provider: TimelineProvider {
 
             let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
 
-           
-
             let entry = TrafficIncidentsEntry(
-                    date: currentDate,
+                date: currentDate,
 
-                    issues: issuesFound
-                )
-            
+                issues: issuesFound
+            )
 
             let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
 
@@ -68,18 +65,16 @@ struct Provider: TimelineProvider {
     }
 }
 
-
-struct TrafficIncidentsEntry : TimelineEntry {
-    let date : Date
+struct TrafficIncidentsEntry: TimelineEntry {
+    let date: Date
     let issues: Int
-    
 }
 
 extension TrafficIncidentsEntry {
-    var hasIssues : Bool {
+    var hasIssues: Bool {
         return issues > 0
     }
-    
+
     var placeholder: Bool {
         return date == .distantPast
     }

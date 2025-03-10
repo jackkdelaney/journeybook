@@ -37,7 +37,7 @@ struct CreditView: View {
                     Text("Tuist")
                 }
             }
-            
+
             Section {
                 LabeledContent {
                     Link("Open Government Licence", destination: URL(string: "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/")!)
@@ -48,9 +48,9 @@ struct CreditView: View {
             } header: {
                 Text("Northern Ireland Public Transport API's")
             } footer: {
-                    Text("Transport Information supplied by Translink Opendata API")
-                }
-            
+                Text("Transport Information supplied by Translink Opendata API")
+            }
+
             Section {
                 LabeledContent {
                     Link("Usage Policy", destination: URL(string: "https://developer.nationaltransport.ie/usagepolicy")!)
@@ -58,7 +58,7 @@ struct CreditView: View {
                 label: {
                     Text("GTFS Realtime")
                 }
-                
+
             } header: {
                 Text("Ireland Public Transport API's")
             } footer: {
@@ -74,11 +74,10 @@ struct CreditView: View {
                 }
                 LabeledContent {
                     Link("Website", destination: URL(string: "https://bustimes.org/")!)
-                }                 label: {
-                    
+                } label: {
                     Text("Bustimes.org Web Service")
                 }
-            
+
                 LabeledContent {
                     Link("API", destination: URL(string: "https://bustimes.org/api")!)
                 }
@@ -86,7 +85,6 @@ struct CreditView: View {
                     Text("bustimes.org API")
                 }
             }
-
         }
         .navigationTitle("Credits")
         .navigationBarTitleDisplayMode(.inline)

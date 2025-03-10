@@ -54,7 +54,6 @@ struct SelectPhraseForConversationView: SheetView {
             } else if filteredPhrsses.isEmpty {
                 ContentUnavailableView.search
             }
-
         }
     }
 

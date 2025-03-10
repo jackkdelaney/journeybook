@@ -22,9 +22,9 @@ struct AddNewPhraseView: SheetView {
         Form {
             Section("Phrase Text") {
                 TextField("Phrase Text", text: $model.text, axis: .vertical)
-                    .lineLimit(3...6)
+                    .lineLimit(3 ... 6)
             }
-            
+
             Section("Background Colour") {
                 ColorPicker("Background Colour", selection: $model.colour)
             }
@@ -39,7 +39,8 @@ struct AddNewPhraseView: SheetView {
         .alert(item: $errorMessage) { error in
             Alert(
                 title: Text("Could Not Save"),
-                message: Text(error.errorMessage), dismissButton: .cancel())
+                message: Text(error.errorMessage), dismissButton: .cancel()
+            )
         }
     }
 
@@ -55,5 +56,4 @@ struct AddNewPhraseView: SheetView {
             }
         }
     }
-
 }

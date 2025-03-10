@@ -116,13 +116,11 @@ struct JourneyStepDetailView: View {
                     .chevronButtonStyle(compact: true)
                 }
             }
-           
         }
     }
-    
-    
+
     @ViewBuilder
-    private func phraseButton(for phrase : Phrase) -> some View {
+    private func phraseButton(for phrase: Phrase) -> some View {
         HStack {
             VStack(alignment: .leading) {
                 Text("\(phrase.text)")
@@ -136,8 +134,6 @@ struct JourneyStepDetailView: View {
                         maxWidth: .infinity, alignment: .leading
                     )
             }
-
         }
     }
 }
-

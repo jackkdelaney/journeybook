@@ -24,13 +24,12 @@ struct LiveBusMap: View {
     @State private var isLoading = true
 
     @ObservedObject var locationViewModel = LocationViewModel()
-    
-    var busLocation : [any RealTimeBusLocation] {
-        let flattenArray : [any RealTimeBusLocation] = translinkBusLocations + irelandViewModel.vehicles
-        
+
+    var busLocation: [any RealTimeBusLocation] {
+        let flattenArray: [any RealTimeBusLocation] = translinkBusLocations + irelandViewModel.vehicles
+
         return Array(flattenArray.prefix(450))
     }
-    
 
     var body: some View {
         VStack {
@@ -86,11 +85,12 @@ struct LiveBusMap: View {
         else { return }
         isLoading = true
 
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession.shared.dataTask(with: url) { data, _, error in
             if let data = data {
                 do {
                     let decodedData = try JSONDecoder().decode(
-                        [TranslinkRealTimeBusLocation].self, from: data)
+                        [TranslinkRealTimeBusLocation].self, from: data
+                    )
                     DispatchQueue.main.async {
                         self.translinkBusLocations = decodedData
                         self.isLoading = false
@@ -103,4 +103,3 @@ struct LiveBusMap: View {
         }.resume()
     }
 }
-

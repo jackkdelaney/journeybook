@@ -9,7 +9,6 @@ import CoreLocation
 import SwiftUI
 
 struct AddNewJourneyStepButton: View {
-
     @Bindable var journey: Journey
 
     @Binding var sheet: JourneyStepSheet?
@@ -43,5 +42,4 @@ struct AddNewJourneyStepButton: View {
         .removeListRowPaddingInsets()
         .buttonStyle(PlainButtonStyle())
     }
-    
 }

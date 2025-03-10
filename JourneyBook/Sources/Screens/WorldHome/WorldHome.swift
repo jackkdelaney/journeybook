@@ -72,4 +72,3 @@ struct WorldHome: View {
         }
     }
 }
-

@@ -9,21 +9,20 @@ import SwiftUI
 
 struct ListDisclosureGroup<InsideView: View>: View {
     var title: String
-    var footer : String?
+    var footer: String?
     var contentView: () -> InsideView
     @State var isExpanded: Bool
     @State private var rotating = false
 
     init(_ title: String,
-         footer : String? = nil,
+         footer: String? = nil,
          openAtStart: Bool = false,
-         @ViewBuilder _ content: @escaping () -> InsideView
-    )
+         @ViewBuilder _ content: @escaping () -> InsideView)
     {
         self.title = title
         self.footer = footer
-        self._isExpanded = State(initialValue: openAtStart)
-        self.contentView = content
+        _isExpanded = State(initialValue: openAtStart)
+        contentView = content
     }
 
     var body: some View {
@@ -42,15 +41,13 @@ struct ListDisclosureGroup<InsideView: View>: View {
                     Image(
                         systemName: isExpanded
                             ? "chevron.down" : "chevron.right")
-
                 }
                 .padding(.bottom, 12)
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-
         }
-        footer : {
+        footer: {
             if let footer {
                 if isExpanded {
                     Text(footer)
@@ -59,5 +56,3 @@ struct ListDisclosureGroup<InsideView: View>: View {
         }
     }
 }
-
-

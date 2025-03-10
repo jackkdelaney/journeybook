@@ -14,10 +14,10 @@ struct EditPhraseView: SheetView {
 
     @Environment(\.dismiss) var dismiss
 
-    @State var model : CurrentPhraseViewModel
-    
+    @State var model: CurrentPhraseViewModel
+
     init(phrase: Phrase) {
-        self.model = CurrentPhraseViewModel(phrase: phrase)
+        model = CurrentPhraseViewModel(phrase: phrase)
     }
 
     @State private var errorMessage: PhraseModelError?
@@ -42,7 +42,8 @@ struct EditPhraseView: SheetView {
         .alert(item: $errorMessage) { error in
             Alert(
                 title: Text("Could Not Save"),
-                message: Text(error.errorMessage), dismissButton: .cancel())
+                message: Text(error.errorMessage), dismissButton: .cancel()
+            )
         }
     }
 
@@ -58,5 +59,4 @@ struct EditPhraseView: SheetView {
             }
         }
     }
-
 }

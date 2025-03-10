@@ -93,7 +93,8 @@ struct AddNewPhraseButton: View {
 
         UIColor(color).getHue(
             &hue, saturation: &saturation, brightness: &brightness,
-            alpha: &alpha)
+            alpha: &alpha
+        )
 
         hue += CGFloat(amount)
         hue = hue.truncatingRemainder(dividingBy: 1.0)
@@ -104,7 +105,7 @@ struct AddNewPhraseButton: View {
 
         return Color(
             hue: Double(hue), saturation: Double(saturation),
-            brightness: Double(brightness), opacity: Double(alpha))
+            brightness: Double(brightness), opacity: Double(alpha)
+        )
     }
-
 }

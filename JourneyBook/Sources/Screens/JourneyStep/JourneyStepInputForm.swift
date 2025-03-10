@@ -85,14 +85,12 @@ struct JourneyStepInputForm: View {
                     phrases: $phrases)
                 sheet = .selectPhrases(phrasesWrapped)
             }
-
         }
         if !phrases.isEmpty {
             Section {
                 chosenPhrases
             }
         }
-
     }
 
     @ViewBuilder
@@ -103,12 +101,10 @@ struct JourneyStepInputForm: View {
             }
         }
         .onDelete(perform: deletePhrase)
-
     }
 
     private func deletePhrase(at offsets: IndexSet) {
         phrases.remove(atOffsets: offsets)
-
     }
 
     private var locationSection: some View {
@@ -137,7 +133,7 @@ struct JourneyStepInputForm: View {
         return String(
             AttributedString(
                 localized:
-                    "You have ^[\(phrases.count) \("Phrase")](inflect: true) in this step."
+                "You have ^[\(phrases.count) \("Phrase")](inflect: true) in this step."
             ).characters)
     }
 }
