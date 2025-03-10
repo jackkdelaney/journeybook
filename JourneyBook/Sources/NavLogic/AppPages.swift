@@ -20,6 +20,7 @@ enum AppPages: Hashable {
     case mapDetails(JourneyStepLocation)
     case rssFeedItem(RSSFeedItem)
     case webpage(URL)
+    case phraseDetails(Phrase)
     case credits
 }
 
@@ -52,6 +53,8 @@ extension AppPages {
             RSSFeedDetailView(item: item)
         case let .webpage(theUrl):
             WebView(url: theUrl)
+        case let .phraseDetails(phrase):
+            PhraseDetailView(phrase: phrase)
         case .credits:
             CreditView()
         }

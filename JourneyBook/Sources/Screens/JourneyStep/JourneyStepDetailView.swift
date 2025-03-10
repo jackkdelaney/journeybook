@@ -14,11 +14,7 @@ struct JourneyStepDetailView: View {
     @Bindable var step: JourneyStep
     @AppStorage("storedVoice") var storedVoice: String = ""
 
-    @State var voice: AVSpeechSynthesisVoice? = nil
-
     @State private var sheet: JourneySheet? = nil
-
-    let speaker = Speaker()
 
     var body: some View {
         Form {
@@ -113,17 +109,34 @@ struct JourneyStepDetailView: View {
             Section("Phrases") {
                 ForEach(step.phrases) { phrase in
                     Button {
-                        try? speaker.speak(phrase.text, voice: voice)
+                        coordinator.push(page: .phraseDetails(phrase))
                     } label: {
-                        Label(phrase.text, systemImage: "play.circle")
+                        phraseButton(for: phrase)
                     }
+                    .chevronButtonStyle(compact: true)
                 }
             }
-            .onAppear {
-                if storedVoice != "" {
-                    voice = AVSpeechSynthesisVoice(identifier: storedVoice)
-                }
+           
+        }
+    }
+    
+    
+    @ViewBuilder
+    private func phraseButton(for phrase : Phrase) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("\(phrase.text)")
+                    .font(.headline)
+                    .lineLimit(2)
+                Text(phrase.dateCreated.formatted())
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .frame(
+                        maxWidth: .infinity, alignment: .leading
+                    )
             }
+
         }
     }
 }
