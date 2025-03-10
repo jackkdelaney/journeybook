@@ -63,7 +63,7 @@ struct EditExistingJourneyStepSheet: SheetView {
             cordinates: $cordinates,
             resources: $resources,
             publicTransit: $publicTransit,
-            phrases: phrases
+            phrases: $phrases
         )
     }
 

@@ -32,7 +32,7 @@ struct AddNewJourneyStepView: SheetView {
             cordinates: $cordinates,
             resources: $resources,
             publicTransit: $publicTransit,
-            phrases: phrases
+            phrases: $phrases
         )
     }
 
@@ -78,8 +78,10 @@ struct AddNewJourneyStepView: SheetView {
         }
 
         for phrase in phrases {
-            step.phrases.append(phrase)
+            phrase.steps.append(step)
         }
+
+        
         modelContext.insert(step)
         order()
         try? modelContext.save()

@@ -21,7 +21,7 @@ extension PhraseBookSheet {
     @ViewBuilder
     func buildView(voice: Binding<AVSpeechSynthesisVoice?>) -> some View {
         switch self {
-        case .voiceSelector: PhraseVoiceSelectorView(voice: voice)
+        case .voiceSelector: PhraseVoiceSelectorView(voice: voice.wrappedValue)
         case let .phrase(phrase):
             PhraseEditSheet(phrase: phrase)
         }
