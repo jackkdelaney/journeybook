@@ -119,7 +119,7 @@ struct PhraseBook: View {
                 .onDelete(perform: delete)
 
                 Button("Add New Phrase") {
-                    let phrase = Phrase(text: "Hello")
+                    let phrase = Phrase(text: "Hello", colour: .pink)
                     modelContext.insert(phrase)
                     try? modelContext.save()
                     sheet = .phrase(phrase)

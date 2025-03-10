@@ -107,7 +107,7 @@ extension AddJourneyStepSheet {
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.automatic)
         case let .selectPhrases(wrapper):
-            PhrasesSelectorView(phrases: wrapper.phrases)
+            SelectPhraseForConversationView(selectedPhrases: wrapper.phrases)
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.automatic)
         }
