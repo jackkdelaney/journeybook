@@ -15,6 +15,7 @@ enum AppPages: Hashable {
     case mapExperience
     case transportRoutes
     case phraseBook
+    case communicationDirectory
     case journeyDetails(Journey)
     case journeyStepDetails(JourneyStep)
     case mapDetails(JourneyStepLocation)
@@ -23,7 +24,6 @@ enum AppPages: Hashable {
     case phraseDetails(Phrase)
     case credits
 }
-
 
 extension AppPages {
     @ViewBuilder
@@ -57,11 +57,13 @@ extension AppPages {
             PhraseDetailView(phrase: phrase)
         case .credits:
             CreditView()
+        case .communicationDirectory:
+            CommunicationView()
         }
     }
 }
 
-/*
+/* // MARK: POST HOG IDEAS
  enum AppPages: Hashable {
      case worldHome
      case resourceManager
@@ -77,7 +79,6 @@ extension AppPages {
      case webpage(URL)
      case credits
  }
-
 
  extension AppPages {
      @ViewBuilder
