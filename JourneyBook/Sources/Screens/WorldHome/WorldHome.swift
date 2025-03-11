@@ -5,6 +5,7 @@
 //  Created by Jack Delaney on 26/12/2024.
 //
 
+import SwiftData
 import SwiftUI
 
 struct WorldHome: View {
@@ -12,14 +13,24 @@ struct WorldHome: View {
 
     @State private var sheet: JourneySheet? = nil
 
+    @State private var searchText = ""
+
     var body: some View {
         List {
-            AddNewJoruneyButton(sheet: $sheet)
-            JourneyItemsView(sheet: $sheet)
-            AdvertButton(title: "Live Bus Locations", tagLine: "See bus locations live.", appPage: .mapExperience, symbol: "map.circle.fill")
-            RSSContentView()
+            if searchText.isEmpty {
+                AddNewJoruneyButton(sheet: $sheet)
+            }
+            JourneyItemsView(
+                sheet: $sheet,
+                searchText: $searchText
+            )
+            if searchText.isEmpty {
+                AdvertButton(title: "Live Bus Locations", tagLine: "See bus locations live.", appPage: .mapExperience, symbol: "map.circle.fill")
+                RSSContentView()
+            }
         }
         .navigationTitle("JourneyBook")
+        .searchable(text: $searchText, prompt: Text("Search Journey's"))
         .sheet(item: $sheet) { item in
             item.buildView()
         }
