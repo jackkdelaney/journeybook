@@ -33,7 +33,7 @@ class AddTransportRouteViewModel {
         self.routeName = routeName
         self.url = url
 
-        modelContainer = try! ModelContainer(for: VisualResource.self, Phrase.self, Journey.self, JourneyStep.self, TransportRoute.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+        modelContainer = try! ModelContainer(for: VisualResource.self, Phrase.self, Journey.self, JourneyStep.self, TransportRoute.self,Communiction.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         modelContext = modelContainer.mainContext
     }
 
