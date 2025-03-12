@@ -8,7 +8,7 @@
 import Foundation
 
 struct PhoneNumber: Codable {
-    var countryCode: CountryCodes.CountryWithCode
+    var countryCode: CountryWithCode
     var phoneNumber: String
 
     var formattedPhoneNumber: String {
@@ -16,4 +16,10 @@ struct PhoneNumber: Codable {
     }
 }
 
+
+extension PhoneNumber {
+    static var examplePhoneNumber: PhoneNumber {
+        return .init(countryCode: CountryWithCode.example, phoneNumber: "7700900461")
+    }
+}
 
