@@ -8,8 +8,64 @@
 import SwiftUI
 
 struct AddNewCommunicationView: SheetView {
+    @State private var viewModel = CommunicationViewModel()
+
     var content: some View {
-        Text("Content")
+        Form {
+            Section {
+                communicationType
+                LabeledContent {
+                    TextField("Title", text: $viewModel.title)
+                        .multilineTextAlignment(.trailing)
+                }
+                label: {
+                    Text("Title")
+                }
+            }
+            contentSection
+        }
+    }
+
+    @ViewBuilder
+    private var contentSection: some View {
+        Section {
+            if viewModel.communictionType == .email {
+                LabeledContent {
+                    TextField("Email", text: viewModel.emailAddresssBinding)
+                        .multilineTextAlignment(.trailing)
+                }
+                label: {
+                    Text("Email")
+                }
+            }
+            if viewModel.communictionType != .email {
+                LabeledContent {
+//                    TextField("Phone", text: viewModel.phoneNumberBinding)
+//                        .multilineTextAlignment(.trailing)
+                    Text("PHONE")
+                }
+                
+                label: {
+                    Text("Phone")
+                }
+            }
+        }
+        if viewModel.communictionType != .phone {
+            Section("Message") {
+                TextEditor(text: viewModel.messsageBinding)
+                    .multilineTextAlignment(.leading)
+            }
+        }
+    }
+
+    private var communicationType: some View {
+        Picker("Type",
+               selection: $viewModel.communictionType,
+               content: {
+                   ForEach(CommunicationType.allCases, id: \.self) {
+                       Text($0.stringName)
+                   }
+               })
     }
 
     var confirmButton: some View {
