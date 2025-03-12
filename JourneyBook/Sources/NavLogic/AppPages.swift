@@ -22,6 +22,7 @@ enum AppPages: Hashable {
     case rssFeedItem(RSSFeedItem)
     case webpage(URL)
     case phraseDetails(Phrase)
+    case communicationDetail(Communiction)
     case credits
 }
 
@@ -55,6 +56,8 @@ extension AppPages {
             WebView(url: theUrl)
         case let .phraseDetails(phrase):
             PhraseDetailView(phrase: phrase)
+        case let .communicationDetail(communication):
+            CommunicationDetailView(communication: communication, inSheet: false)
         case .credits:
             CreditView()
         case .communicationDirectory:
