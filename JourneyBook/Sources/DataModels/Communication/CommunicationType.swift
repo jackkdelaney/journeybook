@@ -8,3 +8,16 @@
 enum CommunicationType: Codable {
     case phone, email, message
 }
+
+extension CommunicationType {
+    var stringName : String {
+        switch(self) {
+        case .phone:
+            "Phone Number"
+        case .email:
+            "Email"
+        case .message:
+            "Message"
+        }
+    }
+}
