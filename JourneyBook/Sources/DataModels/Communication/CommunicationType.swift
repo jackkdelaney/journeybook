@@ -5,13 +5,13 @@
 //  Created by Jack Delaney on 11/03/2025.
 //
 
-enum CommunicationType: Codable {
+enum CommunicationType: Codable, CaseIterable {
     case phone, email, message
 }
 
 extension CommunicationType {
-    var stringName : String {
-        switch(self) {
+    var stringName: String {
+        switch self {
         case .phone:
             "Phone Number"
         case .email:
