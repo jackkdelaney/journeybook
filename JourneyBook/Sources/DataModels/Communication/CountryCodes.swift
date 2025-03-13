@@ -51,6 +51,12 @@ struct CountryWithCode: Codable, Identifiable {
     }
 }
 
+extension CountryWithCode : Equatable {
+    static func == (lhs: CountryWithCode, rhs: CountryWithCode) -> Bool {
+        return lhs.countryCode == rhs.countryCode && lhs.countryName == rhs.countryName && lhs.dialCode == rhs.dialCode
+    }
+}
+
 extension CountryWithCode {
     static var example: CountryWithCode {
         CountryWithCode(countryCode: "GB", countryName: "United Kingdom", dialCode: "44")

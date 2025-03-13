@@ -15,7 +15,17 @@ class CommunicationViewModel {
     let modelContext: ModelContext
 
     var title: String
-    var phoneNumber: PhoneNumber?
+    var phoneNumber: PhoneNumber? {
+        didSet {
+            if let phoneNumberUnWrapped = phoneNumber {
+                if phoneNumberUnWrapped.countryCode == nil
+                    && phoneNumberUnWrapped.phoneNumber != ""
+                {
+                    phoneNumber?.phoneNumber = ""
+                }
+            }
+        }
+    }
 
     var emailAddress: String?
     var message: String?
@@ -38,26 +48,37 @@ class CommunicationViewModel {
     var emailAddresssBinding: Binding<String> {
         Binding<String>(
             get: { self.emailAddress ?? "" },
-            set: { if $0.isEmpty {
-                self.emailAddress = nil
-            } else {
-                self.emailAddress = $0
-            } }
+            set: {
+                if $0.isEmpty {
+                    self.emailAddress = nil
+                } else {
+                    self.emailAddress = $0
+                }
+            }
         )
     }
 
     var phoneNumberBinding: Binding<PhoneNumber?> {
         Binding<PhoneNumber?>(
             get: { self.phoneNumber },
-            set: { self.phoneNumber = $0
+            set: {
+                self.phoneNumber = $0
+
             }
         )
     }
-    
-    var countyWithCodeBinding: Binding<CountryWithCode?> {
-        Binding<CountryWithCode?>(
-            get: { self.phoneNumber?.countryCode ?? nil },
-            set: { self.phoneNumber?.countryCode = $0
+
+    /*
+     if $0?.countryCode == nil {
+         self.phoneNumberStringBinding.wrappedValue = ""
+     }
+     */
+
+    var phoneNumberStringBinding: Binding<String> {
+        Binding<String>(
+            get: { self.phoneNumberBinding.wrappedValue?.phoneNumber ?? "" },
+            set: {
+                self.phoneNumberBinding.wrappedValue?.phoneNumber = $0
             }
         )
     }
@@ -65,23 +86,32 @@ class CommunicationViewModel {
     var messsageBinding: Binding<String> {
         Binding<String>(
             get: { self.message ?? "" },
-            set: { if $0.isEmpty {
-                self.message = nil
-            } else {
-                self.message = $0
-            } }
+            set: {
+                if $0.isEmpty {
+                    self.message = nil
+                } else {
+                    self.message = $0
+                }
+            }
         )
     }
 
     @MainActor
-    init(title: String = "", phoneNumber: PhoneNumber? = nil, emailAddress: String? = nil, message: String? = nil, communictionType: CommunicationType = .phone) {
+    init(
+        title: String = "", phoneNumber: PhoneNumber? = nil,
+        emailAddress: String? = nil, message: String? = nil,
+        communictionType: CommunicationType = .phone
+    ) {
         self.title = title
         self.communictionType = communictionType
         self.phoneNumber = phoneNumber
         self.emailAddress = emailAddress
         self.message = message
 
-        modelContainer = try! ModelContainer(for: VisualResource.self, Phrase.self, Journey.self, JourneyStep.self, TransportRoute.self, Communiction.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+        modelContainer = try! ModelContainer(
+            for: VisualResource.self, Phrase.self, Journey.self,
+            JourneyStep.self, TransportRoute.self, Communiction.self,
+            configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         modelContext = modelContainer.mainContext
     }
 
@@ -107,13 +137,15 @@ class CommunicationViewModel {
             }
         case .email:
             if let emailAddress, let message {
-                return Communiction(title: title, email: emailAddress, message: message)
+                return Communiction(
+                    title: title, email: emailAddress, message: message)
             } else {
                 throw CommunicationViewModelError.noEmailOrMessage
             }
         case .message:
             if let phoneNumber, let message {
-                return Communiction(title: title, phoneNumber: phoneNumber, message: message)
+                return Communiction(
+                    title: title, phoneNumber: phoneNumber, message: message)
             } else {
                 throw CommunicationViewModelError.noPhoneOrmessage
             }

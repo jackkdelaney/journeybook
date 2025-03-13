@@ -38,15 +38,6 @@ struct EditExistingJourneyStepSheet: SheetView {
         resources = journeyStep.visualResources.map { $0 }
         phrases = journeyStep.phrases.map { $0 }
 
-//        print("BEFORE \(journeyStep.visualResources.count)")
-        ////        for resource in journeyStep.visualResources {
-        ////            print("ADDING A RESOURCE!!")
-        ////            print(resources.count)
-        ////            $resources.wrappedValue.append(resource)
-        ////            print(resources.count)
-        ////        }
-        ////        print("AFTER")
-
         publicTransit = journeyStep.route
     }
 

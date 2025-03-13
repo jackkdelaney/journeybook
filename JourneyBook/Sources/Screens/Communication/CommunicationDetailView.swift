@@ -89,7 +89,7 @@ struct CommunicationDetailView: View {
     @ViewBuilder
     private func phoneNumberView(for phoneNumber: PhoneNumber) -> some View {
         LabeledContent {
-            Link(phoneNumber.formattedPhoneNumber, destination: URL(string: "")!)
+           // Link(phoneNumber.formattedPhoneNumber, destination: URL(string: "")!)
         }
         label: {
             Text("Phone Number")
