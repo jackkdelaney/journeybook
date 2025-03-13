@@ -8,30 +8,23 @@
 import Foundation
 import SwiftUI
 
+
 enum ComponentsSheet: Identifiable, Hashable {
     var id: Self {
         return self
     }
 
-    case countrycodeSelection(Binding<CountryWithCode?>)
+    case countrycodeSelection(PhoneNumberAndCodeSelectionGetter)
 
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
 }
 
-extension ComponentsSheet: Equatable {
-    static func == (lhs: ComponentsSheet, rhs: ComponentsSheet) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-}
 
 extension ComponentsSheet {
     @ViewBuilder
     func buildView() -> some View {
         switch self {
-        case let .countrycodeSelection(countryCode):
-            CountryCodeSelectorDetailView(countryCode: countryCode)
+        case let .countrycodeSelection(getter):
+            CountryCodeSelectorDetailView(countryCode: getter.countryCode)
         }
     }
 }

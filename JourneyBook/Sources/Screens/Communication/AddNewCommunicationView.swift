@@ -10,6 +10,8 @@ import SwiftUI
 struct AddNewCommunicationView: SheetView {
     @State private var viewModel = CommunicationViewModel()
 
+    @State private var sheet: ComponentsSheet? = nil
+
     var content: some View {
         Form {
             Section {
@@ -17,12 +19,14 @@ struct AddNewCommunicationView: SheetView {
                 LabeledContent {
                     TextField("Title", text: $viewModel.title)
                         .multilineTextAlignment(.trailing)
-                }
-                label: {
+                } label: {
                     Text("Title")
                 }
             }
             contentSection
+        }
+        .sheet(item: $sheet) { item in
+            item.buildView()
         }
     }
 
@@ -33,13 +37,12 @@ struct AddNewCommunicationView: SheetView {
                 LabeledContent {
                     TextField("Email", text: viewModel.emailAddresssBinding)
                         .multilineTextAlignment(.trailing)
-                }
-                label: {
+                } label: {
                     Text("Email")
                 }
             }
             if viewModel.communictionType != .email {
-                PhoneNumberView(phoneNumber: viewModel.phoneNumberBinding)
+                countryCodeAndPhoneNumberEntry
             }
         }
         if viewModel.communictionType != .phone {
@@ -50,14 +53,34 @@ struct AddNewCommunicationView: SheetView {
         }
     }
 
+    private var countryCodeAndPhoneNumberEntry: some View {
+        LabeledContent {
+            Button {
+                let sheetWrapped = PhoneNumberAndCodeSelectionGetter(
+                    countryCode: viewModel.countyWithCodeBinding)
+
+                sheet = .countrycodeSelection(sheetWrapped)
+            } label: {
+                if let code = viewModel.countyWithCodeBinding.wrappedValue {
+                    Text("\(code.countryCode) (\(code.dialCode)")
+                } else {
+                    Text("No Selection")
+                }
+            }
+        } label: {
+            Text("Phone")
+        }
+    }
+
     private var communicationType: some View {
-        Picker("Type",
-               selection: $viewModel.communictionType,
-               content: {
-                   ForEach(CommunicationType.allCases, id: \.self) {
-                       Text($0.stringName)
-                   }
-               })
+        Picker(
+            "Type",
+            selection: $viewModel.communictionType,
+            content: {
+                ForEach(CommunicationType.allCases, id: \.self) {
+                    Text($0.stringName)
+                }
+            })
     }
 
     var confirmButton: some View {

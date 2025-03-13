@@ -53,6 +53,14 @@ class CommunicationViewModel {
             }
         )
     }
+    
+    var countyWithCodeBinding: Binding<CountryWithCode?> {
+        Binding<CountryWithCode?>(
+            get: { self.phoneNumber?.countryCode ?? nil },
+            set: { self.phoneNumber?.countryCode = $0
+            }
+        )
+    }
 
     var messsageBinding: Binding<String> {
         Binding<String>(
