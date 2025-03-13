@@ -46,16 +46,13 @@ class CommunicationViewModel {
         )
     }
 
-//    var phoneNumberBinding: Binding<String> {
-//        Binding<String>(
-//            get: { self.phoneNumber ?? "" },
-//            set: { if $0.isEmpty {
-//                self.phoneNumber = nil
-//            } else {
-//                self.phoneNumber = $0
-//            } }
-//        )
-//    }
+    var phoneNumberBinding: Binding<PhoneNumber?> {
+        Binding<PhoneNumber?>(
+            get: { self.phoneNumber },
+            set: { self.phoneNumber = $0
+            }
+        )
+    }
 
     var messsageBinding: Binding<String> {
         Binding<String>(

@@ -39,15 +39,7 @@ struct AddNewCommunicationView: SheetView {
                 }
             }
             if viewModel.communictionType != .email {
-                LabeledContent {
-//                    TextField("Phone", text: viewModel.phoneNumberBinding)
-//                        .multilineTextAlignment(.trailing)
-                    Text("PHONE")
-                }
-                
-                label: {
-                    Text("Phone")
-                }
+                PhoneNumberView(phoneNumber: viewModel.phoneNumberBinding)
             }
         }
         if viewModel.communictionType != .phone {
