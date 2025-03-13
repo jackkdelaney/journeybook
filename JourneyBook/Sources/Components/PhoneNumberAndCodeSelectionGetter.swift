@@ -9,11 +9,11 @@ import SwiftUI
 
 struct PhoneNumberAndCodeSelectionGetter: Identifiable, Hashable, Equatable {
     var id: UUID
-    var countryCode: Binding<CountryWithCode?>
+    var phoneNumber: Binding<PhoneNumber?>
 
-    init(id: UUID = UUID(), countryCode: Binding<CountryWithCode?>) {
+    init(id: UUID = UUID(), phoneNumber: Binding<PhoneNumber?>) {
         self.id = id
-        self.countryCode = countryCode
+        self.phoneNumber = phoneNumber
     }
 
     static func == (lhs: PhoneNumberAndCodeSelectionGetter, rhs: PhoneNumberAndCodeSelectionGetter) -> Bool {

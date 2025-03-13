@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct AddNewCommunicationView: SheetView {
+    @Environment(\.dismiss) var dismiss
+
+    
     @State private var viewModel = CommunicationViewModel()
 
     @State private var sheet: ComponentsSheet? = nil
+    
+    @State private var errorMessage: CommunicationViewModelError?
+    
+
 
     var content: some View {
         Form {
@@ -24,6 +31,9 @@ struct AddNewCommunicationView: SheetView {
                 }
             }
             contentSection
+        }
+        .alert(item: $errorMessage) { error in
+            Alert(title: Text("Could Not Save"), message: Text(error.errorMessage), dismissButton: .cancel())
         }
         .sheet(item: $sheet) { item in
             item.buildView()
@@ -41,10 +51,11 @@ struct AddNewCommunicationView: SheetView {
                     Text("Email")
                 }
             }
-            if viewModel.communictionType != .email {
-                countryCodeAndPhoneNumberEntry
-            }
         }
+        if viewModel.communictionType != .email {
+            countryCodeAndPhoneNumberEntry
+        }
+
         if viewModel.communictionType != .phone {
             Section("Message") {
                 TextEditor(text: viewModel.messsageBinding)
@@ -53,22 +64,38 @@ struct AddNewCommunicationView: SheetView {
         }
     }
 
+    @ViewBuilder
     private var countryCodeAndPhoneNumberEntry: some View {
-        LabeledContent {
-            Button {
-                let sheetWrapped = PhoneNumberAndCodeSelectionGetter(
-                    countryCode: viewModel.countyWithCodeBinding)
+        Section("Phone Number") {
+            LabeledContent {
+                Button {
+                    let sheetWrapped = PhoneNumberAndCodeSelectionGetter(
+                        phoneNumber: viewModel.phoneNumberBinding)
 
-                sheet = .countrycodeSelection(sheetWrapped)
+                    sheet = .countrycodeSelection(sheetWrapped)
+                } label: {
+                    if let code = viewModel.phoneNumberBinding.wrappedValue?
+                        .countryCode
+                    {
+                        Text("\(code.countryName) (\(code.dialCode))")
+                    } else {
+                        Text("No Selection")
+                    }
+
+                }
             } label: {
-                if let code = viewModel.countyWithCodeBinding.wrappedValue {
-                    Text("\(code.countryCode) (\(code.dialCode)")
-                } else {
-                    Text("No Selection")
+                Text("Phone Dialing Code")
+            }
+            if viewModel.phoneNumberBinding.wrappedValue?.countryCode != nil {
+                LabeledContent {
+                    TextField(
+                        "Phone Number", text: viewModel.phoneNumberStringBinding
+                    )
+                    .multilineTextAlignment(.trailing)
+                } label: {
+                    Text("Phone Number")
                 }
             }
-        } label: {
-            Text("Phone")
         }
     }
 
@@ -84,7 +111,16 @@ struct AddNewCommunicationView: SheetView {
     }
 
     var confirmButton: some View {
-        Button("Add") {}
+        Button("Add") {
+            do {
+                try viewModel.saveItem()
+                dismiss()
+            } catch let error as CommunicationViewModelError  {
+                errorMessage = error
+            } catch {
+                print(error)
+            }
+        }
     }
 
     var sheetTitle: String {

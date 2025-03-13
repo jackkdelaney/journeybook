@@ -24,7 +24,7 @@ extension ComponentsSheet {
     func buildView() -> some View {
         switch self {
         case let .countrycodeSelection(getter):
-            CountryCodeSelectorDetailView(countryCode: getter.countryCode)
+            CountryCodeSelectorDetailView(phoneNumber: getter.phoneNumber)
         }
     }
 }

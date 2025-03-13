@@ -11,8 +11,8 @@ struct CountryCodeSelectorDetailView:
     SheetView
 
 {
-    @Binding var countryCode: CountryWithCode?
-
+    @Binding var phoneNumber: PhoneNumber?
+    
     @State private var searchText = ""
 
     @Environment(\.dismiss) var dismiss
@@ -21,7 +21,7 @@ struct CountryCodeSelectorDetailView:
 
     var confirmButton: some View {
         Button("Clear", role: .destructive) {
-            countryCode = nil
+            phoneNumber?.countryCode = nil
             dismiss()
         }
         .tint(.red)
@@ -31,7 +31,11 @@ struct CountryCodeSelectorDetailView:
         List {
             ForEach(filteredSelection) { selectedItem in
                 Button {
-                    countryCode = selectedItem
+                    if phoneNumber == nil {
+                        phoneNumber = PhoneNumber(countryCode: selectedItem)
+                    } else {
+                        phoneNumber?.countryCode = selectedItem
+                    }
                     dismiss()
                 } label: {
                     VStack {
@@ -56,6 +60,7 @@ struct CountryCodeSelectorDetailView:
                 }
             }
         }
+     
     }
 
     var sheetTitle: String {
@@ -63,7 +68,7 @@ struct CountryCodeSelectorDetailView:
     }
 
     private var sheetSubtitle: String {
-        if let countryCode {
+        if let countryCode = phoneNumber?.countryCode {
             "Currently Selected: \(countryCode.countryCode)"
         } else {
             "Please Select a Country Code"
@@ -89,11 +94,5 @@ struct CountryCodeSelectorDetailView:
                 $0.countryCode.lowercased().contains(searchText.lowercased()) || $0.countryName.lowercased().contains(searchText.lowercased()) || $0.dialCode.lowercased().contains(searchText.lowercased())
             }
         }
-    }
-}
-
-#Preview {
-    NavigationView {
-        CountryCodeSelectorDetailView(countryCode: .constant(CountryWithCode.example))
     }
 }
