@@ -126,7 +126,7 @@ class CommunicationViewModel: CommunictionModel {
     private func makeCommuniction() throws -> Communication {
         switch communictionType {
         case .phone:
-            if let phoneNumber {
+            if let phoneNumber, let countryCode = phoneNumber.countryCode {
                 return Communication(title: title, phoneNumber: phoneNumber)
             } else {
                 throw CommunicationViewModelError.noPhoneNumber
@@ -139,7 +139,7 @@ class CommunicationViewModel: CommunictionModel {
                 throw CommunicationViewModelError.noEmailOrMessage
             }
         case .message:
-            if let phoneNumber, let message {
+            if let phoneNumber, let message,let countryCode = phoneNumber.countryCode {
                 return Communication(
                     title: title, phoneNumber: phoneNumber, message: message)
             } else {
