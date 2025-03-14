@@ -74,7 +74,7 @@ struct CommunicationDetailView: View {
             }
 
             Section {
-                Button("Send Messsage") {}
+                Button("Send Message") {}
             }
         } else if communication.communictionType == .email, let email = communication.emailAddress, let message = communication.message {
             Section(header: Text("Email Details"), footer: Text("You message is \(message.count) characters in length.")) {
