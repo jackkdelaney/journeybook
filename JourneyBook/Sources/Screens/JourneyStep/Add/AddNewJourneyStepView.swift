@@ -79,6 +79,10 @@ struct AddNewJourneyStepView: SheetView {
             route: publicTransit
         )
 
+        if let communication {
+            communication.steps.append(step)
+        }
+        
         for resource in resources {
             resource.steps.append(step)
         }

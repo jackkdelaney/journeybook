@@ -43,7 +43,8 @@ struct EditExistingJourneyStepSheet: SheetView {
         phrases = journeyStep.phrases.map { $0 }
 
         publicTransit = journeyStep.route
-        communication = journeyStep.communication
+        _communication = State(initialValue: journeyStep.communication)
+
 
     }
 
@@ -77,7 +78,9 @@ struct EditExistingJourneyStepSheet: SheetView {
             journeyStep.stepDescription = desc
             journeyStep.location = location
             journeyStep.route = publicTransit
-
+            journeyStep.communication = communication
+            
+            
             addNewPhrasesAndSteps()
             removeUnwantedResourcesAndPhrases()
 
