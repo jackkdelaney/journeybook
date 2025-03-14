@@ -67,7 +67,7 @@ struct CommunicationDetailView: View {
             Section("Phone Number Details") {
                 phoneNumberView(for: phoneNumber)
             }
-        } else if communication.communictionType == .message, let phoneNumber = communication.phoneNumber, let message = communication.message {
+        }else if communication.communictionType == .message, let phoneNumber = communication.phoneNumber, let message = communication.message {
             Section(header: Text("Message Details"), footer: Text("You message is \(message.count) characters in length.")) {
                 phoneNumberView(for: phoneNumber)
                 messsageView(for: message)

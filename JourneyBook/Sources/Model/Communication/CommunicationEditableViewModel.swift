@@ -116,7 +116,7 @@ class CommunicationEditableViewModel: CommunictionModel {
             throw CommunicationViewModelError.noTitleText
         }
         do {
-            let valid = try isValid()
+            _ = try isValid()
 
             self.communication.title = title
             self.communication.communictionType = communictionType
@@ -133,7 +133,7 @@ class CommunicationEditableViewModel: CommunictionModel {
     private func isValid() throws -> Bool {
         switch communictionType {
         case .phone:
-            if let phoneNumber {
+            if let phoneNumber ,let _ = phoneNumber.countryCode {
                 return true
             } else {
                 throw CommunicationViewModelError.noPhoneNumber
@@ -145,7 +145,7 @@ class CommunicationEditableViewModel: CommunictionModel {
                 throw CommunicationViewModelError.noEmailOrMessage
             }
         case .message:
-            if let phoneNumber, let message {
+            if let phoneNumber, let message,let countryCode = phoneNumber.countryCode {
                 return true
             } else {
                 throw CommunicationViewModelError.noPhoneOrmessage
