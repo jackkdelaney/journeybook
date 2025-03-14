@@ -23,7 +23,11 @@ struct AddNewJourneyStepView: SheetView {
 
     @State private var publicTransit: TransportRoute?
 
+    @State private var communication : Communication?
+
     @State private var phrases = [Phrase]()
+    
+
 
     var content: some View {
         JourneyStepInputForm(
@@ -32,6 +36,7 @@ struct AddNewJourneyStepView: SheetView {
             cordinates: $cordinates,
             resources: $resources,
             publicTransit: $publicTransit,
+            communication: $communication,
             phrases: $phrases
         )
     }
@@ -69,6 +74,7 @@ struct AddNewJourneyStepView: SheetView {
             stepDescription: desc,
             journey: journey,
             location: location,
+            communication: communication,
             visualResources: resources,
             route: publicTransit
         )
