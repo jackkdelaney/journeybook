@@ -22,7 +22,7 @@ enum AppPages: Hashable {
     case rssFeedItem(RSSFeedItem)
     case webpage(URL)
     case phraseDetails(Phrase)
-    case communicationDetail(Communiction)
+    case communicationDetail(Communication)
     case credits
 }
 

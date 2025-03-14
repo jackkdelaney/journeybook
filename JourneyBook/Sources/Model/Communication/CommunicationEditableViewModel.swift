@@ -1,8 +1,8 @@
 //
-//  CommunicationViewModel.swift
+//  CommunicationEditableViewModel.swift
 //  JourneyBook
 //
-//  Created by Jack Delaney on 12/03/2025.
+//  Created by Jack Delaney on 14/03/2025.
 //
 
 import Observation
@@ -10,12 +10,13 @@ import SwiftData
 import SwiftUI
 
 @Observable
-class CommunicationViewModel: CommunictionModel {
-    typealias Item = CommunicationViewModel
+class CommunicationEditableViewModel: CommunictionModel {
+    typealias Item = CommunicationEditableViewModel
 
     let modelContainer: ModelContainer
     let modelContext: ModelContext
 
+    var communication: Communication
     var title: String
     var phoneNumber: PhoneNumber? {
         didSet {
@@ -94,15 +95,14 @@ class CommunicationViewModel: CommunictionModel {
 
     @MainActor
     init(
-        title: String = "", phoneNumber: PhoneNumber? = nil,
-        emailAddress: String? = nil, message: String? = nil,
-        communictionType: CommunicationType = .phone
+        communication: Communication
     ) {
-        self.title = title
-        self.communictionType = communictionType
-        self.phoneNumber = phoneNumber
-        self.emailAddress = emailAddress
-        self.message = message
+        self.title = communication.title
+        self.communictionType = communication.communictionType
+        self.phoneNumber = communication.phoneNumber
+        self.emailAddress = communication.emailAddress
+        self.message = communication.emailAddress
+        self.communication = communication
 
         modelContainer = try! ModelContainer(
             for: VisualResource.self, Phrase.self, Journey.self,
@@ -116,32 +116,37 @@ class CommunicationViewModel: CommunictionModel {
             throw CommunicationViewModelError.noTitleText
         }
         do {
-            let communication = try makeCommuniction()
-            add(communication)
+            let valid = try isValid()
+
+            self.communication.title = title
+            self.communication.communictionType = communictionType
+            self.communication.phoneNumber = phoneNumber
+            self.communication.emailAddress = emailAddress
+            self.communication.message = emailAddress
+
+            try modelContext.save()
         } catch {
             throw error
         }
     }
 
-    private func makeCommuniction() throws -> Communication {
+    private func isValid() throws -> Bool {
         switch communictionType {
         case .phone:
             if let phoneNumber {
-                return Communication(title: title, phoneNumber: phoneNumber)
+                return true
             } else {
                 throw CommunicationViewModelError.noPhoneNumber
             }
         case .email:
             if let emailAddress, let message {
-                return Communication(
-                    title: title, email: emailAddress, message: message)
+                return true
             } else {
                 throw CommunicationViewModelError.noEmailOrMessage
             }
         case .message:
             if let phoneNumber, let message {
-                return Communication(
-                    title: title, phoneNumber: phoneNumber, message: message)
+                return true
             } else {
                 throw CommunicationViewModelError.noPhoneOrmessage
             }
@@ -153,25 +158,5 @@ class CommunicationViewModel: CommunictionModel {
         phoneNumber = nil
         emailAddress = nil
         message = nil
-    }
-}
-
-extension CommunicationViewModel {
-    func fetchResources() -> [Communication] {
-        do {
-            return try modelContext.fetch(FetchDescriptor<Communication>())
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-    }
-
-    func add(_ communication: Communication) {
-        modelContext.insert(communication)
-        do {
-            try modelContext.save()
-
-        } catch {
-            fatalError(error.localizedDescription)
-        }
     }
 }

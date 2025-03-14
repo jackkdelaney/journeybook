@@ -1,5 +1,5 @@
 //
-//  Communiction.swift
+//  Communication.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 11/03/2025.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Communiction: Identifiable {
+class Communication: Identifiable {
     private(set) var id: UUID
     private(set) var dateCreated: Date
     private(set) var dateModified: Date
