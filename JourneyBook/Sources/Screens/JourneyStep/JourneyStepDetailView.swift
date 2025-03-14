@@ -22,6 +22,7 @@ struct JourneyStepDetailView: View {
                 OpenInMapsButton(location: location)
             }
             visualResourcesSections
+            communicationSection
             transitSection
             phrasesSection
         }
@@ -115,6 +116,33 @@ struct JourneyStepDetailView: View {
                     }
                     .chevronButtonStyle(compact: true)
                 }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    var communicationSection : some View {
+        if let communication = step.communication {
+            Section("Communication") {
+                Button {
+                    coordinator.push(page: .communicationDetail(communication))
+                } label: {
+                    HStack {
+                        VStack {
+                            Text(communication.title)
+                                .frame(maxWidth:.infinity,alignment: .leading)
+                            Text(communication.communictionType.stringName)
+                                .font(.caption)
+                                .frame(maxWidth:.infinity,alignment: .leading)
+                        }
+                        if communication.communictionType == .phone, let phoneNumber = communication.phoneNumber{
+                            Text(phoneNumber.formattedPhoneNumber)
+                                .frame(maxWidth:.infinity,alignment: .trailing)
+                        }
+                        
+                    }
+                }
+                .chevronButtonStyle()
             }
         }
     }
