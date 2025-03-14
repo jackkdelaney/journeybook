@@ -26,6 +26,10 @@ struct EditExistingJourneyStepSheet: SheetView {
     @State private var resources: [VisualResource]
 
     @State private var publicTransit: TransportRoute?
+    
+    @State private var communication: Communication?
+
+
 
     @State private var phrases: [Phrase]
 
@@ -39,6 +43,8 @@ struct EditExistingJourneyStepSheet: SheetView {
         phrases = journeyStep.phrases.map { $0 }
 
         publicTransit = journeyStep.route
+        communication = journeyStep.communication
+
     }
 
     var sheetTitle: String {
@@ -52,6 +58,7 @@ struct EditExistingJourneyStepSheet: SheetView {
             cordinates: $cordinates,
             resources: $resources,
             publicTransit: $publicTransit,
+            communication: $communication,
             phrases: $phrases
         )
     }

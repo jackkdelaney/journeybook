@@ -19,6 +19,9 @@ struct JourneyStepInputForm: View {
     @Binding var resources: [VisualResource]
 
     @Binding var publicTransit: TransportRoute?
+    
+    @Binding var communication: Communication?
+
 
     @Binding var phrases: [Phrase]
 
@@ -32,6 +35,7 @@ struct JourneyStepInputForm: View {
             }
             locationSection
             resourceSection
+            communicationSection
             publicTransitSection
             phraseSection
         }
@@ -76,6 +80,26 @@ struct JourneyStepInputForm: View {
             }
         }
     }
+    
+    
+    @ViewBuilder
+    private var communicationSection : some View {
+        Section("Communication") {
+            if let communicationResource = communication {
+                Text(communicationResource.title)
+                Button("Edit") {
+                    let communicationWrapped = AddJourneyCommunicationGetter(communication: $communication)
+                    sheet = .getCommunicationFromList(communicationWrapped)
+                }
+            } else {
+                Button("Add Communication") {
+                    let communicationWrapped = AddJourneyCommunicationGetter(communication: $communication)
+                    sheet = .getCommunicationFromList(communicationWrapped)
+                }
+            }
+        }
+    }
+    
 
     @ViewBuilder
     private var phraseSection: some View {
@@ -92,6 +116,7 @@ struct JourneyStepInputForm: View {
             }
         }
     }
+   
 
     @ViewBuilder
     private var chosenPhrases: some View {
