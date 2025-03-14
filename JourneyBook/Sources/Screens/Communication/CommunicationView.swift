@@ -10,11 +10,13 @@ import SwiftUI
 
 struct CommunicationView: View {
     @EnvironmentObject private var coordinator: Coordinator
+    @Environment(\.modelContext) var modelContext
     @Environment(\.editMode) private var editMode
+    
+    @Query var communictions: [Communication]
 
     @State private var sheet: CommunicationSheet? = nil
 
-    @Query var communictions: [Communication]
 
     var body: some View {
         List {
@@ -22,6 +24,7 @@ struct CommunicationView: View {
                 ForEach(communictions) { communiction in
                     itemView(for: communiction)
                 }
+                .onDelete(perform: delete)
             }
         }
         .overlay {
@@ -45,10 +48,18 @@ struct CommunicationView: View {
                 } label: {
                     Label("Add Communication", systemImage: "plus")
                 }
+                .disabled(disableAddButton)
                 EditButton()
                     .disabled(disableEditButton)
             }
         }
+    }
+
+    private var disableAddButton: Bool {
+        if let editMode = editMode {
+            return editMode.wrappedValue.isEditing
+        }
+        return false
     }
 
     private var disableEditButton: Bool {
@@ -64,10 +75,27 @@ struct CommunicationView: View {
         } label: {
             VStack {
                 Text(communication.title)
+                    .frame(maxWidth:.infinity,alignment: .leading)
                 Text(communication.communictionType.stringName)
                     .font(.caption)
+                    .frame(maxWidth:.infinity,alignment: .leading)
+
             }
         }
         .chevronButtonStyle()
     }
+
+    private func delete(at offsets: IndexSet) {
+        for offset in offsets {
+            let communication = communictions[offset]
+            for step in communication.steps {
+                modelContext.delete(step)
+            }
+            modelContext.delete(communication)
+        }
+        do {
+            try modelContext.save()
+        } catch {}
+    }
+
 }
