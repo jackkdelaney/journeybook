@@ -21,6 +21,8 @@ class Communication: Identifiable {
     private var _message: String?
 
     private var _communictionType: CommunicationType
+    
+    @Relationship(deleteRule: .nullify, inverse: \JourneyStep.communication) var steps: [JourneyStep]
 
     @Transient var title: String {
         get { return _title }
@@ -62,10 +64,11 @@ class Communication: Identifiable {
         }
     }
 
-    init(id: UUID = UUID(), dateCreated: Date = Date.now, dateModified: Date = Date.now, communictionType: CommunicationType, title: String, phoneNumber: PhoneNumber? = nil, emailAddress: String? = nil, message: String? = nil) {
+    init(id: UUID = UUID(), dateCreated: Date = Date.now, dateModified: Date = Date.now, communictionType: CommunicationType, title: String, phoneNumber: PhoneNumber? = nil, emailAddress: String? = nil, message: String? = nil, steps: [JourneyStep] = []) {
         self.id = id
         self.dateCreated = dateCreated
         self.dateModified = dateModified
+        self.steps = steps
         _communictionType = communictionType
         _title = title
         _phoneNumber = phoneNumber
