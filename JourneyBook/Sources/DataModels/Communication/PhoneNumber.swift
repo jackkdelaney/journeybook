@@ -13,7 +13,7 @@ struct PhoneNumber: Codable {
     var phoneNumber: String
 
     var formattedPhoneNumber: String {
-        return "(\(countryCode?.dialCode ?? "UNKOWN"))\(phoneNumber)"
+        return "+\(countryCode?.dialCode ?? "")\(phoneNumber)"
     }
 
     init(countryCode: CountryWithCode? = nil, phoneNumber: String = "") {

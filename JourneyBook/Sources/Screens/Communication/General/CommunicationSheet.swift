@@ -13,7 +13,7 @@ enum CommunicationSheet: Identifiable, Hashable {
     }
 
     case addNewCommunication
-    case editCommunication(Communiction)
+    case editCommunication(Communication)
 }
 
 extension CommunicationSheet {

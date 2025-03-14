@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CommunicationDetailView: View {
-    @Bindable var communication: Communiction
+    @Bindable var communication: Communication
 
     @State private var sheet: CommunicationSheet? = nil
 
@@ -89,7 +89,7 @@ struct CommunicationDetailView: View {
     @ViewBuilder
     private func phoneNumberView(for phoneNumber: PhoneNumber) -> some View {
         LabeledContent {
-           // Link(phoneNumber.formattedPhoneNumber, destination: URL(string: "")!)
+        Link(phoneNumber.formattedPhoneNumber, destination: URL(string: "tel://\(phoneNumber.formattedPhoneNumber)")!)
         }
         label: {
             Text("Phone Number")

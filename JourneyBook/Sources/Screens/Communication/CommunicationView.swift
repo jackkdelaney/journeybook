@@ -14,7 +14,7 @@ struct CommunicationView: View {
 
     @State private var sheet: CommunicationSheet? = nil
 
-    @Query var communictions: [Communiction]
+    @Query var communictions: [Communication]
 
     var body: some View {
         List {
@@ -58,7 +58,7 @@ struct CommunicationView: View {
         return communictions.isEmpty
     }
 
-    private func itemView(for communication: Communiction) -> some View {
+    private func itemView(for communication: Communication) -> some View {
         Button {
             coordinator.push(page: .communicationDetail(communication))
         } label: {
