@@ -81,7 +81,8 @@ struct CommunicationDetailView: View {
                 emailView(for: email)
                 messsageView(for: message)
 
-                Button("Send Email") {}
+                MailButton(email: email, buttonTitle: "Send Email", content: message)
+
             }
         }
     }
@@ -105,7 +106,7 @@ struct CommunicationDetailView: View {
     @ViewBuilder
     private func emailView(for email: String) -> some View {
         LabeledContent {
-            Link(email, destination: URL(string: "")!)
+            Text(email)
         }
         label: {
             Text("Email")

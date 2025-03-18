@@ -60,6 +60,7 @@ fileprivate class UIKitMessageCoordinator : NSObject, UINavigationControllerDele
     }
     
     func messageCompletion(result: MessageComposeResult) {
+        print("Ready to Dismiss?")
         self.parent.presentationMode.wrappedValue.dismiss()
         self.parent.completiton(result)
     }
