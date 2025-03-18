@@ -13,7 +13,7 @@ let project = Project(
             destinations: .iOS,
             product: .app,
             bundleId: "co.jackdelaney.jb",
-            deploymentTargets: .iOS("18.3"),
+            deploymentTargets: .iOS("18.2"),
             infoPlist: .extendingDefault(
                 with: [
                     "LSApplicationCategoryType": "public.app-category.productivity",
@@ -44,7 +44,7 @@ let project = Project(
             destinations: .iOS,
             product: .appExtension,
             bundleId: "co.jackdelaney.jb.JourneyBookWidgetExtension",
-            deploymentTargets: .iOS("18.3"),
+            deploymentTargets: .iOS("18.2"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "$(PRODUCT_NAME)",
                 "NSExtension": [
@@ -64,7 +64,7 @@ let project = Project(
             destinations: .iOS,
             product: .unitTests,
             bundleId: "co.jackdelaney.jbTests",
-            deploymentTargets: .iOS("18.3"),
+            deploymentTargets: .iOS("18.2"),
             infoPlist: .extendingDefault(with: ["NSExtensionPointIdentifier": "com.apple.widgetkit-extension"]),
             sources: ["JourneyBook/Tests/**"],
             resources: [],

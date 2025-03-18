@@ -83,6 +83,27 @@ struct AddJourneyTransportGetter: Identifiable, Hashable, Equatable {
     }
 }
 
+struct AddJourneyCommunicationGetter: Identifiable, Hashable, Equatable {
+    var id: UUID
+
+    var communication: Binding<Communication?>
+
+    init(id: UUID = UUID(), communication: Binding<Communication?>) {
+        self.id = id
+        self.communication = communication
+    }
+
+    static func == (lhs: AddJourneyCommunicationGetter, rhs: AddJourneyCommunicationGetter) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+
+
 enum AddJourneyStepSheet: Identifiable, Hashable {
     var id: Self {
         return self
@@ -91,6 +112,8 @@ enum AddJourneyStepSheet: Identifiable, Hashable {
     case getLocationFromAddress(AddJourneyLocationStepGetter)
     case getVisualResourceFromList(AddJourneyLocationVisualResourceGetter)
     case getTransportRouteFromList(AddJourneyTransportGetter)
+    case getCommunicationFromList(AddJourneyCommunicationGetter)
+
     case selectPhrases(AddJourneyPhraseSelectionGetter)
 }
 
@@ -108,6 +131,10 @@ extension AddJourneyStepSheet {
                 .presentationDragIndicator(.automatic)
         case let .selectPhrases(wrapper):
             SelectPhraseForConversationView(selectedPhrases: wrapper.phrases)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.automatic)
+        case let .getCommunicationFromList(communicationGetter):
+            CommunicationSelectorView(selectedCommunication: communicationGetter.communication)
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.automatic)
         }

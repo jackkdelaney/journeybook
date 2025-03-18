@@ -26,6 +26,10 @@ struct EditExistingJourneyStepSheet: SheetView {
     @State private var resources: [VisualResource]
 
     @State private var publicTransit: TransportRoute?
+    
+    @State private var communication: Communication?
+
+
 
     @State private var phrases: [Phrase]
 
@@ -38,16 +42,10 @@ struct EditExistingJourneyStepSheet: SheetView {
         resources = journeyStep.visualResources.map { $0 }
         phrases = journeyStep.phrases.map { $0 }
 
-//        print("BEFORE \(journeyStep.visualResources.count)")
-        ////        for resource in journeyStep.visualResources {
-        ////            print("ADDING A RESOURCE!!")
-        ////            print(resources.count)
-        ////            $resources.wrappedValue.append(resource)
-        ////            print(resources.count)
-        ////        }
-        ////        print("AFTER")
-
         publicTransit = journeyStep.route
+        _communication = State(initialValue: journeyStep.communication)
+
+
     }
 
     var sheetTitle: String {
@@ -61,6 +59,7 @@ struct EditExistingJourneyStepSheet: SheetView {
             cordinates: $cordinates,
             resources: $resources,
             publicTransit: $publicTransit,
+            communication: $communication,
             phrases: $phrases
         )
     }
@@ -79,7 +78,9 @@ struct EditExistingJourneyStepSheet: SheetView {
             journeyStep.stepDescription = desc
             journeyStep.location = location
             journeyStep.route = publicTransit
-
+            journeyStep.communication = communication
+            
+            
             addNewPhrasesAndSteps()
             removeUnwantedResourcesAndPhrases()
 
