@@ -120,6 +120,7 @@ struct MessageButtonView : View {
     }
     
     private func handleCompletition(_ result : MessageComposeResult) {
+        print("THIS")
         switch result {
         case .cancelled:
             print("cancelled")
@@ -131,5 +132,8 @@ struct MessageButtonView : View {
             print("unkown")
             break
         }
+        print("THIS")
+
+        self.showMessageView = false
     }
 }
