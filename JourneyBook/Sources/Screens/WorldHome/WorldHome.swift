@@ -72,6 +72,11 @@ struct WorldHome: View {
                         )
                     }
                     Button {
+                        coordinator.push(page: .communicationDirectory)
+                    } label: {
+                        Label("Communication Directory", systemImage: "figure.run.treadmill")
+                    }
+                    Button {
                         coordinator.push(page: .phraseBook)
                     } label: {
                         Label("Phrase Book", systemImage: "book.pages")
