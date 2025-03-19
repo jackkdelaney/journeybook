@@ -24,6 +24,7 @@ enum AppPages: Hashable {
     case phraseDetails(Phrase)
     case communicationDetail(Communication)
     case credits
+    case acessblityHomeToolbarOptions
 }
 
 extension AppPages {
@@ -62,6 +63,8 @@ extension AppPages {
             CreditView()
         case .communicationDirectory:
             CommunicationView()
+        case .acessblityHomeToolbarOptions:
+            WorldHomeAacessblityHomeToolbarOptions()
         }
     }
 }
