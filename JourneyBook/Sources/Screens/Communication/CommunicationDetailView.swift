@@ -67,7 +67,7 @@ struct CommunicationDetailView: View {
             Section("Phone Number Details") {
                 phoneNumberView(for: phoneNumber)
             }
-        }else if communication.communictionType == .message, let phoneNumber = communication.phoneNumber, let message = communication.message {
+        } else if communication.communictionType == .message, let phoneNumber = communication.phoneNumber, let message = communication.message {
             Section(header: Text("Message Details"), footer: Text("You message is \(message.count) characters in length.")) {
                 phoneNumberView(for: phoneNumber)
                 messsageView(for: message)
@@ -82,7 +82,6 @@ struct CommunicationDetailView: View {
                 messsageView(for: message)
 
                 MailButton(email: email, buttonTitle: "Send Email", content: message)
-
             }
         }
     }
@@ -90,7 +89,7 @@ struct CommunicationDetailView: View {
     @ViewBuilder
     private func phoneNumberView(for phoneNumber: PhoneNumber) -> some View {
         LabeledContent {
-        Link(phoneNumber.formattedPhoneNumber, destination: URL(string: "tel://\(phoneNumber.formattedPhoneNumber)")!)
+            Link(phoneNumber.formattedPhoneNumber, destination: URL(string: "tel://\(phoneNumber.formattedPhoneNumber)")!)
         }
         label: {
             Text("Phone Number")

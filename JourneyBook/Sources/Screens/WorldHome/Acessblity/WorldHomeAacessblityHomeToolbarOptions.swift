@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct WorldHomeAacessblityHomeToolbarOptions : View {
-    var body : some View {
+struct WorldHomeAacessblityHomeToolbarOptions: View {
+    var body: some View {
         Form {
             WorldHomeNavigationButtons()
                 .chevronButtonStyle()
