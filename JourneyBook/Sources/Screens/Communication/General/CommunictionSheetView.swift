@@ -12,15 +12,13 @@ protocol CommunictionSheetView: SheetView {
 
     var viewModel: CommunictionViewModelType { get }
     var errorMessage: CommunicationViewModelError? { get set }
-    
-    var confirmButtonTitleText : String {get}
+
+    var confirmButtonTitleText: String { get }
 
     var sheetTitle: String { get }
-    
+
     func dismissView()
     func setError(for error: CommunicationViewModelError)
-    
-    
 }
 
 extension CommunictionSheetView {
@@ -43,5 +41,4 @@ extension CommunictionSheetView {
             }
         }
     }
-
 }

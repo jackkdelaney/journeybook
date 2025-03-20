@@ -27,7 +27,7 @@ struct CommunicationEditSheet: CommunictionSheetView {
     }
 
     func setError(for error: CommunicationViewModelError) {
-        self.errorMessage = error
+        errorMessage = error
     }
 
     var confirmButtonTitleText: String {

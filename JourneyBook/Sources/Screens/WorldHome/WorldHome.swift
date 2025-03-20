@@ -9,10 +9,8 @@ import SwiftData
 import SwiftUI
 
 struct WorldHome: View {
-    
     @Environment(\.accessibilityAssistiveAccessEnabled) private var isAssistiveAccessEnabled
 
-    
     @EnvironmentObject private var coordinator: Coordinator
 
     @State private var sheet: JourneySheet? = nil
@@ -43,16 +41,15 @@ struct WorldHome: View {
             toolbar
         }
     }
-    
-    private var displayMode : NavigationBarItem.TitleDisplayMode {
+
+    private var displayMode: NavigationBarItem.TitleDisplayMode {
         if isAssistiveAccessEnabled {
             NavigationBarItem.TitleDisplayMode.inline
         } else {
             NavigationBarItem.TitleDisplayMode.automatic
         }
     }
-    
-    
+
     @ToolbarContentBuilder
     private var toolbar: some ToolbarContent {
         if isAssistiveAccessEnabled {
@@ -60,11 +57,10 @@ struct WorldHome: View {
         } else {
             standardToolBar
         }
-        
     }
-    
+
     @ToolbarContentBuilder
-    private var acessibleToolbar : some ToolbarContent {
+    private var acessibleToolbar: some ToolbarContent {
         ToolbarItemGroup(placement: .bottomBar) {
             Button {
                 coordinator.push(page: .credits)
@@ -73,7 +69,7 @@ struct WorldHome: View {
             }
             .labelStyle(.titleAndIcon)
             Spacer()
-            
+
             Button {
                 coordinator.push(page: .acessblityHomeToolbarOptions)
 
@@ -81,12 +77,11 @@ struct WorldHome: View {
                 Label("Options", systemImage: "case")
             }
             .labelStyle(.titleAndIcon)
-
-            
         }
     }
+
     @ToolbarContentBuilder
-    private var standardToolBar : some ToolbarContent {
+    private var standardToolBar: some ToolbarContent {
         ToolbarItemGroup(placement: .primaryAction) {
             Button {
                 coordinator.push(page: .credits)
