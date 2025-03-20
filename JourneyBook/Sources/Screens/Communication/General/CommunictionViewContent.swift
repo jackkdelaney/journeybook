@@ -32,7 +32,8 @@ struct CommunictionViewContent<Model: CommunictionModel>: View {
         .alert(item: $errorMessage) { error in
             Alert(
                 title: Text("Could Not Save"),
-                message: Text(error.errorMessage), dismissButton: .cancel())
+                message: Text(error.errorMessage), dismissButton: .cancel()
+            )
         }
         .sheet(item: $sheet) { item in
             item.buildView()
@@ -47,7 +48,8 @@ struct CommunictionViewContent<Model: CommunictionModel>: View {
                 ForEach(CommunicationType.allCases, id: \.self) {
                     Text($0.stringName)
                 }
-            })
+            }
+        )
     }
 
     @ViewBuilder
@@ -91,7 +93,6 @@ struct CommunictionViewContent<Model: CommunictionModel>: View {
                     } else {
                         Text("No Selection")
                     }
-
                 }
             } label: {
                 Text("Phone Dialing Code")
@@ -108,5 +109,4 @@ struct CommunictionViewContent<Model: CommunictionModel>: View {
             }
         }
     }
-
 }

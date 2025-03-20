@@ -12,7 +12,7 @@ struct CountryCodeSelectorDetailView:
 
 {
     @Binding var phoneNumber: PhoneNumber?
-    
+
     @State private var searchText = ""
 
     @Environment(\.dismiss) var dismiss
@@ -60,7 +60,6 @@ struct CountryCodeSelectorDetailView:
                 }
             }
         }
-     
     }
 
     var sheetTitle: String {
