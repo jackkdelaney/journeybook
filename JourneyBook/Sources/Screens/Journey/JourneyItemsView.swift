@@ -13,6 +13,9 @@ struct JourneyItemsView: View {
 
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject private var coordinator: Coordinator
+    
+    @Environment(\.accessibilityAssistiveAccessEnabled) private var isAssistiveAccessEnabled
+
 
     @Binding var sheet: JourneySheet?
 
@@ -52,7 +55,10 @@ struct JourneyItemsView: View {
             }
         }
     }
-
+    
+   
+    
+    
     private func delete(at offsets: IndexSet) {
         for offset in offsets {
             let journey = journeys[offset]
@@ -86,19 +92,22 @@ struct JourneyItemsView: View {
         } label: {
             VStack(alignment: .leading) {
                 Text("\(journey.journeyName)")
-                    .font(.headline)
+                    .font(isAssistiveAccessEnabled ? .title :.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text(journey.dateCreated.formatted())
-                    .font(.subheadline)
+                    .font(isAssistiveAccessEnabled ?  .headline : .subheadline)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
-
                 if let description = journey.journeyDescription {
+                    if isAssistiveAccessEnabled {
+                        Divider()
+                            .frame(height: 1)
+                    }
                     Text(description)
-                        .font(.caption)
+                        .font(isAssistiveAccessEnabled ? .callout: .caption)
                         .foregroundStyle(.secondary)
-                        .lineLimit(2)
+                        .lineLimit(isAssistiveAccessEnabled ? 4 : 2)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }

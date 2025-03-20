@@ -10,6 +10,9 @@ import SwiftUI
 struct JourneyDetailView: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject private var coordinator: Coordinator
+    
+    @Environment(\.accessibilityAssistiveAccessEnabled) private var isAssistiveAccessEnabled
+
 
     @Bindable var journey: Journey
 
