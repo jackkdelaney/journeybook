@@ -8,7 +8,10 @@
 import CoreLocation
 import SwiftUI
 
-struct AddNewJourneyStepButton: View {
+struct AddNewJourneyStepButton: AnimatedBackGroundView {
+
+    @Environment(\.accessibilityAssistiveAccessEnabled) internal var isAssistiveAccessEnabled
+
     @Bindable var journey: Journey
 
     @Binding var sheet: JourneyStepSheet?
@@ -18,8 +21,7 @@ struct AddNewJourneyStepButton: View {
             sheet = .addNewStep(journey)
         } label: {
             ZStack {
-                Color.purple
-                    .opacity(0.7)
+                meshGradient
                     .background(.thickMaterial)
 
                 HStack {
@@ -41,5 +43,22 @@ struct AddNewJourneyStepButton: View {
         .contentShape(Rectangle())
         .removeListRowPaddingInsets()
         .buttonStyle(PlainButtonStyle())
+    }
+    
+    var colours: [Color] { [
+        .purple.opacity(0.8),
+        .purple.opacity(0.7),
+        .purple.opacity(0.7),
+        .pink.opacity(0.7),
+        .pink.opacity(0.6),
+        .purple.opacity(0.6),
+        .purple.opacity(0.5),
+        ]
+
+
+    }
+     
+    var backgroundColor: Color {
+        .purple
     }
 }

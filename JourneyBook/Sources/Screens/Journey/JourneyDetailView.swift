@@ -10,9 +10,9 @@ import SwiftUI
 struct JourneyDetailView: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject private var coordinator: Coordinator
-    
-    @Environment(\.accessibilityAssistiveAccessEnabled) private var isAssistiveAccessEnabled
+    @Environment(\.editMode) private var editMode
 
+    @Environment(\.accessibilityAssistiveAccessEnabled) private var isAssistiveAccessEnabled
 
     @Bindable var journey: Journey
 
@@ -21,8 +21,17 @@ struct JourneyDetailView: View {
     var body: some View {
         Form {
             Section {
-                AddNewJourneyStepButton(journey: journey, sheet: $sheet)
-            }
+                if !isEditing {
+                    
+                    AddNewJourneyStepButton(journey: journey, sheet: $sheet)
+                } else {
+                    Button("Edit Title and Description") {
+                        sheet = .editJourney(journey)
+                    }
+                }
+                }
+            .animation(nil, value: editMode?.wrappedValue)
+
             Section("Description") {
                 if let description = journey.journeyDescription {
                     Text(description)
@@ -72,11 +81,7 @@ struct JourneyDetailView: View {
         }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
-                Button {
-                    sheet = .editJourney(journey)
-                } label: {
-                    Label("Change Title or Description", systemImage: "slider.horizontal.2.square")
-                }
+
                 EditButton()
             }
         }
@@ -108,5 +113,12 @@ struct JourneyDetailView: View {
         do {
             try modelContext.save()
         } catch {}
+    }
+
+    var isEditing: Bool {
+        if let editMode = editMode {
+            return editMode.wrappedValue.isEditing
+        }
+        return false
     }
 }
