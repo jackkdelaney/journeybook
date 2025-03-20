@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct WorldHomeNavigationButtons : View {
+struct WorldHomeNavigationButtons: View {
     @EnvironmentObject private var coordinator: Coordinator
 
     @ViewBuilder
-    var body : some View {
+    var body: some View {
         Button {
             coordinator.push(page: .resourceManager)
         } label: {
@@ -53,4 +53,3 @@ struct WorldHomeNavigationButtons : View {
         }
     }
 }
-

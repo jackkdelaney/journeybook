@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct AdvertButton: View {
+struct AdvertButton: AnimatedBackGroundView {
     @EnvironmentObject private var coordinator: Coordinator
+    @Environment(\.accessibilityAssistiveAccessEnabled) var isAssistiveAccessEnabled
 
     var title: String
     var tagLine: String
@@ -36,13 +37,29 @@ struct AdvertButton: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .frame(height: 100)
             .removeListRowPaddingInsets()
-            .background(LinearGradient(gradient: Gradient(colors: [Color.pink.opacity(0.6), Color.purple.opacity(0.4)]),
-                                       startPoint: .topLeading,
-                                       endPoint: .bottomTrailing))
+            .background(meshGradient)
             Button(title) {
                 coordinator.push(page: appPage)
             }
             .chevronButtonStyle()
         }
+    }
+
+    var backgroundColor : Color {
+        .purple
+    }
+    var colours: [Color] {
+        [
+            Color.pink.opacity(0.9),
+            Color.indigo.opacity(0.9),
+            Color.pink.opacity(0.7),
+            Color.indigo.opacity(0.7),
+            Color.pink.opacity(0.6),
+            Color.indigo.opacity(0.6),
+            Color.purple.opacity(0.6),
+            Color.purple.opacity(0.4),
+            Color.indigo.opacity(0.4),
+            Color.purple.opacity(0.3),
+        ]
     }
 }

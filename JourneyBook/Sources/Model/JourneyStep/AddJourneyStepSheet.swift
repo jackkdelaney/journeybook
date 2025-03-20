@@ -102,8 +102,6 @@ struct AddJourneyCommunicationGetter: Identifiable, Hashable, Equatable {
     }
 }
 
-
-
 enum AddJourneyStepSheet: Identifiable, Hashable {
     var id: Self {
         return self

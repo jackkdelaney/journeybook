@@ -12,11 +12,10 @@ struct CommunicationView: View {
     @EnvironmentObject private var coordinator: Coordinator
     @Environment(\.modelContext) var modelContext
     @Environment(\.editMode) private var editMode
-    
+
     @Query var communictions: [Communication]
 
     @State private var sheet: CommunicationSheet? = nil
-
 
     var body: some View {
         List {
@@ -75,11 +74,10 @@ struct CommunicationView: View {
         } label: {
             VStack {
                 Text(communication.title)
-                    .frame(maxWidth:.infinity,alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 Text(communication.communictionType.stringName)
                     .font(.caption)
-                    .frame(maxWidth:.infinity,alignment: .leading)
-
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
         .chevronButtonStyle()
@@ -97,5 +95,4 @@ struct CommunicationView: View {
             try modelContext.save()
         } catch {}
     }
-
 }

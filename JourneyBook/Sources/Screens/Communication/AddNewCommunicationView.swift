@@ -23,7 +23,7 @@ struct AddNewCommunicationView: CommunictionSheetView {
     }
 
     func setError(for error: CommunicationViewModelError) {
-        self.errorMessage = error
+        errorMessage = error
     }
 
     var sheetTitle: String {
