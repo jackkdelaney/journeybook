@@ -42,7 +42,7 @@ class AppShortcuts: AppShortcutsProvider {
 }
 
 
-enum ModelContextProvider {
+enum ModelContextProvider { 
     static var context: ModelContext?
 }
 

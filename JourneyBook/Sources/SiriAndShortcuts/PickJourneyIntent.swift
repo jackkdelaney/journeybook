@@ -27,20 +27,24 @@ struct OpenJourneyIntent: AppIntent {
     
     func perform() async throws -> some IntentResult & ProvidesDialog {
         let modelContext = ModelContext.getContextForAppIntents()
-        guard let navigationCoordinator = AppNavigationCoordinator.activeCoordinator else {
-            throw IntentError.coordinatorNotFound
-        }
+//        guard let navigationCoordinator = AppNavigationCoordinator.activeCoordinator else {
+//            throw IntentError.coordinatorNotFound
+//        }
         
-        let fetchDescriptor = FetchDescriptor<WishlistItem>()
+        let fetchDescriptor = FetchDescriptor<Journey>()
         let items = try? modelContext.fetch(fetchDescriptor)
         guard let swiftDataItem = (items?.first { $0.id == wish.id }) else {
             throw IntentError.itemNotFound
         }
         
-        navigationCoordinator.clear()
-        navigationCoordinator.navigate(to: swiftDataItem)
+        //navigationCoordinator.clear()
+        //navigationCoordinator.navigate(to: swiftDataItem)
         
         return .result(dialog: "Opening...")
     }
 }
 
+
+enum IntentError: Error {
+    case itemNotFound
+}
