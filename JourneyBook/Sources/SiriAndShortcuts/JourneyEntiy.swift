@@ -50,6 +50,7 @@ struct JourneyEntiyQuery: EntityQuery {
         
         return try modelContext
             .fetch(fetchDescriptor)
+            .prefix(100) // Swift Shortcuts get slow with too many items
             .map(JourneyEntiy.init)
     }
 }

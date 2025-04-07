@@ -9,7 +9,7 @@ import PostHog
 import SwiftUI
 
 struct CoordinatorView: View {
-    @StateObject private var coordinator = Coordinator()
+    @StateObject private var coordinator = Coordinator.start()
 
     @Namespace var namespace
 

@@ -9,40 +9,36 @@ import AppIntents
 import SwiftData
 
 class AppShortcuts: AppShortcutsProvider {
+    
+    static var shortcutTileColor: ShortcutTileColor {
+        return .purple
+      }
+    
+   
+    // Open a Journey
+    // End my journey
+    // Start my journey (also start my starred journey)
+    //Next Step
+    // Go Back a step
+    
     static var appShortcuts: [AppShortcut] {
-//        AppShortcut(
-//            intent: NewWishIntent(),
-//            phrases: [
-//                "create new wish in \(.applicationName)",
-//                "using \(.applicationName) create a new wish"
-//            ],
-//            shortTitle: "Create Wishlist Item",
-//            systemImageName: "sparkles"
-//        )
-//        
         AppShortcut(
             intent: OpenJourneyIntent(),
             phrases: [
-                "open \(\.$wish) using \(.applicationName)"
+                "open \(\.$journey) using \(.applicationName)",
+                "open \(\.$journey) with \(.applicationName)",
+                "start \(\.$journey) with \(.applicationName)",
+                "start \(\.$journey) using \(.applicationName)"
             ],
-            shortTitle: "Open Wish",
-            systemImageName: "sparkles.square.filled.on.square"
+            shortTitle: "Open Journey",
+            systemImageName: "fossil.shell"
         )
-        
-//        AppShortcut(
-//            intent: UpdateWishStatusIntent(),
-//            phrases: [
-//                "update status of \(\.$wish) using \(.applicationName)"
-//            ],
-//            shortTitle: "Update Status",
-//            systemImageName: "wand.and.stars.inverse"
-//        )
+
 
     }
 }
 
-
-enum ModelContextProvider { 
+enum ModelContextProvider {
     static var context: ModelContext?
 }
 
@@ -51,12 +47,21 @@ extension ModelContext {
         if let context = ModelContextProvider.context {
             return context
         }
-        
-        let schema = Schema([VisualResource.self, Phrase.self, Journey.self, JourneyStep.self, TransportRoute.self, Communication.self])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+
+        let schema = Schema([
+            VisualResource.self, Phrase.self, Journey.self, JourneyStep.self,
+            TransportRoute.self, Communication.self,
+        ])
+        let modelConfiguration = ModelConfiguration(
+            schema: schema,
+            isStoredInMemoryOnly: false
+        )
 
         do {
-            let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            let container = try ModelContainer(
+                for: schema,
+                configurations: [modelConfiguration]
+            )
             return .init(container)
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
