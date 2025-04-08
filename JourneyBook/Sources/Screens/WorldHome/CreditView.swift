@@ -13,11 +13,20 @@ import JourneyBook_shared
 struct CreditView: View {
     
     func startLiveActivity() {
-        print("LIVE ACTIVITY")
         let attributes = ActivityAttributesSample()
                 let contentState = ActivityAttributesSample.Status(value: "This is dynamic island!")
                 do {
-                    let _ = try Activity<ActivityAttributesSample>.request(attributes: attributes, contentState: contentState)
+                    let staleDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
+
+                    let content = ActivityContent(state: contentState, staleDate: staleDate, relevanceScore: 0.65)
+
+                    _ = try Activity<ActivityAttributesSample>.request(
+                        attributes: attributes,
+                        content: content
+                    )
+
+                    
+//                    let _ = try Activity<ActivityAttributesSample>.request(attributes: attributes, contentState: contentState)
                 }
                 catch (let error) {
                     print(error.localizedDescription)
@@ -27,7 +36,7 @@ struct CreditView: View {
     func stop() {
         Task {
                for activity in Activity<ActivityAttributesSample>.activities{
-                   await activity.end(dismissalPolicy: .immediate)
+                   await activity.end(activity.content, dismissalPolicy: .immediate)
                }
            }
     }
