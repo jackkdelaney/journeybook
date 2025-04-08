@@ -76,7 +76,7 @@ let project = Project(
             bundleId: "co.jackdelaney.jbTests",
             deploymentTargets: .iOS("18.4"),
             infoPlist: .extendingDefault(with: ["NSExtensionPointIdentifier": "com.apple.widgetkit-extension"]),
-            sources: ["JourneyBook/Tests/**"],
+            sources: ["Tests/**"],
             resources: [],
             dependencies: [.target(name: "JourneyBook")]
         ),

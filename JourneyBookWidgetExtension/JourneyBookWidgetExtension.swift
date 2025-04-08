@@ -27,7 +27,7 @@ struct LiveActivityExpandedViewSample: View {
     var state: ActivityAttributesSample.ContentState
     var body: some View {
         VStack {
-            Text ("Hello, CENTER")
+            Text ("Expanded Content")
             Text(state.value)
                 .foregroundColor(.secondary)
         }
@@ -48,20 +48,24 @@ struct LiveActivitySample: Widget {
                     LiveActivityExpandedViewSample(state: context.state)
                 }
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("LEFT")
+                    Text("Journey Book")
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("RIGHT")
+                    Text("Step 1/2")
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("BOTTOM")
+                    Text("Your Journey Button")
                 }
             } compactLeading: {
-                Image(systemName: "capsule")
+                HStack {
+                    Image(systemName: "j.square.fill")
+                    Image(systemName: "b.square.fill")
+                }
             } compactTrailing: {
-                EmptyView()
+                Text("1/2")
             } minimal: {
-                EmptyView()
+                Text("J.B")
+
             }
 
         }
