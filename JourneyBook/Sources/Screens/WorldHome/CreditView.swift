@@ -24,12 +24,27 @@ struct CreditView: View {
                 }
     }
     
+    func stop() {
+        Task {
+               for activity in Activity<ActivityAttributesSample>.activities{
+                   await activity.end(dismissalPolicy: .immediate)
+               }
+           }
+    }
+    
+    
+
     var body: some View {
         Form {
             Button {
                 startLiveActivity()
             } label: {
                 Text("Live Activity Test")
+            }
+            Button {
+                stop()
+            } label: {
+                Text("STOP")
             }
             Section {
                 LabeledContent("Developer", value: "Jack Delaney")
