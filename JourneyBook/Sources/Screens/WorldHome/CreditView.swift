@@ -6,10 +6,31 @@
 //
 
 import SwiftUI
+import ActivityKit
+import JourneyBook_shared
+
 
 struct CreditView: View {
+    
+    func startLiveActivity() {
+        print("LIVE ACTIVITY")
+        let attributes = ActivityAttributesSample()
+                let contentState = ActivityAttributesSample.Status(value: "This is dynamic island!")
+                do {
+                    let _ = try Activity<ActivityAttributesSample>.request(attributes: attributes, contentState: contentState)
+                }
+                catch (let error) {
+                    print(error.localizedDescription)
+                }
+    }
+    
     var body: some View {
         Form {
+            Button {
+                startLiveActivity()
+            } label: {
+                Text("Live Activity Test")
+            }
             Section {
                 LabeledContent("Developer", value: "Jack Delaney")
                 LabeledContent {

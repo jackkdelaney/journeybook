@@ -25,6 +25,6 @@ struct JourneyBookApp: App {
         WindowGroup {
             CoordinatorView()
         }
-        .modelContainer(for: [VisualResource.self, Phrase.self, Journey.self, JourneyStep.self, TransportRoute.self, Communication.self])
+        .modelContainer(for: [VisualResource.self, Phrase.self, Journey.self,LiveJourney.self, JourneyStep.self, TransportRoute.self, Communication.self])
     }
 }
