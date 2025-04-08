@@ -8,7 +8,7 @@
 import WidgetKit
 import SwiftUI
 import Intents
-import JourneyBook_shared
+import CommonCodeKit
 
 //@main
 //struct DynamicIsland_WidgetBundle: WidgetBundle {

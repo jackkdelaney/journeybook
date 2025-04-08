@@ -8,7 +8,7 @@ let project = Project(
             ]
         ),
     targets: [
-        .target(name: "JourneyBook-shared",
+        .target(name: "CommonCodeKit",
                 destinations: .iOS,
                 product: .framework,
                 bundleId: "co.jackdelaney.jb.sharedCode",
@@ -43,7 +43,7 @@ let project = Project(
             resources: ["JourneyBook/Resources/**"],
             dependencies: [
                 .external(name: "FeedKit"),
-                .target(name: "JourneyBook-shared"),
+                .target(name: "CommonCodeKit"),
                 .target(name:"JourneyBookWidgetExtension"),
                 .external(name: "PostHog")
             ]
@@ -65,7 +65,7 @@ let project = Project(
             resources: ["JourneyBookWidgetExtensionResources/**"],
             dependencies: [
                 .external(name: "FeedKit"),
-                .target(name: "JourneyBook-shared"),
+                .target(name: "CommonCodeKit"),
             ]
 
         ),

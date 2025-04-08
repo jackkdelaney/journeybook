@@ -7,7 +7,7 @@
 
 import SwiftUI
 import ActivityKit
-import JourneyBook_shared
+import CommonCodeKit
 
 
 struct CreditView: View {
