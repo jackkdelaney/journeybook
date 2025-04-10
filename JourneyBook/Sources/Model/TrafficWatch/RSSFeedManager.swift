@@ -5,13 +5,14 @@
 //  Created by Jack Delaney on 05/01/2025.
 //
 
+import CommonCodeKit
 import FeedKit
 import Foundation
-import CommonCodeKit
+
 @Observable
 class RSSFeedManager {
     typealias RSSFeedItem = CommonCodeKit.RSSFeedItem
-    
+
     var feedItems: [RSSFeedItem] = []
     var isLoading: Bool = false
     var error: Error?
