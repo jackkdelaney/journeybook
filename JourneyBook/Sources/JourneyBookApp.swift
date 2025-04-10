@@ -19,12 +19,12 @@ struct JourneyBookApp: App {
 //
 //        let config = PostHogConfig(apiKey: POSTHOG_API_KEY, host: POSTHOG_HOST)
 //        PostHogSDK.shared.setup(config)
-   }
+    }
 
     var body: some Scene {
         WindowGroup {
             CoordinatorView()
         }
-        .modelContainer(for: [VisualResource.self, Phrase.self, Journey.self,LiveJourney.self, JourneyStep.self, TransportRoute.self, Communication.self])
+        .modelContainer(for: [VisualResource.self, Phrase.self, Journey.self, LiveJourney.self, JourneyStep.self, TransportRoute.self, Communication.self])
     }
 }

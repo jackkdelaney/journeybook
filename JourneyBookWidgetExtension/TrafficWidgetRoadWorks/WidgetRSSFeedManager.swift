@@ -7,9 +7,11 @@
 
 import FeedKit
 import Foundation
+import CommonCodeKit
 
 @Observable
 class WidgetRSSFeedManager {
+    typealias RSSFeedItem = CommonCodeKit.RSSFeedItem
     var feedItems: [RSSFeedItem] = []
     var isLoading: Bool = false
     var error: Error?
@@ -69,33 +71,4 @@ class WidgetRSSFeedManager {
         }
         isLoading = false
     }
-}
-
-struct RSSFeedItem: Identifiable {
-    let id = UUID()
-    let title: String?
-    let link: String?
-    let description: String?
-    let pubDate: Date?
-}
-
-extension RSSFeedItem: Equatable, Hashable {
-    static func == (lhs: RSSFeedItem, rhs: RSSFeedItem) -> Bool {
-        return lhs.id == rhs.id
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        if let title {
-            hasher.combine(title)
-        }
-    }
-}
-
-struct Post: Decodable {
-    let id: Int
-
-    let title: String
-
-    let body: String
 }

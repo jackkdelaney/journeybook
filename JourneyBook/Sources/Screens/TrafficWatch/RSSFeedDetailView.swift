@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CommonCodeKit
 
 struct RSSFeedDetailView: View {
     let item: RSSFeedItem
