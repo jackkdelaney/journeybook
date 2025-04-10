@@ -7,9 +7,11 @@
 
 import FeedKit
 import Foundation
-
+import CommonCodeKit
 @Observable
 class RSSFeedManager {
+    typealias RSSFeedItem = CommonCodeKit.RSSFeedItem
+    
     var feedItems: [RSSFeedItem] = []
     var isLoading: Bool = false
     var error: Error?

@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 10/04/2025.
 //
 
-import WidgetKit
 import SwiftUI
+import WidgetKit
 
 struct TrafficWidgetRoadWorks: Widget {
     // 3.
