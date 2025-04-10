@@ -11,11 +11,8 @@ import Intents
 import CommonCodeKit
 
 @main
-struct DynamicIsland_WidgetBundle: WidgetBundle {
+struct JourneyBookWidgetExtensionWidgetBundle: WidgetBundle {
     var body: some Widget {
-//        DynamicIsland_Widget()
-//        DynamicIsland_WidgetLiveActivity()
-        //FastingActivityWidget()
         JourneyBookLiveActivity()
     }
 }
@@ -25,11 +22,11 @@ import WidgetKit
 import SwiftUI
 
 struct LiveActivityExpandedViewSample: View {
-    var state: ActivityAttributesSample.ContentState
+    var state: StepAttributes.ContentState
     var body: some View {
         VStack {
             Text ("Expanded Content")
-            Text(state.value)
+            Text("\(state.stepNumber) of \(state.totalSteps)")
                 .foregroundColor(.secondary)
         }
         .activityBackgroundTint(.purple)
@@ -40,7 +37,7 @@ struct JourneyBookLiveActivity: Widget {
     let kind: String = "JourneyBookLiveActivity"
 
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: ActivityAttributesSample.self) { context in
+        ActivityConfiguration(for: StepAttributes.self) { context in
             LiveActivityExpandedViewSample(state: context.state)
         } dynamicIsland: { context in
             DynamicIsland {
