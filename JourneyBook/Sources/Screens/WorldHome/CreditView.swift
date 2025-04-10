@@ -13,14 +13,14 @@ import CommonCodeKit
 struct CreditView: View {
     
     func startLiveActivity() {
-        let attributes = ActivityAttributesSample()
-                let contentState = ActivityAttributesSample.Status(value: "This is dynamic island!")
+        let attributes = StepAttributes()
+                let contentState = StepAttributes.Status(stepNumber: 0, totalSteps: 2, description: "HOWDY")
                 do {
                     let staleDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
 
                     let content = ActivityContent(state: contentState, staleDate: staleDate, relevanceScore: 0.65)
 
-                    _ = try Activity<ActivityAttributesSample>.request(
+                    _ = try Activity<StepAttributes>.request(
                         attributes: attributes,
                         content: content
                     )
@@ -35,7 +35,7 @@ struct CreditView: View {
     
     func stop() {
         Task {
-               for activity in Activity<ActivityAttributesSample>.activities{
+               for activity in Activity<StepAttributes>.activities{
                    await activity.end(activity.content, dismissalPolicy: .immediate)
                }
            }
