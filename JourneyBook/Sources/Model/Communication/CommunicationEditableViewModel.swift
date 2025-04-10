@@ -105,7 +105,7 @@ class CommunicationEditableViewModel: CommunictionModel {
         self.communication = communication
 
         modelContainer = try! ModelContainer(
-            for: VisualResource.self, Phrase.self, Journey.self,
+            for: VisualResource.self, Phrase.self, Journey.self,LiveJourney.self,
             JourneyStep.self, TransportRoute.self, Communication.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         modelContext = modelContainer.mainContext

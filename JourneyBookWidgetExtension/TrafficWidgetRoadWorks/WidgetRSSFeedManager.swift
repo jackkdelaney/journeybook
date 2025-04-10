@@ -2,7 +2,7 @@
 //  WidgetRSSFeedManager.swift
 //  JourneyBookWidgetExtension
 //
-//  Created by Jack Delaney on 20/01/2025.
+//  Created by Jack Delaney on 10/04/2025.
 //
 
 import FeedKit
