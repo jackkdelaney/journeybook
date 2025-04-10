@@ -6,10 +6,54 @@
 //
 
 import SwiftUI
+import ActivityKit
+import CommonCodeKit
 
-struct CreditView: View {
+
+struct CreditView: View {    
+    func startLiveActivity() {
+        let attributes = StepAttributes()
+                let contentState = StepAttributes.Status(stepNumber: 0, totalSteps: 2, description: "HOWDY")
+                do {
+                    let staleDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
+
+                    let content = ActivityContent(state: contentState, staleDate: staleDate, relevanceScore: 0.65)
+
+                    _ = try Activity<StepAttributes>.request(
+                        attributes: attributes,
+                        content: content
+                    )
+
+                    
+//                    let _ = try Activity<ActivityAttributesSample>.request(attributes: attributes, contentState: contentState)
+                }
+                catch (let error) {
+                    print(error.localizedDescription)
+                }
+    }
+    
+    func stop() {
+        Task {
+               for activity in Activity<StepAttributes>.activities{
+                   await activity.end(activity.content, dismissalPolicy: .immediate)
+               }
+           }
+    }
+    
+    
+
     var body: some View {
         Form {
+            Button {
+                startLiveActivity()
+            } label: {
+                Text("Live Activity Test")
+            }
+            Button {
+                stop()
+            } label: {
+                Text("STOP")
+            }
             Section {
                 LabeledContent("Developer", value: "Jack Delaney")
                 LabeledContent {

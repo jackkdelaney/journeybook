@@ -1,15 +1,15 @@
 //
-//  WaterWidgetView.swift
+//  TrafficWatchWidgetView.swift
 //  JourneyBookWidgetExtension
 //
-//  Created by Jack Delaney on 16/01/2025.
+//  Created by Jack Delaney on 10/04/2025.
 //
 
 import SwiftUI
 import WidgetKit
 
 struct TrafficWatchWidgetView: View {
-    var entry: Provider.Entry
+    var entry: TrafficIncidentsProvider.Entry
 
     var body: some View {
         VStack(alignment: .leading) {

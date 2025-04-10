@@ -8,12 +8,19 @@ let project = Project(
             ]
         ),
     targets: [
+        .target(name: "CommonCodeKit",
+                destinations: .iOS,
+                product: .framework,
+                bundleId: "co.jackdelaney.jb.sharedCode",
+                deploymentTargets: .iOS("18.4"),
+                sources: ["Shared/**"]
+               ),
         .target(
             name: "JourneyBook",
             destinations: .iOS,
             product: .app,
             bundleId: "co.jackdelaney.jb",
-            deploymentTargets: .iOS("18.2"),
+            deploymentTargets: .iOS("18.4"),
             infoPlist: .extendingDefault(
                 with: [
                     "LSApplicationCategoryType": "public.app-category.productivity",
@@ -29,12 +36,14 @@ let project = Project(
                         "Item 1": "waze",
                         "Item 2": "comgooglemaps",
                     ],
+                    "NSSupportsLiveActivities" : "true",
                 ]
             ),
             sources: ["JourneyBook/Sources/**"],
             resources: ["JourneyBook/Resources/**"],
             dependencies: [
                 .external(name: "FeedKit"),
+                .target(name: "CommonCodeKit"),
                 .target(name:"JourneyBookWidgetExtension"),
                 .external(name: "PostHog")
             ]
@@ -44,7 +53,7 @@ let project = Project(
             destinations: .iOS,
             product: .appExtension,
             bundleId: "co.jackdelaney.jb.JourneyBookWidgetExtension",
-            deploymentTargets: .iOS("18.2"),
+            deploymentTargets: .iOS("18.4"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "$(PRODUCT_NAME)",
                 "NSExtension": [
@@ -52,10 +61,11 @@ let project = Project(
                 ],
             ]),
 
-            sources: ["JourneyBook/JourneyBookWidgetExtension/**"],
-            resources: ["JourneyBook/JourneyBookWidgetExtensionResources/**"],
+            sources: ["JourneyBookWidgetExtension/**"],
+            resources: ["JourneyBookWidgetExtensionResources/**"],
             dependencies: [
                 .external(name: "FeedKit"),
+                .target(name: "CommonCodeKit"),
             ]
 
         ),
@@ -64,9 +74,9 @@ let project = Project(
             destinations: .iOS,
             product: .unitTests,
             bundleId: "co.jackdelaney.jbTests",
-            deploymentTargets: .iOS("18.2"),
+            deploymentTargets: .iOS("18.4"),
             infoPlist: .extendingDefault(with: ["NSExtensionPointIdentifier": "com.apple.widgetkit-extension"]),
-            sources: ["JourneyBook/Tests/**"],
+            sources: ["Tests/**"],
             resources: [],
             dependencies: [.target(name: "JourneyBook")]
         ),

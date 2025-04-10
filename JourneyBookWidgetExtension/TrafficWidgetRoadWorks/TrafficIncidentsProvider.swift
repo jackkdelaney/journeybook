@@ -1,13 +1,13 @@
 //
-//  WaterProvider.swift
+//  TrafficIncidentsProvider.swift
 //  JourneyBookWidgetExtension
 //
-//  Created by Jack Delaney on 16/01/2025.
+//  Created by Jack Delaney on 10/04/2025.
 //
 
 import WidgetKit
 
-struct Provider: TimelineProvider {
+struct TrafficIncidentsProvider: TimelineProvider {
     func placeholder(in _: Context) -> TrafficIncidentsEntry {
         TrafficIncidentsEntry(date: Date.distantPast, issues: 2)
     }
@@ -65,17 +65,3 @@ struct Provider: TimelineProvider {
     }
 }
 
-struct TrafficIncidentsEntry: TimelineEntry {
-    let date: Date
-    let issues: Int
-}
-
-extension TrafficIncidentsEntry {
-    var hasIssues: Bool {
-        return issues > 0
-    }
-
-    var placeholder: Bool {
-        return date == .distantPast
-    }
-}
