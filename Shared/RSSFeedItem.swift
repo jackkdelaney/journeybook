@@ -13,7 +13,7 @@ public struct RSSFeedItem: Identifiable {
     public let link: String?
     public let description: String?
     public let pubDate: Date?
-    
+
     public init(title: String?, link: String?, description: String?, pubDate: Date?) {
         self.title = title
         self.link = link
