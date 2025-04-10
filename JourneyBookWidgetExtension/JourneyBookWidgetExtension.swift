@@ -10,15 +10,16 @@ import SwiftUI
 import Intents
 import CommonCodeKit
 
-//@main
-//struct DynamicIsland_WidgetBundle: WidgetBundle {
-//    var body: some Widget {
-////        DynamicIsland_Widget()
-////        DynamicIsland_WidgetLiveActivity()
-//        FastingActivityWidget()
-//    }
-//}
-//
+@main
+struct DynamicIsland_WidgetBundle: WidgetBundle {
+    var body: some Widget {
+//        DynamicIsland_Widget()
+//        DynamicIsland_WidgetLiveActivity()
+        //FastingActivityWidget()
+        JourneyBookLiveActivity()
+    }
+}
+
 
 import WidgetKit
 import SwiftUI
@@ -35,9 +36,8 @@ struct LiveActivityExpandedViewSample: View {
     }
 }
 
-@main
-struct LiveActivitySample: Widget {
-    let kind: String = "LiveActivitySample"
+struct JourneyBookLiveActivity: Widget {
+    let kind: String = "JourneyBookLiveActivity"
 
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: ActivityAttributesSample.self) { context in
@@ -57,20 +57,27 @@ struct LiveActivitySample: Widget {
                     Text("Your Journey Button")
                 }
             } compactLeading: {
-                Image(systemName: "book.closed.circle")
+                Label("Journey Book Current Journey", systemImage: "arrow.up.and.down.and.arrow.left.and.right")
+                    .labelStyle(.iconOnly)
+                    .foregroundStyle(.purple)
+                    .fontWeight(.heavy)
 
-//                HStack {
-//                    Image(systemName: "j.square.fill")
-//                    Image(systemName: "b.square.fill")
-//                }
+
             } compactTrailing: {
-                Image("journeyBookIcon")
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(maxHeight: .infinity)
+                Text("1 of 2")
+                    .foregroundStyle(.purple)
+                    .fontWeight(.heavy)
 
             } minimal: {
-                Text("J.B")
+                /*
+                 Ensure that your Live Activity is recognizable in the minimal presentation. If possible, display updated information instead of only presenting a logo, but ensure that people are able to quickly recognize your app. For example, the compact presentation for a Live Activity of the Timer app displays the remaining time instead of using a static icon.
+                 
+                 SO IF LESS THAN 3 characters use the text otherwise, use the icon
+                 */
+                
+                Text("1/2")
+                    .foregroundStyle(.purple)
+                    .fontWeight(.heavy)
 
             }
 
