@@ -31,7 +31,7 @@ struct LiveActivityExpandedViewSample: View {
             Text(state.value)
                 .foregroundColor(.secondary)
         }
-        .activityBackgroundTint(.gray)
+        .activityBackgroundTint(.purple)
     }
 }
 
@@ -57,12 +57,18 @@ struct LiveActivitySample: Widget {
                     Text("Your Journey Button")
                 }
             } compactLeading: {
-                HStack {
-                    Image(systemName: "j.square.fill")
-                    Image(systemName: "b.square.fill")
-                }
+                Image(systemName: "book.closed.circle")
+
+//                HStack {
+//                    Image(systemName: "j.square.fill")
+//                    Image(systemName: "b.square.fill")
+//                }
             } compactTrailing: {
-                Text("1/2")
+                Image("journeyBookIcon")
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(maxHeight: .infinity)
+
             } minimal: {
                 Text("J.B")
 
