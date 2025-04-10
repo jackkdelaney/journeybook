@@ -10,8 +10,7 @@ import ActivityKit
 import CommonCodeKit
 
 
-struct CreditView: View {
-    
+struct CreditView: View {    
     func startLiveActivity() {
         let attributes = StepAttributes()
                 let contentState = StepAttributes.Status(stepNumber: 0, totalSteps: 2, description: "HOWDY")
