@@ -34,6 +34,16 @@ class LiveJourneyStepModel {
             .compactMap { $0.journey }
             .map { $0.id }
     }
+    
+//    private func start() {
+//        
+//    }
+    
+    func makeNewLiveJourney() {
+        let liveJourney = LiveJourney(journey: journey)
+        endJourneys()
+        add(liveJourney)
+    }
 
     private func endJourneys() {
         for liveJourney in fetchResources() {

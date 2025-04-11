@@ -21,11 +21,17 @@ struct JourneyDetailLiveItemSection: View {
 
     var body: some View {
         Section {
-            Button {} label: {
-                Text("Run this journey")
+            if model.journeyNotLive {
+                Button {
+                    model.makeNewLiveJourney()
+                } label: {
+                    Text("Run this journey")
+                }
             }
         } footer: {
-            Text("By running this journey, you can run the journey")
+            Text("CUSTOM TEXT!!!")
         }
     }
+    
+    
 }
