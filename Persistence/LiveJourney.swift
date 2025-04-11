@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftData
+import SwiftData 
 
 @Model
 public class LiveJourney {
