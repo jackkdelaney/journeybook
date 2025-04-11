@@ -24,7 +24,7 @@ struct JourneyBookLiveActivity: Widget {
                     Text("Journey Book")
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("Step 1/2")
+                    Text("Step \(context.state.stepNumber)/\(context.state.totalSteps)")
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     Text("Your Journey Button")
@@ -36,7 +36,7 @@ struct JourneyBookLiveActivity: Widget {
                     .fontWeight(.heavy)
 
             } compactTrailing: {
-                Text("1 of 2")
+                Text("\(context.state.stepNumber) of \(context.state.totalSteps)")
                     .foregroundStyle(.purple)
                     .fontWeight(.heavy)
 

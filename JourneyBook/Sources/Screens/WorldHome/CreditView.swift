@@ -10,7 +10,10 @@ import ActivityKit
 import CommonCodeKit
 
 
-struct CreditView: View {    
+struct CreditView: View {
+    
+    @State var activty : Activity<StepAttributes>?
+    
     func startLiveActivity() {
         let attributes = StepAttributes()
                 let contentState = StepAttributes.Status(stepNumber: 0, totalSteps: 2, description: "HOWDY")
@@ -19,7 +22,7 @@ struct CreditView: View {
 
                     let content = ActivityContent(state: contentState, staleDate: staleDate, relevanceScore: 0.65)
 
-                    _ = try Activity<StepAttributes>.request(
+                    activty = try Activity<StepAttributes>.request(
                         attributes: attributes,
                         content: content
                     )
@@ -32,12 +35,26 @@ struct CreditView: View {
                 }
     }
     
+    func updateActivity() {
+        let updatedContentState = StepAttributes.Status(stepNumber: 1, totalSteps: 2, description: "SUPER HOWDY")
+        
+        if let activty {
+            Task {
+                await activty.update(using: updatedContentState)
+            }
+        }
+
+    }
+    
     func stop() {
         Task {
                for activity in Activity<StepAttributes>.activities{
                    await activity.end(activity.content, dismissalPolicy: .immediate)
                }
+            activty = nil
+
            }
+        
     }
     
     
@@ -48,6 +65,13 @@ struct CreditView: View {
                 startLiveActivity()
             } label: {
                 Text("Live Activity Test")
+            }
+            if let activty {
+                Button {
+                    updateActivity()
+                } label: {
+                    Text("Update")
+                }
             }
             Button {
                 stop()
