@@ -9,6 +9,8 @@ import Observation
 import PhotosUI
 import SwiftData
 import SwiftUI
+import SharedPersistenceKit
+
 
 @Observable
 class PhotosPickerViewModel: PickerItem {

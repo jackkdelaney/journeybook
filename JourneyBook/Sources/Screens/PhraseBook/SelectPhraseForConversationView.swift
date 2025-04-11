@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import SharedPersistenceKit
 
 struct SelectPhraseForConversationView: SheetView {
     @Binding var selectedPhrases: [Phrase]

@@ -5,10 +5,9 @@
 //  Created by Jack Delaney on 03/01/2025.
 //
 
-import SwiftUI
-
 import AVFoundation
 import AVKit
+import SharedPersistenceKit
 import SwiftUI
 
 struct ResourceSection: View {

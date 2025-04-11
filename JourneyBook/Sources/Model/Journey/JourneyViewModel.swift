@@ -7,6 +7,7 @@
 
 import Observation
 import SwiftData
+import SharedPersistenceKit
 
 @Observable
 class JourneyViewModel {

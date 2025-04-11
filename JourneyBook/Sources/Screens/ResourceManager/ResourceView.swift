@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedPersistenceKit
 
 struct ResourceView: View {
     @Bindable var resource: VisualResource

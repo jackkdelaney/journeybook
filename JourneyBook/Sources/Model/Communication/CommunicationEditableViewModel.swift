@@ -6,6 +6,7 @@
 //
 
 import Observation
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
 
@@ -48,7 +49,7 @@ class CommunicationEditableViewModel: CommunictionModel {
         }
     }
 
-    var emailAddresssBinding: Binding<String> {
+    public var emailAddresssBinding: Binding<String> {
         Binding<String>(
             get: { self.emailAddress ?? "" },
             set: {
@@ -61,17 +62,16 @@ class CommunicationEditableViewModel: CommunictionModel {
         )
     }
 
-    var phoneNumberBinding: Binding<PhoneNumber?> {
+    public var phoneNumberBinding: Binding<PhoneNumber?> {
         Binding<PhoneNumber?>(
             get: { self.phoneNumber },
             set: {
                 self.phoneNumber = $0
-
             }
         )
     }
 
-    var phoneNumberStringBinding: Binding<String> {
+    public var phoneNumberStringBinding: Binding<String> {
         Binding<String>(
             get: { self.phoneNumberBinding.wrappedValue?.phoneNumber ?? "" },
             set: {
@@ -80,7 +80,7 @@ class CommunicationEditableViewModel: CommunictionModel {
         )
     }
 
-    var messsageBinding: Binding<String> {
+    public var messsageBinding: Binding<String> {
         Binding<String>(
             get: { self.message ?? "" },
             set: {
@@ -97,17 +97,18 @@ class CommunicationEditableViewModel: CommunictionModel {
     init(
         communication: Communication
     ) {
-        self.title = communication.title
-        self.communictionType = communication.communictionType
-        self.phoneNumber = communication.phoneNumber
-        self.emailAddress = communication.emailAddress
-        self.message = communication.emailAddress
+        title = communication.title
+        communictionType = communication.communictionType
+        phoneNumber = communication.phoneNumber
+        emailAddress = communication.emailAddress
+        message = communication.emailAddress
         self.communication = communication
 
         modelContainer = try! ModelContainer(
-            for: VisualResource.self, Phrase.self, Journey.self,LiveJourney.self,
+            for: VisualResource.self, Phrase.self, Journey.self, LiveJourney.self,
             JourneyStep.self, TransportRoute.self, Communication.self,
-            configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+            configurations: ModelConfiguration(isStoredInMemoryOnly: false)
+        )
         modelContext = modelContainer.mainContext
     }
 
@@ -118,11 +119,11 @@ class CommunicationEditableViewModel: CommunictionModel {
         do {
             _ = try isValid()
 
-            self.communication.title = title
-            self.communication.communictionType = communictionType
-            self.communication.phoneNumber = phoneNumber
-            self.communication.emailAddress = emailAddress
-            self.communication.message = emailAddress
+            communication.title = title
+            communication.communictionType = communictionType
+            communication.phoneNumber = phoneNumber
+            communication.emailAddress = emailAddress
+            communication.message = emailAddress
 
             try modelContext.save()
         } catch {
@@ -133,7 +134,7 @@ class CommunicationEditableViewModel: CommunictionModel {
     private func isValid() throws -> Bool {
         switch communictionType {
         case .phone:
-            if let phoneNumber ,let _ = phoneNumber.countryCode {
+            if let phoneNumber, let _ = phoneNumber.countryCode {
                 return true
             } else {
                 throw CommunicationViewModelError.noPhoneNumber
@@ -145,7 +146,7 @@ class CommunicationEditableViewModel: CommunictionModel {
                 throw CommunicationViewModelError.noEmailOrMessage
             }
         case .message:
-            if let phoneNumber, let message,let countryCode = phoneNumber.countryCode {
+            if let phoneNumber, let message, let countryCode = phoneNumber.countryCode {
                 return true
             } else {
                 throw CommunicationViewModelError.noPhoneOrmessage

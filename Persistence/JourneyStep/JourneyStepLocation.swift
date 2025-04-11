@@ -8,18 +8,18 @@
 import CoreLocation
 import Foundation
 
-struct JourneyStepLocation: Identifiable, Codable, Hashable {
-    var id: UUID
-    var latitude: Double
-    var longitude: Double
+public struct JourneyStepLocation: Identifiable, Codable, Hashable {
+    public var id: UUID
+    public var latitude: Double
+    public var longitude: Double
 
-    init(id: UUID = UUID(), location: CLLocationCoordinate2D) {
+    public init(id: UUID = UUID(), location: CLLocationCoordinate2D) {
         self.id = id
         latitude = location.latitude
         longitude = location.longitude
     }
 
-    var location: CLLocationCoordinate2D {
+    public var location: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }

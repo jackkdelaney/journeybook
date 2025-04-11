@@ -7,6 +7,7 @@
 
 import CoreLocation
 import SwiftUI
+import SharedPersistenceKit
 
 struct JourneyStepInputForm: View {
     @State private var sheet: AddJourneyStepSheet?

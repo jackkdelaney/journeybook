@@ -9,17 +9,17 @@ import Foundation
 import SwiftData
 
 @Model
-class TransportRoute {
-    private(set) var id: UUID
-    private(set) var url: URL
-    private(set) var dateCreated: Date?
+public class TransportRoute {
+    public private(set) var id: UUID
+    public private(set) var url: URL
+    public private(set) var dateCreated: Date?
 
-    var routeName: String
+    public var routeName: String
 
     @Relationship(deleteRule: .nullify, inverse: \JourneyStep.route)
-    var steps: [JourneyStep]
+    public var steps: [JourneyStep]
 
-    init(id: UUID = UUID(), routeName: String, url: URL, steps: [JourneyStep] = []) {
+    public init(id: UUID = UUID(), routeName: String, url: URL, steps: [JourneyStep] = []) {
         self.id = id
         self.routeName = routeName
         self.url = url

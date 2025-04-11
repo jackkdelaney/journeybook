@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SharedPersistenceKit
 
 extension PickerItem {
     func fetchResources() -> [VisualResource] {

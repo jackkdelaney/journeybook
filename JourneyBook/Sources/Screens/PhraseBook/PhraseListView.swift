@@ -7,6 +7,8 @@
 
 import SwiftData
 import SwiftUI
+import SharedPersistenceKit
+
 
 struct PhraseListView: View {
     @Query var phrases: [Phrase]

@@ -5,8 +5,9 @@
 //  Created by Jack Delaney on 11/04/2025.
 //
 
-import SwiftData
 import Foundation
+import SharedPersistenceKit
+import SwiftData
 
 @Observable
 class LiveJourneyStepModel {
@@ -33,12 +34,11 @@ class LiveJourneyStepModel {
         fetchResources()
             .compactMap { $0.journey }
             .map { $0.id }
+        return []
     }
-    
-//    private func start() {
-//        
-//    }
-    
+
+    private func start() {}
+
     func makeNewLiveJourney() {
         let liveJourney = LiveJourney(journey: journey)
         endJourneys()

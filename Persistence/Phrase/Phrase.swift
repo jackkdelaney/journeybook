@@ -10,10 +10,10 @@ import SwiftData
 import SwiftUI
 
 @Model
-class Phrase: Identifiable {
-    private(set) var id: UUID
-    private(set) var dateCreated: Date
-    private(set) var dateModified: Date
+public class Phrase: Identifiable {
+    public private(set) var id: UUID
+    public private(set) var dateCreated: Date
+    public private(set) var dateModified: Date
 
     private var _text: String
 
@@ -21,7 +21,7 @@ class Phrase: Identifiable {
 
     private var _fontSize: FontSizes
 
-    @Transient var text: String {
+    @Transient public var text: String {
         get { return _text }
         set {
             _text = newValue
@@ -29,7 +29,7 @@ class Phrase: Identifiable {
         }
     }
 
-    @Transient var fontSize: FontSizes {
+    @Transient public var fontSize: FontSizes {
         get { return _fontSize }
         set {
             _fontSize = newValue
@@ -37,7 +37,7 @@ class Phrase: Identifiable {
         }
     }
 
-    @Transient var colour: Color {
+    @Transient public var colour: Color {
         get { return Color(hex: _colour) ?? .yellow }
         set {
             if let newValueCheckedAndHex = newValue.toHex() {
@@ -47,9 +47,9 @@ class Phrase: Identifiable {
         }
     }
 
-    @Relationship(inverse: \JourneyStep.phrases) var steps: [JourneyStep]
+    @Relationship(inverse: \JourneyStep.phrases) public var steps: [JourneyStep]
 
-    init(
+    public init(
         text: String,
         colour: Color,
         fontSize: FontSizes = .body,
