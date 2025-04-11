@@ -8,6 +8,7 @@
 // import PostHog
 import SwiftData
 import SwiftUI
+import SharedPersistenceKit
 
 @main
 struct JourneyBookApp: App {

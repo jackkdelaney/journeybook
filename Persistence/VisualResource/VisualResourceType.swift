@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum VisualResourceType: Codable {
+public enum VisualResourceType: Codable {
     case image, video
 }

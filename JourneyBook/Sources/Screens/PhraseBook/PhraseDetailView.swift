@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedPersistenceKit
 
 struct PhraseDetailView: View {
     @Environment(\.modelContext) private var modelContext

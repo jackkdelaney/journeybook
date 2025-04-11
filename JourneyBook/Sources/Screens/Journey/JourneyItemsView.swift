@@ -7,6 +7,8 @@
 
 import SwiftData
 import SwiftUI
+import SharedPersistenceKit
+
 
 struct JourneyItemsView: View {
     @Query var journeys: [Journey]

@@ -7,6 +7,7 @@
 import AVKit
 import SwiftData
 import SwiftUI
+import SharedPersistenceKit
 
 struct ResourcesManager: View {
     @EnvironmentObject private var coordinator: Coordinator

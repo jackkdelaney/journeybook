@@ -7,6 +7,7 @@
 
 import CoreLocation
 import SwiftUI
+import SharedPersistenceKit
 
 struct AddNewJourneyStepButton: AnimatedBackGroundView {
 

@@ -9,10 +9,10 @@ import Foundation
 import SwiftData
 
 @Model
-class Communication: Identifiable {
-    private(set) var id: UUID
-    private(set) var dateCreated: Date
-    private(set) var dateModified: Date
+public class Communication: Identifiable {
+    public private(set) var id: UUID
+    public private(set) var dateCreated: Date
+    public private(set) var dateModified: Date
 
     private var _title: String
     private var _phoneNumber: PhoneNumber?
@@ -21,10 +21,10 @@ class Communication: Identifiable {
     private var _message: String?
 
     private var _communictionType: CommunicationType
-    
-    @Relationship(deleteRule: .nullify, inverse: \JourneyStep.communication) var steps: [JourneyStep]
 
-    @Transient var title: String {
+    @Relationship(deleteRule: .nullify, inverse: \JourneyStep.communication) public var steps: [JourneyStep]
+
+    @Transient public var title: String {
         get { return _title }
         set {
             _title = newValue
@@ -32,7 +32,7 @@ class Communication: Identifiable {
         }
     }
 
-    @Transient var phoneNumber: PhoneNumber? {
+    @Transient public var phoneNumber: PhoneNumber? {
         get { return _phoneNumber }
         set {
             _phoneNumber = newValue
@@ -40,7 +40,7 @@ class Communication: Identifiable {
         }
     }
 
-    @Transient var emailAddress: String? {
+    @Transient public var emailAddress: String? {
         get { return _emailAddress }
         set {
             _emailAddress = newValue
@@ -48,7 +48,7 @@ class Communication: Identifiable {
         }
     }
 
-    @Transient var message: String? {
+    @Transient public var message: String? {
         get { return _message }
         set {
             _message = newValue
@@ -56,7 +56,7 @@ class Communication: Identifiable {
         }
     }
 
-    @Transient var communictionType: CommunicationType {
+    @Transient public var communictionType: CommunicationType {
         get { return _communictionType }
         set {
             _communictionType = newValue
@@ -64,7 +64,7 @@ class Communication: Identifiable {
         }
     }
 
-    init(id: UUID = UUID(), dateCreated: Date = Date.now, dateModified: Date = Date.now, communictionType: CommunicationType, title: String, phoneNumber: PhoneNumber? = nil, emailAddress: String? = nil, message: String? = nil, steps: [JourneyStep] = []) {
+    public init(id: UUID = UUID(), dateCreated: Date = Date.now, dateModified: Date = Date.now, communictionType: CommunicationType, title: String, phoneNumber: PhoneNumber? = nil, emailAddress: String? = nil, message: String? = nil, steps: [JourneyStep] = []) {
         self.id = id
         self.dateCreated = dateCreated
         self.dateModified = dateModified
@@ -76,7 +76,7 @@ class Communication: Identifiable {
         _message = message
     }
 
-    convenience init(title: String, phoneNumber: PhoneNumber) {
+    public convenience init(title: String, phoneNumber: PhoneNumber) {
         self.init(
             communictionType: .phone,
             title: title,
@@ -84,7 +84,7 @@ class Communication: Identifiable {
         )
     }
 
-    convenience init(title: String, phoneNumber: PhoneNumber, message: String) {
+    public convenience init(title: String, phoneNumber: PhoneNumber, message: String) {
         self.init(
             communictionType: .message,
             title: title,
@@ -93,7 +93,7 @@ class Communication: Identifiable {
         )
     }
 
-    convenience init(title: String, email: String, message: String) {
+    public convenience init(title: String, email: String, message: String) {
         self.init(
             communictionType: .message,
             title: title,

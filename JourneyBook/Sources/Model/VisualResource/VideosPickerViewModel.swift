@@ -9,6 +9,7 @@ import Observation
 import PhotosUI
 import SwiftData
 import SwiftUI
+import SharedPersistenceKit
 
 struct Movie: Transferable {
     let url: URL

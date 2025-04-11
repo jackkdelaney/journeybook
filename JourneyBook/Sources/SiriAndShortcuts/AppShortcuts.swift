@@ -6,21 +6,20 @@
 //
 
 import AppIntents
+import SharedPersistenceKit
 import SwiftData
 
 class AppShortcuts: AppShortcutsProvider {
-    
     static var shortcutTileColor: ShortcutTileColor {
         return .purple
-      }
-    
-   
+    }
+
     // Open a Journey
     // End my journey
     // Start my journey (also start my starred journey)
-    //Next Step
+    // Next Step
     // Go Back a step
-    
+
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: OpenJourneyIntent(),
@@ -28,13 +27,11 @@ class AppShortcuts: AppShortcutsProvider {
                 "open \(\.$journey) using \(.applicationName)",
                 "open \(\.$journey) with \(.applicationName)",
                 "start \(\.$journey) with \(.applicationName)",
-                "start \(\.$journey) using \(.applicationName)"
+                "start \(\.$journey) using \(.applicationName)",
             ],
             shortTitle: "Open Journey",
             systemImageName: "fossil.shell"
         )
-
-
     }
 }
 
@@ -49,7 +46,7 @@ extension ModelContext {
         }
 
         let schema = Schema([
-            VisualResource.self, Phrase.self, Journey.self,LiveJourney.self, JourneyStep.self,
+            VisualResource.self, Phrase.self, Journey.self, LiveJourney.self, JourneyStep.self,
             TransportRoute.self, Communication.self,
         ])
         let modelConfiguration = ModelConfiguration(

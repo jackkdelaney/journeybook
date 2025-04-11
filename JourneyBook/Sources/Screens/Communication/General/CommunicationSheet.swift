@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedPersistenceKit
 
 enum CommunicationSheet: Identifiable, Hashable {
     var id: Self {

@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import SharedPersistenceKit
 
 struct ResourceSelectionView: SheetView {
     @Environment(\.dismiss) var dismiss

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedPersistenceKit
 
 struct CommunicationEditSheet: CommunictionSheetView {
     @Environment(\.dismiss) var dismiss

@@ -5,6 +5,7 @@
 //  Created by Jack Delaney on 02/01/2025.
 //
 
+import SharedPersistenceKit
 import SwiftUI
 
 struct MapDetailView: View {
