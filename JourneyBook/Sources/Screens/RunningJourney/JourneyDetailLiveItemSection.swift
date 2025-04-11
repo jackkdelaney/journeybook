@@ -28,6 +28,12 @@ struct JourneyDetailLiveItemSection: View {
                 } label: {
                     Text("Run this journey")
                 }
+            } else {
+                Button {
+                    model.endJourneys()
+                } label: {
+                    Text("End Journey")
+                }
             }
         } footer: {
             Text("CUSTOM TEXT!!!")

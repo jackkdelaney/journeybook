@@ -27,14 +27,13 @@ class LiveJourneyStepModel {
     }
 
     var journeyNotLive: Bool {
-        liveJourneysByID.contains(journey.id)
+        !liveJourneysByID.contains(journey.id)
     }
 
     private var liveJourneysByID: [UUID] {
         fetchResources()
             .compactMap { $0.journey }
             .map { $0.id }
-        return []
     }
 
     private func start() {}
@@ -45,7 +44,7 @@ class LiveJourneyStepModel {
         add(liveJourney)
     }
 
-    private func endJourneys() {
+    func endJourneys() {
         for liveJourney in fetchResources() {
             modelContext.delete(liveJourney)
         }
