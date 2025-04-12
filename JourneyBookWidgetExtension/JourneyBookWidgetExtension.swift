@@ -14,5 +14,6 @@ struct JourneyBookWidgetExtensionWidgetBundle: WidgetBundle {
     var body: some Widget {
         JourneyBookLiveActivity()
         TrafficWidgetRoadWorks()
+        PossibleJourneyWidget()
     }
 }
