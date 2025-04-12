@@ -7,6 +7,7 @@
 
 import CoreLocation
 import SwiftUI
+import SharedPersistenceKit
 
 struct AddNewJourneyStepView: SheetView {
     @Environment(\.dismiss) var dismiss

@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import SharedPersistenceKit
 
 struct EditExistingJourneySheet: SheetView {
     @Bindable var journey: Journey

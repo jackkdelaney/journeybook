@@ -11,7 +11,4 @@ extension PhoneNumber {
     static var examplePhoneNumber: PhoneNumber {
         return PhoneNumber(countryCode: CountryWithCode.example, phoneNumber: "7700900461")
     }
-    
-    
 }
- 

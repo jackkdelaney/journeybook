@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedPersistenceKit
 
 struct CommunicationDetailView: View {
     @Bindable var communication: Communication

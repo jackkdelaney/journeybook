@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedPersistenceKit
 
 struct MiniOpenInMapButton: View {
     let lat: Double

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedPersistenceKit
 
 struct PhoneNumberAndCodeSelectionGetter: Identifiable, Hashable, Equatable {
     var id: UUID

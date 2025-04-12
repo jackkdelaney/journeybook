@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import SharedPersistenceKit
 
 struct CommunicationSelectorView: View {
     @Query var communications: [Communication]

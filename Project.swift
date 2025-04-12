@@ -3,18 +3,26 @@ import ProjectDescription
 let project = Project(
     name: "JourneyBook",
     settings: .settings(
-            base: [
-                "DEVELOPMENT_TEAM": "75ESF57BMG",
-            ]
-        ),
+        base: [
+            "DEVELOPMENT_TEAM": "75ESF57BMG",
+        ]
+    ),
     targets: [
+        .target(name: "SharedPersistenceKit",
+                destinations: .iOS,
+                product: .framework,
+                bundleId: "co.jackdelaney.jb.sharedDataCode",
+                deploymentTargets: .iOS("18.4"),
+                sources: ["Persistence/**"]),
         .target(name: "CommonCodeKit",
                 destinations: .iOS,
                 product: .framework,
                 bundleId: "co.jackdelaney.jb.sharedCode",
                 deploymentTargets: .iOS("18.4"),
-                sources: ["Shared/**"]
-               ),
+                sources: ["Shared/**"],
+                dependencies: [
+                    .target(name: "SharedPersistenceKit"),
+                ]),
         .target(
             name: "JourneyBook",
             destinations: .iOS,
@@ -29,14 +37,14 @@ let project = Project(
                         "UIColorName": "",
                         "UIImageName": "",
                     ],
-                    "UISupportsFullScreenInAssistiveAccess" : "true",
+                    "UISupportsFullScreenInAssistiveAccess": "true",
                     "NSLocationWhenInUseUsageDescription": "The app needs access to your location to provide location-based services.",
                     "LSApplicationQueriesSchemes": [
                         "Item 0": "maps",
                         "Item 1": "waze",
                         "Item 2": "comgooglemaps",
                     ],
-                    "NSSupportsLiveActivities" : "true",
+                    "NSSupportsLiveActivities": "true",
                 ]
             ),
             sources: ["JourneyBook/Sources/**"],
@@ -44,8 +52,9 @@ let project = Project(
             dependencies: [
                 .external(name: "FeedKit"),
                 .target(name: "CommonCodeKit"),
-                .target(name:"JourneyBookWidgetExtension"),
-                .external(name: "PostHog")
+                .target(name: "SharedPersistenceKit"),
+                .target(name: "JourneyBookWidgetExtension"),
+                .external(name: "PostHog"),
             ]
         ),
         .target(

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedPersistenceKit
 
 enum JourneyStepSheet: Identifiable, Hashable {
     var id: Self {

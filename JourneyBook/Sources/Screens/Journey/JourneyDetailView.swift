@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedPersistenceKit
 
 struct JourneyDetailView: View {
     @Environment(\.modelContext) var modelContext
@@ -22,14 +23,13 @@ struct JourneyDetailView: View {
         Form {
             Section {
                 if !isEditing {
-                    
                     AddNewJourneyStepButton(journey: journey, sheet: $sheet)
                 } else {
                     Button("Edit Title and Description") {
                         sheet = .editJourney(journey)
                     }
                 }
-                }
+            }
             .animation(nil, value: editMode?.wrappedValue)
 
             Section("Description") {
@@ -39,8 +39,10 @@ struct JourneyDetailView: View {
                     Text("No Description")
                 }
             }
-
             if !journey.steps.isEmpty {
+                if !isEditing {
+                    JourneyDetailLiveItemSection(journey: journey)
+                }
                 Section("Step's") {
                     ForEach(sortedJourneySteps) { step in
                         Button {

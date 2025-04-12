@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedPersistenceKit
 
 struct EditPhraseView: SheetView {
     var sheetTitle: String {

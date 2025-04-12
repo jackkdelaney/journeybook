@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CommonCodeKit
+import SharedPersistenceKit
 
 enum AppPages: Hashable {
     case worldHome

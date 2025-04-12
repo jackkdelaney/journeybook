@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum FontSizes: Int, CaseIterable, Codable {
+public enum FontSizes: Int, CaseIterable, Codable {
     case caption2 = 0
     case caption = 1
     case footnote = 2
@@ -22,7 +22,7 @@ enum FontSizes: Int, CaseIterable, Codable {
     case largeTitle = 10
 }
 
-extension FontSizes {
+public extension FontSizes {
     var fontStyle: Font {
         switch self {
         case .largeTitle:

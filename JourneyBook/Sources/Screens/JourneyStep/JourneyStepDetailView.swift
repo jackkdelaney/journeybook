@@ -7,6 +7,7 @@
 
 import AVFAudio
 import SwiftUI
+import SharedPersistenceKit
 
 struct JourneyStepDetailView: View {
     @EnvironmentObject private var coordinator: Coordinator

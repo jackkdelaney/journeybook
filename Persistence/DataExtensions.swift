@@ -7,7 +7,7 @@
 
 import AVKit
 
-extension Data {
+public extension Data {
     func dataToVideoURL() -> URL? {
         let tempDirectory = FileManager.default.temporaryDirectory
         let outputUrl = tempDirectory.appendingPathComponent("\(UUID().uuidString).mp4")
