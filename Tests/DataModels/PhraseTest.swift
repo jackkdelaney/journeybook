@@ -1,9 +1,16 @@
+//
+//  PhraseTest.swift
+//  JourneyBookTests
+//
+//  Created by Jack Delaney on 12/04/2025.
+//
+
 import Foundation
 import Testing
 
-@testable import JourneyBook
+@testable import SharedPersistenceKit
 
-struct PhraseTest {
+struct PhraseTests {
     @Test
     func testInitialisationWithJustPhraseText() {
         let phrase = Phrase(text: "Hello World", colour: .pink)
@@ -37,7 +44,7 @@ struct PhraseTest {
 
     @Test
     func testTextMutationUpdatesDateModified() {
-        var phrase = Phrase(text: "Initial Text", colour: .pink)
+        let phrase = Phrase(text: "Initial Text", colour: .pink)
         let initialModifiedDate = phrase.dateModified
         phrase.text = "Updated Text"
 

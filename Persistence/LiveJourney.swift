@@ -28,7 +28,10 @@ public class LiveJourney {
     var currentStep: JourneyStep? {
         if let journey {
             let sortedLocalList = journey.steps.sorted(by: { $0.orderIndex < $1.orderIndex })
-            return sortedLocalList[stepNumber]
+            if sortedLocalList.indices.contains(stepNumber) {
+                return sortedLocalList[stepNumber]
+            }
+           
         }
         return nil
     }
