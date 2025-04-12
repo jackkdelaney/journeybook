@@ -13,7 +13,7 @@ import SwiftData
 
 
 @Observable
-class LiveJourneyStepModel {
+class LiveJourneyStepModelWithinJourney {
     let modelContainer: ModelContainer
     let modelContext: ModelContext
 
@@ -110,7 +110,7 @@ class LiveJourneyStepModel {
     }
 }
 
-extension LiveJourneyStepModel {
+extension LiveJourneyStepModelWithinJourney {
     func fetchResources() -> [LiveJourney] {
         do {
             return try modelContext.fetch(FetchDescriptor<LiveJourney>())
