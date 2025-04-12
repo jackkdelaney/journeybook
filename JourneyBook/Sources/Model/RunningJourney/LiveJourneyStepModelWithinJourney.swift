@@ -10,41 +10,87 @@ import CommonCodeKit
 import Foundation
 import SharedPersistenceKit
 import SwiftData
+import Observation
 
 
 @Observable
-class LiveJourneyStepModelWithinJourney {
+class LiveJourneyStepModel {
     let modelContainer: ModelContainer
     let modelContext: ModelContext
 
-    var journey: Journey
+    var activty: Activity<StepAttributes>? //TODO: Find exisiting one
 
-    var activty: Activity<StepAttributes>? //TODO: Find exisiting one 
-
+    
     @MainActor
-    init(journey: Journey) {
+    init() {
         modelContainer = try! ModelContainer(
             for: VisualResource.self, Phrase.self, Journey.self, LiveJourney.self, JourneyStep.self, TransportRoute.self, Communication.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: false)
         )
         modelContext = modelContainer.mainContext
+    }
+    
+    var liveJourneysByID: [UUID] {
+        fetchResources()
+            .compactMap { $0.journey }
+            .map { $0.id }
+    }
+    
+    
+    func stop() {
+        Task {
+            for activity in Activity<StepAttributes>.activities {
+                await activity.end(activity.content, dismissalPolicy: .immediate)
+            }
+            activty = nil
+        }
+    }
+    
+    
+    func updateActivity() {
+        let updatedContentState = StepAttributes.Status(stepNumber: 1, totalSteps: 2, description: "SUPER HOWDY")
+
+        if let activty {
+            let staleDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
+
+            let updatedContent = ActivityContent(state: updatedContentState, staleDate: staleDate)
+            Task {
+                await activty.update(updatedContent)
+            }
+        }
+    }
+    
+    var theLiveJourney: LiveJourney? {
+        fetchResources()
+            .first
+    }
+    
+    
+    func goBack() {
+        
+    }
+    
+    func goForward() {
+        
+    }
+    
+
+}
+
+@Observable
+class LiveJourneyStepModelWithinJourney : LiveJourneyStepModel {
+    var journey: Journey
+
+    @MainActor
+    init(journey: Journey) {
         self.journey = journey
+        super.init()
     }
 
     var journeyNotLive: Bool {
         !liveJourneysByID.contains(journey.id)
     }
 
-    var theLiveJourney: LiveJourney? {
-        fetchResources()
-            .first(where: { $0.journey?.id == journey.id })
-    }
-
-    private var liveJourneysByID: [UUID] {
-        fetchResources()
-            .compactMap { $0.journey }
-            .map { $0.id }
-    }
 
     private func start() {}
 
@@ -53,6 +99,12 @@ class LiveJourneyStepModelWithinJourney {
         endJourneys()
         add(liveJourney)
         startLiveActivity()
+    }
+    
+    
+    override var theLiveJourney: LiveJourney? {
+        fetchResources()
+            .first(where: { $0.journey?.id == journey.id })
     }
 
     func endJourneys() {
@@ -87,30 +139,11 @@ class LiveJourneyStepModelWithinJourney {
         }
     }
 
-    private func updateActivity() {
-        let updatedContentState = StepAttributes.Status(stepNumber: 1, totalSteps: 2, description: "SUPER HOWDY")
 
-        if let activty {
-            let staleDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
 
-            let updatedContent = ActivityContent(state: updatedContentState, staleDate: staleDate)
-            Task {
-                await activty.update(updatedContent)
-            }
-        }
-    }
-
-    private func stop() {
-        Task {
-            for activity in Activity<StepAttributes>.activities {
-                await activity.end(activity.content, dismissalPolicy: .immediate)
-            }
-            activty = nil
-        }
-    }
 }
 
-extension LiveJourneyStepModelWithinJourney {
+extension LiveJourneyStepModel {
     func fetchResources() -> [LiveJourney] {
         do {
             return try modelContext.fetch(FetchDescriptor<LiveJourney>())
