@@ -94,8 +94,11 @@ class LiveJourneyStepModel {
         let updatedContentState = StepAttributes.Status(stepNumber: 1, totalSteps: 2, description: "SUPER HOWDY")
 
         if let activty {
+            let staleDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
+
+            let updatedContent = ActivityContent(state: updatedContentState, staleDate: staleDate)
             Task {
-                await activty.update(using: updatedContentState)
+                await activty.update(updatedContent)
             }
         }
     }
