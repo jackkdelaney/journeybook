@@ -1,10 +1,17 @@
+//
+//  VisualResourceTest.swift
+//  JourneyBookTests
+//
+//  Created by Jack Delaney on 12/04/2025.
+//
+
 import Testing
 import Foundation
 
-@testable import JourneyBook
+@testable import SharedPersistenceKit
 
 
-struct VisualResourceTest {
+struct VisualResourceTests {
     
     @Test
     func testInitialization() {
