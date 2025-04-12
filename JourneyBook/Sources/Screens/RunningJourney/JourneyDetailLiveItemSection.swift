@@ -5,10 +5,8 @@
 //  Created by Jack Delaney on 11/04/2025.
 //
 
-import SwiftUI
 import SharedPersistenceKit
-
-
+import SwiftUI
 
 struct JourneyDetailLiveItemSection: View {
     @Bindable var journey: Journey
@@ -29,6 +27,15 @@ struct JourneyDetailLiveItemSection: View {
                     Text("Run this journey")
                 }
             } else {
+                if let theLiveJourney = model.theLiveJourney {
+                    Button {} label: {
+                        Label("Last Step", systemImage: "arrowshape.left.circle")
+                    }
+
+                    Button {} label: {
+                        Label("Next Step", systemImage: "arrowshape.right.circle")
+                    }
+                }
                 Button {
                     model.endJourneys()
                 } label: {
@@ -39,6 +46,4 @@ struct JourneyDetailLiveItemSection: View {
             Text("CUSTOM TEXT!!!")
         }
     }
-    
-    
 }

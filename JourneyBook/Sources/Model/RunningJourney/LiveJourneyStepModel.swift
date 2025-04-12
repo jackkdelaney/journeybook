@@ -11,10 +11,7 @@ import Foundation
 import SharedPersistenceKit
 import SwiftData
 
-/*
- @State var activty : Activity<StepAttributes>?
 
- */
 @Observable
 class LiveJourneyStepModel {
     let modelContainer: ModelContainer
@@ -22,7 +19,7 @@ class LiveJourneyStepModel {
 
     var journey: Journey
 
-    var activty: Activity<StepAttributes>?
+    var activty: Activity<StepAttributes>? //TODO: Find exisiting one 
 
     @MainActor
     init(journey: Journey) {
