@@ -5,9 +5,9 @@
 //  Created by Jack Delaney on 10/04/2025.
 //
 
+import CommonCodeKit
 import FeedKit
 import Foundation
-import CommonCodeKit
 
 @Observable
 class WidgetRSSFeedManager {

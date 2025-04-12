@@ -9,23 +9,37 @@ import Foundation
 import SwiftData
 
 @Model
-class JourneyStep {
-    private(set) var id: UUID
+public class JourneyStep {
+    public private(set) var id: UUID
     private(set) var dateCreated: Date
-    var stepName: String
-    var stepDescription: String?
+    public var stepName: String
+    public var stepDescription: String?
 
-    var journey: Journey?
-    var orderIndex: Int
+    public var journey: Journey?
+    public var orderIndex: Int
 
-    init(
+    // MARK: LOCATION
+
+    public var location: JourneyStepLocation?
+
+    // MARK: VISUAL RESOURCE
+
+    public var visualResources: [VisualResource]
+
+    public var route: TransportRoute?
+
+    public var phrases: [Phrase]
+
+    public var communication: Communication?
+
+    public init(
         id: UUID = UUID(),
         dateCreated: Date = Date.now,
         stepName: String,
         stepDescription: String? = nil,
         journey: Journey,
         location: JourneyStepLocation? = nil,
-        communication: Communication? = nil,
+        communication _: Communication? = nil,
         visualResources: [VisualResource] = [],
         route: TransportRoute? = nil,
         phrases: [Phrase] = []
@@ -41,19 +55,4 @@ class JourneyStep {
         self.route = route
         self.phrases = phrases
     }
-
-    // MARK: LOCATION
-
-    var location: JourneyStepLocation?
-
-    // MARK: VISUAL RESOURCE
-
-    var visualResources: [VisualResource]
-
-    var route: TransportRoute?
-
-    var phrases: [Phrase]
-
-    var communication: Communication?
-
 }

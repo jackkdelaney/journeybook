@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import SharedPersistenceKit
 
 protocol CommunictionModel: Observable {
     associatedtype Item

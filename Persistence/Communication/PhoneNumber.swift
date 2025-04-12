@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct PhoneNumber: Codable {
-    var countryCode: CountryWithCode?
-    
-    var phoneNumber: String
+public struct PhoneNumber: Codable {
+    public var countryCode: CountryWithCode?
 
-    var formattedPhoneNumber: String {
+    public var phoneNumber: String
+
+    public var formattedPhoneNumber: String {
         return "+\(countryCode?.dialCode ?? "")\(phoneNumber)"
     }
 
-    init(countryCode: CountryWithCode? = nil, phoneNumber: String = "") {
+    public init(countryCode: CountryWithCode? = nil, phoneNumber: String = "") {
         self.countryCode = countryCode
         self.phoneNumber = phoneNumber
     }

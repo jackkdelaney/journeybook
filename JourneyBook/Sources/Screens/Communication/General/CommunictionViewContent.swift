@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedPersistenceKit
 
 struct CommunictionViewContent<Model: CommunictionModel>: View {
     typealias Model = PickerItem

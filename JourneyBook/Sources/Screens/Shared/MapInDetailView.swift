@@ -7,6 +7,7 @@
 
 import MapKit
 import SwiftUI
+import SharedPersistenceKit
 
 struct MapInDetailView: View {
     @State private var postion: MapCameraPosition

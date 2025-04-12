@@ -8,6 +8,8 @@
 import Observation
 import SwiftData
 import SwiftUI
+import SharedPersistenceKit
+
 
 @Observable
 class CommunicationViewModel: CommunictionModel {

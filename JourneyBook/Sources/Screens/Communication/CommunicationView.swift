@@ -5,6 +5,7 @@
 //  Created by Jack Delaney on 11/03/2025.
 //
 
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
 
