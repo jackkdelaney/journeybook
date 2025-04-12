@@ -25,3 +25,16 @@ public class Journey {
         self.steps = steps
     }
 }
+
+
+extension Journey {
+    static func sample() -> Journey {
+        let journey =
+        Journey(
+            journeyName: "Sample Journey",
+            steps: []
+            )
+        
+        return journey
+    }
+}
