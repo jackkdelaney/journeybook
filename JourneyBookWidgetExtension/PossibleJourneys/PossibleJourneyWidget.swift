@@ -17,9 +17,10 @@ struct PossibleJourneyWidget: Widget {
 
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
-            ItemWidgetExtensionEntryView(entry: entry)
+            Text("Howdy!")
                 .containerBackground(.fill.tertiary, for: .widget)
                 .modelContainer(for: [VisualResource.self, Phrase.self, Journey.self, LiveJourney.self, JourneyStep.self, TransportRoute.self, Communication.self])
         }
     }
 }
+
