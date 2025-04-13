@@ -48,7 +48,7 @@ class LiveJourneyStepModel {
     
     
     func updateActivity() {
-        let updatedContentState = StepAttributes.Status(stepNumber: 1, totalSteps: 2, description: "SUPER HOWDY")
+        let updatedContentState = StepAttributes.Status(stepNumber: 1, totalSteps: 2, description: "SUPER HOWDY", title: "Updated")
 
         if let activty {
             let staleDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
@@ -122,7 +122,7 @@ class LiveJourneyStepModelWithinJourney : LiveJourneyStepModel {
 
     private func startLiveActivity() {
         let attributes = StepAttributes()
-        let contentState = StepAttributes.Status(stepNumber: theLiveJourney?.stepNumber ?? -1, totalSteps: theLiveJourney?.stepsAmount ?? -2, description: theLiveJourney?.journey?.journeyDescription)
+        let contentState = StepAttributes.Status(stepNumber: theLiveJourney?.stepNumber ?? -1, totalSteps: theLiveJourney?.stepsAmount ?? -2, description: theLiveJourney?.journey?.journeyDescription, title: theLiveJourney?.journey?.journeyName ?? "Unkown")
         do {
             let staleDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
 
