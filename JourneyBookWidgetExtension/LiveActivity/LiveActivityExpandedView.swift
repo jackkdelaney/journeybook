@@ -13,7 +13,7 @@ struct LiveActivityExpandedView: View {
     var state: StepAttributes.ContentState
     var body: some View {
         VStack {
-            Text ("Expanded Content")
+            Text ("This gives more detials")
             Text("\(state.stepNumber) of \(state.totalSteps)")
                 .foregroundColor(.secondary)
         }
