@@ -67,11 +67,50 @@ class LiveJourneyStepModel {
     
     
     func goBack() {
+        if !disableLastButton {
+            if let theLiveJourneyUnwrapped = theLiveJourney {
+                theLiveJourneyUnwrapped.stepNumber = theLiveJourneyUnwrapped.stepNumber - 1
+                print("\(theLiveJourneyUnwrapped.stepNumber)")
+            }
+            print("HOWDY")
+
+        }
         
+        print("HOWDY!!")
+
     }
     
     func goForward() {
-        
+        if !disableNextButton {
+            if let theLiveJourneyUnwrapped = theLiveJourney {
+                theLiveJourneyUnwrapped.stepNumber = theLiveJourneyUnwrapped.stepNumber + 1
+            }
+        }
+    }
+    
+    var stepNumber : Int {
+        if let theLiveJourney {
+            return theLiveJourney.stepNumber
+        }
+        return -4
+    }
+    
+    var disableLastButton : Bool {
+        if let theLiveJourney {
+            if theLiveJourney.stepNumber < theLiveJourney.stepsAmount {
+                return false
+            }
+        }
+        return true
+    }
+    
+    var disableNextButton : Bool {
+        if let theLiveJourney {
+            if (theLiveJourney.stepNumber + 1) > theLiveJourney.stepsAmount {
+                return false
+            }
+        }
+        return true
     }
     
 
