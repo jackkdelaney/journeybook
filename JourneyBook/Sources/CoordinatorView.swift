@@ -6,6 +6,8 @@
 //
 
 import PostHog
+import SharedPersistenceKit
+import SwiftData
 import SwiftUI
 
 struct CoordinatorView: View {
@@ -26,6 +28,28 @@ struct CoordinatorView: View {
                 }
         }
         .environmentObject(coordinator)
+        .onOpenURL { url in
+            // handle the in coming url or call a function
+            handleURL(url: url)
+        }
+    }
+
+    @Query private var journeys: [Journey]
+
+    private func handleURL(url: URL) {
+        switch url.host {
+        case "journey":
+            let possibleJourney = journeys.first(where: { $0.id.uuidString == url.pathComponents[1] })
+            if let journey = possibleJourney {
+                coordinator.popToRoot()
+                coordinator.push(page: .journeyDetails(journey))
+
+            } else {
+                print("No Item exists with this ID")
+            }
+        default:
+            break
+        }
     }
 
     private func loadEnvironmentVariables() {

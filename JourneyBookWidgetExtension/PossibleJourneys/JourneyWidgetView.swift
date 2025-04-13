@@ -40,6 +40,7 @@ struct JourneyWidgetView: View {
     private var content: some View {
         if let journey = journeys.randomElement() {
             theView(for: journey)
+                .widgetURL(URL(string: "journeybookjourney://journey/\(journey.id)"))
         } else {
             VStack {
                 Label("No Journey's", systemImage: "point.topright.arrow.triangle.backward.to.point.bottomleft.filled.scurvepath")

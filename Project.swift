@@ -45,6 +45,13 @@ let project = Project(
                         "Item 2": "comgooglemaps",
                     ],
                     "NSSupportsLiveActivities": "true",
+                    "CFBundleDisplayName": "JourneyBook",
+                    "CFBundleURLTypes": [
+                                [
+                                    "CFBundleURLName" : "co.jackdelaney.jb",
+                                    "CFBundleURLSchemes": ["journeybookjourney"]
+                                ]
+                            ],
                 ]
             ),
             sources: ["JourneyBook/Sources/**"],
