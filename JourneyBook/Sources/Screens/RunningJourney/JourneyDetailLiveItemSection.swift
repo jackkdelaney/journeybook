@@ -23,20 +23,23 @@ struct LiveJourneyControlButtons: ViewModifier {
             .safeAreaInset(edge: .bottom) {
                 if let theLiveJourney = model.theLiveJourney {
                     VStack {
-                        Text("\(theLiveJourney.stepNumber) of \(theLiveJourney.stepsAmount)")
+                        Text("\(model.stepNumber) of \(theLiveJourney.stepsAmount)")
                         HStack {
                             Button {
                                 model.goBack()
                             } label: {
                                 Label("Last Step", systemImage: "arrowshape.left.circle")
                             }
+                            .disabled(model.disableLastButton)
+
                             
                             Button {
                                 model.goForward()
                             } label: {
                                 Label("Next Step", systemImage: "arrowshape.right.circle")
                             }
-                            
+                            .disabled(model.disableNextButton)
+
                         }
                     }
                     .multilineTextAlignment(.center)

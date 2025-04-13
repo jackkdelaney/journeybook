@@ -21,20 +21,36 @@ struct JourneyBookLiveActivity: Widget {
                     LiveActivityExpandedView(state: context.state)
                 }
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("Journey Book")
+                    journeyBookLiveLogo
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("Step \(context.state.stepNumber)/\(context.state.totalSteps)")
+                    Text(context.state.title)
+                        .foregroundStyle(.purple)
+                        .fontWeight(.heavy)
+                        .lineLimit(1)
+                    
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Your Journey Button")
+                    HStack {
+                        Button {
+                        } label: {
+                            Text("Go to Next Step")
+                        }
+                        .tint(.purple)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        Spacer()
+                        Button {
+                        } label: {
+                            Text("End Journey")
+                                
+                        }
+                        .tint(.purple)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+                    }
                 }
             } compactLeading: {
-                Label("Journey Book Current Journey", systemImage: "arrow.up.and.down.and.arrow.left.and.right")
-                    .labelStyle(.iconOnly)
-                    .foregroundStyle(.purple)
-                    .fontWeight(.heavy)
-
+                journeyBookLiveLogo
             } compactTrailing: {
                 Text("\(context.state.stepNumber) of \(context.state.totalSteps)")
                     .foregroundStyle(.purple)
@@ -52,5 +68,13 @@ struct JourneyBookLiveActivity: Widget {
                     .fontWeight(.heavy)
             }
         }
+    }
+    
+    
+    private var journeyBookLiveLogo : some View {
+        Label("Journey Book Current Journey", systemImage: "arrow.up.and.down.and.arrow.left.and.right")
+            .labelStyle(.iconOnly)
+            .foregroundStyle(.purple)
+            .fontWeight(.heavy)
     }
 }

@@ -45,10 +45,18 @@ let project = Project(
                         "Item 2": "comgooglemaps",
                     ],
                     "NSSupportsLiveActivities": "true",
+                    "CFBundleDisplayName": "JourneyBook",
+                    "CFBundleURLTypes": [
+                                [
+                                    "CFBundleURLName" : "co.jackdelaney.jb",
+                                    "CFBundleURLSchemes": ["journeybookjourney"]
+                                ]
+                            ],
                 ]
             ),
             sources: ["JourneyBook/Sources/**"],
             resources: ["JourneyBook/Resources/**"],
+            entitlements: "JourneyBook/JourneyBook.entitlements",
             dependencies: [
                 .external(name: "FeedKit"),
                 .target(name: "CommonCodeKit"),
@@ -72,6 +80,7 @@ let project = Project(
 
             sources: ["JourneyBookWidgetExtension/**"],
             resources: ["JourneyBookWidgetExtensionResources/**"],
+            entitlements: "JourneyBookWidgetExtension/JourneyBookWidgetExtension.entitlements",
             dependencies: [
                 .external(name: "FeedKit"),
                 .target(name: "CommonCodeKit"),

@@ -1,5 +1,5 @@
 //
-//  PickJourneyIntent.swift
+//  OpenJourneyIntent.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 20/03/2025.
@@ -50,46 +50,4 @@ struct OpenJourneyIntent: AppIntent {
 enum IntentError: Error {
     case itemNotFound
     case coordinatorNotFound
-}
-
-import SwiftUI
-
-struct OpenJourneyIntentSnippetView: View {
-    @Environment(\.colorScheme) var colorScheme
-
-    let journey: Journey
-    var body: some View {
-        HStack {
-            VStack {
-                Text(journey.journeyName)
-                    .font(.title)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                if let journeyDescription = journey.journeyDescription {
-                    Text(journeyDescription)
-                        .font(.caption)
-                        .lineLimit(1)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-            Spacer()
-
-            VStack {
-                Text("\(journey.steps.count)")
-                    .font(.headline)
-                    .fontWeight(.heavy)
-                // .frame(maxWidth: .infinity, alignment: .trailing)
-                Text("STEPS")
-                    .font(.caption2)
-                    .fontWeight(.heavy)
-                // .frame(maxWidth: .infinity, alignment: .trailing)
-            }
-            .overlay(
-                Circle()
-                    .stroke(.blue, lineWidth: 9)
-                    .padding(6)
-            )
-        }
-        .padding(.horizontal)
-        .padding()
-    }
 }
