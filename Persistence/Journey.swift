@@ -28,7 +28,7 @@ public class Journey {
 
 
 extension Journey {
-    static func sample() -> Journey {
+    public static func sample() -> Journey {
         let journey =
         Journey(
             journeyName: "Sample Journey",
@@ -37,4 +37,16 @@ extension Journey {
         
         return journey
     }
+    
+    public static func sampleNewYork() -> Journey {
+        let journey =
+        Journey(
+            journeyName: "Central Park, New York City",
+            journeyDescription: "Central Park is the premier park in New York, New York.",
+            steps: []
+            )
+        
+        return journey
+    }
+
 }
