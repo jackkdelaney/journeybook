@@ -28,7 +28,7 @@ struct TrafficWatchWidgetView: View {
         }
         .foregroundStyle(.white)
         .containerBackground(for: .widget) {
-            Color.yellow
+            Color.purple.opacity(0.86)
         }
     }
 
