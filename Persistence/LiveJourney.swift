@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftData 
+import SwiftData
 
 @Model
 public class LiveJourney {
@@ -16,7 +16,7 @@ public class LiveJourney {
 
     public var journey: Journey?
 
-   public  var stepNumber: Int
+    public var stepNumber: Int
 
     public var stepsAmount: Int {
         if let journey {
@@ -31,7 +31,6 @@ public class LiveJourney {
             if sortedLocalList.indices.contains(stepNumber) {
                 return sortedLocalList[stepNumber]
             }
-           
         }
         return nil
     }
@@ -44,6 +43,10 @@ public class LiveJourney {
         self.id = id
         self.dateUpdated = dateUpdated
         self.journey = journey
-        stepNumber = 0
+        if journey?.steps.count ?? 0 > 0 {
+            stepNumber = 1
+        } else {
+            stepNumber = 0
+        }
     }
 }
