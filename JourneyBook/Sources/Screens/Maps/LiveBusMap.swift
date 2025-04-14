@@ -52,6 +52,7 @@ struct LiveBusMap: View {
             }
         }
         .navigationTitle("Bus Locations")
+        .navigationBarTitleDisplayMode(.inline)
         .overlay {
             if isLoading {
                 VStack {
