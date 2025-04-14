@@ -18,6 +18,7 @@ struct PhraseBook: View {
             PhraseListView(sheet: $sheet)
         }
         .navigationTitle("Phrase Book")
+        .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $sheet) { item in
             item.buildView()
         }
