@@ -42,14 +42,74 @@ final class WorldHomeNavigationCreateNewJourney: XCTestCase {
         let headerJourneyNames = app.staticTexts["JourneyNameSection"]
         XCTAssertTrue(headerJourneyNames.exists, "The sheet should contain the header 'Journey Name'.")
         
-            
+    }
+    
+    func testAddNewJourneyShowsWarningAndWontSaveWithNoData() throws {
+        let createNewJourneyButton = app.buttons["Create new Journey"]
+        createNewJourneyButton.tap()
+        
+        let addButton = app.buttons["Add"]
+        XCTAssertTrue(addButton.waitForExistence(timeout: 1), "Add button should exist.")
+
+        addButton.tap()
+        
+        let alert = app.alerts["Could Not Save"]
+        
+        XCTAssertTrue(alert.waitForExistence(timeout: 1), "The alert should appear after the button is tapped.")
+        
+    }
+    
+    func testAddNewJourneyShowsWarningAndWontSaveWithOnlyDesc() throws {
+        let createNewJourneyButton = app.buttons["Create new Journey"]
+        createNewJourneyButton.tap()
+        
+        let addButton = app.buttons["Add"]
+        XCTAssertTrue(addButton.waitForExistence(timeout: 1), "Add button should exist.")
+
+        
+        let descriptionField = app.textViews["journeyDescriptionEditor"]
+        XCTAssertTrue(descriptionField.waitForExistence(timeout: 2), "Description text editor should exist.")
+        
+        descriptionField.tap()
+        descriptionField.typeText("This is a description of a journey added via XCUI Testing.")
+
+        
+        addButton.tap()
+
+        let alert = app.alerts["Could Not Save"]
+        
+        XCTAssertTrue(alert.waitForExistence(timeout: 1), "The alert should appear after the button is tapped.")
+        
+    }
+    
+    func testAddNewJourneyShowsWarningWillSaveWithTitle() throws {
+        let createNewJourneyButton = app.buttons["Create new Journey"]
+        createNewJourneyButton.tap()
+        
+        let addButton = app.buttons["Add"]
+        XCTAssertTrue(addButton.waitForExistence(timeout: 1), "Add button should exist.")
+
+        
+        let descriptionField = app.textFields["journeyNameField"]
+        XCTAssertTrue(descriptionField.waitForExistence(timeout: 2), "Title text editor should exist.")
+        
+        descriptionField.tap()
+        descriptionField.typeText("New Journey \(Date.now.timeIntervalSince1970)")
+
+        
+        addButton.tap()
+
+        let alert = app.alerts["Could Not Save"]
+        
+        XCTAssertTrue(alert.waitForNonExistence(timeout: 1), "The alert should not appear after the button is tapped.")
+     
+        let sheetTitle = app.navigationBars["Add New Journey"]
+        XCTAssertTrue(sheetTitle.waitForNonExistence(timeout: 0.5), "The sheet should disappear with the title 'Add New Journey' no longer shown.")
+        
+
+        
     }
     
     
-//    func testLaunchPerformance() throws {
-//        // This measures how long it takes to launch your application.
-//        measure(metrics: [XCTApplicationLaunchMetric()]) {
-//            XCUIApplication().launch()
-//        }
-//    }
+
 }
