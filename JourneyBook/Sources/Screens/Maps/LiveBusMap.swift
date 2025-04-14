@@ -51,6 +51,7 @@ struct LiveBusMap: View {
                 Text("Location not available.")
             }
         }
+        .navigationTitle("Bus Locations")
         .overlay {
             if isLoading {
                 VStack {

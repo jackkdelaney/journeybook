@@ -98,5 +98,15 @@ let project = Project(
             resources: [],
             dependencies: [.target(name: "JourneyBook")]
         ),
+        .target(name: "JourneyBookTestsUI",
+                destinations: .iOS,
+                product: .uiTests,
+                bundleId: "co.jackdelaney.jbTestsUI",
+                deploymentTargets: .iOS("18.4"),
+                infoPlist: .extendingDefault(with: ["NSExtensionPointIdentifier": "com.apple.widgetkit-extension"]),
+                sources: ["TestsUI/**"],
+                resources: [],
+                dependencies: [.target(name: "JourneyBook")]
+                ),
     ]
 )
