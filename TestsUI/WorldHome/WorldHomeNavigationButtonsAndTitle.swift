@@ -19,7 +19,6 @@ final class WorldHomeNavigationButtonsAndTitle: XCTestCase {
     func testJourneyBookTitle() throws {
         let mainPageTitle = app.navigationBars["JourneyBook"]
         
-        // Assert that the title exists
         XCTAssertTrue(mainPageTitle.exists, "The main page title should be 'JourneyBook'.")
     }
 
@@ -32,6 +31,7 @@ final class WorldHomeNavigationButtonsAndTitle: XCTestCase {
         )
 
         creditsButton.tap()
+        
         let creditsTitle = app.navigationBars["Credits"]
         XCTAssertTrue(
             creditsTitle.waitForExistence(timeout: 2),

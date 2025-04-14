@@ -38,5 +38,8 @@ struct AddNewJoruneyButton: View {
         .contentShape(Rectangle())
         .removeListRowPaddingInsets()
         .buttonStyle(PlainButtonStyle())
+        .accessibilityLabel("Create new Journey")
+        .accessibilityHint("Add new Journey to App.")
+
     }
 }

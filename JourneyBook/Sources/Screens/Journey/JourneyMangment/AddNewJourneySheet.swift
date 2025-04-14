@@ -20,15 +20,31 @@ struct AddNewJourneySheet: SheetView {
 
     var content: some View {
         Form {
-            Section("Journey Name") {
+            Section(
+                header:
+                    Text("Journey Name")
+                    .accessibilityIdentifier(
+                        "JourneyNameSection"
+                    )
+            ) {
                 TextField("Journey Name", text: $model.journeyName)
             }
-            Section("Journey Description") {
+            Section(
+                header:
+                    Text("Journey Description")
+                    .accessibilityIdentifier(
+                        "JourneyDescriptionSection"
+                    )
+            ) {
                 TextEditor(text: journeyDescription)
             }
         }
         .alert(item: $errorMessage) { error in
-            Alert(title: Text("Could Not Save"), message: Text(error.errorMessage), dismissButton: .cancel())
+            Alert(
+                title: Text("Could Not Save"),
+                message: Text(error.errorMessage),
+                dismissButton: .cancel()
+            )
         }
     }
 
