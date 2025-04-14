@@ -57,6 +57,7 @@ class PhotosPickerViewModel: PickerItem {
     func clearItem() {
         selectedPickerItem = nil
         selectedItem = nil
+        selectedItemText = nil
     }
 
     // CODE TO MEET Observable reuse https://forums.swift.org/t/enforce-observable-through-a-protocol/72984/5
