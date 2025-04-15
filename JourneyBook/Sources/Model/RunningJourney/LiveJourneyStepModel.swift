@@ -75,13 +75,8 @@ class LiveJourneyStepModel {
             if let theLiveJourneyUnwrapped = theLiveJourney {
                 theLiveJourneyUnwrapped.stepNumber = theLiveJourneyUnwrapped.stepNumber - 1
                 stepNumber = theLiveJourneyUnwrapped.stepNumber
-
             }
-            
-
         }
-        
-
     }
 
     func goForward() {
@@ -89,23 +84,21 @@ class LiveJourneyStepModel {
             if let theLiveJourneyUnwrapped = theLiveJourney {
                 theLiveJourneyUnwrapped.stepNumber = theLiveJourneyUnwrapped.stepNumber + 1
                 stepNumber = theLiveJourneyUnwrapped.stepNumber
-
             }
         }
     }
 
     var disableLastButton: Bool {
-        if let theLiveJourney {
-            if stepNumber < theLiveJourney.stepsAmount {
+            if stepNumber > 1 {
                 return false
             }
-        }
+        
         return true
     }
 
     var disableNextButton: Bool {
         if let theLiveJourney {
-            if (stepNumber + 1) > theLiveJourney.stepsAmount {
+            if stepNumber < theLiveJourney.stepsAmount {
                 return false
             }
         }
