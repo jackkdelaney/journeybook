@@ -17,12 +17,7 @@ struct ResourceSection: View {
     var body: some View {
         if resource.resourceType == .image {
             ListDisclosureGroup("Photo", openAtStart: true) {
-                Image(uiImage: UIImage(data: resource.resourceData) ?? UIImage())
-                    .resizable()
-                    .frame(height: 300)
-                    .frame(maxWidth: .infinity)
-                    .aspectRatio(contentMode: .fit)
-                    .removeListRowPaddingInsets()
+                ResourceSectionImageViewer(image: UIImage(data: resource.resourceData) ?? UIImage())
             }
         }
         if resource.resourceType == .video {
