@@ -61,9 +61,9 @@ struct ResourceSelectionView: SheetView {
                     ResourcesManagerAddButtons(sheet: $sheet)
                 } label: {
                     Label("Add New Resource", systemImage: "plus")
+                        .labelStyle(.titleAndIcon)
                 }
                 .buttonStyle(.plain)
-                .labelStyle(.titleAndIcon)
                 .foregroundStyle(.blue)
                 
                 .contentShape(Rectangle())
