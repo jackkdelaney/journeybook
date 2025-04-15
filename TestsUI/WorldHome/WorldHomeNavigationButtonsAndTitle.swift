@@ -8,17 +8,16 @@
 import XCTest
 
 final class WorldHomeNavigationButtonsAndTitle: XCTestCase {
-
     let app = XCUIApplication()
 
     override func setUpWithError() throws {
         continueAfterFailure = false
         app.launch()
     }
-    
+
     func testJourneyBookTitle() throws {
         let mainPageTitle = app.navigationBars["JourneyBook"]
-        
+
         XCTAssertTrue(mainPageTitle.exists, "The main page title should be 'JourneyBook'.")
     }
 
@@ -31,13 +30,12 @@ final class WorldHomeNavigationButtonsAndTitle: XCTestCase {
         )
 
         creditsButton.tap()
-        
+
         let creditsTitle = app.navigationBars["Credits"]
         XCTAssertTrue(
             creditsTitle.waitForExistence(timeout: 2),
             "The 'Credits' screen should be visible."
         )
-
     }
 
     func testBriefcaseOptionResourceManangerButton() throws {
@@ -105,7 +103,5 @@ final class WorldHomeNavigationButtonsAndTitle: XCTestCase {
             navTitle.waitForExistence(timeout: 2),
             "\(navigationText)' page should be visible."
         )
-
     }
-
 }
