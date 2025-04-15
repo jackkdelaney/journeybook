@@ -2,7 +2,19 @@ import Testing
 
 @testable import JourneyBook
 
-@Test func sanityCheck() {
-    let calc = 2 + 2
-    #expect(calc == 4)
+struct SanityChecksTests {
+    @Test func sanityCheck() {
+        let calc = 2 + 2
+        #expect(calc == 4)
+    }
+
+    @Test func sanityCheckExtra() {
+        let check = SantityCheckExtra()
+
+        #expect(check.checkReturn4() == 4)
+    }
+
+    @Test func sanityCheckExtraStatic() {
+        #expect(SantityCheckExtra.checkReturn4Static() == 4)
+    }
 }
