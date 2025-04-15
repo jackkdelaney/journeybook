@@ -62,11 +62,9 @@ struct RSSFeedManagerTests {
 
         } else {
             #expect(false == true, "Incorrect Type")
-
         }
         #expect(model.error != nil)
     }
-    
 
     private func mockedItems() -> [RSSFeedItem] {
         [
