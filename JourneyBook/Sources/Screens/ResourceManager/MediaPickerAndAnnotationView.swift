@@ -21,19 +21,14 @@ struct OptionalTextView: View {
     }
 
     var body: some View {
-        HStack {
-            Text(title)
-                .foregroundStyle(.secondary)
-                .accessibilityHidden(true)
-            TextField(title, text: $nonOptionalText, axis: .vertical)
-        }
-        .onChange(of: nonOptionalText) {
-            if nonOptionalText == "" {
-                text = nil
-            } else {
-                text = nonOptionalText
+        TextField(title, text: $nonOptionalText, axis: .vertical) 
+            .onChange(of: nonOptionalText) {
+                if nonOptionalText == "" {
+                    text = nil
+                } else {
+                    text = nonOptionalText
+                }
             }
-        }
     }
 }
 
