@@ -11,11 +11,10 @@ import Testing
 @testable import SharedPersistenceKit
 
 struct LiveJourneyTests {
-    
     @Test
     func testDefaultInitialisation() {
         let liveJourney = LiveJourney()
-        
+
         #expect(liveJourney.journey == nil)
         #expect(liveJourney.stepsAmount == 0)
         #expect(liveJourney.stepNumber == 0)
@@ -28,7 +27,6 @@ struct LiveJourneyTests {
             JourneyStep(stepName: "First Step", journey: Journey.sample()),
             JourneyStep(stepName: "First Step", journey: Journey.sample()),
             JourneyStep(stepName: "First Step", journey: Journey.sample()),
-
         ]
         let journey = Journey(journeyName: "Journey", steps: steps)
 
@@ -39,16 +37,14 @@ struct LiveJourneyTests {
         #expect(liveJourney.stepsAmount == 2)
         journey.steps.removeAll()
         #expect(liveJourney.stepsAmount == 0)
-
     }
-    
+
     @Test
     func testCurrentStepFunction() {
         let steps = [
             JourneyStep(stepName: "First Step", journey: Journey.sample()),
             JourneyStep(stepName: "Second Step", journey: Journey.sample()),
             JourneyStep(stepName: "Third Step", journey: Journey.sample()),
-
         ]
         let journey = Journey(journeyName: "Journey", steps: steps)
 
@@ -59,14 +55,13 @@ struct LiveJourneyTests {
         liveJourney.stepNumber = 1
         #expect(liveJourney.currentStep?.stepName == "Second Step")
     }
-    
+
     @Test
     func testCurrentStepFunctionStepNumberOutOfRange() {
         let steps = [
             JourneyStep(stepName: "First Step", journey: Journey.sample()),
             JourneyStep(stepName: "Second Step", journey: Journey.sample()),
             JourneyStep(stepName: "Third Step", journey: Journey.sample()),
-
         ]
         let journey = Journey(journeyName: "Journey", steps: steps)
 

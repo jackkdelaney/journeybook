@@ -30,7 +30,7 @@ class AppShortcuts: AppShortcutsProvider {
                 "start \(\.$journey) using \(.applicationName)",
             ],
             shortTitle: "Open Journey",
-            systemImageName: "fossil.shell"
+            systemImageName: "point.topright.arrow.triangle.backward.to.point.bottomleft.filled.scurvepath"
         )
     }
 }
