@@ -5,9 +5,9 @@
 //  Created by Jack Delaney on 03/01/2025.
 //
 
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
 
 struct ResourceSelectionView: SheetView {
     @Environment(\.dismiss) var dismiss
@@ -15,6 +15,11 @@ struct ResourceSelectionView: SheetView {
     @Binding var selectedResources: [VisualResource]
 
     @Query var resources: [VisualResource]
+    
+    
+    
+    @State private var sheet: ResourcesManagerSheet? = nil
+    
 
     var content: some View {
         List {
@@ -38,6 +43,36 @@ struct ResourceSelectionView: SheetView {
                 .buttonStyle(PlainButtonStyle())
             }
         }
+        .sheet(item: $sheet) { item in
+            item.buildView()
+        }
+        .overlay {
+            if resources.isEmpty {
+                ContentUnavailableView {
+                    Label("No Resources", systemImage: "list.and.film")
+                } description: {
+                    Text("Resources that you add will appear here.")
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                Menu {
+                    ResourcesManagerAddButtons(sheet: $sheet)
+                } label: {
+                    Label("Add New Resource", systemImage: "plus")
+                        .labelStyle(.titleAndIcon)
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.blue)
+                
+                .contentShape(Rectangle())
+                .frame(maxWidth: .infinity, alignment: .trailing)
+            }
+        }
+        .toolbarBackground(Color(UIColor.systemGroupedBackground), for: .bottomBar)
+        .toolbarBackground(.visible, for: .bottomBar)
+        
     }
 
     private func addOrRemove(for resource: VisualResource) {

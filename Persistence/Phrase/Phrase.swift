@@ -67,3 +67,12 @@ public class Phrase: Identifiable {
         _fontSize = fontSize
     }
 }
+
+public extension Phrase {
+    static func samplePhrase() -> Phrase {
+        Phrase(
+            text: "Hello, world!",
+            colour: .blue
+        )
+    }
+}
