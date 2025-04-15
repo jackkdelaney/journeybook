@@ -5,16 +5,18 @@
 //  Created by Jack Delaney on 06/01/2025.
 //
 
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
 
-struct TransportRouteSelectorView: View {
+struct TransportRouteSelectorView: SheetView {
     @Query var routes: [TransportRoute]
 
     @Binding var selectedRoute: TransportRoute?
 
-    var body: some View {
+    @State private var sheet: TransportRouteSheet? = nil
+
+    var content: some View {
         List {
             ForEach(routes) { route in
                 HStack {
@@ -36,6 +38,9 @@ struct TransportRouteSelectorView: View {
                 }
             }
         }
+        .sheet(item: $sheet) { item in
+            item.buildView()
+        }
         .overlay {
             if routes.isEmpty {
                 ContentUnavailableView(
@@ -44,5 +49,17 @@ struct TransportRouteSelectorView: View {
                 )
             }
         }
+    }
+
+    var confirmButton: some View {
+        Button {
+            sheet = .addRoute
+        } label: {
+            Label("Add New Route", systemImage: "plus")
+        }
+    }
+    
+    var sheetTitle: String {
+        "Select Transport Route"
     }
 }
