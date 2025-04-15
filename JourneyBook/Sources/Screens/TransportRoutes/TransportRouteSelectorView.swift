@@ -58,7 +58,7 @@ struct TransportRouteSelectorView: SheetView {
             Label("Add New Route", systemImage: "plus")
         }
     }
-    
+
     var sheetTitle: String {
         "Select Transport Route"
     }
