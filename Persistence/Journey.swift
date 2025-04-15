@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import UIKit
 
 @Model
 public class Journey {
@@ -26,27 +27,34 @@ public class Journey {
     }
 }
 
+public extension Journey {
+    static func sample() -> Journey {
+        let journey =
+            Journey(
+                journeyName: "Sample Journey",
+                steps: []
+            )
 
-extension Journey {
-    public static func sample() -> Journey {
-        let journey =
-        Journey(
-            journeyName: "Sample Journey",
-            steps: []
-            )
-        
-        return journey
-    }
-    
-    public static func sampleNewYork() -> Journey {
-        let journey =
-        Journey(
-            journeyName: "Central Park, New York City",
-            journeyDescription: "Central Park is the premier park in New York, New York.",
-            steps: []
-            )
-        
         return journey
     }
 
+    static func sampleNewYork() -> Journey {
+        let journey =
+            Journey(
+                id: sampleUUID(),
+                journeyName: "Central Park, New York City",
+                journeyDescription: "Central Park is the premier park in New York, New York.",
+                steps: []
+            )
+
+        return journey
+    }
+
+    private static func sampleUUID() -> UUID {
+        if let uuid = UIDevice.current.identifierForVendor {
+            return uuid
+        } else {
+            return UUID()
+        }
+    }
 }

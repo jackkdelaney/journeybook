@@ -28,6 +28,8 @@ struct AddNewJourneySheet: SheetView {
                     )
             ) {
                 TextField("Journey Name", text: $model.journeyName)
+                    .accessibilityIdentifier("journeyNameField")
+
             }
             Section(
                 header:
@@ -37,6 +39,7 @@ struct AddNewJourneySheet: SheetView {
                     )
             ) {
                 TextEditor(text: journeyDescription)
+                    .accessibilityIdentifier("journeyDescriptionEditor")
             }
         }
         .alert(item: $errorMessage) { error in

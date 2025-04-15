@@ -7,9 +7,9 @@
 
 import Observation
 import PhotosUI
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
 
 struct Movie: Transferable {
     let url: URL
@@ -30,8 +30,17 @@ struct Movie: Transferable {
     }
 }
 
-enum LoadState {
-    case unknown, loading, loaded(Movie), failed
+extension Movie : Equatable {
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        lhs.url == rhs.url
+    }
+}
+
+enum LoadState: Equatable {
+    case unknown, loading
+    case loaded(Movie)
+    case failed
+
 }
 
 extension LoadState {
@@ -41,6 +50,23 @@ extension LoadState {
         }
         return nil
     }
+
+    private func value() -> String {
+        switch self {
+        case .failed:
+            "0"
+        case .loading:
+            "1"
+        case .unknown:
+            "2"
+        case let .loaded(item):
+            "3\(item.url)"
+        }
+    }
+    static func == (lhs: LoadState, rhs: LoadState) -> Bool {
+        lhs.value() == rhs.value()
+    }
+
 }
 
 @Observable
@@ -50,7 +76,11 @@ class VideosPickerViewModel: PickerItem {
             if let movie = item.getLoadedMovie() {
                 let videoData = try? Data(contentsOf: movie.url)
                 if let videoData {
-                    let resource = VisualResource(resourceData: videoData, resourceType: .video, aidDescription: selectedItemText ?? "Unnamed Video")
+                    let resource = VisualResource(
+                        resourceData: videoData,
+                        resourceType: .video,
+                        aidDescription: selectedItemText ?? "Unnamed Video"
+                    )
                     add(resource)
                 }
             }
@@ -74,11 +104,23 @@ class VideosPickerViewModel: PickerItem {
     let filter = PHPickerFilter.videos
 
     @MainActor
-    init(selectedItem: LoadState? = nil, selectedPickerItem: PhotosPickerItem? = nil) {
+    init(
+        selectedItem: LoadState? = nil,
+        selectedPickerItem: PhotosPickerItem? = nil
+    ) {
         self.selectedItem = selectedItem
         self.selectedPickerItem = selectedPickerItem
 
-        modelContainer = try! ModelContainer(for: VisualResource.self, Phrase.self, Journey.self,LiveJourney.self, JourneyStep.self, TransportRoute.self,Communication.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+        modelContainer = try! ModelContainer(
+            for: VisualResource.self,
+            Phrase.self,
+            Journey.self,
+            LiveJourney.self,
+            JourneyStep.self,
+            TransportRoute.self,
+            Communication.self,
+            configurations: ModelConfiguration(isStoredInMemoryOnly: false)
+        )
         modelContext = modelContainer.mainContext
     }
 
@@ -87,7 +129,9 @@ class VideosPickerViewModel: PickerItem {
             do {
                 selectedItem = .loading
 
-                if let movie = try await selectedPickerItem?.loadTransferable(type: Movie.self) {
+                if let movie = try await selectedPickerItem?.loadTransferable(
+                    type: Movie.self
+                ) {
                     selectedItem = .loaded(movie)
                 } else {
                     selectedItem = .failed
@@ -100,6 +144,7 @@ class VideosPickerViewModel: PickerItem {
 
     func clearItem() {
         selectedPickerItem = nil
+        selectedItemText = nil
         selectedItem = nil
     }
 
@@ -115,8 +160,13 @@ class VideosPickerViewModel: PickerItem {
         keyPath: KeyPath<VideosPickerViewModel, Member>,
         _ mutation: () throws -> MutationResult
     ) rethrows -> MutationResult {
-        try _$observationRegistrar.withMutation(of: self, keyPath: keyPath, mutation)
+        try _$observationRegistrar.withMutation(
+            of: self,
+            keyPath: keyPath,
+            mutation
+        )
     }
 
-    @ObservationIgnored let _$observationRegistrar = Observation.ObservationRegistrar()
+    @ObservationIgnored let _$observationRegistrar =
+        Observation.ObservationRegistrar()
 }
