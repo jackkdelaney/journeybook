@@ -66,17 +66,7 @@ struct ResourcesManager: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Menu {
-                    Button {
-                        sheet = .addPhoto
-                    } label: {
-                        Label("Add Photo", systemImage: "photo.artframe")
-                    }
-                    Button {
-                        sheet = .addVideo
-
-                    } label: {
-                        Label("Add Video", systemImage: "film")
-                    }
+                   ResourcesManagerAddButtons(sheet: $sheet)
                 } label: {
                     Label("Add", systemImage: "plus")
                 }

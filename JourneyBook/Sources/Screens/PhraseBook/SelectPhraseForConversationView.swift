@@ -5,9 +5,9 @@
 //  Created by Jack Delaney on 10/03/2025.
 //
 
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
 
 struct SelectPhraseForConversationView: SheetView {
     @Binding var selectedPhrases: [Phrase]
@@ -17,6 +17,8 @@ struct SelectPhraseForConversationView: SheetView {
 
     @State private var searchText = ""
     @State private var searchIsActive = false
+
+    @State var sheet: PhraseSheet? = nil
 
     var content: some View {
         List {
@@ -56,10 +58,17 @@ struct SelectPhraseForConversationView: SheetView {
                 ContentUnavailableView.search
             }
         }
+        .sheet(item: $sheet) { item in
+            item.buildView()
+        }
     }
 
     var confirmButton: some View {
-        EmptyView()
+        Button {
+            sheet = .addNewPhrase
+        } label: {
+            Label("Add New Phrase", systemImage: "plus")
+        }
     }
 
     var sheetTitle: String {

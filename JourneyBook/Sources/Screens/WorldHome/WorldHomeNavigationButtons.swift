@@ -41,6 +41,9 @@ struct WorldHomeNavigationButtons: View {
                 systemImage: "train.side.front.car"
             )
         }
+        .accessibilityIdentifier(
+            "GliderProofConcept"
+        )
         Button {
             coordinator.push(page: .communicationDirectory)
         } label: {

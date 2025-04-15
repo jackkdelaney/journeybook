@@ -5,16 +5,18 @@
 //  Created by Jack Delaney on 14/03/2025.
 //
 
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
 
-struct CommunicationSelectorView: View {
+struct CommunicationSelectorView: SheetView {
     @Query var communications: [Communication]
 
     @Binding var selectedCommunication: Communication?
 
-    var body: some View {
+    @State private var sheet: CommunicationSheet? = nil
+
+    var content: some View {
         List {
             ForEach(communications) { communication in
                 HStack {
@@ -44,5 +46,20 @@ struct CommunicationSelectorView: View {
                 )
             }
         }
+        .sheet(item: $sheet) { item in
+            item.buildView()
+        }
+    }
+
+    var confirmButton: some View {
+        Button {
+            sheet = .addNewCommunication
+        } label: {
+            Label("Add Communication", systemImage: "plus")
+        }
+    }
+
+    var sheetTitle: String {
+        "Select Communication"
     }
 }
