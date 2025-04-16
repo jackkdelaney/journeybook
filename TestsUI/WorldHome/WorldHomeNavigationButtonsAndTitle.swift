@@ -10,8 +10,10 @@ import XCTest
 final class WorldHomeNavigationButtonsAndTitle: XCTestCase {
     let app = XCUIApplication()
 
+
     override func setUpWithError() throws {
         continueAfterFailure = false
+        app.launchArguments = ["UITests"]
         app.launch()
     }
 

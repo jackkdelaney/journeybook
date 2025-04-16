@@ -11,7 +11,7 @@ import SharedPersistenceKit
 struct CommunicationDetailView: View {
     @Bindable var communication: Communication
 
-    @State private var sheet: CommunicationSheet? = nil
+    @State var sheet: CommunicationSheet? = nil
 
     let inSheet: Bool
 

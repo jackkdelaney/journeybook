@@ -46,7 +46,7 @@ struct EditExistingJourneySheet: SheetView {
     }
 
     var confirmButton: some View {
-        Button("Add") {
+        Button("Update") {
             do {
                 if journeyName.isEmpty {
                     throw JourneyViewModelError.noJourneyText

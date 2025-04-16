@@ -12,6 +12,7 @@ final class WorldHomeNavigationCreateNewJourney: XCTestCase {
 
     override func setUpWithError() throws {
         continueAfterFailure = false
+        app.launchArguments = ["UITests"]
         app.launch()
     }
 
