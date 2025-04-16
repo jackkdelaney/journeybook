@@ -44,6 +44,9 @@ struct AddNewJourneyStepButton: AnimatedBackGroundView {
         .contentShape(Rectangle())
         .removeListRowPaddingInsets()
         .buttonStyle(PlainButtonStyle())
+        .accessibilityIdentifier(
+            "AddNewStepButton"
+        )
     }
     
     var colours: [Color] { [

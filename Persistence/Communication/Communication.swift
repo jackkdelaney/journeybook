@@ -102,3 +102,9 @@ public class Communication: Identifiable {
         )
     }
 }
+
+extension Communication {
+    public static func sampleCommunication() -> Communication {
+        Communication(title: "bob",email: "message",message: "message")
+    }
+}
