@@ -15,18 +15,15 @@ struct LiveJourneyStepModelTests {
         let model = await LiveJourneyStepModelWithinJourney(journey: Journey.sampleNewYork())
         model.endJourneys()
     }
-    
-    
+
     @MainActor @Test
     func testInitialisationSetsDefaultPropertiesCorrectly() {
         let model = LiveJourneyStepModel()
-        
+
         #expect(model.activty == nil)
         #expect(model.theLiveJourney == nil)
         #expect(model.stepNumber == 0)
         #expect(model.disableNextButton == true)
         #expect(model.disableLastButton == true)
-        
-        
     }
 }

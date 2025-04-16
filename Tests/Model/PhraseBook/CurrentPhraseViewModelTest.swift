@@ -32,7 +32,6 @@ struct CurrentPhraseViewModelTests {
         #expect(model.colour == .pink)
     }
 
-    
     @MainActor @Test
     func testChangeFont() {
         let phrase = Phrase.samplePhrase()
@@ -42,7 +41,7 @@ struct CurrentPhraseViewModelTests {
 
         #expect(model.fontSize == .callout)
     }
-    
+
     @MainActor @Test
     func testNoTextErrorThrow() {
         let phrase = Phrase.samplePhrase()
