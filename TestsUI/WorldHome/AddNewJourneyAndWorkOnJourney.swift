@@ -10,7 +10,6 @@ import XCTest
 final class AddNewJourneyAndWorkOnJourney: XCTestCase {
     let app = XCUIApplication()
 
-
     let id = UUID().uuidString.prefix(5)
 
     override func setUpWithError() throws {
