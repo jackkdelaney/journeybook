@@ -2,6 +2,10 @@ import ProjectDescription
 
 let project = Project(
     name: "JourneyBook",
+    options:  .options(
+        automaticSchemesOptions: .enabled(
+            codeCoverageEnabled: true
+        )),
     settings: .settings(
         base: [
             "DEVELOPMENT_TEAM": "75ESF57BMG",
@@ -47,11 +51,11 @@ let project = Project(
                     "NSSupportsLiveActivities": "true",
                     "CFBundleDisplayName": "JourneyBook",
                     "CFBundleURLTypes": [
-                                [
-                                    "CFBundleURLName" : "co.jackdelaney.jb",
-                                    "CFBundleURLSchemes": ["journeybookjourney"]
-                                ]
-                            ],
+                        [
+                            "CFBundleURLName": "co.jackdelaney.jb",
+                            "CFBundleURLSchemes": ["journeybookjourney"],
+                        ],
+                    ],
                 ]
             ),
             sources: ["JourneyBook/Sources/**"],
@@ -106,7 +110,6 @@ let project = Project(
                 infoPlist: .extendingDefault(with: ["NSExtensionPointIdentifier": "com.apple.widgetkit-extension"]),
                 sources: ["TestsUI/**"],
                 resources: [],
-                dependencies: [.target(name: "JourneyBook")]
-                ),
+                dependencies: [.target(name: "JourneyBook")]),
     ]
 )
