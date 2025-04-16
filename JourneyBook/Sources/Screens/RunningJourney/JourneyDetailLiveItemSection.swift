@@ -32,14 +32,12 @@ struct LiveJourneyControlButtons: ViewModifier {
                             }
                             .disabled(model.disableLastButton)
 
-                            
                             Button {
                                 model.goForward()
                             } label: {
                                 Label("Next Step", systemImage: "arrowshape.right.circle")
                             }
                             .disabled(model.disableNextButton)
-
                         }
                     }
                     .multilineTextAlignment(.center)
@@ -55,7 +53,7 @@ struct LiveJourneyControlButtons: ViewModifier {
                     .ignoresSafeArea(edges: .bottom)
                     //                if let stepDescription = step.stepDescription {
                     //                    Text(stepDescription)
-                    
+
                     //                }
                 }
             }
