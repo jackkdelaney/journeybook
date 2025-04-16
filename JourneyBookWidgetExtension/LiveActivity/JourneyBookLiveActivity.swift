@@ -58,8 +58,6 @@ struct JourneyBookLiveActivity: Widget {
 
             } minimal: {
                 /*
-                 Ensure that your Live Activity is recognizable in the minimal presentation. If possible, display updated information instead of only presenting a logo, but ensure that people are able to quickly recognize your app. For example, the compact presentation for a Live Activity of the Timer app displays the remaining time instead of using a static icon.
-
                  SO IF LESS THAN 3 characters use the text otherwise, use the icon
                  */
 
