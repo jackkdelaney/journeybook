@@ -13,9 +13,9 @@ struct WorldHome: View {
 
     @EnvironmentObject private var coordinator: Coordinator
 
-    @State private var sheet: JourneySheet? = nil
+    @State var sheet: JourneySheet? = nil
 
-    @State private var searchText = ""
+    @State var searchText = ""
 
     var body: some View {
         List {
