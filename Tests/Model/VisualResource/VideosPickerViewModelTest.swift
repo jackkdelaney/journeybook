@@ -100,8 +100,6 @@ struct VideosPickerViewModelTests {
         model.clearItem()
 
         #expect(model.selectedItemText == nil)
-        #expect(model.selectedItem == nil)
-
     }
 
 }

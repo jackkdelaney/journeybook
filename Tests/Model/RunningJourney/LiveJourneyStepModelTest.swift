@@ -23,7 +23,7 @@ struct LiveJourneyStepModelTests {
         
         #expect(model.activty == nil)
         #expect(model.theLiveJourney == nil)
-        #expect(model.stepNumber == -4)
+        #expect(model.stepNumber == 0)
         #expect(model.disableNextButton == true)
         #expect(model.disableLastButton == true)
         

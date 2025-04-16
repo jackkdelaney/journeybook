@@ -17,7 +17,11 @@ class LiveJourneyStepModel {
     let modelContainer: ModelContainer
     let modelContext: ModelContext
 
-    var activty: Activity<StepAttributes>? // TODO: Find exisiting one
+    var activty: Activity<StepAttributes>? {
+        didSet {
+            stepNumberFix()
+        }
+    }
 
     @MainActor
     init() {
@@ -27,6 +31,7 @@ class LiveJourneyStepModel {
         )
         modelContext = modelContainer.mainContext
         stepNumber = 0
+        stepNumberFix()
     }
 
     var liveJourneysByID: [UUID] {
@@ -57,13 +62,15 @@ class LiveJourneyStepModel {
         }
     }
 
-    var theLiveJourney: LiveJourney? {
-        if let item = fetchResources()
-            .first
-        {
-            stepNumber = item.stepNumber
+    private func stepNumberFix() {
+        if let theLiveJourney {
+            stepNumber = theLiveJourney.stepNumber
+        } else {
+            stepNumber = 0
         }
+    }
 
+    var theLiveJourney: LiveJourney? {
         return fetchResources()
             .first
     }
@@ -77,6 +84,7 @@ class LiveJourneyStepModel {
                 stepNumber = theLiveJourneyUnwrapped.stepNumber
             }
         }
+        stepNumberFix()
     }
 
     func goForward() {
@@ -86,13 +94,14 @@ class LiveJourneyStepModel {
                 stepNumber = theLiveJourneyUnwrapped.stepNumber
             }
         }
+        stepNumberFix()
     }
 
     var disableLastButton: Bool {
-            if stepNumber > 1 {
-                return false
-            }
-        
+        if stepNumber > 1 {
+            return false
+        }
+
         return true
     }
 
