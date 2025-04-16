@@ -11,7 +11,7 @@ import SharedPersistenceKit
 
 
 struct JourneyItemsView: View {
-    @Query var journeys: [Journey]
+    @Query(sort: [SortDescriptor(\Journey.dateCreated, order: .reverse)]) var journeys: [Journey]
 
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject private var coordinator: Coordinator
@@ -122,6 +122,7 @@ struct JourneyItemsView: View {
                 Label("Edit", systemImage: "pencil")
             }
         }
+        .accessibilityIdentifier("\(journey.journeyName)")
     }
 
     private var filteredBySearchJourneys: [Journey] {
