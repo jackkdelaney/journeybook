@@ -21,7 +21,9 @@ public class CountryCodes: Codable {
 
             let countryValue = CountryWithCode(countryCode: countryCode,
                                                countryName: countryName,
-                                               dialCode: dialCode)
+                                               
+                                               dialCode: dialCode
+            )
             countriesWithCode.append(countryValue)
         }
 
@@ -34,31 +36,5 @@ public class CountryCodes: Codable {
         countriesWithCode.append(contentsOf: sortedCountries)
 
         return countriesWithCode
-    }
-}
-
-public struct CountryWithCode: Codable, Identifiable {
-    public private(set) var countryCode: String
-    public private(set) var countryName: String
-    public private(set) var dialCode: String
-
-    public var dialCodeInt: Int {
-        Int(dialCode) ?? 0
-    }
-
-    public var id: String {
-        "\(countryCode)-\(countryName)-\(dialCode)"
-    }
-}
-
-extension CountryWithCode: Equatable {
-    public static func == (lhs: CountryWithCode, rhs: CountryWithCode) -> Bool {
-        return lhs.countryCode == rhs.countryCode && lhs.countryName == rhs.countryName && lhs.dialCode == rhs.dialCode
-    }
-}
-
-public extension CountryWithCode {
-    static var example: CountryWithCode {
-        CountryWithCode(countryCode: "GB", countryName: "United Kingdom", dialCode: "44")
     }
 }
