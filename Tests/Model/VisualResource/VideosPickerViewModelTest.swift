@@ -13,14 +13,12 @@ import Testing
 @testable import JourneyBook
 
 struct VideosPickerViewModelTests {
-
     @MainActor @Test
     func testInitialisationSetsDefaultPropertiesCorrectly() {
         let model = VideosPickerViewModel()
 
         #expect(model.selectedItem == nil)
         #expect(model.selectedItemText == nil)
-
     }
 
     @MainActor @Test
@@ -30,7 +28,6 @@ struct VideosPickerViewModelTests {
         model.selectedItemText = "HOWDY!!"
 
         #expect(model.selectedItemText == "HOWDY!!")
-
     }
 
     @MainActor @Test
@@ -101,5 +98,4 @@ struct VideosPickerViewModelTests {
 
         #expect(model.selectedItemText == nil)
     }
-
 }
