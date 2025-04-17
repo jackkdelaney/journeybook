@@ -8,11 +8,13 @@
 import SwiftUI
 import WidgetKit
 import CommonCodeKit
+import AppExtensionJBKit
 
-struct JourneyBookLiveActivity: Widget {
-    let kind: String = "JourneyBookLiveActivity"
 
-    var body: some WidgetConfiguration {
+public struct JourneyBookLiveActivity: Widget {
+    public let kind: String = "JourneyBookLiveActivity"
+
+    public var body: some WidgetConfiguration {
         ActivityConfiguration(for: StepAttributes.self) { context in
             LiveActivityExpandedView(state: context.state)
         } dynamicIsland: { context in
@@ -75,4 +77,6 @@ struct JourneyBookLiveActivity: Widget {
             .foregroundStyle(.purple)
             .fontWeight(.heavy)
     }
+    
+    public init() {}
 }

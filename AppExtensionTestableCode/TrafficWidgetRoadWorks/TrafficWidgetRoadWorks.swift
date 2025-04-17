@@ -8,9 +8,9 @@
 import SwiftUI
 import WidgetKit
 
-struct TrafficWidgetRoadWorks: Widget {
-    let kind: String = "JourneyBook-Roadworks-NI"
-    var body: some WidgetConfiguration {
+public struct TrafficWidgetRoadWorks: Widget {
+    public let kind: String = "JourneyBook-Roadworks-NI"
+    public var body: some WidgetConfiguration {
 
         StaticConfiguration(
             kind: kind,
@@ -25,4 +25,6 @@ struct TrafficWidgetRoadWorks: Widget {
             .systemLarge,
         ])
     }
+    
+    public init(){}
 }
