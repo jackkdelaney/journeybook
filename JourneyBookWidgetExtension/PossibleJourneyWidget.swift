@@ -10,12 +10,13 @@ import Foundation
 import SharedPersistenceKit
 import SwiftUI
 import WidgetKit
+import AppExtensionJBKit
 
 // https://medium.com/@rishixcode/swiftdata-with-widgets-in-swiftui-0aab327a35d8
 
-public struct PossibleJourneyWidget: Widget {
-    public let kind: String = "JourneyCatalogs"
-    public var body: some WidgetConfiguration {
+ struct PossibleJourneyWidget: Widget {
+     let kind: String = "JourneyCatalogs"
+     var body: some WidgetConfiguration {
         StaticConfiguration(
             kind: kind,
             provider: JourneyProvider()
@@ -29,5 +30,5 @@ public struct PossibleJourneyWidget: Widget {
             .systemSmall,
         ])
     }
-    public init(){}
+     init(){}
 }
