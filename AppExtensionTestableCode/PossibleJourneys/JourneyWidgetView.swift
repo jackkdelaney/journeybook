@@ -5,19 +5,19 @@
 //  Created by Jack Delaney on 13/04/2025.
 //
 
+import AppIntents
 import SharedPersistenceKit
 import SwiftData
 import SwiftUI
 import WidgetKit
-import AppIntents
 
-struct JourneyWidgetView: View {
-    var entry: JourneyProvider.Entry
+public struct JourneyWidgetView: View {
+    public var entry: JourneyProvider.Entry
 
     @Query(sort: \Journey.dateCreated) var journeys: [Journey]
     @Environment(\.widgetFamily) var family
 
-    var body: some View {
+    public var body: some View {
         showedView
             .containerBackground(for: .widget) {
                 Color.pink.opacity(0.86)
@@ -69,5 +69,9 @@ struct JourneyWidgetView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
+    }
+
+    public init(entry: JourneyProvider.Entry) {
+        self.entry = entry
     }
 }

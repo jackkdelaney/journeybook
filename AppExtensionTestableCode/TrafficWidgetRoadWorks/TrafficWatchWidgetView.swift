@@ -8,10 +8,10 @@
 import SwiftUI
 import WidgetKit
 
-struct TrafficWatchWidgetView: View {
-    var entry: TrafficIncidentsProvider.Entry
+public struct TrafficWatchWidgetView: View {
+    public var entry: TrafficIncidentsProvider.Entry
 
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .leading) {
             Label("Road Conditions", systemImage: symbol)
                 .font(.title3)
@@ -46,5 +46,9 @@ struct TrafficWatchWidgetView: View {
         } else {
             "road.lanes"
         }
+    }
+
+    public init(entry: TrafficIncidentsProvider.Entry) {
+        self.entry = entry
     }
 }

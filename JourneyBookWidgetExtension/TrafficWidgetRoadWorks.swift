@@ -7,11 +7,11 @@
 
 import SwiftUI
 import WidgetKit
+import AppExtensionJBKit
 
 struct TrafficWidgetRoadWorks: Widget {
     let kind: String = "JourneyBook-Roadworks-NI"
     var body: some WidgetConfiguration {
-
         StaticConfiguration(
             kind: kind,
             provider: TrafficIncidentsProvider()

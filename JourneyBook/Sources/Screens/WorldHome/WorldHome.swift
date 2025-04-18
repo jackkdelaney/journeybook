@@ -97,3 +97,12 @@ struct WorldHome: View {
         }
     }
 }
+
+
+extension SwiftUI.View {
+    func asViewController() -> UIViewController {
+          let vc = UIHostingController(rootView: self)
+          vc.view.frame = UIScreen.main.bounds
+          return vc
+      }
+}

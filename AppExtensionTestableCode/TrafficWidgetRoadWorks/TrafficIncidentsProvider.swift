@@ -7,25 +7,25 @@
 
 import WidgetKit
 
-struct TrafficIncidentsProvider: TimelineProvider {
-    func placeholder(in _: Context) -> TrafficIncidentsEntry {
+public struct TrafficIncidentsProvider: TimelineProvider {
+    public func placeholder(in _: Context) -> TrafficIncidentsEntry {
         TrafficIncidentsEntry(date: Date.distantPast, issues: 2)
     }
 
-    func getSnapshot(in _: Context,
+    public func getSnapshot(in _: Context,
 
-                     completion: @escaping (TrafficIncidentsEntry) -> Void)
+                            completion: @escaping (TrafficIncidentsEntry) -> Void)
     {
         let entry = TrafficIncidentsEntry(date: .distantPast, issues: 0)
 
         completion(entry)
     }
 
-    func getTimeline(in _: Context,
+    public func getTimeline(in _: Context,
 
-                     completion: @escaping
+                            completion: @escaping
 
-                     (Timeline<TrafficIncidentsEntry>) -> Void)
+                            (Timeline<TrafficIncidentsEntry>) -> Void)
     {
         fetchData { issuesFound in
 
@@ -63,6 +63,8 @@ struct TrafficIncidentsProvider: TimelineProvider {
 
         task.resume()
     }
+
+    public init() {}
 }
 
 struct Post: Decodable {

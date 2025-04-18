@@ -2,7 +2,7 @@ import ProjectDescription
 
 let project = Project(
     name: "JourneyBook",
-    options:  .options(
+    options: .options(
         automaticSchemesOptions: .enabled(
             codeCoverageEnabled: true
         )),
@@ -12,6 +12,15 @@ let project = Project(
         ]
     ),
     targets: [
+        .target(name: "AppExtensionJBKit",
+                destinations: .iOS,
+                product: .framework,
+                bundleId: "co.jackdelaney.jb.appExtensionTestableCode",
+                sources: ["AppExtensionTestableCode/**"],
+                dependencies: [
+                    .external(name: "FeedKit"),
+                    .target(name: "SharedPersistenceKit"),
+                ]),
         .target(name: "SharedPersistenceKit",
                 destinations: .iOS,
                 product: .framework,
@@ -86,7 +95,7 @@ let project = Project(
             resources: ["JourneyBookWidgetExtensionResources/**"],
             entitlements: "JourneyBookWidgetExtension/JourneyBookWidgetExtension.entitlements",
             dependencies: [
-                .external(name: "FeedKit"),
+                .target(name: "AppExtensionJBKit"),
                 .target(name: "CommonCodeKit"),
             ]
 
@@ -100,7 +109,10 @@ let project = Project(
             infoPlist: .extendingDefault(with: ["NSExtensionPointIdentifier": "com.apple.widgetkit-extension"]),
             sources: ["Tests/**"],
             resources: [],
-            dependencies: [.target(name: "JourneyBook")]
+            dependencies: [
+                .target(name: "JourneyBook"),
+                .target(name: "AppExtensionJBKit"),
+            ]
         ),
         .target(name: "JourneyBookTestsUI",
                 destinations: .iOS,

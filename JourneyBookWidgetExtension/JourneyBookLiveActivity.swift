@@ -5,9 +5,10 @@
 //  Created by Jack Delaney on 11/04/2025.
 //
 
+import AppExtensionJBKit
+import CommonCodeKit
 import SwiftUI
 import WidgetKit
-import CommonCodeKit
 
 struct JourneyBookLiveActivity: Widget {
     let kind: String = "JourneyBookLiveActivity"
@@ -28,25 +29,20 @@ struct JourneyBookLiveActivity: Widget {
                         .foregroundStyle(.purple)
                         .fontWeight(.heavy)
                         .lineLimit(1)
-                    
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     HStack {
-                        Button {
-                        } label: {
+                        Button {} label: {
                             Text("Go to Next Step")
                         }
                         .tint(.purple)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         Spacer()
-                        Button {
-                        } label: {
+                        Button {} label: {
                             Text("End Journey")
-                                
                         }
                         .tint(.purple)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-
                     }
                 }
             } compactLeading: {
@@ -67,9 +63,8 @@ struct JourneyBookLiveActivity: Widget {
             }
         }
     }
-    
-    
-    private var journeyBookLiveLogo : some View {
+
+    private var journeyBookLiveLogo: some View {
         Label("Journey Book Current Journey", systemImage: "arrow.up.and.down.and.arrow.left.and.right")
             .labelStyle(.iconOnly)
             .foregroundStyle(.purple)
