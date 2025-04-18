@@ -30,8 +30,54 @@ enum AppPages: Hashable {
 }
 
 extension AppPages {
-    @ViewBuilder
+    var title : String {
+        switch self {
+        case .resourceManager:
+            "Resources Mananger"
+        case let .resourceDetails(resource):
+            "Resources View"
+        case .worldHome:
+            "World Home"
+        case .phraseBook:
+            "Phrase Book"
+        case .mapExperience:
+           "Bus Map"
+        case .gliderPOC:
+            "Glider POC"
+        case .transportRoutes:
+            "Transport Routes"
+        case let .journeyDetails(journey):
+            "Journey Details"
+        case let .journeyStepDetails(journeyStep):
+            "Journey Step Details"
+        case let .mapDetails(location):
+            "Map Detail View"
+        case let .rssFeedItem(item):
+            "RSS Detail View"
+        case let .webpage(theUrl):
+            "Internal Web Broswer"
+        case let .phraseDetails(phrase):
+            "Phrase Detail View"
+        case let .communicationDetail(communication):
+            "Communiucation Details"
+        case .credits:
+            "Credits"
+        case .communicationDirectory:
+            "Communication"
+        case .acessblityHomeToolbarOptions:
+            "Acessblity"
+        }
+    }
+}
+
+extension AppPages {
     func build() -> some View {
+        internalBuild()
+        .postHogScreenView(self.title)
+    }
+    
+    @ViewBuilder
+    private func internalBuild() -> some View {
         switch self {
         case .resourceManager:
             ResourcesManager()
@@ -67,6 +113,7 @@ extension AppPages {
             CommunicationView()
         case .acessblityHomeToolbarOptions:
             WorldHomeAacessblityHomeToolbarOptions()
+            
         }
     }
 }

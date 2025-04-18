@@ -11,18 +11,19 @@ import SwiftData
 import SwiftUI
 import WidgetKit
 
-struct JourneyProvider: @preconcurrency TimelineProvider {
-    func placeholder(in _: Context) -> JourneyTimelineEntry {
+public struct JourneyProvider: @preconcurrency TimelineProvider {
+    public func placeholder(in _: Context) -> JourneyTimelineEntry {
         JourneyTimelineEntry(date: .distantPast, type: .placeholder, relevance: TimelineEntryRelevance(score: 0.2))
     }
 
-    func getSnapshot(in _: Context, completion: @escaping (JourneyTimelineEntry) -> Void) {
+    public func getSnapshot(in _: Context, completion: @escaping (JourneyTimelineEntry) -> Void) {
         let entry = JourneyTimelineEntry(date: .distantPast, type: .snapshot, relevance: TimelineEntryRelevance(score: 0.2))
 
         completion(entry)
     }
 
-    @MainActor func getTimeline(in _: Context, completion: @escaping (Timeline<JourneyTimelineEntry>) -> Void) {
+    @MainActor
+    public func getTimeline(in _: Context, completion: @escaping (Timeline<JourneyTimelineEntry>) -> Void) {
         var entries: [JourneyTimelineEntry] = []
 
         for i in 0 ... 4 {
@@ -35,4 +36,6 @@ struct JourneyProvider: @preconcurrency TimelineProvider {
 
         completion(timeline)
     }
+
+    public init() {}
 }
