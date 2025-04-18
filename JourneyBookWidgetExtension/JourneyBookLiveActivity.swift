@@ -5,16 +5,15 @@
 //  Created by Jack Delaney on 11/04/2025.
 //
 
+import AppExtensionJBKit
+import CommonCodeKit
 import SwiftUI
 import WidgetKit
-import CommonCodeKit
-import AppExtensionJBKit
 
+struct JourneyBookLiveActivity: Widget {
+    let kind: String = "JourneyBookLiveActivity"
 
-public struct JourneyBookLiveActivity: Widget {
-    public let kind: String = "JourneyBookLiveActivity"
-
-    public var body: some WidgetConfiguration {
+    var body: some WidgetConfiguration {
         ActivityConfiguration(for: StepAttributes.self) { context in
             LiveActivityExpandedView(state: context.state)
         } dynamicIsland: { context in
@@ -30,25 +29,20 @@ public struct JourneyBookLiveActivity: Widget {
                         .foregroundStyle(.purple)
                         .fontWeight(.heavy)
                         .lineLimit(1)
-                    
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     HStack {
-                        Button {
-                        } label: {
+                        Button {} label: {
                             Text("Go to Next Step")
                         }
                         .tint(.purple)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         Spacer()
-                        Button {
-                        } label: {
+                        Button {} label: {
                             Text("End Journey")
-                                
                         }
                         .tint(.purple)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-
                     }
                 }
             } compactLeading: {
@@ -69,14 +63,11 @@ public struct JourneyBookLiveActivity: Widget {
             }
         }
     }
-    
-    
-    private var journeyBookLiveLogo : some View {
+
+    private var journeyBookLiveLogo: some View {
         Label("Journey Book Current Journey", systemImage: "arrow.up.and.down.and.arrow.left.and.right")
             .labelStyle(.iconOnly)
             .foregroundStyle(.purple)
             .fontWeight(.heavy)
     }
-    
-    public init() {}
 }

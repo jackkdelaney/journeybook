@@ -21,9 +21,8 @@ public class CountryCodes: Codable {
 
             let countryValue = CountryWithCode(countryCode: countryCode,
                                                countryName: countryName,
-                                               
-                                               dialCode: dialCode
-            )
+
+                                               dialCode: dialCode)
             countriesWithCode.append(countryValue)
         }
 

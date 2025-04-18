@@ -41,6 +41,5 @@ struct JourneyStepLocationTests {
 
         #expect(model.location.latitude == location.latitude)
         #expect(model.location.longitude == location.longitude)
-
     }
 }
