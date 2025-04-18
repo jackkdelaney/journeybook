@@ -20,6 +20,7 @@ let project = Project(
                 dependencies: [
                     .external(name: "FeedKit"),
                     .target(name: "SharedPersistenceKit"),
+                    .target(name: "CommonCodeKit"),
                 ]),
         .target(name: "SharedPersistenceKit",
                 destinations: .iOS,
@@ -112,6 +113,7 @@ let project = Project(
             dependencies: [
                 .target(name: "JourneyBook"),
                 .target(name: "AppExtensionJBKit"),
+                .target(name: "CommonCodeKit"),
             ]
         ),
         .target(name: "JourneyBookTestsUI",
