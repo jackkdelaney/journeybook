@@ -21,6 +21,7 @@ struct WorldHome: View {
         List {
             if searchText.isEmpty {
                 AddNewJoruneyButton(sheet: $sheet)
+
             }
             JourneyItemsView(
                 sheet: $sheet,
@@ -28,7 +29,7 @@ struct WorldHome: View {
             )
             if searchText.isEmpty {
                 AdvertButton(title: "Live Bus Locations", tagLine: "See bus locations live.", appPage: .mapExperience, symbol: "map.circle.fill")
-                RSSContentView()
+                RSSContentView(feedURL: "https://rss.trafficwatchni.com/trafficwatchni_roadworks_rss.xml", for: "Northern Ireland Roadworks")
             }
         }
         .navigationTitle("JourneyBook")

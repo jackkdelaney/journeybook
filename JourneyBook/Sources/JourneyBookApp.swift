@@ -11,14 +11,18 @@ import PostHog
 import SwiftData
 import SwiftUI
 import WidgetKit
+import TipKit
 
 @main
 struct JourneyBookApp: App {
     init() {
         AppShortcuts.updateAppShortcutParameters()
 
-        // TEMP
+        Tips.showAllTipsForTesting()
 
+        
+        // TEMP
+        try? Tips.configure()
         WidgetCenter.shared.reloadAllTimelines()
 
         // FOR UI TESTS ONLY

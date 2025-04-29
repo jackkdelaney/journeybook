@@ -25,16 +25,19 @@ enum AppPages: Hashable {
     case webpage(URL)
     case phraseDetails(Phrase)
     case communicationDetail(Communication)
+    case locationBusDetailTranslink(TranslinkRealTimeBusLocation)
+    case locationBusDetailBE(BusEireannEntity)
     case credits
     case acessblityHomeToolbarOptions
 }
+
 
 extension AppPages {
     var title : String {
         switch self {
         case .resourceManager:
             "Resources Mananger"
-        case let .resourceDetails(resource):
+        case .resourceDetails:
             "Resources View"
         case .worldHome:
             "World Home"
@@ -43,22 +46,22 @@ extension AppPages {
         case .mapExperience:
            "Bus Map"
         case .gliderPOC:
-            "Glider POC"
+            "Glider"
         case .transportRoutes:
             "Transport Routes"
-        case let .journeyDetails(journey):
+        case  .journeyDetails:
             "Journey Details"
-        case let .journeyStepDetails(journeyStep):
+        case  .journeyStepDetails:
             "Journey Step Details"
-        case let .mapDetails(location):
+        case  .mapDetails:
             "Map Detail View"
-        case let .rssFeedItem(item):
+        case  .rssFeedItem:
             "RSS Detail View"
-        case let .webpage(theUrl):
+        case  .webpage:
             "Internal Web Broswer"
-        case let .phraseDetails(phrase):
+        case  .phraseDetails:
             "Phrase Detail View"
-        case let .communicationDetail(communication):
+        case  .communicationDetail:
             "Communiucation Details"
         case .credits:
             "Credits"
@@ -66,6 +69,8 @@ extension AppPages {
             "Communication"
         case .acessblityHomeToolbarOptions:
             "Acessblity"
+        case .locationBusDetailTranslink,.locationBusDetailBE:
+            "Bus Location Details"
         }
     }
 }
@@ -113,7 +118,11 @@ extension AppPages {
             CommunicationView()
         case .acessblityHomeToolbarOptions:
             WorldHomeAacessblityHomeToolbarOptions()
-            
+        case let .locationBusDetailBE(busLocaton):
+            LiveBusMapDetailView(location: busLocaton)
+        case let .locationBusDetailTranslink(busLocaton):
+            LiveBusMapDetailView(location: busLocaton)
+
         }
     }
 }
