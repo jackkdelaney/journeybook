@@ -15,6 +15,7 @@ protocol RealTimeBusLocation: Identifiable, Decodable, Equatable {
     var location: CLLocationCoordinate2D { get }
     var busOperator: BusOperator { get }
     var VehicleIdentifier: String { get }
+    var busNumber: String { get }
 }
 
 
@@ -39,6 +40,14 @@ struct TranslinkRealTimeBusLocation: RealTimeBusLocation {
     let RealtimeAvailable: Int
     let LineText: String
     let DirectionText: String
+    
+    var busNumber: String {
+        if LineText.isEmpty {
+            JourneyIdentifier
+        } else {
+            LineText
+        }
+    }
 
     var location: CLLocationCoordinate2D {
         .init(latitude: Double(Y) ?? 0, longitude: Double(X) ?? 0)

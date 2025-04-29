@@ -19,6 +19,10 @@ struct BusEireannHeader: Codable {
 }
 
 struct BusEireannEntity: Codable, Identifiable, RealTimeBusLocation{
+    var busNumber: String {
+        VehicleIdentifier
+    }
+    
     var VehicleIdentifier: String {
         vehicle.vehicle.id
     }
