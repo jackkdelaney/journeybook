@@ -1,0 +1,1622 @@
+@startuml
+' STYLE START
+hide empty members
+skinparam shadowing false
+' STYLE END
+set namespaceSeparator none
+
+
+class "SheetView" as SheetView << (P, GoldenRod) protocol >> { 
+  ~sheetTitle : String
+  ~content : Content
+  ~confirmButton : ConfirmButton 
+}
+class "PickerSheetView" as PickerSheetView << (P, GoldenRod) protocol >> { 
+  ~model : PickerViewModel 
+}
+class "CommunictionSheetView" as CommunictionSheetView << (P, GoldenRod) protocol >> { 
+  ~viewModel : CommunictionViewModelType
+  ~errorMessage : CommunicationViewModelError?
+  ~confirmButtonTitleText : String
+  ~sheetTitle : String
+  ~dismissView()
+  ~setError(for:) 
+}
+class "MessageUIKitViewDelegate" as MessageUIKitViewDelegate << (P, GoldenRod) protocol >> {  
+}
+class "MediaPickerView" as MediaPickerView << (P, GoldenRod) protocol >> { 
+  ~sheetTitle : String
+  ~model : SomePickerItem 
+}
+class "AnimatedBackGroundView" as AnimatedBackGroundView << (P, GoldenRod) protocol >> { 
+  ~colours : [Color]
+  ~backgroundColor : Color
+  ~isAssistiveAccessEnabled : Bool 
+}
+class "RealTimeBusLocation" as RealTimeBusLocation << (P, GoldenRod) protocol >> { 
+  ~id : String
+  ~location : CLLocationCoordinate2D
+  ~busOperator : BusOperator
+  ~VehicleIdentifier : String 
+}
+class "PickerItem" as PickerItem << (P, GoldenRod) protocol >> { 
+  ~selectedItem : Item?
+  ~selectedPickerItem : PhotosPickerItem?
+  ~selectedItemText : String?
+  ~filter : PHPickerFilter
+  ~clearItem()
+  ~pickerText : String
+  ~_$observationRegistrar : ObservationRegistrar
+  ~modelContainer : ModelContainer
+  ~modelContext : ModelContext
+  ~saveItem() 
+}
+class "CommunictionModel" as CommunictionModel << (P, GoldenRod) protocol >> { 
+  ~modelContainer : ModelContainer
+  ~modelContext : ModelContext
+  ~title : String
+  ~phoneNumber : PhoneNumber?
+  ~emailAddress : String?
+  ~message : String?
+  ~communictionType : CommunicationType
+  ~emailAddresssBinding : Binding<String>
+  ~phoneNumberBinding : Binding<PhoneNumber?>
+  ~phoneNumberStringBinding : Binding<String>
+  ~messsageBinding : Binding<String>
+  ~saveItem() 
+}
+class "SantityCheckExtra" as SantityCheckExtra << (S, SkyBlue) struct >> { 
+  ~checkReturn4()
+  ~{static} checkReturn4Static() 
+}
+class "ChevronButtonStyle" as ChevronButtonStyle << (S, SkyBlue) struct >> { 
+  ~compact : Bool
+  ~makeBody(configuration:) 
+}
+class "AddButtonForPickerItem" as AddButtonForPickerItem<SomePickerItem: PickerItem> << (S, SkyBlue) struct >> { 
+  ~dismiss
+  ~model : SomePickerItem
+  ~body : some View 
+}
+class "CancelButton" as CancelButton << (S, SkyBlue) struct >> { 
+  ~dismiss
+  ~body : some View 
+}
+class "CoordinatorView" as CoordinatorView << (S, SkyBlue) struct >> { 
+  -coordinator
+  ~namespace
+  ~init()
+  ~body : some View
+  -journeys : [Journey]
+  -handleURL(url:)
+  -loadEnvironmentVariables() 
+}
+class "LiveBusMap" as LiveBusMap << (S, SkyBlue) struct >> { 
+  -region
+  -translinkBusLocations : [TranslinkRealTimeBusLocation]
+  ~irelandViewModel
+  -isLoading
+  ~locationViewModel
+  ~busLocation : [any RealTimeBusLocation]
+  ~body : some View
+  ~fetchBusLocations() 
+}
+class "ResourcesManager" as ResourcesManager << (S, SkyBlue) struct >> { 
+  -coordinator : Coordinator
+  -sheet : ResourcesManagerSheet?
+  ~resources : [VisualResource]
+  ~modelContext
+  ~contents(for:)
+  ~delete(at:)
+  ~body : some View 
+}
+class "ResourceSection" as ResourceSection << (S, SkyBlue) struct >> { 
+  ~resource : VisualResource
+  ~body : some View 
+}
+class "ResourcesManagerAddButtons" as ResourcesManagerAddButtons << (S, SkyBlue) struct >> { 
+  ~sheet : ResourcesManagerSheet?
+  ~body : some View 
+}
+class "OptionalTextView" as OptionalTextView << (S, SkyBlue) struct >> { 
+  ~text : String?
+  ~nonOptionalText : String
+  ~title : String
+  ~init(text:title:)
+  ~body : some View 
+}
+class "MediaPickerAndAnnotationView" as MediaPickerAndAnnotationView<Content: View\nSomePickerItem: PickerItem> << (S, SkyBlue) struct >> { 
+  ~sheetTitle : String
+  ~theContent : Content
+  ~init(sheetTitle:model:theContent:)
+  ~model : SomePickerItem
+  ~content : some View 
+}
+class "PhotosPickerView" as PhotosPickerView << (S, SkyBlue) struct >> { 
+  ~sheetTitle : String
+  ~model
+  ~topView : some View
+  ~body : some View 
+}
+class "VideosPickerView" as VideosPickerView << (S, SkyBlue) struct >> { 
+  ~model
+  ~body : some View
+  ~sheetTitle : String
+  ~content : some View 
+}
+class "ResourceSectionImageViewer" as ResourceSectionImageViewer << (S, SkyBlue) struct >> { 
+  -currentZoom
+  -totalZoom
+  ~image : UIImage
+  ~body : some View 
+}
+class "ResourcePicker" as ResourcePicker<Item: PickerItem> << (S, SkyBlue) struct >> { 
+  ~model : Item
+  ~pickerText : String
+  ~body : some View 
+}
+class "ResourceSelectionView" as ResourceSelectionView << (S, SkyBlue) struct >> { 
+  ~dismiss
+  ~selectedResources : [VisualResource]
+  ~resources : [VisualResource]
+  -sheet : ResourcesManagerSheet?
+  ~content : some View
+  -addOrRemove(for:)
+  ~confirmButton : some View
+  ~sheetTitle : String 
+}
+class "ResourceView" as ResourceView << (S, SkyBlue) struct >> { 
+  ~resource : VisualResource
+  ~body : some View 
+}
+class "MiniOpenInMapButton" as MiniOpenInMapButton << (S, SkyBlue) struct >> { 
+  ~lat : Double
+  ~long : Double
+  ~body : some View
+  -openMap(for:)
+  -canOpenAppleMaps : Bool
+  -appleUrl(for:) 
+}
+class "OpenInMapsButton" as OpenInMapsButton << (S, SkyBlue) struct >> { 
+  ~location : JourneyStepLocation
+  ~body : some View
+  -button(for:)
+  -canOpenAppleMaps : Bool
+  -appleUrl(for:) 
+}
+class "JourneyType" as JourneyType << (E, LightSteelBlue) enum >> { 
+  ~car
+  ~walk
+  ~transit 
+}
+class "EditExistingJourneyStepSheet" as EditExistingJourneyStepSheet << (S, SkyBlue) struct >> { 
+  ~dismiss
+  ~modelContext
+  ~journeyStep : JourneyStep
+  -localName : String
+  -localDescription : String
+  -cordinates : CLLocationCoordinate2D?
+  -resources : [VisualResource]
+  -publicTransit : TransportRoute?
+  -communication : Communication?
+  -phrases : [Phrase]
+  ~init(journeyStep:)
+  ~sheetTitle : String
+  ~content : some View
+  ~confirmButton : some View
+  -removeUnwantedResourcesAndPhrases()
+  -addNewPhrasesAndSteps() 
+}
+class "AddNewJourneyStepButton" as AddNewJourneyStepButton << (S, SkyBlue) struct >> { 
+  ~isAssistiveAccessEnabled
+  ~journey : Journey
+  ~sheet : JourneyStepSheet?
+  ~body : some View
+  ~colours : [Color]
+  ~backgroundColor : Color 
+}
+class "AddNewJourneyStepView" as AddNewJourneyStepView << (S, SkyBlue) struct >> { 
+  ~dismiss
+  ~modelContext
+  ~journey : Journey
+  -localName : String
+  -localDescription : String
+  -cordinates : CLLocationCoordinate2D?
+  -resources
+  -publicTransit : TransportRoute?
+  -communication : Communication?
+  -phrases
+  ~content : some View
+  ~confirmButton : some View
+  ~sheetTitle : String
+  -order()
+  -add() 
+}
+class "JourneyStepInputForm" as JourneyStepInputForm << (S, SkyBlue) struct >> { 
+  -sheet : AddJourneyStepSheet?
+  ~localName : String
+  ~localDescription : String
+  ~cordinates : CLLocationCoordinate2D?
+  ~resources : [VisualResource]
+  ~publicTransit : TransportRoute?
+  ~communication : Communication?
+  ~phrases : [Phrase]
+  ~body : some View
+  -resourceSection : some View
+  -publicTransitSection : some View
+  -communicationSection : some View
+  -phraseSection : some View
+  -chosenPhrases : some View
+  -deletePhrase(at:)
+  -locationSection : some View
+  ~phraseText : String 
+}
+class "JourneyStepDetailView" as JourneyStepDetailView << (S, SkyBlue) struct >> { 
+  -coordinator : Coordinator
+  ~step : JourneyStep
+  ~storedVoice : String
+  -sheet : JourneySheet?
+  ~body : some View
+  -visualResourcesSections : some View
+  -transitSection : some View
+  -locationSection : some View
+  ~phrasesSection : some View
+  ~communicationSection : some View
+  -phraseButton(for:) 
+}
+class "LocationFindView" as LocationFindView << (S, SkyBlue) struct >> { 
+  ~sheetTitle : String
+  ~viewModel : LocationFindContentViewModel
+  -isFocusedTextField : Bool
+  ~selectedLocation : CLLocationCoordinate2D?
+  ~dismiss
+  ~confirmButton : some View
+  ~content : some View 
+}
+class "WorldHomeNavigationButtons" as WorldHomeNavigationButtons << (S, SkyBlue) struct >> { 
+  -coordinator : Coordinator
+  ~body : some View 
+}
+class "CreditView" as CreditView << (S, SkyBlue) struct >> { 
+  ~body : some View 
+}
+class "WorldHome" as WorldHome << (S, SkyBlue) struct >> { 
+  -isAssistiveAccessEnabled
+  -coordinator : Coordinator
+  ~sheet : JourneySheet?
+  ~searchText
+  ~body : some View
+  -displayMode : NavigationBarItem.TitleDisplayMode
+  -toolbar : some ToolbarContent
+  -acessibleToolbar : some ToolbarContent
+  -standardToolBar : some ToolbarContent 
+}
+class "AdvertButton" as AdvertButton << (S, SkyBlue) struct >> { 
+  -coordinator : Coordinator
+  ~isAssistiveAccessEnabled
+  ~title : String
+  ~tagLine : String
+  ~appPage : AppPages
+  ~symbol : String
+  ~body : some View
+  ~backgroundColor : Color
+  ~colours : [Color] 
+}
+class "ListDisclosureGroup" as ListDisclosureGroup<InsideView: View> << (S, SkyBlue) struct >> { 
+  ~title : String
+  ~footer : String?
+  ~contentView : () -> InsideView
+  ~isExpanded : Bool
+  -rotating
+  ~init(_:footer:openAtStart:_:)
+  ~body : some View 
+}
+class "WorldHomeAacessblityHomeToolbarOptions" as WorldHomeAacessblityHomeToolbarOptions << (S, SkyBlue) struct >> { 
+  ~body : some View 
+}
+class "ClearTextLineButton" as ClearTextLineButton << (S, SkyBlue) struct >> { 
+  ~text : String
+  ~body : some View 
+}
+class "AddressRow" as AddressRow << (S, SkyBlue) struct >> { 
+  ~selectedLocation : CLLocationCoordinate2D?
+  ~address : AddressResult
+  ~body : some View 
+}
+class "ClassicMapView" as ClassicMapView << (S, SkyBlue) struct >> { 
+  -viewModel : MapViewModel
+  ~dismiss
+  ~selectedLocation : CLLocationCoordinate2D?
+  -address : AddressResult
+  -title : String
+  ~init(address:selectedLocation:)
+  -cameraBinding : Binding<MapCameraPosition>
+  ~body : some View
+  ~confirmButton : some View 
+}
+class "MapInDetailView" as MapInDetailView << (S, SkyBlue) struct >> { 
+  -postion : MapCameraPosition
+  -location : JourneyStepLocation
+  -locked : Bool
+  ~init(location:locked:)
+  ~body : some View
+  ~interactionModes : MapInteractionModes 
+}
+class "AddNewJourneySheet" as AddNewJourneySheet << (S, SkyBlue) struct >> { 
+  ~sheetTitle : String
+  ~dismiss
+  ~model
+  -errorMessage : JourneyViewModelError?
+  ~content : some View
+  ~confirmButton : some View
+  -journeyDescription : Binding<String> 
+}
+class "EditExistingJourneySheet" as EditExistingJourneySheet << (S, SkyBlue) struct >> { 
+  ~journey : Journey
+  -errorMessage : JourneyViewModelError?
+  ~modelContext
+  ~dismiss
+  -journeyName : String
+  -journeyDescription : String?
+  ~init(journey:)
+  ~sheetTitle : String
+  ~content : some View
+  ~confirmButton : some View
+  -journeyDescriptionUnWrapped : Binding<String> 
+}
+class "JourneyDetailView" as JourneyDetailView << (S, SkyBlue) struct >> { 
+  ~modelContext
+  -coordinator : Coordinator
+  -editMode
+  -isAssistiveAccessEnabled
+  ~journey : Journey
+  -sheet : JourneyStepSheet?
+  ~body : some View
+  ~sortedJourneySteps : [JourneyStep]
+  ~move(fromOffsets:toOffset:)
+  ~delete(at:)
+  ~isEditing : Bool 
+}
+class "AddNewJoruneyButton" as AddNewJoruneyButton << (S, SkyBlue) struct >> { 
+  ~sheet : JourneySheet?
+  ~body : some View 
+}
+class "JourneyItemsView" as JourneyItemsView << (S, SkyBlue) struct >> { 
+  ~journeys : [Journey]
+  ~modelContext
+  -coordinator : Coordinator
+  -isAssistiveAccessEnabled
+  ~sheet : JourneySheet?
+  ~searchText : String
+  ~body : some View
+  ~bodySearch : some View
+  ~bodyStandard : some View
+  -delete(at:)
+  -deleteSearch(at:)
+  -journeyButton(for:)
+  -filteredBySearchJourneys : [Journey] 
+}
+class "RSSContentView" as RSSContentView << (S, SkyBlue) struct >> { 
+  ~feedManager
+  ~feedURL : String
+  ~body : some View 
+}
+class "RSSContentViewContent" as RSSContentViewContent << (S, SkyBlue) struct >> { 
+  ~feedManager : RSSFeedManager
+  -coordinator : Coordinator
+  ~body : some View
+  ~convertCDATAHTMLToMarkdown(html:) 
+}
+class "RSSFeedDetailView" as RSSFeedDetailView << (S, SkyBlue) struct >> { 
+  ~item : RSSFeedItem
+  ~body : some View
+  ~convertCDATAHTMLToMarkdown(html:) 
+}
+class "TransportRouteListView" as TransportRouteListView << (S, SkyBlue) struct >> { 
+  -coordinator : Coordinator
+  -sheet : TransportRouteSheet?
+  ~routes : [TransportRoute]
+  ~modelContext
+  ~contents(for:)
+  ~delete(at:)
+  ~body : some View 
+}
+class "WebView" as WebView << (S, SkyBlue) struct >> { 
+  -webViewStore
+  ~url : URL
+  ~body : some View 
+}
+class "WebViewRepresentable" as WebViewRepresentable << (S, SkyBlue) struct >> { 
+  ~url : URL
+  ~webViewStore : WebViewStore
+  ~makeUIView(context:)
+  ~updateUIView(_:context:)
+  ~makeCoordinator() 
+}
+class "Coordinator" as WebViewRepresentable.Coordinator << (C, DarkSeaGreen) >> { 
+  ~parent : WebViewRepresentable
+  ~init(_:)
+  ~webView(_:didFinish:) 
+}
+class "WebViewStore" as WebViewStore << (C, DarkSeaGreen) >> { 
+  ~canGoBack
+  ~canGoForward
+  ~webView : WKWebView?
+  ~goBack()
+  ~goForward()
+  ~reload() 
+}
+class "LimitedWebView" as LimitedWebView << (S, SkyBlue) struct >> { 
+  ~url : URL
+  ~onConfirm : (URL) -> Void
+  ~canGoBack : Bool
+  ~isNonBustimePage : Bool
+  ~currentURL : URL?
+  ~webView : WKWebView
+  ~makeCoordinator()
+  ~makeUIView(context:)
+  ~updateUIView(_:context:) 
+}
+class "WebCoordinator" as LimitedWebView.WebCoordinator << (C, DarkSeaGreen) >> { 
+  ~parent : LimitedWebView
+  ~canGoBack : Bool
+  ~isNonBustimePage : Bool
+  ~currentURL : URL?
+  ~onConfirm : (URL) -> Void
+  ~init(_:canGoBack:isNonBustimePage:currentURL:onConfirm:)
+  ~webView(_:didFinish:) 
+}
+class "WebWelcomerView" as WebWelcomerView << (S, SkyBlue) struct >> { 
+  ~selectedService : URL?
+  -showingWebView
+  -currentURL : URL?
+  -canGoBack
+  -isNonBustimePage
+  -webView
+  ~body : some View 
+}
+class "TransportRouteSelectorView" as TransportRouteSelectorView << (S, SkyBlue) struct >> { 
+  ~routes : [TransportRoute]
+  ~selectedRoute : TransportRoute?
+  -sheet : TransportRouteSheet?
+  ~content : some View
+  ~confirmButton : some View
+  ~sheetTitle : String 
+}
+class "AddTransportRouteView" as AddTransportRouteView << (S, SkyBlue) struct >> { 
+  ~dismiss
+  ~model
+  -sheet : TransportRouteSheet?
+  ~routeContent : some View
+  ~content : some View
+  ~confirmButton : some View
+  ~sheetTitle : String 
+}
+class "TransportRouteSheetURL" as TransportRouteSheetURL << (S, SkyBlue) struct >> { 
+  ~id
+  ~binding : Binding<URL?> 
+}
+class "TransportRouteSheet" as TransportRouteSheet << (E, LightSteelBlue) enum >> { 
+  ~id : String
+  ~addRoute
+  ~getRouteUrl(_:) 
+}
+class "MapDetailView" as MapDetailView << (S, SkyBlue) struct >> { 
+  ~location : JourneyStepLocation
+  ~body : some View
+  ~canOpenGoogleMaps : Bool
+  ~canOpenAppleMaps : Bool
+  ~canOpenWazeMaps : Bool
+  ~wazeUrl : URL?
+  ~appleUrl : URL?
+  ~googleUrl : URL? 
+}
+class "PhraseBook" as PhraseBook << (S, SkyBlue) struct >> { 
+  -sheet : PhraseSheet?
+  ~body : some View 
+}
+class "SelectPhraseForConversationView" as SelectPhraseForConversationView << (S, SkyBlue) struct >> { 
+  ~selectedPhrases : [Phrase]
+  ~phrases : [Phrase]
+  ~dismiss
+  -searchText
+  -searchIsActive
+  ~sheet : PhraseSheet?
+  ~content : some View
+  ~confirmButton : some View
+  ~sheetTitle : String
+  -filteredPhrsses : [Phrase] 
+}
+class "PhraseDetailView" as PhraseDetailView << (S, SkyBlue) struct >> { 
+  -modelContext
+  ~model : CurrentPhraseViewModel
+  ~init(phrase:)
+  ~body : some View
+  -playButton : some View
+  -stepperView : some View
+  -scroolingViewBox : some View 
+}
+class "AddNewPhraseView" as AddNewPhraseView << (S, SkyBlue) struct >> { 
+  ~sheetTitle : String
+  ~dismiss
+  ~model
+  -errorMessage : PhraseModelError?
+  ~content : some View
+  ~confirmButton : some View 
+}
+class "AddNewPhraseButton" as AddNewPhraseButton << (S, SkyBlue) struct >> { 
+  ~isAssistiveAccessEnabled
+  ~sheet : PhraseSheet?
+  ~animate
+  ~body : some View
+  ~colours : [Color]
+  ~backgroundColor : Color 
+}
+class "SinglePressButtonForSpeak" as SinglePressButtonForSpeak<Content: View> << (S, SkyBlue) struct >> { 
+  ~storedVoice : String
+  ~voice : AVSpeechSynthesisVoice?
+  ~speaker
+  ~text : String
+  ~content : Content
+  ~showImage : Bool
+  ~init(text:showImage:content:)
+  ~init(text:showImage:content:)
+  ~body : some View 
+}
+class "PersonalVoiceAuthorisationView" as PersonalVoiceAuthorisationView << (S, SkyBlue) struct >> { 
+  ~status
+  ~body : some View
+  ~theView : some View 
+}
+class "PhraseVoiceSelectorView" as PhraseVoiceSelectorView << (S, SkyBlue) struct >> { 
+  ~voice : AVSpeechSynthesisVoice?
+  ~init(voice:)
+  ~dismiss
+  ~storedVoice : String
+  ~speaker
+  ~sheetTitle : String
+  ~otherVoices
+  ~premiumAndEnhancedVoices
+  ~personalVoices
+  ~novetlyVoice
+  ~content : some View
+  ~confirmButton : some View
+  -showingAlert
+  -voiceOptions(voices:) 
+}
+class "PhraseSheet" as PhraseSheet << (E, LightSteelBlue) enum >> { 
+  ~id : Self
+  ~addNewPhrase
+  ~voices
+  ~editPhrase(_:) 
+}
+class "PhraseListView" as PhraseListView << (S, SkyBlue) struct >> { 
+  ~phrases : [Phrase]
+  ~modelContext
+  -coordinator : Coordinator
+  ~sheet : PhraseSheet?
+  ~body : some View
+  -deletePhrase(phrase:)
+  -delete(at:) 
+}
+class "EditPhraseView" as EditPhraseView << (S, SkyBlue) struct >> { 
+  ~sheetTitle : String
+  ~dismiss
+  ~model : CurrentPhraseViewModel
+  ~init(phrase:)
+  -errorMessage : PhraseModelError?
+  ~content : some View
+  ~confirmButton : some View 
+}
+class "MailButton" as MailButton << (S, SkyBlue) struct >> { 
+  -openUrl
+  ~email : String
+  ~buttonTitle : String
+  ~content : String
+  ~body : some View
+  ~emailInEmailFormat : String
+  ~sendEmail(openUrl:) 
+}
+class "AddNewCommunicationView" as AddNewCommunicationView << (S, SkyBlue) struct >> { 
+  ~dismiss
+  ~viewModel
+  ~errorMessage : CommunicationViewModelError?
+  ~content : some View
+  ~dismissView()
+  ~setError(for:)
+  ~sheetTitle : String
+  ~confirmButtonTitleText : String 
+}
+class "CommunicationSelectorView" as CommunicationSelectorView << (S, SkyBlue) struct >> { 
+  ~communications : [Communication]
+  ~selectedCommunication : Communication?
+  -sheet : CommunicationSheet?
+  ~content : some View
+  ~confirmButton : some View
+  ~sheetTitle : String 
+}
+class "CommunictionViewContent" as CommunictionViewContent<Model: CommunictionModel> << (S, SkyBlue) struct >> { 
+  ~viewModel : Model
+  -sheet : ComponentsSheet?
+  ~errorMessage : CommunicationViewModelError?
+  ~body : some View
+  -communicationType : some View
+  -contentSection : some View
+  -countryCodeAndPhoneNumberEntry : some View 
+}
+class "CommunicationSheet" as CommunicationSheet << (E, LightSteelBlue) enum >> { 
+  ~id : Self
+  ~addNewCommunication
+  ~editCommunication(_:) 
+}
+class "CommunicationEditSheet" as CommunicationEditSheet << (S, SkyBlue) struct >> { 
+  ~dismiss
+  ~viewModel : CommunicationEditableViewModel
+  ~init(communication:)
+  ~errorMessage : CommunicationViewModelError?
+  ~content : some View
+  ~dismissView()
+  ~setError(for:)
+  ~confirmButtonTitleText : String
+  ~sheetTitle : String 
+}
+class "CommunicationDetailView" as CommunicationDetailView << (S, SkyBlue) struct >> { 
+  ~communication : Communication
+  ~sheet : CommunicationSheet?
+  ~inSheet : Bool
+  ~body : some View
+  ~viewMode : some View
+  -specialisedSection : some View
+  -phoneNumberView(for:)
+  -messsageView(for:)
+  -emailView(for:) 
+}
+class "MessagesUIKitViewController" as MessagesUIKitViewController << (C, DarkSeaGreen) >> { 
+  ~delegate : MessageUIKitViewDelegate?
+  ~recipients : [String]?
+  ~body : String?
+  ~viewDidLoad()
+  ~displayMessageInterface()
+  ~messageComposeViewController(_:didFinishWith:) 
+}
+class "UIKitMessageCoordinator" as UIKitMessageCoordinator << (C, DarkSeaGreen) >> { 
+  ~parent : MessageUIView
+  ~init(_:)
+  ~messageCompletion(result:) 
+}
+class "MessageUIView" as MessageUIView << (S, SkyBlue) struct >> { 
+  ~presentationMode
+  ~recipients : [String]
+  ~body : String
+  ~completiton : (_ result: MessageComposeResult) -> Void
+  ~makeCoordinator()
+  ~makeUIViewController(context:)
+  ~updateUIViewController(_:context:) 
+}
+class "MessageButtonView" as MessageButtonView << (S, SkyBlue) struct >> { 
+  -showMessageView
+  ~recipients : [String]
+  ~message : String
+  ~init(showMessageView:recipients:message:)
+  ~body : some View
+  -handleCompletition(_:) 
+}
+class "CommunicationView" as CommunicationView << (S, SkyBlue) struct >> { 
+  -coordinator : Coordinator
+  ~modelContext
+  -editMode
+  ~communictions : [Communication]
+  -sheet : CommunicationSheet?
+  ~body : some View
+  -disableAddButton : Bool
+  -disableEditButton : Bool
+  -itemView(for:)
+  -delete(at:) 
+}
+class "GliderPOCListView" as GliderPOCListView << (S, SkyBlue) struct >> { 
+  -searchText
+  ~locations
+  ~glider
+  -sheet : GliderTimeTableSheet?
+  ~content : some View
+  ~body : some View
+  ~searchResults : [BusLocations]
+  ~currartedLocations : [BusLocations] 
+}
+class "GliderHaltButton" as GliderHaltButton << (S, SkyBlue) struct >> { 
+  ~location : BusLocations
+  ~body : some View 
+}
+class "GliderTimeTableSheet" as GliderTimeTableSheet << (E, LightSteelBlue) enum >> { 
+  ~id : Self
+  ~showTimeTable(_:_:_:_:_:) 
+}
+class "BusLocations" as BusLocations << (S, SkyBlue) struct >> { 
+  ~id : String
+  ~atcoCode : String
+  ~commonName : String
+  ~latitude : CLLocationDegrees
+  ~longitude : CLLocationDegrees
+  ~easting : String
+  ~northing : String
+  ~init(id:atcoCode:commonName:latitude:longitude:easting:northing:) 
+}
+class "TimeTableSheetView" as TimeTableSheetView << (S, SkyBlue) struct >> { 
+  ~atcoFile : ATCOFile
+  -stops_G1 : [ATCOStop]
+  -stops_G2 : [ATCOStop]
+  -commonName : String
+  -lat : Double
+  -long : Double
+  ~init(atcoFile:atcoString:commonName:lat:long:)
+  ~body : some View 
+}
+class "LiveJourneyControlButtons" as LiveJourneyControlButtons << (S, SkyBlue) struct >> { 
+  -model : LiveJourneyStepModel
+  ~body(content:) 
+}
+class "JourneyDetailLiveItemSection" as JourneyDetailLiveItemSection << (S, SkyBlue) struct >> { 
+  ~journey : Journey
+  -model : LiveJourneyStepModelWithinJourney
+  ~init(journey:)
+  ~body : some View 
+}
+class "AppPages" as AppPages << (E, LightSteelBlue) enum >> { 
+  ~worldHome
+  ~resourceManager
+  ~resourceDetails(_:)
+  ~gliderPOC
+  ~mapExperience
+  ~transportRoutes
+  ~phraseBook
+  ~communicationDirectory
+  ~journeyDetails(_:)
+  ~journeyStepDetails(_:)
+  ~mapDetails(_:)
+  ~rssFeedItem(_:)
+  ~webpage(_:)
+  ~phraseDetails(_:)
+  ~communicationDetail(_:)
+  ~credits
+  ~acessblityHomeToolbarOptions 
+}
+class "ResourcesManagerSheet" as ResourcesManagerSheet << (E, LightSteelBlue) enum >> { 
+  ~id : Self
+  ~addPhoto
+  ~addVideo 
+}
+class "Coordinator" as Coordinator << (C, DarkSeaGreen) >> { 
+  -{static} _activeCoordinator : Coordinator?
+  +{static} activeCoordinator : Coordinator?
+  ~init()
+  ~path : NavigationPath
+  ~push(page:)
+  ~pop()
+  ~popToRoot() 
+}
+class "PhoneNumberAndCodeSelectionGetter" as PhoneNumberAndCodeSelectionGetter << (S, SkyBlue) struct >> { 
+  ~id : UUID
+  ~phoneNumber : Binding<PhoneNumber?>
+  ~init(id:phoneNumber:)
+  ~{static} ==(_:_:)
+  ~hash(into:) 
+}
+class "ComponentsSheet" as ComponentsSheet << (E, LightSteelBlue) enum >> { 
+  ~id : Self
+  ~countrycodeSelection(_:) 
+}
+class "CountryCodeSelectorDetailView" as CountryCodeSelectorDetailView << (S, SkyBlue) struct >> { 
+  ~phoneNumber : PhoneNumber?
+  -searchText
+  ~dismiss
+  -customOrder : [Int]
+  ~confirmButton : some View
+  ~content : some View
+  ~sheetTitle : String
+  -sheetSubtitle : String
+  -filteredSelection : [CountryWithCode] 
+}
+class "JourneyBookApp" as JourneyBookApp << (S, SkyBlue) struct >> { 
+  ~init()
+  ~body : some Scene 
+}
+class "Analytics" as Analytics << (E, LightSteelBlue) enum >> { 
+  ~addNewJourney
+  ~deleteJourney
+  ~addNewJourneyStep
+  ~editJourney
+  ~deleteJourneyStep
+  ~editJourneyStep
+  -name : String
+  ~capture() 
+}
+class "JourneyStepSheet" as JourneyStepSheet << (E, LightSteelBlue) enum >> { 
+  ~id : Self
+  ~addNewStep(_:)
+  ~editJourney(_:) 
+}
+class "AddJourneyLocationStepGetter" as AddJourneyLocationStepGetter << (S, SkyBlue) struct >> { 
+  ~id : UUID
+  ~location : Binding<CLLocationCoordinate2D?>
+  ~init(id:location:)
+  ~{static} ==(_:_:)
+  ~hash(into:) 
+}
+class "AddJourneyLocationVisualResourceGetter" as AddJourneyLocationVisualResourceGetter << (S, SkyBlue) struct >> { 
+  ~id : UUID
+  ~resources : Binding<[VisualResource]>
+  ~init(id:resources:)
+  ~{static} ==(_:_:)
+  ~hash(into:) 
+}
+class "AddJourneyPhraseSelectionGetter" as AddJourneyPhraseSelectionGetter << (S, SkyBlue) struct >> { 
+  ~id : UUID
+  ~phrases : Binding<[Phrase]>
+  ~init(id:phrases:)
+  ~{static} ==(_:_:)
+  ~hash(into:) 
+}
+class "AddJourneyTransportGetter" as AddJourneyTransportGetter << (S, SkyBlue) struct >> { 
+  ~id : UUID
+  ~transport : Binding<TransportRoute?>
+  ~init(id:transport:)
+  ~{static} ==(_:_:)
+  ~hash(into:) 
+}
+class "AddJourneyCommunicationGetter" as AddJourneyCommunicationGetter << (S, SkyBlue) struct >> { 
+  ~id : UUID
+  ~communication : Binding<Communication?>
+  ~init(id:communication:)
+  ~{static} ==(_:_:)
+  ~hash(into:) 
+}
+class "AddJourneyStepSheet" as AddJourneyStepSheet << (E, LightSteelBlue) enum >> { 
+  ~id : Self
+  ~getLocationFromAddress(_:)
+  ~getVisualResourceFromList(_:)
+  ~getTransportRouteFromList(_:)
+  ~getCommunicationFromList(_:)
+  ~selectPhrases(_:) 
+}
+class "AddTransportRouteViewModel" as AddTransportRouteViewModel << (C, DarkSeaGreen) >> { 
+  ~saveItem()
+  ~modelContainer : ModelContainer
+  ~modelContext : ModelContext
+  ~routeName : String?
+  ~url : URL?
+  ~saveable : Bool
+  ~init(routeName:url:)
+  ~clearItem() 
+}
+class "LocationFindContentViewModel" as LocationFindContentViewModel << (C, DarkSeaGreen) >> { 
+  ~results : [AddressResult]
+  ~searchableText
+  -localSearchCompleter : MKLocalSearchCompleter
+  ~searchAddress(_:) 
+}
+class "AddressResult" as AddressResult << (S, SkyBlue) struct >> { 
+  ~id : UUID
+  ~title : String
+  ~subtitle : String
+  ~init(id:title:subtitle:) 
+}
+class "MapViewModel" as MapViewModel << (C, DarkSeaGreen) >> { 
+  ~region
+  ~annotationItems : [AnnotationItem]
+  ~getPlace(from:with:) 
+}
+class "AnnotationItem" as AnnotationItem << (S, SkyBlue) struct >> { 
+  ~id
+  ~latitude : Double
+  ~longitude : Double
+  ~coordinate : CLLocationCoordinate2D
+  ~coordinateValid : Bool 
+}
+class "TranslinkRealTimeBusLocation" as TranslinkRealTimeBusLocation << (S, SkyBlue) struct >> { 
+  ~id : String
+  ~ID : String
+  ~Operator : String
+  ~JourneyIdentifier : String
+  ~DayOfOperation : String
+  ~Delay : Int?
+  ~MOTCode : Int
+  ~X : String
+  ~Y : String
+  ~Timestamp : String
+  ~XPrevious : String?
+  ~YPrevious : String?
+  ~TimestampPrevious : String?
+  ~VehicleIdentifier : String
+  ~RealtimeAvailable : Int
+  ~LineText : String
+  ~DirectionText : String
+  ~location : CLLocationCoordinate2D
+  ~busOperator : BusOperator 
+}
+class "BusEireannVehicleViewModel" as BusEireannVehicleViewModel << (C, DarkSeaGreen) >> { 
+  ~vehicles : [BusEireannEntity]
+  ~fetchData() 
+}
+class "BusEireannVehicleData" as BusEireannVehicleData << (S, SkyBlue) struct >> { 
+  ~header : BusEireannHeader
+  ~entity : [BusEireannEntity] 
+}
+class "BusEireannHeader" as BusEireannHeader << (S, SkyBlue) struct >> { 
+  ~gtfs_realtime_version : String
+  ~incrementality : String
+  ~timestamp : String 
+}
+class "BusEireannEntity" as BusEireannEntity << (S, SkyBlue) struct >> { 
+  ~VehicleIdentifier : String
+  ~location : CLLocationCoordinate2D
+  ~busOperator : BusOperator
+  ~id : String
+  ~vehicle : BusEireannVehicle 
+}
+class "BusEireannVehicle" as BusEireannVehicle << (S, SkyBlue) struct >> { 
+  ~trip : BusEireannTrip
+  ~position : BusEireannPosition
+  ~timestamp : String
+  ~vehicle : BusEireannVehicleID 
+}
+class "BusEireannTrip" as BusEireannTrip << (S, SkyBlue) struct >> { 
+  ~tripID : String
+  ~startTime : String
+  ~startDate : String
+  ~scheduleRelationship : String
+  ~routeID : String
+  ~directionID : Int 
+}
+class "CodingKeys" as BusEireannTrip.CodingKeys << (E, LightSteelBlue) enum >> { 
+  ~tripID
+  ~startTime
+  ~startDate
+  ~scheduleRelationship
+  ~routeID
+  ~directionID 
+}
+class "BusEireannPosition" as BusEireannPosition << (S, SkyBlue) struct >> { 
+  ~latitude : Double
+  ~longitude : Double 
+}
+class "BusEireannVehicleID" as BusEireannVehicleID << (S, SkyBlue) struct >> { 
+  ~id : String 
+}
+class "BusOperator" as BusOperator << (E, LightSteelBlue) enum >> { 
+  ~metro
+  ~ulsterbus
+  ~glider
+  ~busEireann
+  ~other
+  ~colour : Color
+  ~{static} getOperator(for:) 
+}
+class "LocationViewModel" as LocationViewModel << (C, DarkSeaGreen) >> { 
+  ~userLocation : CLLocationCoordinate2D?
+  -locationManager
+  ~init()
+  ~locationManager(_:didUpdateLocations:)
+  ~locationManager(_:didChangeAuthorization:) 
+}
+class "JourneyViewModel" as JourneyViewModel << (C, DarkSeaGreen) >> { 
+  ~modelContainer : ModelContainer
+  ~modelContext : ModelContext
+  ~journeyName : String
+  ~journeyDescription : String?
+  ~init(journeyName:journeyDescription:)
+  ~saveItem()
+  ~clearItem() 
+}
+class "JourneyViewModelError" as JourneyViewModelError << (E, LightSteelBlue) enum >> { 
+  ~id : String
+  ~noJourneyText 
+}
+class "JourneySheet" as JourneySheet << (E, LightSteelBlue) enum >> { 
+  ~id : Self
+  ~addNewJourney
+  ~editJourney(_:)
+  ~editJourneyStep(_:) 
+}
+class "RSSFeedManager" as RSSFeedManager << (C, DarkSeaGreen) >> { 
+  ~feedItems : [RSSFeedItem]
+  ~isLoading : Bool
+  ~error : Error?
+  ~hasItems : Bool
+  ~fetchFeed(from:) 
+}
+class "Movie" as Movie << (S, SkyBlue) struct >> { 
+  ~url : URL
+  ~{static} transferRepresentation : some TransferRepresentation 
+}
+class "LoadState" as LoadState << (E, LightSteelBlue) enum >> { 
+  ~unknown
+  ~loaded(_:)
+  ~failed 
+}
+class "VideosPickerViewModel" as VideosPickerViewModel << (C, DarkSeaGreen) >> { 
+  ~saveItem()
+  ~modelContainer : ModelContainer
+  ~modelContext : ModelContext
+  ~pickerText : String
+  ~selectedItem : LoadState?
+  ~selectedItemText : String?
+  ~selectedPickerItem : PhotosPickerItem?
+  ~filter
+  ~init(selectedItem:selectedPickerItem:)
+  -loadImage()
+  ~clearItem()
+  ~access(keyPath:)
+  ~withMutation(keyPath:_:)
+  ~_$observationRegistrar 
+}
+class "PhotosPickerViewModel" as PhotosPickerViewModel << (C, DarkSeaGreen) >> { 
+  ~saveItem()
+  ~modelContainer : ModelContainer
+  ~modelContext : ModelContext
+  ~pickerText
+  ~selectedItem : UIImage?
+  ~selectedItemText : String?
+  ~selectedPickerItem : PhotosPickerItem?
+  ~filter : PHPickerFilter
+  ~init(selectedItem:selectedPickerItem:)
+  -loadImage()
+  ~clearItem()
+  ~access(keyPath:)
+  ~withMutation(keyPath:_:)
+  ~_$observationRegistrar 
+}
+class "Speaker" as Speaker << (C, DarkSeaGreen) >> { 
+  ~isSpeaking : Bool
+  ~synthesizer : AVSpeechSynthesizer
+  ~speak(_:voice:) 
+}
+class "SpeakerError" as SpeakerError << (E, LightSteelBlue) enum >> { 
+  ~noText
+  ~otherVoiceCurrentlySpeaking 
+}
+class "PhraseModel" as PhraseModel << (C, DarkSeaGreen) >> { 
+  ~modelContainer : ModelContainer
+  ~modelContext : ModelContext
+  ~text : String
+  ~colour : Color
+  ~init(text:)
+  ~saveItem()
+  ~clearItem() 
+}
+class "PhraseModelError" as PhraseModelError << (E, LightSteelBlue) enum >> { 
+  ~id : String
+  ~noText 
+}
+class "CurrentPhraseViewModel" as CurrentPhraseViewModel << (C, DarkSeaGreen) >> { 
+  ~modelContainer : ModelContainer
+  ~modelContext : ModelContext
+  ~text : String
+  ~fontSize : FontSizes
+  ~colour : Color
+  ~fontSizeAsInt : Int
+  ~phrase : Phrase
+  ~init(phrase:)
+  ~save()
+  -updateColor()
+  -updateFontSize() 
+}
+class "CommunicationViewModel" as CommunicationViewModel << (C, DarkSeaGreen) >> { 
+  ~modelContainer : ModelContainer
+  ~modelContext : ModelContext
+  ~title : String
+  ~phoneNumber : PhoneNumber?
+  ~emailAddress : String?
+  ~message : String?
+  ~communictionType : CommunicationType
+  ~emailAddresssBinding : Binding<String>
+  ~phoneNumberBinding : Binding<PhoneNumber?>
+  ~phoneNumberStringBinding : Binding<String>
+  ~messsageBinding : Binding<String>
+  ~init(title:phoneNumber:emailAddress:message:communictionType:)
+  ~saveItem()
+  -makeCommuniction()
+  ~clearItem() 
+}
+class "CommunicationViewModelError" as CommunicationViewModelError << (E, LightSteelBlue) enum >> { 
+  ~id : String
+  ~noTitleText
+  ~noPhoneNumber
+  ~noEmailOrMessage
+  ~noPhoneOrmessage 
+}
+class "CommunicationEditableViewModel" as CommunicationEditableViewModel << (C, DarkSeaGreen) >> { 
+  ~modelContainer : ModelContainer
+  ~modelContext : ModelContext
+  ~communication : Communication
+  ~title : String
+  ~phoneNumber : PhoneNumber?
+  ~emailAddress : String?
+  ~message : String?
+  ~communictionType : CommunicationType
+  +emailAddresssBinding : Binding<String>
+  +phoneNumberBinding : Binding<PhoneNumber?>
+  +phoneNumberStringBinding : Binding<String>
+  +messsageBinding : Binding<String>
+  ~init(communication:)
+  ~saveItem()
+  -isValid()
+  ~clearItem() 
+}
+class "ATCOStop" as ATCOStop << (S, SkyBlue) struct >> { 
+  ~record_identity : String
+  ~location : String?
+  ~published_arrival_time : String?
+  ~published_departure_time : String?
+  ~timing_point_indicator : String?
+  ~fare_stage_indicator : String?
+  ~bay_number : String? 
+}
+class "ATCOUnparsed" as ATCOUnparsed << (S, SkyBlue) struct >> { 
+  ~line : String
+  ~line_number : Int 
+}
+class "ATCORoute" as ATCORoute << (S, SkyBlue) struct >> { 
+  ~vehicle_type : String
+  ~registration_number : String
+  ~identifier : String
+  ~operator : String
+  ~route_number : String
+  ~first_date_of_operation : String
+  ~running_board : String
+  ~last_date_of_operation : String
+  ~school_term_time : String
+  ~route_direction : String
+  ~bank_holidays : String
+  ~stops : [ATCOStop] 
+}
+class "ATCOHeader" as ATCOHeader << (S, SkyBlue) struct >> { 
+  ~file_type : String
+  ~version : String
+  ~file_originator : String
+  ~source_product : String
+  ~production_datetime : String? 
+}
+class "ATCOFile" as ATCOFile << (S, SkyBlue) struct >> { 
+  ~header : ATCOHeader
+  ~locations : [ATCOLocation]
+  ~journeys : [String: ATCORoute]
+  ~unparsed : [ATCOUnparsed] 
+}
+class "ATCOLocation" as ATCOLocation << (S, SkyBlue) struct >> { 
+  ~name : String
+  ~identifier : String
+  ~easting : String
+  ~northing : String?
+  ~gazeteer_code : String? 
+}
+class "Glider" as Glider << (C, DarkSeaGreen) >> { 
+  ~atcoFile : ATCOFile?
+  ~isLoading : Bool
+  ~errorMessage : String?
+  ~loadItems() 
+}
+class "LiveJourneyStepModelWithinJourney" as LiveJourneyStepModelWithinJourney << (C, DarkSeaGreen) >> { 
+  ~journey : Journey
+  ~init(journey:)
+  ~journeyNotLive : Bool
+  -start()
+  ~makeNewLiveJourney()
+  ~theLiveJourney : LiveJourney?
+  ~endJourneys()
+  -startLiveActivity() 
+}
+class "LiveJourneyStepModel" as LiveJourneyStepModel << (C, DarkSeaGreen) >> { 
+  ~modelContainer : ModelContainer
+  ~modelContext : ModelContext
+  ~activty : Activity<StepAttributes>?
+  ~init()
+  ~liveJourneysByID : [UUID]
+  ~stop()
+  ~updateActivity()
+  -stepNumberFix()
+  ~theLiveJourney : LiveJourney?
+  ~stepNumber : Int
+  ~goBack()
+  ~goForward()
+  ~disableLastButton : Bool
+  ~disableNextButton : Bool 
+}
+class "AppShortcuts" as AppShortcuts << (C, DarkSeaGreen) >> { 
+  ~{static} shortcutTileColor : ShortcutTileColor
+  ~{static} appShortcuts : [AppShortcut] 
+}
+class "ModelContextProvider" as ModelContextProvider << (E, LightSteelBlue) enum >> { 
+  ~{static} context : ModelContext? 
+}
+class "OpenJourneyIntent" as OpenJourneyIntent << (S, SkyBlue) struct >> { 
+  ~{static} title : LocalizedStringResource
+  ~{static} openAppWhenRun
+  ~journey : JourneyEntiy
+  ~{static} parameterSummary : some ParameterSummary
+  ~perform() 
+}
+class "IntentError" as IntentError << (E, LightSteelBlue) enum >> { 
+  ~itemNotFound
+  ~coordinatorNotFound 
+}
+class "JourneyEntiy" as JourneyEntiy << (S, SkyBlue) struct >> { 
+  ~{static} typeDisplayRepresentation : TypeDisplayRepresentation
+  ~{static} defaultQuery
+  ~id : UUID
+  ~journeyName : String
+  ~displayRepresentation : DisplayRepresentation
+  ~init(swiftDataModel:) 
+}
+class "JourneyEntiyQuery" as JourneyEntiyQuery << (S, SkyBlue) struct >> { 
+  ~entities(for:)
+  ~suggestedEntities() 
+}
+class "View" as View << (X, Orchid) extension >> { 
+  ~chevronButtonStyle(compact:)
+  ~removeListRowPaddingInsets() 
+}
+class "PickerSheetView" as PickerSheetView0 << (X, Orchid) extension >> { 
+  ~confirmButton : some View 
+}
+class "SheetView" as SheetView1 << (X, Orchid) extension >> { 
+  ~body : some View 
+}
+class "JourneyType" as JourneyType2 << (X, Orchid) extension >> { 
+  ~getCode()
+  ~getSymbolName()
+  ~getColor() 
+}
+class "View" as SwiftUI.View << (X, Orchid) extension >> { 
+  ~asViewController() 
+}
+class "AddTransportRouteViewModel" as AddTransportRouteViewModel3 << (X, Orchid) extension >> { 
+  ~urlOptionalBinding : Binding<URL?>
+  ~routeNameBinding : Binding<String> 
+}
+class "TransportRouteSheet" as TransportRouteSheet4 << (X, Orchid) extension >> { 
+  ~buildView() 
+}
+class "PhraseSheet" as PhraseSheet5 << (X, Orchid) extension >> { 
+  ~buildView() 
+}
+class "CommunicationSheet" as CommunicationSheet6 << (X, Orchid) extension >> { 
+  ~buildView() 
+}
+class "CommunictionSheetView" as CommunictionSheetView7 << (X, Orchid) extension >> { 
+  ~contentView(for:withError:)
+  ~confirmButton : some View 
+}
+class "GliderTimeTableSheet" as GliderTimeTableSheet8 << (X, Orchid) extension >> { 
+  ~buildView() 
+}
+class "BusLocations" as BusLocations9 << (X, Orchid) extension >> { 
+  ~{static} load(from:) 
+}
+class "View" as View10 << (X, Orchid) extension >> { 
+  ~liveJourneyControls() 
+}
+class "AppPages" as AppPages11 << (X, Orchid) extension >> { 
+  ~title : String 
+}
+class "AppPages" as AppPages12 << (X, Orchid) extension >> { 
+  ~build()
+  -internalBuild() 
+}
+class "ResourcesManagerSheet" as ResourcesManagerSheet13 << (X, Orchid) extension >> { 
+  ~buildView() 
+}
+class "Coordinator" as Coordinator14 << (X, Orchid) extension >> { 
+  ~{static} start() 
+}
+class "ComponentsSheet" as ComponentsSheet15 << (X, Orchid) extension >> { 
+  ~buildView() 
+}
+class "AnimatedBackGroundView" as AnimatedBackGroundView16 << (X, Orchid) extension >> { 
+  ~shiftHue(of:by:)
+  ~meshGradient : some View
+  ~points : [SIMD2<Float>]
+  ~animatedColours(for:) 
+}
+class "JourneyStepSheet" as JourneyStepSheet17 << (X, Orchid) extension >> { 
+  ~buildView() 
+}
+class "AddJourneyStepSheet" as AddJourneyStepSheet18 << (X, Orchid) extension >> { 
+  ~buildView() 
+}
+class "AddTransportRouteViewModel" as AddTransportRouteViewModel19 << (X, Orchid) extension >> { 
+  ~fetchResources()
+  ~add(_:) 
+}
+class "LocationFindContentViewModel" as LocationFindContentViewModel20 << (X, Orchid) extension >> { 
+  ~completerDidUpdateResults(_:)
+  ~completer(_:didFailWithError:) 
+}
+class "JourneyViewModelError" as JourneyViewModelError21 << (X, Orchid) extension >> { 
+  ~errorMessage : String 
+}
+class "JourneyViewModel" as JourneyViewModel22 << (X, Orchid) extension >> { 
+  ~fetchResources()
+  ~add(_:) 
+}
+class "JourneySheet" as JourneySheet23 << (X, Orchid) extension >> { 
+  ~buildView() 
+}
+class "Movie" as Movie24 << (X, Orchid) extension >> { 
+  ~{static} ==(_:_:) 
+}
+class "LoadState" as LoadState25 << (X, Orchid) extension >> { 
+  ~getLoadedMovie()
+  -value()
+  ~{static} ==(_:_:) 
+}
+class "Speaker" as Speaker26 << (X, Orchid) extension >> { 
+  ~speechSynthesizer(_:willSpeakRangeOfSpeechString:utterance:)
+  ~speechSynthesizer(_:didFinish:) 
+}
+class "PhraseModel" as PhraseModel27 << (X, Orchid) extension >> { 
+  ~fetchResources()
+  ~add(_:) 
+}
+class "PhraseModelError" as PhraseModelError28 << (X, Orchid) extension >> { 
+  ~errorMessage : String 
+}
+class "CommunicationViewModel" as CommunicationViewModel29 << (X, Orchid) extension >> { 
+  ~fetchResources()
+  ~add(_:) 
+}
+class "CommunicationViewModelError" as CommunicationViewModelError30 << (X, Orchid) extension >> { 
+  ~errorMessage : String 
+}
+class "ATCOStop" as ATCOStop31 << (X, Orchid) extension >> { 
+  ~id : String
+  ~niceLocationString : String
+  ~nicePublished_arrival_time : String
+  ~nicePublished_departure_time : String 
+}
+class "ATCOFile" as ATCOFile32 << (X, Orchid) extension >> { 
+  ~{static} ==(_:_:)
+  ~hash(into:) 
+}
+class "ATCOFile" as ATCOFile33 << (X, Orchid) extension >> { 
+  ~getTimetable(for:on:)
+  ~containsLocation(for:)
+  ~getAllStopCodes() 
+}
+class "LiveJourneyStepModel" as LiveJourneyStepModel34 << (X, Orchid) extension >> { 
+  ~fetchResources()
+  ~add(_:) 
+}
+class "PickerItem" as PickerItem35 << (X, Orchid) extension >> { 
+  ~fetchResources()
+  ~add(_:) 
+}
+class "ModelContext" as ModelContext << (X, Orchid) extension >> { 
+  ~{static} getContextForAppIntents() 
+}
+View <|.. SheetView : inherits
+SheetView <|.. PickerSheetView : conforms to
+SheetView <|.. CommunictionSheetView : conforms to
+View <|.. MediaPickerView : inherits
+View <|.. AnimatedBackGroundView : inherits
+Identifiable <|.. RealTimeBusLocation : inherits
+Decodable <|.. RealTimeBusLocation : inherits
+Observable <|.. PickerItem : inherits
+Observable <|.. CommunictionModel : inherits
+ButtonStyle <|-- ChevronButtonStyle : inherits
+View <|-- AddButtonForPickerItem : inherits
+View <|-- CancelButton : inherits
+View <|-- CoordinatorView : inherits
+View <|-- LiveBusMap : inherits
+View <|-- ResourcesManager : inherits
+View <|-- ResourceSection : inherits
+View <|-- ResourcesManagerAddButtons : inherits
+View <|-- OptionalTextView : inherits
+PickerSheetView <|.. MediaPickerAndAnnotationView : conforms to
+MediaPickerView <|.. PhotosPickerView : conforms to
+MediaPickerView <|.. VideosPickerView : conforms to
+View <|-- ResourceSectionImageViewer : inherits
+View <|-- ResourcePicker : inherits
+SheetView <|.. ResourceSelectionView : conforms to
+View <|-- ResourceView : inherits
+View <|-- MiniOpenInMapButton : inherits
+View <|-- OpenInMapsButton : inherits
+String -- JourneyType : inherits
+SheetView <|.. EditExistingJourneyStepSheet : conforms to
+AnimatedBackGroundView <|.. AddNewJourneyStepButton : conforms to
+SheetView <|.. AddNewJourneyStepView : conforms to
+View <|-- JourneyStepInputForm : inherits
+View <|-- JourneyStepDetailView : inherits
+SheetView <|.. LocationFindView : conforms to
+View <|-- WorldHomeNavigationButtons : inherits
+View <|-- CreditView : inherits
+View <|-- WorldHome : inherits
+AnimatedBackGroundView <|.. AdvertButton : conforms to
+View <|-- ListDisclosureGroup : inherits
+View <|-- WorldHomeAacessblityHomeToolbarOptions : inherits
+View <|-- ClearTextLineButton : inherits
+View <|-- AddressRow : inherits
+View <|-- ClassicMapView : inherits
+View <|-- MapInDetailView : inherits
+SheetView <|.. AddNewJourneySheet : conforms to
+SheetView <|.. EditExistingJourneySheet : conforms to
+View <|-- JourneyDetailView : inherits
+View <|-- AddNewJoruneyButton : inherits
+View <|-- JourneyItemsView : inherits
+View <|-- RSSContentView : inherits
+View <|-- RSSContentViewContent : inherits
+View <|-- RSSFeedDetailView : inherits
+View <|-- TransportRouteListView : inherits
+View <|-- WebView : inherits
+UIViewRepresentable <|-- WebViewRepresentable : inherits
+NSObject <|-- WebViewRepresentable.Coordinator : inherits
+WKNavigationDelegate <|-- WebViewRepresentable.Coordinator : inherits
+ObservableObject <|-- WebViewStore : inherits
+UIViewRepresentable <|-- LimitedWebView : inherits
+NSObject <|-- LimitedWebView.WebCoordinator : inherits
+WKNavigationDelegate <|-- LimitedWebView.WebCoordinator : inherits
+WKUIDelegate <|-- LimitedWebView.WebCoordinator : inherits
+View <|-- WebWelcomerView : inherits
+SheetView <|.. TransportRouteSelectorView : conforms to
+SheetView <|.. AddTransportRouteView : conforms to
+Identifiable <|-- TransportRouteSheetURL : inherits
+Identifiable -- TransportRouteSheet : inherits
+View <|-- MapDetailView : inherits
+View <|-- PhraseBook : inherits
+SheetView <|.. SelectPhraseForConversationView : conforms to
+View <|-- PhraseDetailView : inherits
+SheetView <|.. AddNewPhraseView : conforms to
+AnimatedBackGroundView <|.. AddNewPhraseButton : conforms to
+View <|-- SinglePressButtonForSpeak : inherits
+View <|-- PersonalVoiceAuthorisationView : inherits
+SheetView <|.. PhraseVoiceSelectorView : conforms to
+Identifiable -- PhraseSheet : inherits
+Hashable -- PhraseSheet : inherits
+View <|-- PhraseListView : inherits
+SheetView <|.. EditPhraseView : conforms to
+View <|-- MailButton : inherits
+CommunictionSheetView <|.. AddNewCommunicationView : conforms to
+SheetView <|.. CommunicationSelectorView : conforms to
+View <|-- CommunictionViewContent : inherits
+Identifiable -- CommunicationSheet : inherits
+Hashable -- CommunicationSheet : inherits
+CommunictionSheetView <|.. CommunicationEditSheet : conforms to
+View <|-- CommunicationDetailView : inherits
+UIViewController <|-- MessagesUIKitViewController : inherits
+MFMessageComposeViewControllerDelegate <|-- MessagesUIKitViewController : inherits
+NSObject <|-- UIKitMessageCoordinator : inherits
+UINavigationControllerDelegate <|-- UIKitMessageCoordinator : inherits
+MessageUIKitViewDelegate <|.. UIKitMessageCoordinator : conforms to
+UIViewControllerRepresentable <|-- MessageUIView : inherits
+View <|-- MessageButtonView : inherits
+View <|-- CommunicationView : inherits
+View <|-- GliderPOCListView : inherits
+View <|-- GliderHaltButton : inherits
+Identifiable -- GliderTimeTableSheet : inherits
+Hashable -- GliderTimeTableSheet : inherits
+Identifiable <|-- BusLocations : inherits
+View <|-- TimeTableSheetView : inherits
+ViewModifier <|-- LiveJourneyControlButtons : inherits
+View <|-- JourneyDetailLiveItemSection : inherits
+Hashable -- AppPages : inherits
+Identifiable -- ResourcesManagerSheet : inherits
+ObservableObject <|-- Coordinator : inherits
+Identifiable <|-- PhoneNumberAndCodeSelectionGetter : inherits
+Hashable <|-- PhoneNumberAndCodeSelectionGetter : inherits
+Equatable <|-- PhoneNumberAndCodeSelectionGetter : inherits
+Identifiable -- ComponentsSheet : inherits
+Hashable -- ComponentsSheet : inherits
+SheetView <|.. CountryCodeSelectorDetailView : conforms to
+App <|-- JourneyBookApp : inherits
+Identifiable -- JourneyStepSheet : inherits
+Hashable -- JourneyStepSheet : inherits
+Identifiable <|-- AddJourneyLocationStepGetter : inherits
+Hashable <|-- AddJourneyLocationStepGetter : inherits
+Equatable <|-- AddJourneyLocationStepGetter : inherits
+Identifiable <|-- AddJourneyLocationVisualResourceGetter : inherits
+Hashable <|-- AddJourneyLocationVisualResourceGetter : inherits
+Equatable <|-- AddJourneyLocationVisualResourceGetter : inherits
+Identifiable <|-- AddJourneyPhraseSelectionGetter : inherits
+Hashable <|-- AddJourneyPhraseSelectionGetter : inherits
+Equatable <|-- AddJourneyPhraseSelectionGetter : inherits
+Identifiable <|-- AddJourneyTransportGetter : inherits
+Hashable <|-- AddJourneyTransportGetter : inherits
+Equatable <|-- AddJourneyTransportGetter : inherits
+Identifiable <|-- AddJourneyCommunicationGetter : inherits
+Hashable <|-- AddJourneyCommunicationGetter : inherits
+Equatable <|-- AddJourneyCommunicationGetter : inherits
+Identifiable -- AddJourneyStepSheet : inherits
+Hashable -- AddJourneyStepSheet : inherits
+NSObject <|-- LocationFindContentViewModel : inherits
+ObservableObject <|-- LocationFindContentViewModel : inherits
+Identifiable <|-- AddressResult : inherits
+ObservableObject <|-- MapViewModel : inherits
+Identifiable <|-- AnnotationItem : inherits
+RealTimeBusLocation <|.. TranslinkRealTimeBusLocation : conforms to
+ObservableObject <|-- BusEireannVehicleViewModel : inherits
+Codable <|-- BusEireannVehicleData : inherits
+Codable <|-- BusEireannHeader : inherits
+Codable <|-- BusEireannEntity : inherits
+Identifiable <|-- BusEireannEntity : inherits
+RealTimeBusLocation <|.. BusEireannEntity : conforms to
+Codable <|-- BusEireannVehicle : inherits
+Codable <|-- BusEireannTrip : inherits
+String -- BusEireannTrip.CodingKeys : inherits
+CodingKey -- BusEireannTrip.CodingKeys : inherits
+Codable <|-- BusEireannPosition : inherits
+Codable <|-- BusEireannVehicleID : inherits
+NSObject <|-- LocationViewModel : inherits
+ObservableObject <|-- LocationViewModel : inherits
+CLLocationManagerDelegate <|-- LocationViewModel : inherits
+Error -- JourneyViewModelError : inherits
+Identifiable -- JourneyViewModelError : inherits
+Identifiable -- JourneySheet : inherits
+Hashable -- JourneySheet : inherits
+Transferable <|-- Movie : inherits
+Equatable -- LoadState : inherits
+PickerItem <|.. VideosPickerViewModel : conforms to
+PickerItem <|.. PhotosPickerViewModel : conforms to
+NSObject <|-- Speaker : inherits
+Error -- SpeakerError : inherits
+Error -- PhraseModelError : inherits
+Identifiable -- PhraseModelError : inherits
+CommunictionModel <|.. CommunicationViewModel : conforms to
+Error -- CommunicationViewModelError : inherits
+Identifiable -- CommunicationViewModelError : inherits
+CommunictionModel <|.. CommunicationEditableViewModel : conforms to
+Codable <|-- ATCOStop : inherits
+Codable <|-- ATCOUnparsed : inherits
+Codable <|-- ATCORoute : inherits
+Codable <|-- ATCOHeader : inherits
+Codable <|-- ATCOFile : inherits
+Codable <|-- ATCOLocation : inherits
+LiveJourneyStepModel <|-- LiveJourneyStepModelWithinJourney : inherits
+AppShortcutsProvider <|-- AppShortcuts : inherits
+AppIntent <|-- OpenJourneyIntent : inherits
+Error -- IntentError : inherits
+AppEntity <|-- JourneyEntiy : inherits
+EntityQuery <|-- JourneyEntiyQuery : inherits
+MKLocalSearchCompleterDelegate <|-- LocationFindContentViewModel : inherits
+Equatable <|-- Movie : inherits
+AVSpeechSynthesizerDelegate <|-- Speaker : inherits
+Identifiable <|-- ATCOStop : inherits
+Equatable <|-- ATCOFile : inherits
+Hashable <|-- ATCOFile : inherits
+WebViewRepresentable +-- WebViewRepresentable.Coordinator
+LimitedWebView +-- LimitedWebView.WebCoordinator
+BusEireannTrip +-- BusEireannTrip.CodingKeys
+PickerSheetView <.. PickerSheetView0 : ext
+SheetView <.. SheetView1 : ext
+JourneyType <.. JourneyType2 : ext
+AddTransportRouteViewModel <.. AddTransportRouteViewModel3 : ext
+TransportRouteSheet <.. TransportRouteSheet4 : ext
+PhraseSheet <.. PhraseSheet5 : ext
+CommunicationSheet <.. CommunicationSheet6 : ext
+CommunictionSheetView <.. CommunictionSheetView7 : ext
+GliderTimeTableSheet <.. GliderTimeTableSheet8 : ext
+BusLocations <.. BusLocations9 : ext
+AppPages <.. AppPages11 : ext
+AppPages <.. AppPages12 : ext
+ResourcesManagerSheet <.. ResourcesManagerSheet13 : ext
+Coordinator <.. Coordinator14 : ext
+ComponentsSheet <.. ComponentsSheet15 : ext
+AnimatedBackGroundView <.. AnimatedBackGroundView16 : ext
+JourneyStepSheet <.. JourneyStepSheet17 : ext
+AddJourneyStepSheet <.. AddJourneyStepSheet18 : ext
+AddTransportRouteViewModel <.. AddTransportRouteViewModel19 : ext
+LocationFindContentViewModel <.. LocationFindContentViewModel20 : ext
+JourneyViewModelError <.. JourneyViewModelError21 : ext
+JourneyViewModel <.. JourneyViewModel22 : ext
+JourneySheet <.. JourneySheet23 : ext
+Movie <.. Movie24 : ext
+LoadState <.. LoadState25 : ext
+Speaker <.. Speaker26 : ext
+PhraseModel <.. PhraseModel27 : ext
+PhraseModelError <.. PhraseModelError28 : ext
+CommunicationViewModel <.. CommunicationViewModel29 : ext
+CommunicationViewModelError <.. CommunicationViewModelError30 : ext
+ATCOStop <.. ATCOStop31 : ext
+ATCOFile <.. ATCOFile32 : ext
+ATCOFile <.. ATCOFile33 : ext
+LiveJourneyStepModel <.. LiveJourneyStepModel34 : ext
+PickerItem <.. PickerItem35 : ext
+@enduml

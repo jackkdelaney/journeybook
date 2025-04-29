@@ -86,7 +86,7 @@ struct JourneyDetailLiveItemSection: View {
                 }
             }
         } footer: {
-            Text("CUSTOM TEXT!!!")
+            Text("Your Live Journey will be shown in your devices's Dynamic Island or Lock Screen as a Live Activity.")
         }
     }
 }
