@@ -39,7 +39,7 @@ struct LiveBusMap: View {
             Map(position: .constant(.region(region))) {
                 ForEach(busLocation, id: \.id) { location in
                     Annotation(
-                        location.VehicleIdentifier,
+                        location.busNumber,
                         coordinate: location.location
                     ) {
                         Button {
@@ -134,6 +134,9 @@ struct LiveBusMapDetailView<BusLocationType:RealTimeBusLocation> : View {
     var body : some View {
         Form {
             LabeledContent("Vehicle ID", value: location.VehicleIdentifier)
+            if let translinkLocation = location as? TranslinkRealTimeBusLocation {
+                translinkSection(for: translinkLocation)
+            }
 
         }
         .navigationTitle(location.VehicleIdentifier)
@@ -141,6 +144,26 @@ struct LiveBusMapDetailView<BusLocationType:RealTimeBusLocation> : View {
         .toolbarBackground(location.busOperator.colour.opacity(0.2), for: .navigationBar)
     }
     
-    private func translinkSection(t)
+    @ViewBuilder
+    private func translinkSection(for section : TranslinkRealTimeBusLocation) -> some View {
+        Section("Details") {
+            LabeledContent("Operator", value: section.Operator)
+            LabeledContent("Journey ID", value: section.JourneyIdentifier)
+            LabeledContent("Bus Number", value: section.LineText)
+            LabeledContent("Going Towards", value: section.DirectionText)
+            
+            if let delay = section.Delay {
+                if delay < 60 {
+                    LabeledContent("Current Delay", value: "On Schedule")
+                } else {
+                    LabeledContent("Current Delay", value: "\(delay) Seconds behind Schedule")
+                }
+            } else {
+                LabeledContent("Current Delay", value: "No Reported Delay")
+            }
+
+        }
+                
+    }
     
 }
