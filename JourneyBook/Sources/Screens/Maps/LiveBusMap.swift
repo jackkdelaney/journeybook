@@ -12,6 +12,7 @@ import SwiftUI
 // VERY GOOD GUIDE
 // https://www.hackingwithswift.com/books/ios-swiftui/integrating-mapkit-with-swiftui
 
+
 struct LiveBusMap: View {
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 54.5973, longitude: -5.9301),
@@ -24,13 +25,15 @@ struct LiveBusMap: View {
     @State private var isLoading = true
 
     @ObservedObject var locationViewModel = LocationViewModel()
+    
+    @EnvironmentObject private var coordinator: Coordinator
+
 
     var busLocation: [any RealTimeBusLocation] {
         let flattenArray: [any RealTimeBusLocation] = translinkBusLocations + irelandViewModel.vehicles
 
         return Array(flattenArray.prefix(450))
     }
-
     var body: some View {
         VStack {
             Map(position: .constant(.region(region))) {
@@ -39,8 +42,12 @@ struct LiveBusMap: View {
                         location.VehicleIdentifier,
                         coordinate: location.location
                     ) {
-                        Image(systemName: "bus")
-                            .foregroundStyle(location.busOperator.colour)
+                        Button {
+                            moveToSheet(for: location)
+                        } label: {
+                            Image(systemName: "bus")
+                                .foregroundStyle(location.busOperator.colour)
+                        }
                     }
                 }
             }
@@ -50,8 +57,11 @@ struct LiveBusMap: View {
             } else {
                 Text("Location not available.")
             }
+            Text("Updated every 60 seconds for Translink Services, and every 6 minutes for TfI services.")
+                .font(.caption)
+                .fontWeight(.heavy)
         }
-        .navigationTitle("Bus Locations")
+        .navigationTitle("Live Bus Locations")
         .navigationBarTitleDisplayMode(.inline)
         .overlay {
             if isLoading {
@@ -104,4 +114,33 @@ struct LiveBusMap: View {
             }
         }.resume()
     }
+    
+    
+    private func moveToSheet(for location: any RealTimeBusLocation) {
+        if let translinkLocation = location as? TranslinkRealTimeBusLocation {
+            coordinator.push(page: .locationBusDetailTranslink(translinkLocation))
+            } else if let tFI = location as? BusEireannEntity {
+                coordinator.push(page: .locationBusDetailBE(tFI))
+
+            }
+    }
+
+}
+
+
+struct LiveBusMapDetailView<BusLocationType:RealTimeBusLocation> : View {
+    let location : BusLocationType
+    
+    var body : some View {
+        Form {
+            LabeledContent("Vehicle ID", value: location.VehicleIdentifier)
+
+        }
+        .navigationTitle(location.VehicleIdentifier)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarBackground(location.busOperator.colour.opacity(0.2), for: .navigationBar)
+    }
+    
+    private func translinkSection(t)
+    
 }

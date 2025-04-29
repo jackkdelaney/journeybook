@@ -37,7 +37,7 @@ struct WorldHomeNavigationButtons: View {
             coordinator.push(page: .gliderPOC)
         } label: {
             Label(
-                "Glider Proof of Concept",
+                "Glider Timetable",
                 systemImage: "train.side.front.car"
             )
         }

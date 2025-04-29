@@ -62,6 +62,18 @@ struct BusEireannTrip: Codable {
         }
 }
 
+extension BusEireannEntity : Hashable, Equatable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(VehicleIdentifier)
+        hasher.combine(id)
+
+    }
+    
+    static func ==(lhs: BusEireannEntity, rhs: BusEireannEntity) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
 struct BusEireannPosition: Codable {
     let latitude: Double
     let longitude: Double
