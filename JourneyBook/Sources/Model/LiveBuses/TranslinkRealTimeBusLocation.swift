@@ -10,12 +10,14 @@ import Foundation
 
 // https://vpos.translinkniplanner.co.uk/velocmap/vmi/VMI
 
-protocol RealTimeBusLocation: Identifiable, Decodable {
+protocol RealTimeBusLocation: Identifiable, Decodable, Equatable {
     var id : String {get}
     var location: CLLocationCoordinate2D { get }
     var busOperator: BusOperator { get }
     var VehicleIdentifier: String { get }
+    var busNumber: String { get }
 }
+
 
 struct TranslinkRealTimeBusLocation: RealTimeBusLocation {
     var id: String {
@@ -38,6 +40,14 @@ struct TranslinkRealTimeBusLocation: RealTimeBusLocation {
     let RealtimeAvailable: Int
     let LineText: String
     let DirectionText: String
+    
+    var busNumber: String {
+        if LineText.isEmpty {
+            JourneyIdentifier
+        } else {
+            LineText
+        }
+    }
 
     var location: CLLocationCoordinate2D {
         .init(latitude: Double(Y) ?? 0, longitude: Double(X) ?? 0)
@@ -45,5 +55,13 @@ struct TranslinkRealTimeBusLocation: RealTimeBusLocation {
 
     var busOperator: BusOperator {
         BusOperator.getOperator(for: Operator)
+    }
+}
+
+extension TranslinkRealTimeBusLocation : Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(Operator)
+        hasher.combine(JourneyIdentifier)
     }
 }

@@ -19,6 +19,10 @@ struct BusEireannHeader: Codable {
 }
 
 struct BusEireannEntity: Codable, Identifiable, RealTimeBusLocation{
+    var busNumber: String {
+        VehicleIdentifier
+    }
+    
     var VehicleIdentifier: String {
         vehicle.vehicle.id
     }
@@ -60,6 +64,18 @@ struct BusEireannTrip: Codable {
             case routeID = "route_id"
             case directionID = "direction_id"
         }
+}
+
+extension BusEireannEntity : Hashable, Equatable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(VehicleIdentifier)
+        hasher.combine(id)
+
+    }
+    
+    static func ==(lhs: BusEireannEntity, rhs: BusEireannEntity) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 struct BusEireannPosition: Codable {

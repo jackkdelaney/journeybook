@@ -85,6 +85,7 @@ struct JourneyDetailView: View {
             ToolbarItemGroup(placement: .primaryAction) {
 
                 EditButton()
+
             }
         }
     }

@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct RSSContentView: View {
-    @State var feedManager = RSSFeedManager()
+    @State var feedManager : RSSFeedManager
 
-    let feedURL: String = "https://rss.trafficwatchni.com/trafficwatchni_roadworks_rss.xml"
+    let feedURL: String
+    let title :String
+    
+    init(feedURL : String, for title: String) {
+        self.feedManager = RSSFeedManager()
+        self.feedURL = feedURL
+        self.title = title
+    }
 
     var body: some View {
         Group {
             if !feedManager.isLoading {
-                ListDisclosureGroup("Northern Ireland Roadworks") {
+                ListDisclosureGroup(title) {
                     RSSContentViewContent(feedManager: $feedManager)
                 }
 
