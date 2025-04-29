@@ -21,6 +21,7 @@ struct WorldHome: View {
         List {
             if searchText.isEmpty {
                 AddNewJoruneyButton(sheet: $sheet)
+
             }
             JourneyItemsView(
                 sheet: $sheet,
