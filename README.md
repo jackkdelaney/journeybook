@@ -32,3 +32,6 @@ The Monthly billing peroid restarts on the 3rd of Each Month.
 ### Instructions to use on your device
 
 Please ensure you have mise installed on your machine.
+
+## Extra Information
+Other files will be on https://gitlab.eeecs.qub.ac.uk/40322624/p301extra due to file storage. 
