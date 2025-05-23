@@ -1,5 +1,5 @@
 //
-//  PhotosView.swift
+//  PhotosPickerView.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 22/12/2024.

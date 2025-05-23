@@ -6,8 +6,8 @@
 //
 
 import CoreLocation
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 struct AddNewJourneyStepView: SheetView {
     @Environment(\.dismiss) var dismiss
@@ -24,11 +24,9 @@ struct AddNewJourneyStepView: SheetView {
 
     @State private var publicTransit: TransportRoute?
 
-    @State private var communication : Communication?
+    @State private var communication: Communication?
 
     @State private var phrases = [Phrase]()
-    
-
 
     var content: some View {
         JourneyStepInputForm(
@@ -83,7 +81,7 @@ struct AddNewJourneyStepView: SheetView {
         if let communication {
             communication.steps.append(step)
         }
-        
+
         for resource in resources {
             resource.steps.append(step)
         }

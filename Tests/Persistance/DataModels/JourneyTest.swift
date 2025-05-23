@@ -14,7 +14,7 @@ struct JourneyTests {
     // MARK: Tests for Initialisation
 
     @Test
-    func testInitialisationWithJustNameAndDesc() {
+    func initialisationWithJustNameAndDesc() {
         let journey = Journey(journeyName: "Test Journey", journeyDescription: "A test journey description")
         #expect(journey.journeyName == "Test Journey")
         #expect(journey.journeyDescription == "A test journey description")
@@ -23,7 +23,7 @@ struct JourneyTests {
     }
 
     @Test
-    func testInitialisationWithJustNameAndDescAndUUID() {
+    func initialisationWithJustNameAndDescAndUUID() {
         let id = UUID()
         let journey = Journey(id: id, journeyName: "Test Journey", journeyDescription: "A test journey description")
         #expect(journey.journeyName == "Test Journey")
@@ -33,7 +33,7 @@ struct JourneyTests {
     }
 
     @Test
-    func testInitialisationComplete() {
+    func initialisationComplete() {
         let id = UUID()
         let date = Date.distantPast
 
@@ -45,7 +45,7 @@ struct JourneyTests {
     }
 
     @Test
-    func testInitialisationWithJustName() {
+    func initialisationWithJustName() {
         let journey = Journey(journeyName: "Test Journey")
         #expect(journey.journeyName == "Test Journey")
         #expect(journey.journeyDescription == nil)
@@ -54,28 +54,28 @@ struct JourneyTests {
     }
 
     @Test
-    func testJourneyNameMutation() {
+    func journeyNameMutation() {
         let journey = Journey(journeyName: "Initial Name")
         journey.journeyName = "Updated Name"
         #expect(journey.journeyName == "Updated Name")
     }
 
     @Test
-    func testJourneyNameMutationWhenNotDeclaredAtStart() {
+    func journeyNameMutationWhenNotDeclaredAtStart() {
         let journey = Journey(journeyName: "Initial Name")
         journey.journeyDescription = "THIS IS A DESCRIPTION"
         #expect(journey.journeyDescription == "THIS IS A DESCRIPTION")
     }
 
     @Test
-    func testJourneyNameMutationWhenDeclaredAtStart() {
+    func journeyNameMutationWhenDeclaredAtStart() {
         let journey = Journey(journeyName: "Initial Name", journeyDescription: "Howdy.....")
         journey.journeyDescription = "THIS IS A DESCRIPTION"
         #expect(journey.journeyDescription == "THIS IS A DESCRIPTION")
     }
 
     @Test
-    func testJourneyNameMutationWhenDeclaredAtStartThenSetToNil() {
+    func journeyNameMutationWhenDeclaredAtStartThenSetToNil() {
         let journey = Journey(journeyName: "Initial Name", journeyDescription: "Howdy.....")
         journey.journeyDescription = nil
         #expect(journey.journeyDescription == nil)

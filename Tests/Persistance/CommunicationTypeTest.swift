@@ -12,19 +12,19 @@ import Testing
 
 struct CommunicationTypeTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectlyPhone() {
+    func initialisationSetsPropertiesCorrectlyPhone() {
         let type = CommunicationType.phone
         #expect(type.stringName == "Phone Number")
     }
 
     @Test
-    func testInitialisationSetsPropertiesCorrectlyEmail() {
+    func initialisationSetsPropertiesCorrectlyEmail() {
         let type = CommunicationType.email
         #expect(type.stringName == "Email")
     }
 
     @Test
-    func testInitialisationSetsPropertiesCorrectlyMessage() {
+    func initialisationSetsPropertiesCorrectlyMessage() {
         let type = CommunicationType.message
         #expect(type.stringName == "Message")
     }

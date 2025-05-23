@@ -12,12 +12,10 @@ import Testing
 
 struct WorldHomeTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let view = WorldHome()
-        
+
         #expect(view.sheet == nil)
         #expect(view.searchText == "")
-
     }
-   
 }

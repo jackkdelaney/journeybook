@@ -14,7 +14,7 @@ import Testing
 
 struct PhotosPickerViewModelTests {
     @MainActor @Test
-    func testInitialisationSetsDefaultPropertiesCorrectly() {
+    func initialisationSetsDefaultPropertiesCorrectly() {
         let model = PhotosPickerViewModel()
 
         #expect(model.selectedItem == nil)
@@ -31,7 +31,7 @@ struct PhotosPickerViewModelTests {
     }
 
     @MainActor @Test
-    func testSelectedItemMockImage() {
+    func selectedItemMockImage() {
         let model = PhotosPickerViewModel()
 
         let image = mockedImage()
@@ -41,7 +41,7 @@ struct PhotosPickerViewModelTests {
     }
 
     @MainActor @Test
-    func testGetLoadedNoImage() {
+    func getLoadedNoImage() {
         let model = PhotosPickerViewModel()
 
         model.selectedItem = nil
@@ -50,7 +50,7 @@ struct PhotosPickerViewModelTests {
     }
 
     @MainActor @Test
-    func testClearItemResetsSelection() {
+    func clearItemResetsSelection() {
         let model = PhotosPickerViewModel()
 
         let image = mockedImage()

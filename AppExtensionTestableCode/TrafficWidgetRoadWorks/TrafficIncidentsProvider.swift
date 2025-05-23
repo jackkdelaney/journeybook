@@ -28,7 +28,6 @@ public struct TrafficIncidentsProvider: TimelineProvider {
                             (Timeline<TrafficIncidentsEntry>) -> Void)
     {
         fetchData { issuesFound in
-
             let currentDate = Date()
 
             let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
@@ -49,7 +48,6 @@ public struct TrafficIncidentsProvider: TimelineProvider {
         let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
 
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
-
             guard let data = data, error == nil else {
                 print("Failed to fetch data")
 

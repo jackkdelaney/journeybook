@@ -34,17 +34,6 @@ struct WorldHomeNavigationButtons: View {
             )
         }
         Button {
-            coordinator.push(page: .gliderPOC)
-        } label: {
-            Label(
-                "Glider Timetable",
-                systemImage: "train.side.front.car"
-            )
-        }
-        .accessibilityIdentifier(
-            "GliderProofConcept"
-        )
-        Button {
             coordinator.push(page: .communicationDirectory)
         } label: {
             Label("Communication Directory", systemImage: "figure.run.treadmill")
@@ -56,5 +45,3 @@ struct WorldHomeNavigationButtons: View {
         }
     }
 }
-
-

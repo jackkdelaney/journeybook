@@ -12,7 +12,7 @@ import Testing
 
 struct LiveJourneyTests {
     @Test
-    func testDefaultInitialisation() {
+    func defaultInitialisation() {
         let liveJourney = LiveJourney()
 
         #expect(liveJourney.journey == nil)
@@ -22,7 +22,7 @@ struct LiveJourneyTests {
     }
 
     @Test
-    func testStepsAmountWithJourney() {
+    func stepsAmountWithJourney() {
         let steps = [
             JourneyStep(stepName: "First Step", journey: Journey.sample()),
             JourneyStep(stepName: "First Step", journey: Journey.sample()),
@@ -40,7 +40,7 @@ struct LiveJourneyTests {
     }
 
     @Test
-    func testCurrentStepFunction() {
+    func currentStepFunction() {
         let steps = [
             JourneyStep(stepName: "First Step", journey: Journey.sample()),
             JourneyStep(stepName: "Second Step", journey: Journey.sample()),
@@ -57,7 +57,7 @@ struct LiveJourneyTests {
     }
 
     @Test
-    func testCurrentStepFunctionStepNumberOutOfRange() {
+    func currentStepFunctionStepNumberOutOfRange() {
         let steps = [
             JourneyStep(stepName: "First Step", journey: Journey.sample()),
             JourneyStep(stepName: "Second Step", journey: Journey.sample()),

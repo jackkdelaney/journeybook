@@ -11,14 +11,14 @@ import Testing
 
 struct CoordinatorTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectlyStatic() {
+    func initialisationSetsPropertiesCorrectlyStatic() {
         let cord = Coordinator.start()
         #expect(Coordinator.activeCoordinator != nil)
         #expect(Coordinator.activeCoordinator?.path == cord.path)
     }
 
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let cord = Coordinator.start()
         let coordinator = Coordinator()
 
@@ -36,7 +36,7 @@ struct CoordinatorTests {
     }
 
     @Test
-    func testPushThenPop() {
+    func pushThenPop() {
         let coordinator = Coordinator()
 
         let pathLength = coordinator.path.count
@@ -48,7 +48,7 @@ struct CoordinatorTests {
     }
 
     @Test
-    func testPushThenPopToRoot() {
+    func pushThenPopToRoot() {
         let coordinator = Coordinator()
 
         let pathLength = coordinator.path.count

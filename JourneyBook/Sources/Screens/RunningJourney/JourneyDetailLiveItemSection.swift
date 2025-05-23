@@ -8,7 +8,6 @@
 import SharedPersistenceKit
 import SwiftUI
 
-
 extension View {
     func liveJourneyControls() -> some View {
         modifier(LiveJourneyControlButtons())
@@ -17,7 +16,7 @@ extension View {
 
 struct LiveJourneyControlButtons: ViewModifier {
     @State private var model: LiveJourneyStepModel = .init()
-    
+
     func body(content: Content) -> some View {
         content
             .safeAreaInset(edge: .bottom) {

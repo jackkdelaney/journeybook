@@ -12,7 +12,7 @@ import Testing
 
 struct CommunicationEditableViewModelTests {
     @MainActor @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let model = CommunicationEditableViewModel(communication: Communication.sampleCommunication())
 
         #expect(model.communication.title == Communication.sampleCommunication().title)
@@ -72,7 +72,7 @@ struct CommunicationEditableViewModelTests {
     }
 
     @MainActor @Test
-    func testMessageBinding() {
+    func messageBinding() {
         let model = CommunicationEditableViewModel(communication: Communication.sampleCommunication())
         model.message = "bob"
         #expect(model.messsageBinding.wrappedValue == "bob")
@@ -100,7 +100,7 @@ struct CommunicationEditableViewModelTests {
     }
 
     @MainActor @Test
-    func testisValidViatestSaveItemForPhone() {
+    func isValidViatestSaveItemForPhone() {
         let model = CommunicationEditableViewModel(communication: Communication.sampleCommunication())
 
         model.communictionType = .phone
@@ -118,7 +118,7 @@ struct CommunicationEditableViewModelTests {
     }
 
     @MainActor @Test
-    func testisValidViatestSaveItemForEmail() {
+    func isValidViatestSaveItemForEmail() {
         let model = CommunicationEditableViewModel(communication: Communication.sampleCommunication())
 
         model.communictionType = .email

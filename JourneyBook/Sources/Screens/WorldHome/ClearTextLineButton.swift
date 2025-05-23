@@ -1,5 +1,5 @@
 //
-//  ClearButton.swift
+//  ClearTextLineButton.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 02/01/2025.

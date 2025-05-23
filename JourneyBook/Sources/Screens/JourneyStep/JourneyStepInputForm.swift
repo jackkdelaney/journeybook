@@ -6,8 +6,8 @@
 //
 
 import CoreLocation
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 struct JourneyStepInputForm: View {
     @State private var sheet: AddJourneyStepSheet?
@@ -20,9 +20,8 @@ struct JourneyStepInputForm: View {
     @Binding var resources: [VisualResource]
 
     @Binding var publicTransit: TransportRoute?
-    
-    @Binding var communication: Communication?
 
+    @Binding var communication: Communication?
 
     @Binding var phrases: [Phrase]
 
@@ -81,10 +80,9 @@ struct JourneyStepInputForm: View {
             }
         }
     }
-    
-    
+
     @ViewBuilder
-    private var communicationSection : some View {
+    private var communicationSection: some View {
         Section("Communication") {
             if let communicationResource = communication {
                 Text(communicationResource.title)
@@ -100,7 +98,6 @@ struct JourneyStepInputForm: View {
             }
         }
     }
-    
 
     @ViewBuilder
     private var phraseSection: some View {
@@ -117,9 +114,6 @@ struct JourneyStepInputForm: View {
             }
         }
     }
-    
-    
-   
 
     @ViewBuilder
     private var chosenPhrases: some View {

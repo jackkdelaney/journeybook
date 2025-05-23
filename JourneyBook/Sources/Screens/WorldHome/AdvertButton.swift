@@ -45,9 +45,10 @@ struct AdvertButton: AnimatedBackGroundView {
         }
     }
 
-    var backgroundColor : Color {
+    var backgroundColor: Color {
         .purple
     }
+
     var colours: [Color] {
         [
             Color.pink.opacity(0.9),

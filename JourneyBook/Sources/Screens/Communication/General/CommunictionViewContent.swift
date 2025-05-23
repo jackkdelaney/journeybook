@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 14/03/2025.
 //
 
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 struct CommunictionViewContent<Model: CommunictionModel>: View {
     typealias Model = PickerItem

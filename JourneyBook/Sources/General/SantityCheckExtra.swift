@@ -7,15 +7,14 @@
 
 import Foundation
 
-//The Purpose of this file, is to ensure that the Journey Book Test target actually imports the JourneyBook App.
+// The Purpose of this file, is to ensure that the Journey Book Test target actually imports the JourneyBook App.
 
 struct SantityCheckExtra {
     func checkReturn4() -> Int {
         return 4
     }
-    
+
     static func checkReturn4Static() -> Int {
         return 4
     }
 }
-

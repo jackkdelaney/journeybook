@@ -53,13 +53,6 @@ final class WorldHomeNavigationButtonsAndTitle: XCTestCase {
         )
     }
 
-    func testBriefcaseOptionGliderButton() throws {
-        try testBriefcaseOption(
-            menuButtonText: "GliderProofConcept",
-            navigationText: "Bus Stops"
-        )
-    }
-
     func testBriefcaseOptionCommunicationButton() throws {
         try testBriefcaseOption(
             menuButtonText: "Communication Directory",

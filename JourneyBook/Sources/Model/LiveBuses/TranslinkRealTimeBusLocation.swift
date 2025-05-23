@@ -1,5 +1,5 @@
 //
-//  RealTimeBusLocation.swift
+//  TranslinkRealTimeBusLocation.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 07/01/2025.
@@ -11,17 +11,16 @@ import Foundation
 // https://vpos.translinkniplanner.co.uk/velocmap/vmi/VMI
 
 protocol RealTimeBusLocation: Identifiable, Decodable, Equatable {
-    var id : String {get}
+    var id: String { get }
     var location: CLLocationCoordinate2D { get }
     var busOperator: BusOperator { get }
     var VehicleIdentifier: String { get }
     var busNumber: String { get }
 }
 
-
 struct TranslinkRealTimeBusLocation: RealTimeBusLocation {
     var id: String {
-        return "\(self.ID)"
+        return "\(ID)"
     }
 
     let ID: String
@@ -40,7 +39,7 @@ struct TranslinkRealTimeBusLocation: RealTimeBusLocation {
     let RealtimeAvailable: Int
     let LineText: String
     let DirectionText: String
-    
+
     var busNumber: String {
         if LineText.isEmpty {
             JourneyIdentifier
@@ -58,7 +57,7 @@ struct TranslinkRealTimeBusLocation: RealTimeBusLocation {
     }
 }
 
-extension TranslinkRealTimeBusLocation : Hashable {
+extension TranslinkRealTimeBusLocation: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(Operator)

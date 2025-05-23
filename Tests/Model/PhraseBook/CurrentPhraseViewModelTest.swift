@@ -13,7 +13,7 @@ import SharedPersistenceKit
 
 struct CurrentPhraseViewModelTests {
     @MainActor @Test
-    func testInitialisationSetsDefaultPropertiesCorrectly() {
+    func initialisationSetsDefaultPropertiesCorrectly() {
         let phrase = Phrase.samplePhrase()
         let model = CurrentPhraseViewModel(phrase: phrase)
 
@@ -23,7 +23,7 @@ struct CurrentPhraseViewModelTests {
     }
 
     @MainActor @Test
-    func testChangeColour() {
+    func changeColour() {
         let phrase = Phrase.samplePhrase()
         let model = CurrentPhraseViewModel(phrase: phrase)
 
@@ -33,7 +33,7 @@ struct CurrentPhraseViewModelTests {
     }
 
     @MainActor @Test
-    func testChangeFont() {
+    func changeFont() {
         let phrase = Phrase.samplePhrase()
         let model = CurrentPhraseViewModel(phrase: phrase)
 
@@ -43,7 +43,7 @@ struct CurrentPhraseViewModelTests {
     }
 
     @MainActor @Test
-    func testNoTextErrorThrow() {
+    func noTextErrorThrow() {
         let phrase = Phrase.samplePhrase()
         let model = CurrentPhraseViewModel(phrase: phrase)
 
@@ -55,7 +55,7 @@ struct CurrentPhraseViewModelTests {
     }
 
     @MainActor @Test
-    func testAddPhraseNoText() {
+    func addPhraseNoText() {
         let phrase = Phrase.samplePhrase()
         let model = CurrentPhraseViewModel(phrase: phrase)
 

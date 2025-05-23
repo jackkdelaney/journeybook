@@ -5,32 +5,13 @@
 //  Created by Jack Delaney on 08/01/2025.
 //
 
-import SwiftUI
 import ActivityKit
 import CommonCodeKit
-
+import SwiftUI
 
 struct CreditView: View {
-
     var body: some View {
         Form {
-//            Button {
-//                startLiveActivity()
-//            } label: {
-//                Text("Live Activity Test")
-//            }
-//            if let activty {
-//                Button {
-//                    updateActivity()
-//                } label: {
-//                    Text("Update")
-//                }
-//            }
-//            Button {
-//                stop()
-//            } label: {
-//                Text("STOP")
-//            }
             Section {
                 LabeledContent("Developer", value: "Jack Delaney")
                 LabeledContent {

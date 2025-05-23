@@ -1,5 +1,5 @@
 //
-//  ActivityAttributesSample.swift
+//  StepAttributes.swift
 //  CommonCodeKit
 //
 //  Created by Jack Delaney on 08/04/2025.

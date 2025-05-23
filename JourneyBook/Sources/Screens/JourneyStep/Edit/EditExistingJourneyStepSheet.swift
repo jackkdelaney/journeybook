@@ -7,10 +7,9 @@
 
 import CoreLocation
 import Foundation
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
-
 
 struct EditExistingJourneyStepSheet: SheetView {
     @Environment(\.dismiss) var dismiss
@@ -28,10 +27,8 @@ struct EditExistingJourneyStepSheet: SheetView {
     @State private var resources: [VisualResource]
 
     @State private var publicTransit: TransportRoute?
-    
+
     @State private var communication: Communication?
-
-
 
     @State private var phrases: [Phrase]
 
@@ -46,8 +43,6 @@ struct EditExistingJourneyStepSheet: SheetView {
 
         publicTransit = journeyStep.route
         _communication = State(initialValue: journeyStep.communication)
-
-
     }
 
     var sheetTitle: String {
@@ -81,8 +76,7 @@ struct EditExistingJourneyStepSheet: SheetView {
             journeyStep.location = location
             journeyStep.route = publicTransit
             journeyStep.communication = communication
-            
-            
+
             addNewPhrasesAndSteps()
             removeUnwantedResourcesAndPhrases()
 

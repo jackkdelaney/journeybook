@@ -6,8 +6,8 @@
 //
 
 import Observation
-import SwiftData
 import SharedPersistenceKit
+import SwiftData
 
 @Observable
 class JourneyViewModel {
@@ -21,7 +21,7 @@ class JourneyViewModel {
     init(journeyName: String = "", journeyDescription: String? = nil) {
         self.journeyName = journeyName
         self.journeyDescription = journeyDescription
-        modelContainer = try! ModelContainer(for: VisualResource.self, Phrase.self, Journey.self,LiveJourney.self, JourneyStep.self, TransportRoute.self,Communication.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+        modelContainer = try! ModelContainer(for: VisualResource.self, Phrase.self, Journey.self, LiveJourney.self, JourneyStep.self, TransportRoute.self, Communication.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         modelContext = modelContainer.mainContext
     }
 

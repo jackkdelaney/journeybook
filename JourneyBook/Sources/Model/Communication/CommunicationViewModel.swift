@@ -6,10 +6,9 @@
 //
 
 import Observation
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
-
 
 @Observable
 class CommunicationViewModel: CommunictionModel {
@@ -67,7 +66,6 @@ class CommunicationViewModel: CommunictionModel {
             get: { self.phoneNumber },
             set: {
                 self.phoneNumber = $0
-
             }
         )
     }
@@ -107,9 +105,10 @@ class CommunicationViewModel: CommunictionModel {
         self.message = message
 
         modelContainer = try! ModelContainer(
-            for: VisualResource.self, Phrase.self, Journey.self,LiveJourney.self,
+            for: VisualResource.self, Phrase.self, Journey.self, LiveJourney.self,
             JourneyStep.self, TransportRoute.self, Communication.self,
-            configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+            configurations: ModelConfiguration(isStoredInMemoryOnly: false)
+        )
         modelContext = modelContainer.mainContext
     }
 
@@ -136,14 +135,16 @@ class CommunicationViewModel: CommunictionModel {
         case .email:
             if let emailAddress, let message {
                 return Communication(
-                    title: title, email: emailAddress, message: message)
+                    title: title, email: emailAddress, message: message
+                )
             } else {
                 throw CommunicationViewModelError.noEmailOrMessage
             }
         case .message:
-            if let phoneNumber, let message,let countryCode = phoneNumber.countryCode {
+            if let phoneNumber, let message, let countryCode = phoneNumber.countryCode {
                 return Communication(
-                    title: title, phoneNumber: phoneNumber, message: message)
+                    title: title, phoneNumber: phoneNumber, message: message
+                )
             } else {
                 throw CommunicationViewModelError.noPhoneOrmessage
             }

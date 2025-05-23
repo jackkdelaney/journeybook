@@ -16,8 +16,6 @@ struct JourneyBookApp: App {
     init() {
         AppShortcuts.updateAppShortcutParameters()
 
-
-        
         WidgetCenter.shared.reloadAllTimelines()
 
         // FOR UI TESTS ONLY
@@ -27,10 +25,8 @@ struct JourneyBookApp: App {
                let window = windowScene.windows.first
             {
                 window.layer.speed = 100
-                
             }
         }
-
     }
 
     var body: some Scene {

@@ -8,12 +8,12 @@
 import ActivityKit
 import CommonCodeKit
 import Foundation
+import Observation
 import SharedPersistenceKit
 import SwiftData
-import Observation
 
 @Observable
-class LiveJourneyStepModelWithinJourney : LiveJourneyStepModel {
+class LiveJourneyStepModelWithinJourney: LiveJourneyStepModel {
     var journey: Journey
 
     @MainActor
@@ -26,7 +26,6 @@ class LiveJourneyStepModelWithinJourney : LiveJourneyStepModel {
         !liveJourneysByID.contains(journey.id)
     }
 
-
     private func start() {}
 
     func makeNewLiveJourney() {
@@ -35,8 +34,7 @@ class LiveJourneyStepModelWithinJourney : LiveJourneyStepModel {
         add(liveJourney)
         startLiveActivity()
     }
-    
-    
+
     override var theLiveJourney: LiveJourney? {
         fetchResources()
             .first(where: { $0.journey?.id == journey.id })
@@ -73,9 +71,6 @@ class LiveJourneyStepModelWithinJourney : LiveJourneyStepModel {
             print(error.localizedDescription)
         }
     }
-
-
-
 }
 
 extension LiveJourneyStepModel {

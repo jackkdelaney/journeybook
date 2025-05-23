@@ -6,9 +6,9 @@
 //
 
 import Observation
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
 
 @Observable
 class CurrentPhraseViewModel {
@@ -47,7 +47,7 @@ class CurrentPhraseViewModel {
         fontSizeAsInt = phrase.fontSize.rawValue
 
         modelContainer = try! ModelContainer(
-            for: VisualResource.self, Phrase.self, Journey.self,LiveJourney.self, JourneyStep.self, TransportRoute.self,Communication.self,
+            for: VisualResource.self, Phrase.self, Journey.self, LiveJourney.self, JourneyStep.self, TransportRoute.self, Communication.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: false)
         )
         modelContext = modelContainer.mainContext

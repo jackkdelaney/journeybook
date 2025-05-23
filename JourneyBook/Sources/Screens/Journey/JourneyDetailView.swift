@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 01/01/2025.
 //
 
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 struct JourneyDetailView: View {
     @Environment(\.modelContext) var modelContext
@@ -83,9 +83,7 @@ struct JourneyDetailView: View {
         }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
-
                 EditButton()
-
             }
         }
     }

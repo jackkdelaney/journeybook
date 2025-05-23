@@ -5,9 +5,9 @@
 //
 
 import AVKit
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
 
 struct ResourcesManager: View {
     @EnvironmentObject private var coordinator: Coordinator
@@ -66,7 +66,7 @@ struct ResourcesManager: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Menu {
-                   ResourcesManagerAddButtons(sheet: $sheet)
+                    ResourcesManagerAddButtons(sheet: $sheet)
                 } label: {
                     Label("Add", systemImage: "plus")
                 }

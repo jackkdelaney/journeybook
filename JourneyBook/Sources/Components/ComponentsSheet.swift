@@ -8,23 +8,20 @@
 import Foundation
 import SwiftUI
 
-
 enum ComponentsSheet: Identifiable, Hashable {
     var id: Self {
         return self
     }
 
     case countrycodeSelection(PhoneNumberAndCodeSelectionGetter)
-
 }
-
 
 extension ComponentsSheet {
     @ViewBuilder
     func buildView() -> some View {
         switch self {
         case let .countrycodeSelection(getter):
-            CountryCodeSelectorDetailView(phoneNumber: getter.phoneNumber)
+            CountryCodeSelectorDetailView(phoneNumber: getter.phoneNumber)
         }
     }
 }

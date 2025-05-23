@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 29/12/2024.
 //
 
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 struct ResourceView: View {
     @Bindable var resource: VisualResource

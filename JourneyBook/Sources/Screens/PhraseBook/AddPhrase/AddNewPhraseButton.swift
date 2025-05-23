@@ -58,7 +58,7 @@ struct AddNewPhraseButton: AnimatedBackGroundView {
         .indigo.opacity(0.6),
     ]
     }
-    
+
     var backgroundColor: Color {
         .black
     }

@@ -12,7 +12,7 @@ import Testing
 
 struct CommunicationEditSheetTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let view = CommunicationEditSheet(communication: Communication.sampleCommunication())
 
         #expect(view.viewModel.communication.title == Communication.sampleCommunication().title)
@@ -25,7 +25,7 @@ struct CommunicationEditSheetTests {
     }
 
     @Test
-    func testConfirmButtonTitle() {
+    func confirmButtonTitle() {
         let view = CommunicationEditSheet(communication: Communication.sampleCommunication())
 
         #expect(view.confirmButtonTitleText == "Update")

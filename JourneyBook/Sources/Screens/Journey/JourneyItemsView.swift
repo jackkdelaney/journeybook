@@ -5,19 +5,17 @@
 //  Created by Jack Delaney on 01/01/2025.
 //
 
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
-
 
 struct JourneyItemsView: View {
     @Query(sort: [SortDescriptor(\Journey.dateCreated, order: .reverse)]) var journeys: [Journey]
 
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject private var coordinator: Coordinator
-    
-    @Environment(\.accessibilityAssistiveAccessEnabled) private var isAssistiveAccessEnabled
 
+    @Environment(\.accessibilityAssistiveAccessEnabled) private var isAssistiveAccessEnabled
 
     @Binding var sheet: JourneySheet?
 
@@ -57,10 +55,7 @@ struct JourneyItemsView: View {
             }
         }
     }
-    
-   
-    
-    
+
     private func delete(at offsets: IndexSet) {
         for offset in offsets {
             let journey = journeys[offset]
@@ -94,10 +89,10 @@ struct JourneyItemsView: View {
         } label: {
             VStack(alignment: .leading) {
                 Text("\(journey.journeyName)")
-                    .font(isAssistiveAccessEnabled ? .title :.headline)
+                    .font(isAssistiveAccessEnabled ? .title : .headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text(journey.dateCreated.formatted())
-                    .font(isAssistiveAccessEnabled ?  .headline : .subheadline)
+                    .font(isAssistiveAccessEnabled ? .headline : .subheadline)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -107,7 +102,7 @@ struct JourneyItemsView: View {
                             .frame(height: 1)
                     }
                     Text(description)
-                        .font(isAssistiveAccessEnabled ? .callout: .caption)
+                        .font(isAssistiveAccessEnabled ? .callout : .caption)
                         .foregroundStyle(.secondary)
                         .lineLimit(isAssistiveAccessEnabled ? 4 : 2)
                         .frame(maxWidth: .infinity, alignment: .leading)

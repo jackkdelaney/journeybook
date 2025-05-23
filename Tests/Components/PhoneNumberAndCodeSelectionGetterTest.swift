@@ -5,15 +5,15 @@
 //  Created by Jack Delaney on 18/04/2025.
 //
 
-import Testing
 import SharedPersistenceKit
+import Testing
 
 @testable import JourneyBook
 import SwiftUI
 
 struct PhoneNumberAndCodeSelectionGetterTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let binding = Binding<PhoneNumber?>(
             get: { nil },
             set: { _ in }
@@ -21,9 +21,9 @@ struct PhoneNumberAndCodeSelectionGetterTests {
         let item = PhoneNumberAndCodeSelectionGetter(phoneNumber: binding)
         #expect(item.phoneNumber.wrappedValue == binding.wrappedValue)
     }
-    
+
     @Test
-    func testInitialisationSetsPropertiesCorrectlyWithID() {
+    func initialisationSetsPropertiesCorrectlyWithID() {
         let id = UUID()
         let binding = Binding<PhoneNumber?>(
             get: { nil },
@@ -33,9 +33,9 @@ struct PhoneNumberAndCodeSelectionGetterTests {
         #expect(item.id == id)
         #expect(item.phoneNumber.wrappedValue == binding.wrappedValue)
     }
-    
+
     @Test
-    func testHasherFunction() {
+    func hasherFunction() {
         let id = UUID()
         let binding1 = Binding<PhoneNumber?>(
             get: { nil },
@@ -51,9 +51,5 @@ struct PhoneNumberAndCodeSelectionGetterTests {
         #expect(getterA.id == id)
         #expect(getterB.id == id)
         #expect(getterB.hashValue == getterA.hashValue)
-
     }
-    
-
 }
-

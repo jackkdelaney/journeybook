@@ -5,9 +5,9 @@
 //  Created by Jack Delaney on 10/04/2025.
 //
 
+import AppExtensionJBKit
 import SwiftUI
 import WidgetKit
-import AppExtensionJBKit
 
 struct TrafficWidgetRoadWorks: Widget {
     let kind: String = "JourneyBook-Roadworks-NI"
