@@ -8,19 +8,10 @@
 import CoreLocation
 import Foundation
 
-// https://vpos.translinkniplanner.co.uk/velocmap/vmi/VMI
-
-protocol RealTimeBusLocation: Identifiable, Decodable, Equatable {
-    var id: String { get }
-    var location: CLLocationCoordinate2D { get }
-    var busOperator: BusOperator { get }
-    var VehicleIdentifier: String { get }
-    var busNumber: String { get }
-}
-
 struct TranslinkRealTimeBusLocation: RealTimeBusLocation {
     var id: String {
-        return "\(ID)"
+        // swift-format-ignore
+        return "\(self.ID)"
     }
 
     let ID: String
