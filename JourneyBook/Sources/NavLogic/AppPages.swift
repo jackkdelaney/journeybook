@@ -78,7 +78,6 @@ extension AppPages {
 extension AppPages {
     func build() -> some View {
         internalBuild()
-        .postHogScreenView(self.title)
     }
     
     @ViewBuilder
