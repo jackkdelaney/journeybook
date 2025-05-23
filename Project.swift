@@ -76,7 +76,6 @@ let project = Project(
                 .target(name: "CommonCodeKit"),
                 .target(name: "SharedPersistenceKit"),
                 .target(name: "JourneyBookWidgetExtension"),
-                .external(name: "PostHog"),
             ]
         ),
         .target(
