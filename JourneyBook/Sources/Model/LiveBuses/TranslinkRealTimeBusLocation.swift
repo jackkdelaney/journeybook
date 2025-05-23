@@ -13,6 +13,7 @@ struct TranslinkRealTimeBusLocation: RealTimeBusLocation {
         return "\(self.ID)"
     }
 
+    
     let ID: String
     let Operator: String
     let JourneyIdentifier: String
@@ -38,13 +39,15 @@ struct TranslinkRealTimeBusLocation: RealTimeBusLocation {
         }
     }
 
+    
+    var busOperator: BusOperator {
+        BusOperator.getOperator(for: Operator)
+    }
+    
     var location: CLLocationCoordinate2D {
         .init(latitude: Double(Y) ?? 0, longitude: Double(X) ?? 0)
     }
 
-    var busOperator: BusOperator {
-        BusOperator.getOperator(for: Operator)
-    }
 }
 
 extension TranslinkRealTimeBusLocation: Hashable {
