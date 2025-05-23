@@ -110,7 +110,7 @@ extension AppPages {
         case .communicationDirectory:
             CommunicationView()
         case .acessblityHomeToolbarOptions:
-            WorldHomeAacessblityHomeToolbarOptions()
+            WorldHomeAccessibilityHomeToolbarOptions()
         case let .locationBusDetailBE(busLocaton):
             LiveBusMapDetailView(location: busLocaton)
         case let .locationBusDetailTranslink(busLocaton):
