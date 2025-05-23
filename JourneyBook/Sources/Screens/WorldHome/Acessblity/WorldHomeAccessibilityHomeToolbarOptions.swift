@@ -10,7 +10,7 @@ import SwiftUI
 struct WorldHomeAccessibilityHomeToolbarOptions: View {
     var body: some View {
         Form {
-                    WorldHomeNavigationButtons()
+            WorldHomeNavigationButtons()
                 .chevronButtonStyle()
         }
         .navigationTitle("Options")
