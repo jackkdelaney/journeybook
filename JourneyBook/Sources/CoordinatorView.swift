@@ -5,7 +5,6 @@
 //  Created by Jack Delaney on 24/12/2024.
 //
 
-import PostHog
 import SharedPersistenceKit
 import SwiftData
 import SwiftUI
