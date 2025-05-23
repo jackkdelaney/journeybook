@@ -11,7 +11,7 @@ struct WorldHomeAccessibilityHomeToolbarOptions: View {
     var body: some View {
         Form {
                 WorldHomeNavigationButtons()
-                .chevronButtonStyle()
+                        .chevronButtonStyle()
         }
         .navigationTitle("Options")
         .navigationBarTitleDisplayMode(.inline)
