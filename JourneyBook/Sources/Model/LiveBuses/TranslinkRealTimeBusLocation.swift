@@ -1,4 +1,4 @@
-//
+// swift-format-ignore-file
 //  TranslinkRealTimeBusLocation.swift
 //  JourneyBook
 //
@@ -10,7 +10,6 @@ import Foundation
 
 struct TranslinkRealTimeBusLocation: RealTimeBusLocation {
     var id: String {
-        // swift-format-ignore
         return "\(self.ID)"
     }
 

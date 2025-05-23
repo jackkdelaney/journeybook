@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 23/05/2025.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 
 protocol RealTimeBusLocation: Identifiable, Decodable, Equatable {
     var id: String { get }
