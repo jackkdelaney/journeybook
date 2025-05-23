@@ -55,7 +55,6 @@ struct AddNewJourneySheet: SheetView {
         Button("Add") {
             do {
                 try model.saveItem()
-                Analytics.addNewJourney.capture()
                 dismiss()
             } catch JourneyViewModelError.noJourneyText {
                 errorMessage = .noJourneyText
