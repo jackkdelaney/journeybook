@@ -40,7 +40,6 @@ struct WorldHome: View {
         .toolbar {
             toolbar
         }
-        .liveJourneyControls()
     }
 
     private var displayMode: NavigationBarItem.TitleDisplayMode {

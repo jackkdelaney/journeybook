@@ -40,9 +40,6 @@ struct JourneyDetailView: View {
                 }
             }
             if !journey.steps.isEmpty {
-                if !isEditing {
-                    JourneyDetailLiveItemSection(journey: journey)
-                }
                 Section("Step's") {
                     ForEach(sortedJourneySteps) { step in
                         Button {

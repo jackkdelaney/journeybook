@@ -22,7 +22,7 @@ struct PossibleJourneyWidget: Widget {
             provider: JourneyProvider()
         ) { entry in
             JourneyWidgetView(entry: entry)
-                .modelContainer(for: [VisualResource.self, Phrase.self, Journey.self, LiveJourney.self, JourneyStep.self, TransportRoute.self, Communication.self])
+                .modelContainer(for: [VisualResource.self, Phrase.self, Journey.self, JourneyStep.self, TransportRoute.self, Communication.self])
         }
         .configurationDisplayName("Journeys")
         .description("Journeys from JourneyBook.")

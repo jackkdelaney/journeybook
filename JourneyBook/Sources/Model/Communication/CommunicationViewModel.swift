@@ -105,7 +105,7 @@ class CommunicationViewModel: CommunictionModel {
         self.message = message
 
         modelContainer = try! ModelContainer(
-            for: VisualResource.self, Phrase.self, Journey.self, LiveJourney.self,
+            for: VisualResource.self, Phrase.self, Journey.self,
             JourneyStep.self, TransportRoute.self, Communication.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: false)
         )

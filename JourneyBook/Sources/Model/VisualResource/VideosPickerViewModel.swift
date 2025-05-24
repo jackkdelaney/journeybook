@@ -114,7 +114,6 @@ class VideosPickerViewModel: PickerItem {
             for: VisualResource.self,
             Phrase.self,
             Journey.self,
-            LiveJourney.self,
             JourneyStep.self,
             TransportRoute.self,
             Communication.self,
