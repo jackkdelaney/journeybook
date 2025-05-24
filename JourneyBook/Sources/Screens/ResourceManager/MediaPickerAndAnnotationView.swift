@@ -21,7 +21,7 @@ struct OptionalTextView: View {
     }
 
     var body: some View {
-        TextField(title, text: $nonOptionalText, axis: .vertical) 
+        TextField(title, text: $nonOptionalText, axis: .vertical)
             .onChange(of: nonOptionalText) {
                 if nonOptionalText == "" {
                     text = nil

@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 10/03/2025.
 //
 
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 struct EditPhraseView: SheetView {
     var sheetTitle: String {

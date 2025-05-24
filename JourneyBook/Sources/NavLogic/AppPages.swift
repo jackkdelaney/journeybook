@@ -13,7 +13,6 @@ enum AppPages: Hashable {
     case worldHome
     case resourceManager
     case resourceDetails(VisualResource)
-    case gliderPOC
     case mapExperience
     case transportRoutes
     case phraseBook
@@ -31,9 +30,8 @@ enum AppPages: Hashable {
     case acessblityHomeToolbarOptions
 }
 
-
 extension AppPages {
-    var title : String {
+    var title: String {
         switch self {
         case .resourceManager:
             "Resources Mananger"
@@ -44,24 +42,22 @@ extension AppPages {
         case .phraseBook:
             "Phrase Book"
         case .mapExperience:
-           "Bus Map"
-        case .gliderPOC:
-            "Glider"
+            "Bus Map"
         case .transportRoutes:
             "Transport Routes"
-        case  .journeyDetails:
+        case .journeyDetails:
             "Journey Details"
-        case  .journeyStepDetails:
+        case .journeyStepDetails:
             "Journey Step Details"
-        case  .mapDetails:
+        case .mapDetails:
             "Map Detail View"
-        case  .rssFeedItem:
+        case .rssFeedItem:
             "RSS Detail View"
-        case  .webpage:
+        case .webpage:
             "Internal Web Broswer"
-        case  .phraseDetails:
+        case .phraseDetails:
             "Phrase Detail View"
-        case  .communicationDetail:
+        case .communicationDetail:
             "Communiucation Details"
         case .credits:
             "Credits"
@@ -69,7 +65,7 @@ extension AppPages {
             "Communication"
         case .acessblityHomeToolbarOptions:
             "Acessblity"
-        case .locationBusDetailTranslink,.locationBusDetailBE:
+        case .locationBusDetailTranslink, .locationBusDetailBE:
             "Bus Location Details"
         }
     }
@@ -79,7 +75,7 @@ extension AppPages {
     func build() -> some View {
         internalBuild()
     }
-    
+
     @ViewBuilder
     private func internalBuild() -> some View {
         switch self {
@@ -93,8 +89,6 @@ extension AppPages {
             PhraseBook()
         case .mapExperience:
             LiveBusMap()
-        case .gliderPOC:
-            GliderPOCListView()
         case .transportRoutes:
             TransportRouteListView()
         case let .journeyDetails(journey):
@@ -116,12 +110,11 @@ extension AppPages {
         case .communicationDirectory:
             CommunicationView()
         case .acessblityHomeToolbarOptions:
-            WorldHomeAacessblityHomeToolbarOptions()
+            WorldHomeAccessibilityHomeToolbarOptions()
         case let .locationBusDetailBE(busLocaton):
             LiveBusMapDetailView(location: busLocaton)
         case let .locationBusDetailTranslink(busLocaton):
             LiveBusMapDetailView(location: busLocaton)
-
         }
     }
 }

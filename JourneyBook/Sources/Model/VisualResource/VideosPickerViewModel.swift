@@ -30,7 +30,7 @@ struct Movie: Transferable {
     }
 }
 
-extension Movie : Equatable {
+extension Movie: Equatable {
     static func == (lhs: Movie, rhs: Movie) -> Bool {
         lhs.url == rhs.url
     }
@@ -40,7 +40,6 @@ enum LoadState: Equatable {
     case unknown, loading
     case loaded(Movie)
     case failed
-
 }
 
 extension LoadState {
@@ -63,10 +62,10 @@ extension LoadState {
             "3\(item.url)"
         }
     }
+
     static func == (lhs: LoadState, rhs: LoadState) -> Bool {
         lhs.value() == rhs.value()
     }
-
 }
 
 @Observable
@@ -115,7 +114,6 @@ class VideosPickerViewModel: PickerItem {
             for: VisualResource.self,
             Phrase.self,
             Journey.self,
-            LiveJourney.self,
             JourneyStep.self,
             TransportRoute.self,
             Communication.self,

@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 07/01/2025.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 
 class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var userLocation: CLLocationCoordinate2D?
@@ -40,4 +40,3 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
 }
-

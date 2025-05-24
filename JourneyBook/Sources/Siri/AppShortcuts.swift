@@ -46,7 +46,7 @@ extension ModelContext {
         }
 
         let schema = Schema([
-            VisualResource.self, Phrase.self, Journey.self, LiveJourney.self, JourneyStep.self,
+            VisualResource.self, Phrase.self, Journey.self, JourneyStep.self,
             TransportRoute.self, Communication.self,
         ])
         let modelConfiguration = ModelConfiguration(

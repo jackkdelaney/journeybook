@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct RSSContentView: View {
-    @State var feedManager : RSSFeedManager
+    @State var feedManager: RSSFeedManager
 
     let feedURL: String
-    let title :String
-    
-    init(feedURL : String, for title: String) {
-        self.feedManager = RSSFeedManager()
+    let title: String
+
+    init(feedURL: String, for title: String) {
+        feedManager = RSSFeedManager()
         self.feedURL = feedURL
         self.title = title
     }

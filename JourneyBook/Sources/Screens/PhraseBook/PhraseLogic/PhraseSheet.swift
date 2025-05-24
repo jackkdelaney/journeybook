@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 10/03/2025.
 //
 
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 enum PhraseSheet: Identifiable, Hashable {
     var id: Self {

@@ -21,7 +21,6 @@ struct WorldHome: View {
         List {
             if searchText.isEmpty {
                 AddNewJoruneyButton(sheet: $sheet)
-
             }
             JourneyItemsView(
                 sheet: $sheet,
@@ -41,7 +40,6 @@ struct WorldHome: View {
         .toolbar {
             toolbar
         }
-        .liveJourneyControls()
     }
 
     private var displayMode: NavigationBarItem.TitleDisplayMode {
@@ -99,11 +97,10 @@ struct WorldHome: View {
     }
 }
 
-
 extension SwiftUI.View {
     func asViewController() -> UIViewController {
-          let vc = UIHostingController(rootView: self)
-          vc.view.frame = UIScreen.main.bounds
-          return vc
-      }
+        let vc = UIHostingController(rootView: self)
+        vc.view.frame = UIScreen.main.bounds
+        return vc
+    }
 }

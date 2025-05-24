@@ -29,7 +29,6 @@ extension CommunicationViewModelError {
             "Please check you have entered a email and messsage."
         case .noPhoneOrmessage:
             "Please check you have entered a phone number and messsage."
-
         }
     }
 }

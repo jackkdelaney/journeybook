@@ -56,10 +56,7 @@ struct LocationFindView: SheetView {
                 AddressRow(selectedLocation: $selectedLocation, address: address)
                 // .listRowBackground(.blue)
             }
-            // .listStyle(.plain)
-            // .scrollContentBackground(.hidden)
         }
-        // .background(.blue)
         .edgesIgnoringSafeArea(.bottom)
     }
 }

@@ -9,7 +9,6 @@ import PackageDescription
         // Default is .staticFramework
         // productTypes: ["Alamofire": .framework,]
         productTypes: ["FeedKit": .framework]
-
     )
 #endif
 

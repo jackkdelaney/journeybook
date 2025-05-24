@@ -13,7 +13,7 @@ import CoreLocation
 
 struct JourneyStepLocationTests {
     @Test
-    func testInitialisationSetsProperties() {
+    func initialisationSetsProperties() {
         let id = UUID()
         let location = CLLocationCoordinate2D(latitude: 0.0004, longitude: 0.0001)
         let model = JourneyStepLocation(id: id, location: location)
@@ -24,7 +24,7 @@ struct JourneyStepLocationTests {
     }
 
     @Test
-    func testInitialisationSetsPropertiesWithOwnID() {
+    func initialisationSetsPropertiesWithOwnID() {
         let id = UUID()
         let location = CLLocationCoordinate2D(latitude: 0.0004, longitude: 0.0001)
         let model = JourneyStepLocation(id: id, location: location)
@@ -35,7 +35,7 @@ struct JourneyStepLocationTests {
     }
 
     @Test
-    func testLocationComputedVar() {
+    func locationComputedVar() {
         let location = CLLocationCoordinate2D(latitude: 0.0004, longitude: 0.0001)
         let model = JourneyStepLocation(location: location)
 

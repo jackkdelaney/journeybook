@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 31/12/2024.
 //
 
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 enum JourneySheet: Identifiable, Hashable {
     var id: Self {

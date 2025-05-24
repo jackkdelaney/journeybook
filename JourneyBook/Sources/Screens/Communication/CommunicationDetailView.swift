@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 12/03/2025.
 //
 
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 struct CommunicationDetailView: View {
     @Bindable var communication: Communication

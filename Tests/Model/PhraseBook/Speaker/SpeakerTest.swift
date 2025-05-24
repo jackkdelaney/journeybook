@@ -11,14 +11,14 @@ import Testing
 
 struct SpeakerTests {
     @MainActor @Test
-    func testInitialisationSetsDefaultPropertiesCorrectly() {
+    func initialisationSetsDefaultPropertiesCorrectly() {
         let model = Speaker()
 
         #expect(model.isSpeaking == false)
     }
 
     @MainActor @Test
-    func testSpeakingEmptyStringThrows() {
+    func speakingEmptyStringThrows() {
         let model = Speaker()
 
         #expect(throws: SpeakerError.noText) {
@@ -29,7 +29,7 @@ struct SpeakerTests {
     }
 
     @MainActor @Test
-    func testSpeakingWithTextDoesNotThrow() {
+    func speakingWithTextDoesNotThrow() {
         let model = Speaker()
 
         #expect(throws: Never.self) {
@@ -52,7 +52,7 @@ struct SpeakerTests {
     }
 
     @MainActor @Test
-    func testSpeakingEmptyThrowsTwoSpeakingAtOnce() {
+    func speakingEmptyThrowsTwoSpeakingAtOnce() {
         let model = Speaker()
 
         #expect(throws: SpeakerError.otherVoiceCurrentlySpeaking) {

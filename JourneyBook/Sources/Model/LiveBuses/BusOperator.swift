@@ -31,13 +31,11 @@ enum BusOperator {
             return BusOperator.glider
         } else if busOperator == "Metro" {
             return BusOperator.metro
-        }
-            else if busOperator == "BÉ" {
-                return BusOperator.busEireann
-            
+        } else if busOperator == "BÉ" {
+            return BusOperator.busEireann
+
         } else {
             return BusOperator.other
         }
-
     }
 }

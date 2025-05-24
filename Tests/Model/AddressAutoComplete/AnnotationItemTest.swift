@@ -12,7 +12,7 @@ import Testing
 
 struct AnnotationItemTests {
     @Test
-    func testEnsuringInitWorksOK() {
+    func ensuringInitWorksOK() {
         let item = AnnotationItem(latitude: 54.58189372438181, longitude: -5.9377129461587055)
 
         #expect(item.latitude == 54.58189372438181)
@@ -20,7 +20,7 @@ struct AnnotationItemTests {
     }
 
     @Test
-    func testOfcoordinateWithGoodData() {
+    func ofcoordinateWithGoodData() {
         let item = AnnotationItem(latitude: 54.58189372438181, longitude: -5.9377129461587055)
 
         #expect(item.coordinate.latitude == 54.58189372438181)
@@ -29,7 +29,7 @@ struct AnnotationItemTests {
     }
 
     @Test
-    func testOfcoordinateWithBadDataLatiude() {
+    func ofcoordinateWithBadDataLatiude() {
         let item = AnnotationItem(latitude: 54.58189372438181, longitude: -200)
 
         #expect(item.coordinate.latitude == 54.58189372438181)

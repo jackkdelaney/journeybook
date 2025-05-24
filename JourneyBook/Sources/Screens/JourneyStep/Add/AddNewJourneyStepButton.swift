@@ -6,12 +6,11 @@
 //
 
 import CoreLocation
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 struct AddNewJourneyStepButton: AnimatedBackGroundView {
-
-    @Environment(\.accessibilityAssistiveAccessEnabled) internal var isAssistiveAccessEnabled
+    @Environment(\.accessibilityAssistiveAccessEnabled) var isAssistiveAccessEnabled
 
     @Bindable var journey: Journey
 
@@ -48,7 +47,7 @@ struct AddNewJourneyStepButton: AnimatedBackGroundView {
             "AddNewStepButton"
         )
     }
-    
+
     var colours: [Color] { [
         .purple.opacity(0.8),
         .purple.opacity(0.7),
@@ -57,11 +56,9 @@ struct AddNewJourneyStepButton: AnimatedBackGroundView {
         .pink.opacity(0.6),
         .purple.opacity(0.6),
         .purple.opacity(0.5),
-        ]
-
-
+    ]
     }
-     
+
     var backgroundColor: Color {
         .purple
     }

@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct ResourcesManagerAddButtons: View {
-    
     @Binding var sheet: ResourcesManagerSheet?
 
-    var body : some View {
+    var body: some View {
         Button {
             sheet = .addPhoto
         } label: {
@@ -24,5 +23,4 @@ struct ResourcesManagerAddButtons: View {
             Label("Add Video", systemImage: "film")
         }
     }
-    
 }
