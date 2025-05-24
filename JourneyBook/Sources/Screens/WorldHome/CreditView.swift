@@ -15,7 +15,7 @@ struct CreditView: View {
             Section {
                 LabeledContent("Developer", value: "Jack Delaney")
                 LabeledContent {
-                    Link("jdelaney07@qub.ac.uk", destination: URL(string: "mailto:jdelaney07@qub.ac.uk")!)
+                    Link("jackkevindelaney@gmail.com", destination: URL(string: "mailto:jackkevindelaney@gmail.com")!)
                 } label: {
                     Text("Contact")
                 }
