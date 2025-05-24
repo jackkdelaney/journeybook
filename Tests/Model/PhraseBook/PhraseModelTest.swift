@@ -12,7 +12,7 @@ import Testing
 
 struct PhraseModelTests {
     @MainActor @Test
-    func testInitialisationSetsDefaultPropertiesCorrectly() {
+    func initialisationSetsDefaultPropertiesCorrectly() {
         let model = PhraseModel(text: "example text")
 
         #expect(model.text == "example text")
@@ -20,7 +20,7 @@ struct PhraseModelTests {
     }
 
     @MainActor @Test
-    func testChangeColour() {
+    func changeColour() {
         let model = PhraseModel(text: "example text")
         model.colour = .pink
 
@@ -36,7 +36,7 @@ struct PhraseModelTests {
     }
 
     @MainActor @Test
-    func testNoTextErrorThrow() {
+    func noTextErrorThrow() {
         let model = PhraseModel(text: "example text")
         model.text = ""
 
@@ -46,7 +46,7 @@ struct PhraseModelTests {
     }
 
     @MainActor @Test
-    func testAddPhraseNoText() {
+    func addPhraseNoText() {
         let model = PhraseModel(text: "example text")
         model.text = ""
 
@@ -59,7 +59,7 @@ struct PhraseModelTests {
     }
 
     @MainActor @Test
-    func testAddPhrase() {
+    func addPhrase() {
         let model = PhraseModel(text: "example text")
         let amountBefore = model.fetchResources().count
 

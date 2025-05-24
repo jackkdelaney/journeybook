@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 13/03/2025.
 //
 
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 struct PhoneNumberAndCodeSelectionGetter: Identifiable, Hashable, Equatable {
     var id: UUID

@@ -17,7 +17,7 @@ struct LiveJourneyStepModelTests {
     }
 
     @MainActor @Test
-    func testInitialisationSetsDefaultPropertiesCorrectly() {
+    func initialisationSetsDefaultPropertiesCorrectly() {
         let model = LiveJourneyStepModel()
 
         #expect(model.activty == nil)

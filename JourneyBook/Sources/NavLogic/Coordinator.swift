@@ -11,17 +11,16 @@ import SwiftUI
 // BASED UPON https://www.swiftanytime.com/blog/coordinator-pattern-in-swiftui
 
 class Coordinator: ObservableObject {
-    
     private static var _activeCoordinator: Coordinator?
-    
+
     public static var activeCoordinator: Coordinator? {
         return _activeCoordinator
     }
-    
+
     init() {
         Coordinator._activeCoordinator = self
     }
-    
+
     @Published var path: NavigationPath = .init()
 
     func push(page: AppPages) {
@@ -43,10 +42,8 @@ extension Coordinator {
             return _activeCoordinator
         } else {
             let cord = Coordinator()
-            self._activeCoordinator  =  cord
+            _activeCoordinator = cord
             return cord
         }
     }
 }
-
-

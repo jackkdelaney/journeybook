@@ -12,7 +12,7 @@ import Testing
 
 struct VisualResourceTests {
     @Test
-    func testInitialization() {
+    func initialization() {
         let sampleData = Data([0x00, 0x01, 0x02])
         let resource = VisualResource(resourceData: sampleData, resourceType: .image, aidDescription: "Test Description")
 

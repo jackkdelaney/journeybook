@@ -13,7 +13,7 @@ import Testing
 
 struct TrafficIncidentsEntryTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let entry = TrafficIncidentsEntry(date: .distantFuture, issues: 2)
 
         #expect(entry.date == .distantFuture)
@@ -21,28 +21,28 @@ struct TrafficIncidentsEntryTests {
     }
 
     @Test
-    func testHasIssuesWithIssues() {
+    func hasIssuesWithIssues() {
         let entry = TrafficIncidentsEntry(date: .distantFuture, issues: 2)
 
         #expect(entry.hasIssues == true)
     }
 
     @Test
-    func testHasIssuesWithIssuesEdgeCase() {
+    func hasIssuesWithIssuesEdgeCase() {
         let entry = TrafficIncidentsEntry(date: .distantFuture, issues: 2)
 
         #expect(entry.hasIssues == true)
     }
 
     @Test
-    func testHasIssuesWithNoIssues() {
+    func hasIssuesWithNoIssues() {
         let entry = TrafficIncidentsEntry(date: .distantFuture, issues: 0)
 
         #expect(entry.hasIssues == false)
     }
 
     @Test
-    func testPlaceholderNot() {
+    func placeholderNot() {
         let entry = TrafficIncidentsEntry(date: .distantFuture, issues: 0)
 
         #expect(entry.placeholder == false)

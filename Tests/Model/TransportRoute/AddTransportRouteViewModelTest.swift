@@ -14,7 +14,7 @@ import Testing
 
 struct AddTransportRouteViewModelTests {
     @MainActor @Test
-    func testTestRouteNameChange() throws {
+    func routeNameChange() throws {
         let viewModel = AddTransportRouteViewModel()
         let testRouteName = "Test Route"
 
@@ -24,7 +24,7 @@ struct AddTransportRouteViewModelTests {
     }
 
     @MainActor @Test
-    func testTestRouteUrlChange() throws {
+    func routeUrlChange() throws {
         let viewModel = AddTransportRouteViewModel()
         let testURL = URL(string: "https://example.com")!
 
@@ -34,7 +34,7 @@ struct AddTransportRouteViewModelTests {
     }
 
     @MainActor @Test
-    func testInitialisationSetsDefaultPropertiesCorrectly() {
+    func initialisationSetsDefaultPropertiesCorrectly() {
         let viewModel = AddTransportRouteViewModel()
 
         #expect(viewModel.routeName == nil)
@@ -42,13 +42,13 @@ struct AddTransportRouteViewModelTests {
     }
 
     @MainActor @Test
-    func testNotSavableWithDefaultValues() {
+    func notSavableWithDefaultValues() {
         let viewModel = AddTransportRouteViewModel()
         #expect(viewModel.saveable == false)
     }
 
     @MainActor @Test
-    func testNotSavableWithJustRouteName() {
+    func notSavableWithJustRouteName() {
         let viewModel = AddTransportRouteViewModel()
 
         viewModel.routeName = "Route Name"
@@ -57,7 +57,7 @@ struct AddTransportRouteViewModelTests {
     }
 
     @MainActor @Test
-    func testNotSavableWithJustURL() {
+    func notSavableWithJustURL() {
         let viewModel = AddTransportRouteViewModel()
 
         viewModel.url = URL(string: "https://example.com")!

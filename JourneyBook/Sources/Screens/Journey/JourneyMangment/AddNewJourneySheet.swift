@@ -22,18 +22,17 @@ struct AddNewJourneySheet: SheetView {
         Form {
             Section(
                 header:
-                    Text("Journey Name")
+                Text("Journey Name")
                     .accessibilityIdentifier(
                         "JourneyNameSection"
                     )
             ) {
                 TextField("Journey Name", text: $model.journeyName)
                     .accessibilityIdentifier("journeyNameField")
-
             }
             Section(
                 header:
-                    Text("Journey Description")
+                Text("Journey Description")
                     .accessibilityIdentifier(
                         "JourneyDescriptionSection"
                     )

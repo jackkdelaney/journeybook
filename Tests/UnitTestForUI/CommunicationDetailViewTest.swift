@@ -12,7 +12,7 @@ import Testing
 
 struct CommunicationDetailViewTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let view = CommunicationDetailView(communication: Communication.sampleCommunication(), inSheet: true)
 
         #expect(view.communication.title == Communication.sampleCommunication().title)
@@ -23,5 +23,4 @@ struct CommunicationDetailViewTests {
 
         #expect(view.sheet == nil)
     }
-   
 }

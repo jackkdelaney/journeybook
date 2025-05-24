@@ -6,8 +6,8 @@
 //
 
 import CoreLocation
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 struct AddJourneyLocationStepGetter: Identifiable, Hashable, Equatable {
     var id: UUID

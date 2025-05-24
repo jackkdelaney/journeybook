@@ -18,24 +18,23 @@ struct BusEireannHeader: Codable {
     let timestamp: String
 }
 
-struct BusEireannEntity: Codable, Identifiable, RealTimeBusLocation{
+struct BusEireannEntity: Codable, Identifiable, RealTimeBusLocation {
     var busNumber: String {
         VehicleIdentifier
     }
-    
+
     var VehicleIdentifier: String {
         vehicle.vehicle.id
     }
-    
-    
+
     var location: CLLocationCoordinate2D {
         .init(latitude: Double(vehicle.position.latitude), longitude: Double(vehicle.position.longitude))
     }
-    
+
     var busOperator: BusOperator {
         BusOperator.getOperator(for: "BÉ")
     }
-    
+
     let id: String
     let vehicle: BusEireannVehicle
 }
@@ -55,25 +54,23 @@ struct BusEireannTrip: Codable {
     let routeID: String
     let directionID: Int
 
-
     enum CodingKeys: String, CodingKey {
-            case tripID = "trip_id"
-            case startTime = "start_time"
-            case startDate = "start_date"
-            case scheduleRelationship = "schedule_relationship"
-            case routeID = "route_id"
-            case directionID = "direction_id"
-        }
+        case tripID = "trip_id"
+        case startTime = "start_time"
+        case startDate = "start_date"
+        case scheduleRelationship = "schedule_relationship"
+        case routeID = "route_id"
+        case directionID = "direction_id"
+    }
 }
 
-extension BusEireannEntity : Hashable, Equatable {
+extension BusEireannEntity: Hashable, Equatable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(VehicleIdentifier)
         hasher.combine(id)
-
     }
-    
-    static func ==(lhs: BusEireannEntity, rhs: BusEireannEntity) -> Bool {
+
+    static func == (lhs: BusEireannEntity, rhs: BusEireannEntity) -> Bool {
         return lhs.id == rhs.id
     }
 }

@@ -12,7 +12,7 @@ import Testing
 
 struct RSSFeedItemTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let title = "Test Title"
         let link = "https://example.com/test"
         let description = "This is a test description."
@@ -27,7 +27,7 @@ struct RSSFeedItemTests {
     }
 
     @Test
-    func testInitialisationSetsPropertiesCorrectlyWhenInittedWithNilValues() {
+    func initialisationSetsPropertiesCorrectlyWhenInittedWithNilValues() {
         let item = RSSFeedItem(title: nil, link: nil, description: nil, pubDate: nil)
 
         #expect(item.title == nil)
@@ -37,7 +37,7 @@ struct RSSFeedItemTests {
     }
 
     @Test
-    func testEquableForTwoItemsThatAreIndeitcialInID() {
+    func equableForTwoItemsThatAreIndeitcialInID() {
         let item1 = RSSFeedItem(title: "Title 1", link: "alink", description: "desc1", pubDate: .distantPast)
         let item2 = item1
 
@@ -45,7 +45,7 @@ struct RSSFeedItemTests {
     }
 
     @Test
-    func testNotEquableForTwoItemsThatAreIndeitcialInIDButSameOtheriwise() {
+    func notEquableForTwoItemsThatAreIndeitcialInIDButSameOtheriwise() {
         let item1 = RSSFeedItem(title: "Title 1", link: "alink", description: "desc", pubDate: .distantPast)
         let item2 = RSSFeedItem(title: "Title 1", link: "alink", description: "desc", pubDate: .distantPast)
 
@@ -53,7 +53,7 @@ struct RSSFeedItemTests {
     }
 
     @Test
-    func testTwoEqualValuesHaveSameHash() {
+    func twoEqualValuesHaveSameHash() {
         let item1 = RSSFeedItem(title: "Title 1", link: "alink", description: "desc", pubDate: .distantPast)
         let item2 = item1
 

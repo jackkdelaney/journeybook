@@ -13,7 +13,7 @@ import Foundation
 
 struct RSSFeedManagerTests {
     @MainActor @Test
-    func testInitialisationSetsDefaultPropertiesCorrectly() {
+    func initialisationSetsDefaultPropertiesCorrectly() {
         let model = RSSFeedManager()
 
         #expect(model.feedItems.isEmpty)
@@ -22,14 +22,14 @@ struct RSSFeedManagerTests {
     }
 
     @MainActor @Test
-    func testEmptyManagerHasNoItems() {
+    func emptyManagerHasNoItems() {
         let model = RSSFeedManager()
 
         #expect(model.hasItems == false)
     }
 
     @MainActor @Test
-    func testManagerWithItemsHasItems() {
+    func managerWithItemsHasItems() {
         let model = RSSFeedManager()
 
         model.feedItems = mockedItems()
@@ -38,7 +38,7 @@ struct RSSFeedManagerTests {
     }
 
     @MainActor @Test
-    func testManagerWithItemsHasItemsCountCheck() {
+    func managerWithItemsHasItemsCountCheck() {
         let model = RSSFeedManager()
 
         model.feedItems = mockedItems()
@@ -50,7 +50,7 @@ struct RSSFeedManagerTests {
     }
 
     @MainActor @Test
-    func testFetchFeedEmptyURL() async {
+    func fetchFeedEmptyURL() async {
         let model = RSSFeedManager()
 
         await model.fetchFeed(from: "")

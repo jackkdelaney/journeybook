@@ -5,10 +5,9 @@
 //  Created by Jack Delaney on 10/03/2025.
 //
 
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
-
 
 struct PhraseListView: View {
     @Query var phrases: [Phrase]

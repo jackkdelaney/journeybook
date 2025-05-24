@@ -40,6 +40,5 @@ struct AddNewJoruneyButton: View {
         .buttonStyle(PlainButtonStyle())
         .accessibilityLabel("Create new Journey")
         .accessibilityHint("Add new Journey to App.")
-
     }
 }

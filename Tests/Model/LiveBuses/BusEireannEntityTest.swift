@@ -12,7 +12,7 @@ import Testing
 
 struct BusEireannEntityTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let item = BusEireannEntity(id: "33", vehicle: testBus())
 
         #expect(item.id == "33")
@@ -20,7 +20,7 @@ struct BusEireannEntityTests {
     }
 
     @Test
-    func testVehicleIdentifier() {
+    func vehicleIdentifier() {
         let item = BusEireannEntity(id: "33", vehicle: testBus())
 
         #expect(item.VehicleIdentifier == "3")

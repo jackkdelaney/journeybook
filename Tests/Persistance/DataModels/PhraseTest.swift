@@ -12,7 +12,7 @@ import Testing
 
 struct PhraseTests {
     @Test
-    func testInitialisationWithJustPhraseText() {
+    func initialisationWithJustPhraseText() {
         let phrase = Phrase(text: "Hello World", colour: .pink)
         #expect(phrase.text == "Hello World")
         #expect(phrase.id != UUID())
@@ -21,7 +21,7 @@ struct PhraseTests {
     }
 
     @Test
-    func testInitialisationWithJustPhraseTextAndID() {
+    func initialisationWithJustPhraseTextAndID() {
         let id = UUID()
         let phrase = Phrase(text: "Hello World", colour: .pink, id: id)
         #expect(phrase.text == "Hello World")
@@ -31,7 +31,7 @@ struct PhraseTests {
     }
 
     @Test
-    func testInitialisationAllArguments() {
+    func initialisationAllArguments() {
         let id = UUID()
         let dateCreated = Date.distantPast
         let dateModified = Date.distantFuture
@@ -43,7 +43,7 @@ struct PhraseTests {
     }
 
     @Test
-    func testTextMutationUpdatesDateModified() {
+    func textMutationUpdatesDateModified() {
         let phrase = Phrase(text: "Initial Text", colour: .pink)
         let initialModifiedDate = phrase.dateModified
         phrase.text = "Updated Text"

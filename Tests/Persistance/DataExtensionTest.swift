@@ -12,7 +12,7 @@ import Testing
 
 struct DataExtensionTests {
     @Test
-    func testMakesUrlWithMockVideo() {
+    func makesUrlWithMockVideo() {
         let videoURL = mockVideo().dataToVideoURL()
 
         #expect(videoURL != nil)

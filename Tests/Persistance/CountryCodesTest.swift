@@ -12,14 +12,14 @@ import Testing
 
 struct CountryCodesTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let countries = CountryCodes.values()
 
         #expect(countries.isEmpty == false)
     }
 
     @Test
-    func testSortRules() {
+    func sortRules() {
         let countries = CountryCodes.values()
 
         #expect(countries.isEmpty == false)
@@ -32,7 +32,7 @@ struct CountryCodesTests {
     }
 
     @Test
-    func testUKCode() {
+    func uKCode() {
         let countries = CountryCodes.values()
 
         if let uk = countries.first(where: { $0.countryCode == "GB" }) {

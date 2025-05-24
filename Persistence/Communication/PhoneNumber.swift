@@ -22,7 +22,7 @@ public struct PhoneNumber: Codable {
     }
 }
 
-extension PhoneNumber : Equatable {
+extension PhoneNumber: Equatable {
     public static func == (lhs: PhoneNumber, rhs: PhoneNumber) -> Bool {
         return lhs.countryCode == rhs.countryCode && lhs.phoneNumber == rhs.phoneNumber
     }

@@ -12,7 +12,7 @@ import Testing
 
 struct PhoneNumberTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let number = PhoneNumber()
 
         #expect(number.countryCode == nil)
@@ -20,7 +20,7 @@ struct PhoneNumberTests {
     }
 
     @Test
-    func testFormattedformattedPhoneNumberEmpty() {
+    func formattedformattedPhoneNumberEmpty() {
         let number = PhoneNumber()
 
         #expect(number.formattedPhoneNumber == "+")

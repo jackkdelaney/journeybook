@@ -1,5 +1,5 @@
 //
-//  MapView.swift
+//  LiveBusMap.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 26/12/2024.
@@ -11,7 +11,6 @@ import SwiftUI
 
 // VERY GOOD GUIDE
 // https://www.hackingwithswift.com/books/ios-swiftui/integrating-mapkit-with-swiftui
-
 
 struct LiveBusMap: View {
     @State private var region = MKCoordinateRegion(
@@ -25,15 +24,15 @@ struct LiveBusMap: View {
     @State private var isLoading = true
 
     @ObservedObject var locationViewModel = LocationViewModel()
-    
-    @EnvironmentObject private var coordinator: Coordinator
 
+    @EnvironmentObject private var coordinator: Coordinator
 
     var busLocation: [any RealTimeBusLocation] {
         let flattenArray: [any RealTimeBusLocation] = translinkBusLocations + irelandViewModel.vehicles
 
         return Array(flattenArray.prefix(450))
     }
+
     var body: some View {
         VStack {
             Map(position: .constant(.region(region))) {
@@ -114,44 +113,39 @@ struct LiveBusMap: View {
             }
         }.resume()
     }
-    
-    
+
     private func moveToSheet(for location: any RealTimeBusLocation) {
         if let translinkLocation = location as? TranslinkRealTimeBusLocation {
             coordinator.push(page: .locationBusDetailTranslink(translinkLocation))
-            } else if let tFI = location as? BusEireannEntity {
-                coordinator.push(page: .locationBusDetailBE(tFI))
-
-            }
+        } else if let tFI = location as? BusEireannEntity {
+            coordinator.push(page: .locationBusDetailBE(tFI))
+        }
     }
-
 }
 
+struct LiveBusMapDetailView<BusLocationType: RealTimeBusLocation>: View {
+    let location: BusLocationType
 
-struct LiveBusMapDetailView<BusLocationType:RealTimeBusLocation> : View {
-    let location : BusLocationType
-    
-    var body : some View {
+    var body: some View {
         Form {
             LabeledContent("Vehicle ID", value: location.VehicleIdentifier)
             if let translinkLocation = location as? TranslinkRealTimeBusLocation {
                 translinkSection(for: translinkLocation)
             }
-
         }
         .navigationTitle(location.VehicleIdentifier)
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarBackground(location.busOperator.colour.opacity(0.2), for: .navigationBar)
     }
-    
+
     @ViewBuilder
-    private func translinkSection(for section : TranslinkRealTimeBusLocation) -> some View {
+    private func translinkSection(for section: TranslinkRealTimeBusLocation) -> some View {
         Section("Details") {
             LabeledContent("Operator", value: section.Operator)
             LabeledContent("Journey ID", value: section.JourneyIdentifier)
             LabeledContent("Bus Number", value: section.LineText)
             LabeledContent("Going Towards", value: section.DirectionText)
-            
+
             if let delay = section.Delay {
                 if delay < 60 {
                     LabeledContent("Current Delay", value: "On Schedule")
@@ -161,9 +155,6 @@ struct LiveBusMapDetailView<BusLocationType:RealTimeBusLocation> : View {
             } else {
                 LabeledContent("Current Delay", value: "No Reported Delay")
             }
-
         }
-                
     }
-    
 }

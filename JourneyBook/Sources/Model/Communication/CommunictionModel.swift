@@ -5,9 +5,9 @@
 //  Created by Jack Delaney on 14/03/2025.
 //
 
-import SwiftUI
-import SwiftData
 import SharedPersistenceKit
+import SwiftData
+import SwiftUI
 
 protocol CommunictionModel: Observable {
     associatedtype Item
@@ -26,7 +26,6 @@ protocol CommunictionModel: Observable {
 
     var phoneNumberStringBinding: Binding<String> { get }
     var messsageBinding: Binding<String> { get }
-    
+
     func saveItem() throws
 }
-

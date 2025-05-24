@@ -12,7 +12,7 @@ import Testing
 
 struct AddressResultTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let result = AddressResult(title: "CSB", subtitle: "16 Malone Rd, Belfast BT9 5BN")
 
         #expect(result.title == "CSB")

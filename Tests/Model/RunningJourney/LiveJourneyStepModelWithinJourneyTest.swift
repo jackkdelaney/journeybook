@@ -17,7 +17,7 @@ struct LiveJourneyStepModelWithinJourneyTests {
     }
 
     @MainActor @Test
-    func testInitialisationSetsDefaultPropertiesCorrectly() {
+    func initialisationSetsDefaultPropertiesCorrectly() {
         let model = LiveJourneyStepModelWithinJourney(journey: Journey.sampleNewYork())
 
         #expect(model.journey.id == Journey.sampleNewYork().id)
@@ -39,7 +39,7 @@ struct LiveJourneyStepModelWithinJourneyTests {
     }
 
     @MainActor @Test
-    func testStartJourney() {
+    func startJourney() {
         let model = LiveJourneyStepModelWithinJourney(journey: Journey.sampleNewYork())
 
         model.makeNewLiveJourney()

@@ -1,13 +1,13 @@
 //
-//  EditExistingJourney.swift
+//  EditExistingJourneySheet.swift
 //  JourneyBook
 //
 //  Created by Jack Delaney on 03/02/2025.
 //
 
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
 
 struct EditExistingJourneySheet: SheetView {
     @Bindable var journey: Journey

@@ -5,9 +5,9 @@
 //  Created by Jack Delaney on 05/01/2025.
 //
 
+import SharedPersistenceKit
 import SwiftData
 import SwiftUI
-import SharedPersistenceKit
 
 struct TransportRouteListView: View {
     @EnvironmentObject private var coordinator: Coordinator

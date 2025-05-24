@@ -19,8 +19,8 @@ public struct LiveActivityExpandedView: View {
         }
         .activityBackgroundTint(.purple)
     }
-    
-   public init(state: StepAttributes.ContentState) {
+
+    public init(state: StepAttributes.ContentState) {
         self.state = state
     }
 }

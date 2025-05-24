@@ -14,7 +14,7 @@ import Testing
 
 struct VideosPickerViewModelTests {
     @MainActor @Test
-    func testInitialisationSetsDefaultPropertiesCorrectly() {
+    func initialisationSetsDefaultPropertiesCorrectly() {
         let model = VideosPickerViewModel()
 
         #expect(model.selectedItem == nil)
@@ -31,7 +31,7 @@ struct VideosPickerViewModelTests {
     }
 
     @MainActor @Test
-    func testSelectedItemLoading() {
+    func selectedItemLoading() {
         let model = VideosPickerViewModel()
 
         model.selectedItem = .loading
@@ -40,7 +40,7 @@ struct VideosPickerViewModelTests {
     }
 
     @MainActor @Test
-    func testSelectedItemMockedMovie() {
+    func selectedItemMockedMovie() {
         let model = VideosPickerViewModel()
 
         let movieURL = URL(fileURLWithPath: "/mock/path/to/movie.mov")
@@ -51,7 +51,7 @@ struct VideosPickerViewModelTests {
     }
 
     @MainActor @Test
-    func testGetLoadedMovieNoMovie() {
+    func getLoadedMovieNoMovie() {
         let model = VideosPickerViewModel()
         model.selectedItem = .failed
 
@@ -80,7 +80,7 @@ struct VideosPickerViewModelTests {
     }
 
     @MainActor @Test
-    func testSelectedItemFailed() {
+    func selectedItemFailed() {
         let model = VideosPickerViewModel()
 
         model.selectedItem = .failed
@@ -89,7 +89,7 @@ struct VideosPickerViewModelTests {
     }
 
     @MainActor @Test
-    func testClearItemResetsSelection() {
+    func clearItemResetsSelection() {
         let model = VideosPickerViewModel()
 
         model.selectedItem = .loading

@@ -12,7 +12,7 @@ import Testing
 
 struct CountryWithCodeTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let country = CountryWithCode.example
 
         #expect(country.countryCode == "GB")
@@ -21,7 +21,7 @@ struct CountryWithCodeTests {
     }
 
     @Test
-    func testDialCodeIntFunction() {
+    func dialCodeIntFunction() {
         let country = CountryWithCode.example
 
         #expect(country.dialCode == "44")
@@ -29,14 +29,14 @@ struct CountryWithCodeTests {
     }
 
     @Test
-    func testIdComputedVar() {
+    func idComputedVar() {
         let country = CountryWithCode.example
 
         #expect(country.id == "GB-United Kingdom-44")
     }
 
     @Test
-    func testNotEqutableTwoCountrysWithSameDialCode() {
+    func notEqutableTwoCountrysWithSameDialCode() {
         let countryA = CountryWithCode.example
         let countryB = CountryWithCode(countryCode: "IM", countryName: "Isle of Man", dialCode: "44")
 
@@ -44,7 +44,7 @@ struct CountryWithCodeTests {
     }
 
     @Test
-    func testEqutableTwoidenticalCountrys() {
+    func equtableTwoidenticalCountrys() {
         let countryA = CountryWithCode.example
         let countryB = CountryWithCode.example
 
@@ -52,7 +52,7 @@ struct CountryWithCodeTests {
     }
 
     @Test
-    func testNotEqutableTwoCountrys() {
+    func notEqutableTwoCountrys() {
         let countryA = CountryWithCode.example
         let countryB = CountryWithCode(countryCode: "IM", countryName: "Isle of Man", dialCode: "440")
 

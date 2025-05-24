@@ -12,7 +12,7 @@ import Testing
 
 struct FontSizesTests {
     @Test
-    func testInitialisationSetsPropertiesCorrectly() {
+    func initialisationSetsPropertiesCorrectly() {
         let font = FontSizes.body
 
         #expect(font.rawValue == 3)
@@ -20,49 +20,49 @@ struct FontSizesTests {
     }
 
     @Test
-    func testFontSizeLargeTitle() {
+    func fontSizeLargeTitle() {
         let font = FontSizes.largeTitle
 
         #expect(font.fontStyle == .largeTitle)
     }
 
     @Test
-    func testFontSizeTitle() {
+    func fontSizeTitle() {
         let font = FontSizes.title1
 
         #expect(font.fontStyle == .title)
     }
 
     @Test
-    func testFontSizeTitle2() {
+    func fontSizeTitle2() {
         let font = FontSizes.title2
 
         #expect(font.fontStyle == .title2)
     }
 
     @Test
-    func testFontSizeTitle3() {
+    func fontSizeTitle3() {
         let font = FontSizes.title3
 
         #expect(font.fontStyle == .title3)
     }
 
     @Test
-    func testFontSizeHeadline() {
+    func fontSizeHeadline() {
         let font = FontSizes.headline
 
         #expect(font.fontStyle == .headline)
     }
 
     @Test
-    func testFontSizeSubHeadline() {
+    func fontSizeSubHeadline() {
         let font = FontSizes.subheadline
 
         #expect(font.fontStyle == .subheadline)
     }
 
     @Test
-    func testFontSizeCallout() {
+    func fontSizeCallout() {
         let font = FontSizes.callout
 
         #expect(font.fontStyle == .callout)

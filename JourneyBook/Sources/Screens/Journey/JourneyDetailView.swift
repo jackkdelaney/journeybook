@@ -5,8 +5,8 @@
 //  Created by Jack Delaney on 01/01/2025.
 //
 
-import SwiftUI
 import SharedPersistenceKit
+import SwiftUI
 
 struct JourneyDetailView: View {
     @Environment(\.modelContext) var modelContext
@@ -40,9 +40,6 @@ struct JourneyDetailView: View {
                 }
             }
             if !journey.steps.isEmpty {
-                if !isEditing {
-                    JourneyDetailLiveItemSection(journey: journey)
-                }
                 Section("Step's") {
                     ForEach(sortedJourneySteps) { step in
                         Button {
@@ -83,9 +80,7 @@ struct JourneyDetailView: View {
         }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
-
                 EditButton()
-
             }
         }
     }
