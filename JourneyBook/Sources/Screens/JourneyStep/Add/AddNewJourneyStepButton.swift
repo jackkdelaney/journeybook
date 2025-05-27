@@ -49,13 +49,13 @@ struct AddNewJourneyStepButton: AnimatedBackGroundView {
     }
 
     var colours: [Color] { [
-        .purple.opacity(0.8),
+        .purple.opacity(0.9),
+        .purple.opacity(0.9),
+        .purple.opacity(0.9),
+        .pink.opacity(0.8),
+        .pink.opacity(07),
         .purple.opacity(0.7),
-        .purple.opacity(0.7),
-        .pink.opacity(0.7),
-        .pink.opacity(0.6),
         .purple.opacity(0.6),
-        .purple.opacity(0.5),
     ]
     }
 
