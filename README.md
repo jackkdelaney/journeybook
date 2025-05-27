@@ -30,6 +30,5 @@ The Monthly billing peroid restarts on the 3rd of Each Month.
 
 
 ### Instructions to use on your device
-
 Please ensure you have mise installed on your machine.
 
