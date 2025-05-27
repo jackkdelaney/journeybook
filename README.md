@@ -1,4 +1,4 @@
-# JourneyBook - Project P301
+# JourneyBook
 
 ## Getting started
 
